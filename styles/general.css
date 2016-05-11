@@ -1,0 +1,58 @@
+body{
+	color:white;
+	background-color:#292c36;
+	font-family:'San Francisco Text', sans-serif;
+}
+@font-face {
+	font-family: 'San Francisco Text';
+	font-weight: normal;
+	src: url('../fonts/SF-UI-Text-Regular.otf');
+
+}
+h2{
+	font-weight: normal;
+}
+
+.navbar-inverse{
+	background-color:transparent;
+	border-bottom: 1px solid rgb(230, 230, 230);
+}
+.navbar{
+	font-size:13px;
+	border-radius:0;
+}
+.team-image{
+	width:100%;
+	min-height:350px;
+	background-size:cover;
+	background-image: url('../images/team.jpg');
+	background-position: center 30%;
+}
+.team-image-gradient{
+	width:100%;
+	height:175px;
+	top:220px;
+	position:relative;
+	background-size:contain;
+	background-repeat: repeat;
+	background-image: url('../images/gradient.png');
+}
+/** Syntax Highlighting Colours */
+.code{
+	font-family: monospace;
+}
+.pink{
+	color:#B73D99;
+}
+.red{
+	color:#DC3C3C;
+}
+.blue{
+	color:#50ACA6;
+}
+.orange{
+	color:#D28E5D;
+}
+.green{
+	color:#95C76F;
+}
