@@ -18,9 +18,9 @@
 					new UILink('Winners'),
 					new UILink('Blog'),
 					new UILink('Credits', 'our_team.php'),
-					new UILink('Submit')
+					(new UILink('Submit', 'http://join.wwdcscholars.com'))->addClass('submit-button')
 				], [], UINav::FIXED_NONE, true, true),
-				new UIDiv(isset($content)?$content:'', 'container-fluid')
+				new UIDiv(isset($content)?$content:'', 'container')
 			],
 			[JSObject::libraryLink('JQuery', '2.2.3'), 'bootstrap/dist/js/bootstrap.min.js']
 		)

@@ -1,7 +1,8 @@
 body{
 	color:white;
-	background-color:#292c36;
-	font-family:'San Francisco Text', sans-serif;
+	background-color:#292A38;
+	font-family:"Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+	-webkit-font-smoothing: antialiased;
 }
 @font-face {
 	font-family: 'San Francisco Text';
@@ -15,11 +16,23 @@ h2{
 
 .navbar-inverse{
 	background-color:transparent;
-	border-bottom: 1px solid rgb(230, 230, 230);
+	border-bottom: 1px solid rgba(230, 230, 230, 0.1);
 }
 .navbar{
 	font-size:13px;
 	border-radius:0;
+}
+.navbar-inverse .navbar-nav>li>a{
+	color:white;
+}
+.submit-button{
+	background-color:#50ACA6;
+	padding: 0 7px !important;
+	margin: 15px 3px;
+	border-radius:4px;
+	background-image:linear-gradient(to bottom, #2AD4CB 0%, #1A827D 100%);
+	text-shadow:0 1px 1px rgba(28, 115, 184, 0.64);
+	border:1px solid #22ABA4;
 }
 .team-image{
 	width:100%;
