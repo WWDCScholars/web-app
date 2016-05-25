@@ -19,26 +19,17 @@
 
 	$scholars_list = json_decode(file_get_contents($API_URL));
 	
-	$i = 0;
 	foreach($scholars_list as $scholar){
-		$scholar_view = new UILink(new UIDiv(
-			[
-				new UIImage($scholar->profilePic),
-				new UIParagraph($scholar->firstName . ' ' . $scholar->lastName)
-			], ['scholar_overview', 'col-xs-6', 'col-sm-4', 'col-md-3', 'col-lg-2']
-		), 'detail_view.php?id='.$scholar->_id);
+		if($scholar->_id == $_GET['id']){
+			$scholar_view = new UILink(new UIDiv([new UIImage($scholar->profilePic), new UIParagraph($scholar->firstName . ' ' . $scholar->lastName)], ['scholar_overview', 'col-xs-6', 'col-sm-4', 'col-md-3', 'col-lg-2']), 'detail_view.php?id=' . $scholar->_id);
 
-		foreach($scholar->batchWWDC as $year){
-			$scholar_view->addClass($year);
-		}
+			foreach($scholar->batchWWDC as $year){
+				$scholar_view->addClass($year);
+			}
 
-		$scholars_container->addContent($scholar_view);
-
-		$i++;
-		if($i >= 24){
-			break;
+			$scholars_container->addContent($scholar_view);
 		}
 	}
 	$content .= $scholars_container;
-	
+
 	require_once('placeholder_page.php');
