@@ -69,3 +69,16 @@ h2{
 .green{
 	color:#95C76F;
 }
+/** Scholar on Home */
+.scholar_overview{
+	margin-bottom:30px;
+	overflow-x:hidden;
+}
+.scholar_overview img{
+	max-width:100%;
+	max-height:100%;
+}
+.scholar_overview p{
+	text-align:center;
+	background-color:rgba(0,0,0,0.7);
+}
