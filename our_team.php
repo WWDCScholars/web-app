@@ -13,7 +13,7 @@
 	require_once('phpUI/autoloader.php');
 
 	$content = new UIDiv([new UIDiv([], 'team-image-gradient')], 'team-image');
-	$content.= new UIHeading(3, 'Our Team');
+	$content.= new UIHeading(5, 'Our Team');
 	$content.= new UIParagraph([new UISpan('let', 'pink'),' ourGoal = ', new UISpan('"Bring together scholars from across the world!"', 'red')], 'code');
 
 	require_once('placeholder_page.php');

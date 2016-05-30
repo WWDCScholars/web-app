@@ -5,6 +5,7 @@
 	 * Date: 08/05/2016
 	 * Time: 12:37
 	 */
+	use phpHTML\JSCore\JSObject;
 	use phpHTML\UICore\UIDiv;
 	use phpHTML\UICore\UIHeading;
 	use phpHTML\UICore\UIImage;
@@ -18,13 +19,15 @@
 	$scholars_container = new UIDiv([], [], 'scholars_div');
 
 	$scholars_list = json_decode(file_get_contents($API_URL));
-	
+
 	$i = 0;
 	foreach($scholars_list as $scholar){
 		$scholar_view = new UILink(new UIDiv(
 			[
-				new UIImage($scholar->profilePic),
-				new UIParagraph($scholar->firstName . ' ' . $scholar->lastName)
+				new UIDiv([
+					new UIImage($scholar->profilePic2015),
+					new UIParagraph($scholar->firstName . ' ' . $scholar->lastName)
+				], 'scholar_square')
 			], ['scholar_overview', 'col-xs-6', 'col-sm-4', 'col-md-3', 'col-lg-2']
 		), 'detail_view.php?id='.$scholar->_id);
 
@@ -40,5 +43,6 @@
 		}
 	}
 	$content .= $scholars_container;
-	
+	$content .= new JSObject('var scholarsLoaded = 24;');
+
 	require_once('placeholder_page.php');
