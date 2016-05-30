@@ -14,7 +14,7 @@
 		new UIPageBody(
 			[
 				new UINav(
-					new UILink('<span class="red">W</span><span class="green">W</span><span class="pink">D</span><span class="orange">C</span><span class="blue">Scholars</span>', '', '', '', '', 'navbar-brand'), [], [
+					new UILink('<span class="red">W</span><span class="green">W</span><span class="pink">D</span><span class="orange">C</span><span class="blue">Scholars</span>', 'index.php', '', '', '', 'navbar-brand'), [], [
 					new UILink('Winners'),
 					new UILink('Blog'),
 					new UILink('Credits', 'our_team.php'),
