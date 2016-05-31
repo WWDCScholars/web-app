@@ -26,7 +26,7 @@
 			[
 				new UIDiv([
 					new UIImage($scholar->profilePic2015),
-					new UIParagraph($scholar->firstName . ' ' . $scholar->lastName)
+					new UIParagraph($scholar->firstName)
 				], 'scholar_square')
 			], ['scholar_overview', 'col-xs-6', 'col-sm-4', 'col-md-3', 'col-lg-2']
 		), 'detail_view.php?id='.$scholar->_id);

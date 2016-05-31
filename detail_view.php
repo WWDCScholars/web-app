@@ -56,11 +56,13 @@
 		],'row'),
 		new UIDiv([
 			new UIDiv(new UIParagraph($scholar->shortBio), 'col-xs-12')
-		], 'row'),
-		new UIDiv([
-			new UIHeading(3, 'Submissions')
 		], 'row')
 	], ['scholar_detail', 'center']);
+
+	
+	$scholar_view .= new UIDiv(new UIDiv([
+		new UIHeading(3, 'Submissions')
+	], ['col-xs-12', 'submissions']), ['row', 'center']);
 
 	$content = $embed . $scholar_view;
 

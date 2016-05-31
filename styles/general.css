@@ -87,14 +87,18 @@ h2{
 .scholar_square img{
 	max-width:100%;
 	max-height:100%;
+	border-radius:14px;
 }
 .scholar_square p{
+	font-size:130%;
 	width:100%;
 	position:absolute;
 	bottom:0;
 	margin:0;
 	text-align:center;
-	background-color:rgba(0,0,0,0.7);
+	background-color:rgba(65,58,153,0.75);
+	border-bottom-left-radius:14px;
+	border-bottom-right-radius:14px;
 }
 /** Scholar on Detail */
 .map{

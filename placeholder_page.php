@@ -10,7 +10,7 @@
 	require_once('phpUI/autoloader.php');
 
 	echo new UIPage(
-		new UIPageHead('WWDC Scholars', ['bootstrap/dist/css/bootstrap.min.css','styles/general.min.css?v=1.01'], ['<meta>']),
+		new UIPageHead('WWDC Scholars', ['bootstrap/dist/css/bootstrap.min.css','styles/general.min.css?v=1.01'], ['<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">']),
 		new UIPageBody(
 			[
 				new UINav(
