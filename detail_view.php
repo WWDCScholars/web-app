@@ -73,6 +73,9 @@
 	$links = ['itunes', 'github', 'facebook', 'twitter', 'website', 'linkedin', 'email'];
 	foreach($links as $link){
 		if(isset($scholar->$link)){
+			if($link == 'email'){
+				$scholar->$link = 'mailto:' . $scholar->$link;
+			}
 			$links_view.= new UILink(new UIDiv('', [$link, 'link']), $scholar->$link, '', '_blank');
 		}
 	}
