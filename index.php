@@ -15,7 +15,7 @@
 	require_once('phpUI/autoloader.php');
 	require_once "server_conf.php";
 
-	$content = new UIHeading(2, 'WWDC Scholars');
+	//$content = new UIHeading(2, 'WWDC Scholars');
 	$scholars_container = new UIDiv([], [], 'scholars_div');
 
 	$scholars_list = json_decode(file_get_contents($API_URL));
@@ -42,7 +42,7 @@
 			break;
 		}
 	}
-	$content .= $scholars_container;
+	$content = $scholars_container;
 	$content .= new JSObject('var scholarsLoaded = 24;');
 
 	require_once('placeholder_page.php');

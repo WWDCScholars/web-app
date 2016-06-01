@@ -41,7 +41,10 @@ h2{
 	border:1px solid #22ABA4;
 }
 .team-image{
+	position:relative;
+	float:left;
 	width:100%;
+	z-index:-1;
 	min-height:350px;
 	background-size:cover;
 	background-image: url('../images/team.jpg');
@@ -141,4 +144,39 @@ h2{
 }
 .center{
 	text-align:center;
+}
+.links:first-child{
+	margin-left:auto;
+}
+.links:last-child{
+	margin-right:auto;
+}
+.link{
+	background-size:cover;
+	background-repeat:no-repeat;
+	width:30px;
+	height:30px;
+	display:inline-block;
+	margin:10px;
+}
+.itunes{
+	background-image: url('../images/icons/appstoreIconSmall@3x.png');
+}
+.facebook{
+	background-image: url('../images/icons/facebookIconSmall@3x.png');
+}
+.github{
+	background-image: url('../images/icons/gitHubIconSmall@3x.png');
+}
+.linkedin{
+	background-image: url('../images/icons/linkedinIconSmall@3x.png');
+}
+.email{
+	background-image: url('../images/icons/mailIconSmall@3x.png');
+}
+.twitter{
+	background-image: url('../images/icons/twitterIconSmall@3x.png');
+}
+.website{
+	background-image: url('../images/icons/websiteIconSmall@3x.png');
 }

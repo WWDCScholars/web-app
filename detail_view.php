@@ -8,6 +8,7 @@
 	use phpHTML\UICore\UIDiv;
 	use phpHTML\UICore\UIHeading;
 	use phpHTML\UICore\UIImage;
+	use phpHTML\UICore\UILink;
 	use phpHTML\UICore\UIParagraph;
 
 	require_once('phpUI/autoloader.php');
@@ -25,6 +26,7 @@
 	$age = $now->diff($date_of_birth)->format('%y');
 
 	$attended = '';
+	$scholar->batchWWDC = array_reverse($scholar->batchWWDC);
 	foreach($scholar->batchWWDC as $wwdc){
 		if(!empty($attended)){
 			$attended .= ', ';
@@ -32,10 +34,16 @@
 		$attended .= str_replace('WWDC', "'", $wwdc);
 	}
 
+	$latest_picture = '';
+	for($i = 2012; $i < date('Y'); $i++){
+		$var = 'profilePic' . $i;
+		$latest_picture = isset($scholar->$var)?$scholar->$var:$latest_picture;
+	}
+
 	$scholar_view = new UIDiv([
 		new UIDiv(
 			new UIDiv([
-				new UIImage($scholar->profilePic2015, ['scholar_centered_photo']),
+				new UIImage($latest_picture, ['scholar_centered_photo']),
 				new UIHeading(3, [$scholar->firstName, ' ', $scholar->lastName]),
 				new UIHeading(5, $scholar->location)
 			], ['col-xs-12']),
@@ -59,11 +67,20 @@
 		], 'row')
 	], ['scholar_detail', 'center']);
 
-	
-	$scholar_view .= new UIDiv(new UIDiv([
+
+
+	$links_view = new UIDiv([], ['col-xs-12', 'links']);
+	$links = ['itunes', 'github', 'facebook', 'twitter', 'website', 'linkedin', 'email'];
+	foreach($links as $link){
+		if(isset($scholar->$link)){
+			$links_view.= new UILink(new UIDiv('', [$link, 'link']), $scholar->$link, '', '_blank');
+		}
+	}
+
+	$submissions_view = new UIDiv(new UIDiv([
 		new UIHeading(3, 'Submissions')
 	], ['col-xs-12', 'submissions']), ['row', 'center']);
 
-	$content = $embed . $scholar_view;
+	$content = $embed . $scholar_view . new UIDiv($links_view, ['row', 'center']) . $submissions_view;
 
 	require_once('placeholder_page.php');
