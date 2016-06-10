@@ -16,36 +16,33 @@
 
 	$id = isset($_GET['id'])?$_GET['id']:'';
 
-	$scholar = json_decode(file_get_contents($API_URL . $id));
-	//var_dump($scholar);
+	$scholar = json_decode(file_get_contents($API_URL . $id))[0];
+	$info = $scholar->scholarsInfo;
 
-	$embed = new UIDiv("<iframe width='100%' height='200' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?key={$GMAPS_KEY}&q={$scholar->location}' allowfullscreen></iframe>", 'map');
+	$embed = new UIDiv("<iframe width='100%' height='200' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?key={$GMAPS_KEY}&q={$info->location}' allowfullscreen></iframe>", 'map');
 
-	$date_of_birth = new DateTime($scholar->birthday);
+	$date_of_birth = new DateTime($info->birthday);
 	$now = new DateTime();
 	$age = $now->diff($date_of_birth)->format('%y');
 
-	$attended = '';
-	$scholar->batchWWDC = array_reverse($scholar->batchWWDC);
-	foreach($scholar->batchWWDC as $wwdc){
-		if(!empty($attended)){
-			$attended .= ', ';
+	$batches = $scholar->batch;
+	$batches_string = '';
+	$twenty_sixteen = $batches[0];
+	$latest_picture = $twenty_sixteen->profilePic;
+	foreach($batches as $batch){
+		if(!empty($batches_string)){
+			$batches_string .= ', ';
 		}
-		$attended .= str_replace('WWDC', "'", $wwdc);
+		$batches_string .= str_replace('WWDC', '', $batch->batchWWDC);
 	}
 
-	$latest_picture = '';
-	for($i = 2012; $i < date('Y'); $i++){
-		$var = 'profilePic' . $i;
-		$latest_picture = isset($scholar->$var)?$scholar->$var:$latest_picture;
-	}
 
 	$scholar_view = new UIDiv([
 		new UIDiv(
 			new UIDiv([
 				new UIImage($latest_picture, ['scholar_centered_photo']),
-				new UIHeading(3, [$scholar->firstName, ' ', $scholar->lastName]),
-				new UIHeading(5, $scholar->location)
+				new UIHeading(3, [$info->firstName, ' ', $info->lastName]),
+				new UIHeading(5, $info->location)
 			], ['col-xs-12']),
 		'row'),
 		new UIDiv([
@@ -55,15 +52,15 @@
 			], 'col-xs-4'),
 			new UIDiv([
 				new UIHeading(4, 'Gender', 'green'),
-				new UIHeading(4, $scholar->gender)
+				new UIHeading(4, $info->gender)
 			], 'col-xs-4'),
 			new UIDiv([
 				new UIHeading(4, 'Attended', 'blue'),
-				new UIHeading(4, $attended)
+				new UIHeading(4, $batches_string)
 			], 'col-xs-4')
 		],'row'),
 		new UIDiv([
-			new UIDiv(new UIParagraph($scholar->shortBio), 'col-xs-12')
+			new UIDiv(new UIParagraph($info->shortBio), 'col-xs-12')
 		], 'row')
 	], ['scholar_detail', 'center']);
 
@@ -71,12 +68,13 @@
 
 	$links_view = new UIDiv([], ['col-xs-12', 'links']);
 	$links = ['itunes', 'github', 'facebook', 'twitter', 'website', 'linkedin', 'email'];
+	$connect = $scholar->scholarConnect;
 	foreach($links as $link){
-		if(isset($scholar->$link)){
+		if(isset($connect->$link)){
 			if($link == 'email'){
-				$scholar->$link = 'mailto:' . $scholar->$link;
+				$connect->$link = 'mailto:' . $connect->$link;
 			}
-			$links_view.= new UILink(new UIDiv('', [$link, 'link']), $scholar->$link, '', '_blank');
+			$links_view.= new UILink(new UIDiv('', [$link, 'link']), $connect->$link, '', '_blank');
 		}
 	}
 
