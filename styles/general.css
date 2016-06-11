@@ -180,3 +180,14 @@ h2{
 .website{
 	background-image: url('../images/icons/websiteIconSmall@3x.png');
 }
+.submissions_scroll{
+	overflow-x:scroll;
+	white-space: nowrap;
+	overflow-y: hidden;
+}
+.submissions img{
+	display:inline-block;
+	height:440px;
+	margin:20px;
+	vertical-align:top;
+}

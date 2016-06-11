@@ -52,7 +52,7 @@
 			], 'col-xs-4'),
 			new UIDiv([
 				new UIHeading(4, 'Gender', 'green'),
-				new UIHeading(4, $info->gender)
+				new UIHeading(4, ucfirst($info->gender))
 			], 'col-xs-4'),
 			new UIDiv([
 				new UIHeading(4, 'Attended', 'blue'),
@@ -78,10 +78,21 @@
 		}
 	}
 
-	$submissions_view = new UIDiv(new UIDiv([
-		new UIHeading(3, 'Submissions')
-	], ['col-xs-12', 'submissions']), ['row', 'center']);
+	$submissions_scroll = new UIDiv([], ['submissions_scroll']);
+	$submissions_view = new UIDiv([
+		new UIHeading(3, 'Submissions'),
+		$submissions_scroll
+	], ['col-xs-12', 'submissions']);
 
-	$content = $embed . $scholar_view . new UIDiv($links_view, ['row', 'center']) . $submissions_view;
+	$screenshots = ['One', 'Two', 'Three', 'Four'];
+
+	foreach($screenshots as $screenshot){
+		$screenshot_var = 'screenshot' .$screenshot;
+		if(isset($twenty_sixteen->$screenshot_var)){
+			$submissions_scroll->addContent(new UIImage($twenty_sixteen->$screenshot_var));
+		}
+	}
+
+	$content = $embed . $scholar_view . new UIDiv($links_view, ['row', 'center']) . new UIDiv($submissions_view, ['row', 'center']);
 
 	require_once('placeholder_page.php');
