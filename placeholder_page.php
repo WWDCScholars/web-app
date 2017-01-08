@@ -10,14 +10,14 @@
 	require_once('phpUI/autoloader.php');
 
 	echo new UIPage(
-		new UIPageHead('WWDC Scholars', ['bootstrap/dist/css/bootstrap.min.css','styles/general.min.css?v=1.01'], ['<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">']),
+		new UIPageHead('WWDCScholars', ['bootstrap/dist/css/bootstrap.min.css','styles/general.min.css?v=1.01'], ['<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">']),
 		new UIPageBody(
 			[
 				new UINav(
 					new UILink('<span class="red">W</span><span class="green">W</span><span class="pink">D</span><span class="orange">C</span><span class="blue">Scholars</span>', 'index.php', '', '', '', 'navbar-brand'), [], [
 					new UILink('Winners'),
 					new UILink('Blog'),
-					new UILink('Community', 'http://community.wwdcscholars.com', '_blank'),
+					new UILink('Donate', 'https://donate.wwdcscholars.com', '_blank'),
 					new UILink('Credits', 'our_team.php'),
 					(new UILink('Submit', 'http://join.wwdcscholars.com'))->addClass('submit-button')
 				], [], UINav::FIXED_NONE, true, true),
