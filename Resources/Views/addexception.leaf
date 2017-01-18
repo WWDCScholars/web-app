@@ -1,0 +1,52 @@
+#embed("Includes/header")
+
+<body>
+
+    #embed("Includes/sidebar")
+
+    <div class="main-panel">
+        #embed("Includes/topbar")
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Uitzondering toevoegen</h4>
+                            </div>
+                            <div class="content">
+                                <form method="POST" action="#(baseUrl)/timetableunitsexceptions/add">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Datum</label>
+                                                <input name="date" id="date" type="text" class="form-control" placeholder="dd-mm-yyyy">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="sel1">Lesminuten</label>
+                                                <select name="collection" class="form-control" id="sel1">
+                                                  #loop(collections, "collection") {
+                                                    <option>#(collection.unitCollection)</option>
+                                                  }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Toevoegen</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+#embed("Includes/footer")

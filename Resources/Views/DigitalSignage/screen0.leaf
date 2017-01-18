@@ -1,0 +1,600 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Revius Lyceum - Lichtkrant</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/digitalsignage/css/weather-icons-wind.min.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/digitalsignage/css/weather-icons.min.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+<script type="text/javascript" src="/assets/digitalsignage/js/autoshrink.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+<style>
+.flex {
+
+}
+
+.flex > div {
+display: inline-block;
+}
+
+/* colors */
+/*.flex > div:nth-child(1){ background: #()009246; }
+.flex > div:nth-child(2){ background: #()F1F2F1; }
+.flex > div:nth-child(3){ background: #()CE2B37; }*/
+
+.flex > div:hover {
+/*width: 200px;*/
+}
+
+</style>
+<style type="text/css">
+/*
+Docs at http://http://simpleweatherjs.com
+
+Weather icon font from http://fonts.artill.de/collection/artill-weather-icons
+
+DO NOT hotlink the assets/font included in this demo. If you wish to use the same font icon then download it to your local assets at the link above. If you use the links below odds are at some point they will be removed and your version will break.
+*/
+
+@font-face {
+font-family: 'weather';
+src: url('fonts/artill_clean_icons-webfont.ttf');
+/*src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#()iefix') format('embedded-opentype'),*/
+/*url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff');*/
+/*url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'),*/
+/*url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#()artill_clean_weather_iconsRg') format('svg');*/
+font-weight: normal;
+font-style: normal;
+}
+
+/*body {
+padding: 25px 0;
+font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+background: #()fff;
+}*/
+
+/*.loading {
+margin: 20px 0 0;
+}*/
+/** {cursor: none;}*/
+
+#()weather {
+/*width: 100%;*/
+/*margin: 0px 0px 0px 0px;*/
+margin-right: -20px;
+/*background-color: rgba(255,255,255,0.90);*/
+height: 100%;
+text-align: center;
+text-transform: uppercase;
+overflow: hidden;
+
+}
+
+#()weather h2 {
+/*margin: -1.75vw 0 10px;*/
+/*transform: translate(0%,-55%);*/
+
+color: #()fff;
+font-size: 3.5vw;
+font-weight: 300;
+text-align: center;
+text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+#()weather i {
+margin: 4vh 0 0;
+font-size: 4vw;
+color: #()fff;
+font-weight: 300;
+text-align: center;
+text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+#()weather .updated {
+opacity: 0.45;
+}
+
+.carousel #()myCarousel {
+/*background: #()f3f3f4;*/
+/*background: #()143A82;2f4357*/
+height: 100%;
+width: 100%;
+left: 0px;
+top: 0px;
+position:absolute;
+z-index:0;
+}
+.carousel .item img{
+margin: 0 auto; /* Align slide image horizontally center */
+height: 100%;
+text-align: center;
+}
+.bs-example{
+height: 100%;
+width: 100%;
+z-index:0;
+position:absolute;
+}
+.skills{
+height: 100%;
+font-family: 'Open Sans', sans-serif;
+font-size: 2em;
+
+/*margin-bottom: 50px;*/
+}
+header {
+text-align: center;
+color: #()fff;
+/*background: #()18bc9c;*/
+/*background: #()143A82;*/
+position: relative;;
+width:100%;
+z-index: 1;
+height: 94%;
+overflow: hidden;
+top: 0;
+left: 0;
+}
+
+header .container {
+padding-top: 5px;
+padding-bottom: 25px;
+}
+
+header img {
+display: block;
+margin: 0 auto 20px;
+}
+
+header .intro-text .name {
+display: block;
+/*text-transform: uppercase;*/
+font-family: 'Open Sans', sans-serif;
+font-size: 40px;
+font-weight: 700;
+}
+
+header .intro-text .skills {
+font-size: 30px;
+font-weight: 400;
+}
+
+section {
+padding: 100px 0;
+width: 100%;
+}
+
+section h2 {
+margin: 0;
+font-size: 3em;
+}
+
+hr.star-light,
+hr.star-primary {
+margin: 15px auto 30px;
+padding: 0;
+/*max-width: 500px;*/
+border: 0;
+border-top: solid 5px;
+text-align: center;
+}
+
+hr.star-light {
+border-color: #()791b1f;
+}
+
+hr.star-light:after {
+/*color: #()fff;*/
+background-color: #()18bc9c;
+}
+
+hr.star-primary {
+border-color: #()2c3e50;
+}
+
+hr.star-primary:after {
+color: #()fff;
+/*background-color: #()fff;*/
+}
+
+section.primary h2{
+color: #()fff;
+}
+
+section.success{
+background-color: #()18bc9c;
+color: #()fff;
+}
+
+.reviuslogo {
+/*position: absolute;*/
+/*bottom: 50px;*/
+display:inline-block;
+margin-left: 50px;
+height: 100%;
+/*background-color: white;*/
+z-index:1;
+}
+
+html,body{
+height: 100%;
+max-height: 100%;
+overflow: hidden;
+}
+
+body {
+background-color: #()041e2d;
+fill: #()fff;
+
+/*background-image: url("/assets/digitalsignage/img/IMG_4653.jpg");*/
+/*background-repeat: no-repeat;*/
+/*background-size:cover;*/
+
+/*padding-top: 40px;
+padding-bottom: 40px;
+padding-left: 40px;
+padding-right: 40px;*/
+
+}
+
+.container {
+width: 100%;
+/*height: 100%;*/
+}
+
+.row {
+/*height: 100%;*/
+}
+
+.left-content {
+/*background-color: rgba(255,255,255,1.00);*/
+height: 100%;
+/*margin-left: -10px;*/
+
+}
+
+.right-sidebar {
+/*background-color: #()fff;*/
+height: 100%;
+padding-right: 0px;
+padding-left: 0px;
+padding-top: auto;
+/*border-left: 5px solid #()FECE21;*/
+margin-left: 10px;
+}
+
+.date {
+/*margin-top: 10px;*/
+height: 100%;
+/*width: 100%;*/
+/*background-color: rgba(255,255,255,1.0);*/
+}
+
+.time-text {
+font-family: 'Open Sans', sans-serif;
+height: 100%;
+/*margin-top: -20px;*/
+margin-left: 20px;
+margin-right: 10px;
+line-height: 75px;
+font-size: 2.5em;
+text-transform: uppercase;
+font-weight: bold;
+color: #()041e2d;
+width: 100%
+text-align: center;
+}
+
+.date-text {
+font-family: 'Open Sans', sans-serif;
+/*height: 100%;*/
+/*margin-top: -20px;*/
+/*margin-left: 20px;*/
+/*margin-right: 10px;*/
+line-height: 75px;
+font-size: 2.5em;
+text-transform: uppercase;
+font-weight: bold;
+color: #()041e2d;
+/*width: inherit;;*/
+text-align: center;
+}
+
+.content {
+height: 62%;
+padding-left: 25px;
+padding-right: 25px;
+margin-top: 1%;
+margin-bottom: 1%;
+}
+.centering{
+float:none;
+margin:0 auto
+}
+
+.logo-holder {
+padding-top: 1%;
+padding-bottom: 1%;
+width: 50%;
+background: -moz-linear-gradient(left, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 50%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 50%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#()a6ffffff', endColorstr='#()00ffffff',GradientType=1 ); /* IE6-9 */
+/*background-color: rgba(255,255,255,0.90);*/
+height: 60%;
+max-height: 60%;
+position: relative;
+top: 50%;
+transform: translateY(-50%); /* or try 50% */
+}
+
+.topheader {
+background-image: url("/assets/digitalsignage/img/nieuwbouw-zijkant.jpeg");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: 0% 250%;
+
+height: 25%;
+max-height: 25%;
+}
+
+.bottomfooter {
+/*background-image: url("/assets/digitalsignage/img/nieuwbouw-zijkant.jpeg");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: 0% 300%;*/
+background-color: #()fff;
+height: 10%;
+max-height: 10%;
+
+/*position: relative;
+margin-top: -25%;
+clear:both;
+padding-top:20px;*/
+}
+
+.verticalLine {
+border-left: solid #()041e2d;
+height: 100%;
+width: 1px !important;
+}
+
+.notice-text {
+font-family: 'Open Sans', sans-serif;
+height: 100%;
+/*margin-top: -20px;*/
+margin-left: 20px;
+line-height: 75px;
+font-size: 2.5em;
+color: #()041e2d;
+text-align: center;
+}
+.weather-icon path {
+fill: #()fff;
+}
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+
+<script type="text/javascript">
+var itemCount = 0;
+//var auto_refresh = setInterval(
+//function ()
+//{
+$('#()load_tweets').load('nieuws.php').fadeIn("slow");
+//}, 1000); // refresh every 10000 milliseconds
+</script>
+</head>
+<body class="body">
+<div class="topheader row">
+<div class="logo-holder col-md-10">
+<img src="/assets/digitalsignage/img/revius-logo.svg" class="reviuslogo"/>
+</div>
+<div class="weather pull-right col-md-2" id="weather">
+<i class="wi wi-cloud-refresh" width="75px" height="75px"></i>
+<h2>--&deg;</h2>
+</div>
+</div>
+<div class="container">
+
+<div class="row content">
+<div class="col-md-12 left-content">
+<header id="myCarousel"> <!-- class="carousel slide" data-ride="carousel"> -->
+
+<!-- <div id="load_tweets" /> -->
+#embed("DigitalSignage/newsslider")
+
+</header>
+</div>
+<script type="text/javascript">
+// $('#()load_tweets').load('nieuws.php').fadeIn("slow");
+
+// $(document).ready(function () {
+//     $("#()myCarousel").carousel({
+//         interval: 15 * 1000,
+//         pause: false
+//     });
+// });
+
+</script>
+<!-- <div class="col-md-3 right-sidebar"> -->
+<!-- <div class="row-fluid weather centering" id="weather"> -->
+<!-- </div> -->
+<!-- <div class="row-fluid"> -->
+
+<!-- <div class="date"><p class="date-text"> </p> </div> -->
+
+<!-- </div> -->
+<!-- <div class="row-fluid">
+
+<div class="logo-holder"> <img src="/assets/digitalsignage/img/revius-logo-new.png" class="reviuslogo center-block"/></div>
+</div> -->
+
+<!-- </div> -->
+</div>
+</div>
+
+</div>
+<div class="bottomfooter navbar-static-bottom row">
+<div class="col-md-1 time-text" id="time"></div>
+<div class="verticalLine col-md-1"></div>
+<div class="col-md-10 notice-text hidden">Het 4e lesuur begint over 15 minuten</div>
+<div class="col-md-10 date"><p class="date-text"> </p> </div>
+<!-- <div class="logo-holder col-md-10">
+<img src="/assets/digitalsignage/img/revius-logo.svg" class="reviuslogo"/>
+</div> -->
+</div>
+<!-- <div class="bs-example">
+<img src="/assets/digitalsignage/img/revius-logo.png" class="reviuslogo"/>
+-->
+
+</body>
+</html>
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+<!--
+
+function initArray() {
+this.length = initArray.arguments.length;
+for (var i = 0; i < this.length; i++)
+this[i+1] = initArray.arguments[i];
+}
+
+var dagArray = new initArray("zondag","maandag", "dinsdag","woensdag","donderdag","vrijdag","zaterdag");
+
+var maandArray = new initArray("januari","februari","maart","april","mei","juni","juli", "augustus","september","oktober","november","december");
+
+var nu = new Date();
+var dagtekst = dagArray[(nu.getDay()+1)];
+var dag = nu.getDate();
+var maandtekst = maandArray[(nu.getMonth()+1)];
+
+var datumweergave = dag + " " + maandtekst;
+
+function startTime() {
+var today = new Date();
+var h = today.getHours();
+var m = today.getMinutes();
+m = checkTime(m);
+document.getElementById('time').innerHTML =
+h + ":" + m;
+var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+return i;
+}
+
+function loadWeather() {
+$.simpleWeather({
+woeid: '728796', //728796
+location: '',
+unit: 'c',
+success: function(weather) {
+console.log("Loaded weather");
+// if(weather.temp > 75) {
+//   $('body').animate({backgroundColor: '#()F7AC57'}, 1500);
+// } else {
+//   $('body').animate({backgroundColor: '#()0091c2'}, 1500);
+// }
+// html = '<img class="weather-icon svg" width="75px" height="75px" src="/assets/digitalsignage/img/weather/'+weather.code+'.svg"></img>';
+html = '<i class="wi wi-yahoo-'+weather.code+'" width="75px" height="75px"></i>';
+html += '<h2>'+weather.temp+'&deg;</h2>';
+//html += '<li>'+weather.tempAlt+'&deg;C</li></ul>';
+
+// var timestamp = moment(weather.updated);
+// html += '<p class="updated">Updated '+moment(timestamp).fromNow()+'</p>';
+
+$("#()weather").html(html);
+},
+error: function(error) {
+loadWeather();
+}
+});
+$('.carousel-inner .item:first').addClass('active');
+//        $("#()myCarousel").carousel('cycle');
+
+}
+
+$(document).ready(function(){
+startTime();
+loadWeather();
+$(".date-text").html(datumweergave);
+
+// $(".date-text").html(datumweergave);
+$('.carousel-inner.vertical .item:first').addClass('active');
+
+var timer;
+var fadeInBuffer = false;
+$(document).mousemove(function () {
+if (!fadeInBuffer) {
+if (timer) {
+// console.log("clearTimer");
+clearTimeout(timer);
+timer = 0;
+}
+
+// console.log("fadeIn");
+$('.body').css({
+cursor: ''
+});
+} else {
+$('.body').css({
+cursor: 'default'
+});
+fadeInBuffer = false;
+}
+
+
+timer = setTimeout(function () {
+console.log("fadeout");
+$('.body').css({
+cursor: 'none'
+});
+
+fadeInBuffer = true;
+}, 2000)
+});
+$('.html').css({
+cursor: 'default'
+});
+});
+
+jQuery('img.svg').each(function(){
+var $img = jQuery(this);
+var imgID = $img.attr('id');
+var imgClass = $img.attr('class');
+var imgURL = $img.attr('src');
+
+jQuery.get(imgURL, function(data) {
+// Get the SVG tag, ignore the rest
+var $svg = jQuery(data).find('svg');
+
+// Add replaced image's ID to the new SVG
+if(typeof imgID !== 'undefined') {
+$svg = $svg.attr('id', imgID);
+}
+// Add replaced image's classes to the new SVG
+if(typeof imgClass !== 'undefined') {
+$svg = $svg.attr('class', imgClass+' replaced-svg');
+}
+
+// Remove any invalid XML tags as per http://validator.w3.org
+$svg = $svg.removeAttr('xmlns:a');
+
+// Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+$svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+}
+
+// Replace image with new SVG
+$img.replaceWith($svg);
+
+}, 'xml');
+
+});
+//-->
+</SCRIPT>

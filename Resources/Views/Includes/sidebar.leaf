@@ -1,0 +1,66 @@
+<div class="sidebar" data-color="blue" data-image="/assets/img/bg-moscone.jpg">
+
+    <!--
+
+Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+Tip 2: you can also add an image using data-image tag
+
+-->
+    <div class="sidebar-wrapper">
+        <div class="logo">
+          <img src="/assets/img/wwdcscholars-logo.png"> </img>
+          <!-- <a href="#()" class="simple-text"> Revius Lyceum </a> -->
+        </div>
+
+        <ul class="nav">
+            <li class="#equal(page,"dashboard") { active }">
+                <a href="#(baseUrl)/dashboard">
+                    <i class="pe-7s-graph"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="#equal(page,"timetableunits") { active }">
+                <a href="#(baseUrl)/timetableunits">
+                    <i class="pe-7s-clock"></i>
+                    <p>Roostertijden</p>
+                </a>
+            </li>
+            <li class="#equal(page,"timetableunitsexceptions") { active }">
+                <a href="timetableunitsexceptions">
+                    <i class="pe-7s-attention"></i>
+                    <p>Uitzonderingen</p>
+                </a>
+            </li>
+            <li class="#if(digitalsignage) { active }">
+                <a href="#(baseUrl)/digitalsignage">
+                    <i class="pe-7s-bell"></i>
+                    <p>Infoborden</p>
+                </a>
+            </li>
+            <li class="#if(news) { active }">
+                <a href="#(baseUrl)/news">
+                    <i class="pe-7s-news-paper"></i>
+                    <p>Nieuws</p>
+                </a>
+            </li>
+            <li>
+                <a href="#(baseUrl)/appusers">
+                    <i class="pe-7s-tools"></i>
+                    <p>App Gebruikers</p>
+                </a>
+            </li>
+            <li>
+                <a href="#(baseUrl)/adminusers">
+                    <i class="pe-7s-user"></i>
+                    <p>Gebruikers</p>
+                </a>
+            </li>
+            <!--<li class="active-pro">
+                <a href="upgrade.html">
+                    <i class="pe-7s-rocket"></i>
+                    <p>Upgrade to PRO</p>
+                </a>
+            </li>-->
+        </ul>
+    </div>
+</div>

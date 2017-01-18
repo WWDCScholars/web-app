@@ -1,0 +1,62 @@
+<!--   Core JS Files   -->
+<script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="/assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+<!--  Charts Plugin -->
+<script src="/assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="/assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script src="/assets/js/light-bootstrap-dashboard.js"></script>
+
+<script src="/assets/js/demo.js"></script>
+<script src="/assets/js/link-methods.js"></script>
+
+<script src="/assets/js/bootstrap-clockpicker.min.js"></script>
+<script src="/assets/js/bootstrap-datepicker.js"></script>
+<script src="/assets/js/locales/bootstrap-datepicker.nl.js"></script>
+
+<script src="https://gist.githubusercontent.com/JeffreyWay/5112282/raw/09198878fab3f4fb9657de1776b534ce9ad3d9ab/laravel.js"></script>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $('#()date').datepicker({
+        format: "dd-mm-yyyy",
+        language: "nl",
+        daysOfWeekDisabled: "0,6",
+        autoclose: true,
+        todayHighlight: true
+    });
+  $('.clockpicker').clockpicker({
+  autoclose: true
+  })
+      .find('input').change(function(){
+          // TODO: time changed
+          console.log(this.value);
+      });
+      demo.initChartist();
+
+        #raw() {
+        $(function () {
+          $('#refreshDTU').click(function (event) {
+            $.getScript( '/admin/refreshDTU', function (data, textStatus, jqxhr ) {
+  console.log( data ); // Data returned
+  console.log( textStatus ); // Success
+  console.log( jqxhr.status ); // 200
+  console.log( "Load was performed." );
+});
+              event.preventDefault();
+            });
+          });
+        }
+
+  });
+</script>
