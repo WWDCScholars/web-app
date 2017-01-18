@@ -1,1 +1,1 @@
-# WWDCScholars-Backend
+# WWDCScholars-Web
