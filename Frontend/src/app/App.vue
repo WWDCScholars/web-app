@@ -1,6 +1,9 @@
 <template lang="pug">
 #app
   page-header
+    .auth-button(slot="right")
+      #apple-sign-in-button
+      #apple-sign-out-button
 
   router-view
 </template>

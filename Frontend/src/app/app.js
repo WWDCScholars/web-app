@@ -1,5 +1,5 @@
 import { Vue, router, store, Raven } from './boot/core'
-import App from './components/App.vue'
+import App from './App.vue'
 
 // window.addEventListener('cloudkitloaded', async () => {
 //   try {
