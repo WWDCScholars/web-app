@@ -3,10 +3,11 @@ import { connection } from 'js-cloudkit'
 
 // Import models
 import '../models/Scholar'
+import '../models/ScholarSocialMedia'
+import '../models/User'
+import '../models/WWDCYear'
+import '../models/WWDCYearInfo'
 
 connection.init(settings.cloudKit)
-  .then(async () => {
-    console.log('cloudkit initialized')
-  })
 
 export default connection

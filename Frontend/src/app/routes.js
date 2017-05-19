@@ -3,8 +3,7 @@ export default [
   {
     path: '/',
     name: 'winners',
-    component: require('./pages/Winners.vue'),
-    meta: { requiresAuth: true }
+    component: require('./pages/Winners.vue')
   }
 
 ]
