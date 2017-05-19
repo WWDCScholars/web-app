@@ -29,6 +29,8 @@ module.exports = {
       vue: 'vue/dist/vue.common.js',
       '@': resolve('src'),
       assets: resolve('src/assets'),
+      'style': resolve('src/assets/sass'),
+      'style.module': resolve('src/assets/sass/3-modules'),
       images: resolve('src/assets/images'),
 
       'web-assets': 'wwdcscholars-web-assets',
