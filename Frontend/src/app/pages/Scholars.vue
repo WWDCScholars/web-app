@@ -31,7 +31,11 @@ export default {
   },
   computed: {},
   created () {
-    this.$store.auth.on('CloudKit_Initialized', this.onCloudKitInitialized)
+    if (this.$store.auth.loaded === true) {
+      this.onCloudKitInitialized()
+    } else {
+      this.$store.auth.on('CloudKit_Initialized', this.onCloudKitInitialized)
+    }
   },
   mounted () {},
   methods: {

@@ -61,8 +61,12 @@ export default {
     }
   },
   created () {
-    this.$store.auth.on('CloudKit_Initialized', this.onCloudKitInitialized)
     this.recordName = this.$route.params.recordName
+    if (this.$store.auth.loaded === true) {
+      this.onCloudKitInitialized()
+    } else {
+      this.$store.auth.on('CloudKit_Initialized', this.onCloudKitInitialized)
+    }
   },
   mounted () {},
   methods: {
