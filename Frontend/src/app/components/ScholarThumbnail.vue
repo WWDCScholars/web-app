@@ -1,5 +1,5 @@
 <template lang="pug">
-button.scholar-thumbnail
+router-link(:to="profileRoute").scholar-thumbnail
   .scholar-name {{ scholar.firstName }}
   img(:src="profilePictureURL").scholar-image
 </template>
@@ -18,7 +18,14 @@ export default {
       profilePictureURL: ''
     }
   },
-  computed: {},
+  computed: {
+    profileRoute () {
+      return {
+        name: 'profile',
+        params: { recordName: this.scholar.recordName }
+      }
+    }
+  },
   async created () {
     let url = await this.latestProfilePictureURL(this.scholar)
     this.profilePictureURL = url
