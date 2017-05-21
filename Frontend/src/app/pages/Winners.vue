@@ -1,7 +1,14 @@
 <template lang="pug">
-.container.container-outer.color-gray
+.container.container-outer.color-black.page-scholars
+  .scholars-intro.section-accent-color-purple
+    h2 Welcome to WWDC#[span Scholars]
+    p.
+      Each year Apple hosts their World Wide Developers Conference (WWDC) in California where they showcase their latest software and services. As part of this, students and members of STEM organisations with an interest in programming have the unique opportunity to win a Scholarship to attend.
 
-  tab-bar(name="year", :tabs="['2011', '2012', '2013', '2014', '2015', '2016', '2017']", initial="2017", @change="onTabChange")
+    p.
+      WWDCScholars was created to showcase the winning applications and to introduce you to the talented developers behind them. If you're a current or previous Scholarship winner - head to #[a(href="") My Profile] to submit or edit your details.
+
+  tab-bar(name="year", :tabs="['2013', '2014', '2015', '2016', '2017']", initial="2017", @change="onTabChange")
 
   .scholars-list
     scholar-thumbnail(v-for="scholar in scholars", :scholar="scholar", :key="scholar.recordName")
