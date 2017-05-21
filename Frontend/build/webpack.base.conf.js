@@ -31,6 +31,7 @@ module.exports = {
       assets: resolve('src/assets'),
       'style': resolve('src/assets/sass'),
       'style.module': resolve('src/assets/sass/3-modules'),
+      'style.page': resolve('src/assets/sass/4-pages'),
       images: resolve('src/assets/images'),
 
       'web-assets': 'wwdcscholars-web-assets',
