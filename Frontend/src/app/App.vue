@@ -1,9 +1,11 @@
 <template lang="pug">
 #app
   page-header
-    .auth-button(slot="right")
-      #apple-sign-in-button
-      #apple-sign-out-button
+    .header-links(slot="right")
+      router-link(to="/", :class="routeClass('winners')"): span Scholars
+      router-link(to="/", :class="routeClass('blog')"): span Blog
+      router-link(to="/", :class="routeClass('team')"): span Team
+      a(href="#"): span My Profile
 
   router-view
 </template>
@@ -18,8 +20,14 @@ export default {
     return {}
   },
   computed: {},
-  mounted () {},
-  methods: {},
+  mounted () {
+    console.log(this.$route)
+  },
+  methods: {
+    routeClass (name) {
+      return { 'active': (name === this.$route.name) }
+    }
+  },
   components: {
     PageHeader
   }
