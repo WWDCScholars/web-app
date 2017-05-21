@@ -20,7 +20,7 @@ import { TabBar } from 'components'
 import ScholarThumbnail from '../components/ScholarThumbnail.vue'
 
 export default {
-  name: 'signin',
+  name: 'scholars',
   store: ['auth'],
   data () {
     return {

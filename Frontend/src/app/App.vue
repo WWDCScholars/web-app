@@ -2,7 +2,7 @@
 #app
   page-header
     .header-links(slot="right")
-      router-link(to="/", :class="routeClass('winners')"): span Scholars
+      router-link(to="/", :class="routeClass('scholars')"): span Scholars
       router-link(to="/", :class="routeClass('blog')"): span Blog
       router-link(to="/", :class="routeClass('team')"): span Team
       a(href="#"): span My Profile
@@ -20,9 +20,7 @@ export default {
     return {}
   },
   computed: {},
-  mounted () {
-    console.log(this.$route)
-  },
+  mounted () {},
   methods: {
     routeClass (name) {
       return { 'active': (name === this.$route.name) }
