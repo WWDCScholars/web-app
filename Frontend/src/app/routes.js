@@ -16,13 +16,19 @@ export default [
   {
     path: '/blog',
     name: 'blog',
-    component: null
+    component: require('./pages/Blog.vue')
+  },
+
+  {
+    path: '/store',
+    name: 'store',
+    component: require('./pages/Store.vue')
   },
 
   {
     path: '/team',
     name: 'team',
-    component: null
+    component: require('./pages/Team.vue')
   }
 
 ]
