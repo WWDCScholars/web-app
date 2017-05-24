@@ -36,6 +36,7 @@ module.exports = {
 
       'web-assets': 'wwdcscholars-web-assets',
       'web-assets.style': 'wwdcscholars-web-assets/styles',
+      'assets.images': 'wwdcscholars-web-assets/assets/images',
 
       'components': 'wwdcscholars-web-components'
     }
