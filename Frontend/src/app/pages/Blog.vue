@@ -1,5 +1,5 @@
 <template lang="pug">
-.page-blog
+.page-blog.section-accent-color-red
 </template>
 
 <script>
