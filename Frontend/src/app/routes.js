@@ -9,7 +9,7 @@ export default [
   {
     path: '/scholar/:recordName',
     name: 'profile',
-    component: require('./pages/ScholarProfile.vue'),
+    component: require('./pages/Scholars.vue'),
     meta: { menu: 'scholars' }
   },
 
