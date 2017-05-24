@@ -145,5 +145,5 @@ export default {
 </script>
 
 <style lang="sass">
-@import "~style.page/scholar-profile"
+@import "~style.module/scholar-profile"
 </style>
