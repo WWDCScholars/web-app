@@ -14,6 +14,12 @@ export default [
   },
 
   {
+    path: '/activity',
+    name: 'activity',
+    component: require('./pages/Activity.vue')
+  },
+
+  {
     path: '/blog',
     name: 'blog',
     component: require('./pages/Blog.vue')

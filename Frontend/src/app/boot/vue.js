@@ -9,6 +9,7 @@ import Router from 'vue-router'
 import Store from 'vue-stash'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VeeValidate, { Validator } from 'vee-validate'
+import VueTimeago from 'vue-timeago'
 // import '../modules/inputValidators' // TODO
 import Raven from 'raven-js'
 import RavenVue from 'raven-js/plugins/vue'
@@ -21,6 +22,13 @@ Vue.use(VueGoogleMaps, {
   load: {
     key: settings.googleMaps.apiKey,
     libraries: 'places' // If place input is needed
+  }
+})
+
+Vue.use(VueTimeago, {
+  locale: 'en-US',
+  locales: {
+    'en-US': require('vue-timeago/locales/en-US.json')
   }
 })
 
