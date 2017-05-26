@@ -5,7 +5,7 @@ const scholarSocialMediaSchema = cloudkit.Record.extend({
   github: String,
   imessage: String,
   itunes: String,
-  linkedin: Date,
+  linkedin: String,
   twitter: String,
   website: String,
   scholar: cloudkit.Data.Reference
