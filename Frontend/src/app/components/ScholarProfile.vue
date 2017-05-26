@@ -24,25 +24,25 @@
     .scholar-infobox.scholar-bio {{ s.shortBio }}
 
     .scholar-infobox.scholar-social-links(v-if="socialMedia")
-      a(:href="socialMedia.facebook", alt="Facebook", v-if="socialMedia.facebook").scholar-social-icon
+      a(:href="url(socialMedia.facebook)", alt="Facebook", v-if="socialMedia.facebook").scholar-social-icon
         img(src="~assets.images/icon-facebook-circle.png")
-      a(:href="socialMedia.github", alt="GitHub", v-if="socialMedia.github").scholar-social-icon
+      a(:href="url(socialMedia.github)", alt="GitHub", v-if="socialMedia.github").scholar-social-icon
         img(src="~assets.images/icon-github-circle.png")
-      a(:href="socialMedia.imessage", alt="iMessage", v-if="socialMedia.imessage").scholar-social-icon
+      a(:href="'imessage://' + socialMedia.imessage", alt="iMessage", v-if="socialMedia.imessage").scholar-social-icon
         img(src="~assets.images/icon-messages-circle.png")
-      a(:href="socialMedia.linkedin", alt="LinkedIn", v-if="socialMedia.linkedin").scholar-social-icon
+      a(:href="url(socialMedia.linkedin)", alt="LinkedIn", v-if="socialMedia.linkedin").scholar-social-icon
         img(src="~assets.images/icon-linkedin-circle.png")
-      a(:href="socialMedia.twitter", alt="Twitter", v-if="socialMedia.twitter").scholar-social-icon
+      a(:href="url(socialMedia.twitter)", alt="Twitter", v-if="socialMedia.twitter").scholar-social-icon
         img(src="~assets.images/icon-twitter-circle.png")
-      a(:href="socialMedia.website", alt="Website", v-if="socialMedia.website").scholar-social-icon
+      a(:href="url(socialMedia.website)", alt="Website", v-if="socialMedia.website").scholar-social-icon
         img(src="~assets.images/icon-facebook-circle.png")
 
   h2 Submission
   .scholar-info.scholar-submission
     .scholar-infobox.scholar-submission-links(v-if="yearInfo && (yearInfo.githubAppLink || yearInfo.videoLink)")
-      a(:href="yearInfo.githubAppLink", alt="GitHub", v-if="yearInfo.githubAppLink").scholar-social-icon
+      a(:href="url(yearInfo.githubAppLink)", alt="GitHub", v-if="yearInfo.githubAppLink").scholar-social-icon
         img(src="~assets.images/icon-github-circle.png")
-      a(:href="yearInfo.videoLink", alt="YouTube", v-if="yearInfo.videoLink").scholar-social-icon
+      a(:href="url(yearInfo.videoLink)", alt="YouTube", v-if="yearInfo.videoLink").scholar-social-icon
         img(src="~assets.images/icon-github-circle.png")
 
     .scholar-infobox.scholar-submission-secreenshots(v-if="yearInfo && yearInfo.screenshots.length")
@@ -202,6 +202,14 @@ export default {
         }
         this.loc_city = readableResult.join(', ')
       })
+    },
+
+    url (url) {
+      if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) {
+        return url
+      }
+
+      return 'http://' + url
     }
   },
   components: {}
