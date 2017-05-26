@@ -45,14 +45,19 @@
       a(:href="url(yearInfo.videoLink)", alt="YouTube", v-if="yearInfo.videoLink").scholar-social-icon
         img(src="~assets.images/icon-github-circle.png")
 
-    .scholar-infobox.scholar-submission-secreenshots(v-if="yearInfo && yearInfo.screenshots.length")
-      img(v-for="screenshot in yearInfo.screenshots", :src="screenshot.downloadURL").scholar-screenshot
+    swiper.scholar-submission-screenshots(v-if="yearInfo && yearInfo.screenshots.length", :options="swiperOptions")
+      swiper-slide(v-for="screenshot in yearInfo.screenshots").scholar-screenshot
+        img(:src="screenshot.downloadURL")
+      .swiper-pagination(slot="pagination")
+      .swiper-button-prev.swiper-button-black(slot="button-prev")
+      .swiper-button-next.swiper-button-black(slot="button-next")
 </template>
 
 <script>
 /* global google */
 import moment from 'moment'
 import { Scholar, WWDCYearInfo, ScholarSocialMedia } from '../models'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
   name: 'scholar-profile',
@@ -88,6 +93,16 @@ export default {
           { featureType: 'road', stylers: [{ visibility: 'off' }] },
           { featureType: 'transit', stylers: [{ visibility: 'off' }] }
         ]
+      },
+      swiperOptions: {
+        autoplay: 8000,
+        loop: true,
+        grabCursor: false,
+        setWrapperSize: true,
+        paginationClickable: true,
+        pagination: '.swiper-pagination',
+        prevButton: '.swiper-button-prev',
+        nextButton: '.swiper-button-next'
       }
     }
   },
@@ -212,7 +227,10 @@ export default {
       return 'http://' + url
     }
   },
-  components: {}
+  components: {
+    swiper,
+    swiperSlide
+  }
 }
 </script>
 
