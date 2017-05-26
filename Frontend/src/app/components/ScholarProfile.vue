@@ -23,27 +23,30 @@
 
     .scholar-infobox.scholar-bio {{ s.shortBio }}
 
-    .scholar-infobox.scholar-social-links(v-if="social")
-      a(:href="social.facebook", alt="Facebook", v-if="social.facebook")
+    .scholar-infobox.scholar-social-links(v-if="socialMedia")
+      a(:href="socialMedia.facebook", alt="Facebook", v-if="socialMedia.facebook").scholar-social-icon
         img(src="~assets.images/icon-facebook-circle.png")
-      a(:href="social.github", alt="GitHub", v-if="social.github")
+      a(:href="socialMedia.github", alt="GitHub", v-if="socialMedia.github").scholar-social-icon
         img(src="~assets.images/icon-github-circle.png")
-      a(:href="social.imessage", alt="iMessage", v-if="social.imessage")
+      a(:href="socialMedia.imessage", alt="iMessage", v-if="socialMedia.imessage").scholar-social-icon
         img(src="~assets.images/icon-messages-circle.png")
-      a(:href="social.linkedin", alt="LinkedIn", v-if="social.linkedin")
+      a(:href="socialMedia.linkedin", alt="LinkedIn", v-if="socialMedia.linkedin").scholar-social-icon
         img(src="~assets.images/icon-linkedin-circle.png")
-      a(:href="social.twitter", alt="Twitter", v-if="social.twitter")
+      a(:href="socialMedia.twitter", alt="Twitter", v-if="socialMedia.twitter").scholar-social-icon
         img(src="~assets.images/icon-twitter-circle.png")
-      a(:href="social.website", alt="Website", v-if="social.website")
+      a(:href="socialMedia.website", alt="Website", v-if="socialMedia.website").scholar-social-icon
         img(src="~assets.images/icon-facebook-circle.png")
 
   h2 Submission
-  .scholar-submission
-    .scholar-infobox.scholar-submission-links(v-if="yearInfo")
-      a(:href="yearInfo.github", alt="GitHub", v-if="yearInfo.github")
+  .scholar-info.scholar-submission
+    .scholar-infobox.scholar-submission-links(v-if="yearInfo && (yearInfo.githubAppLink || yearInfo.videoLink)")
+      a(:href="yearInfo.githubAppLink", alt="GitHub", v-if="yearInfo.githubAppLink").scholar-social-icon
         img(src="~assets.images/icon-github-circle.png")
-      a(:href="yearInfo.youtube", alt="YouTube", v-if="yearInfo.youtube")
+      a(:href="yearInfo.videoLink", alt="YouTube", v-if="yearInfo.videoLink").scholar-social-icon
         img(src="~assets.images/icon-github-circle.png")
+
+    .scholar-infobox.scholar-submission-secreenshots(v-if="yearInfo && yearInfo.screenshots.length")
+      img(v-for="screenshot in yearInfo.screenshots", :src="screenshot.downloadURL").scholar-screenshot
 </template>
 
 <script>
@@ -69,7 +72,7 @@ export default {
       recordName: '',
       profilePictureURL: '',
       s: {},
-      social: undefined,
+      socialMedia: undefined,
       yearInfo: undefined,
       map_center: { lat: 0, lng: 0 },
       map_zoom: 1,
