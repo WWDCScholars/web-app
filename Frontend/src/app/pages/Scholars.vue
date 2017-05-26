@@ -1,9 +1,9 @@
 <template lang="pug">
 .page-scholars.section-accent-color-purple
   modal(v-if="showProfile").modal-profile
-    scholar-profile(slot="body")
+    scholar-profile(slot="body", :year="currentYear", :scholar="currentScholar")
 
-  .modal-blur(v-if="showProfile")
+  .modal-background(:class="{ 'modal-background-blur': showProfile }")
     tab-bar(name="year", :tabs="['2013', '2014', '2015', '2016', '2017']", initial="2017", @change="onTabChange")
     .container.container-outer.color-black
       .scholars-list
@@ -21,11 +21,12 @@ export default {
   store: ['auth'],
   data () {
     return {
-      scholars: [],
+      scholars: {},
       scholarProfilePictures: [],
       currentYear: '2017',
 
-      showProfile: true
+      showProfile: false,
+      currentScholar: undefined
     }
   },
   computed: {},
@@ -39,21 +40,34 @@ export default {
   mounted () {},
   methods: {
     onCloudKitInitialized () {
+      this.updateShowProfile(this.$route)
       this.queryScholars()
     },
     async queryScholars () {
-      this.scholars = await new Scholar().query({
+      let scholars = await new Scholar().query({
         filterBy: [{
           fieldName: 'wwdcYears',
           comparator: 'LIST_CONTAINS',
           fieldValue: { value: { recordName: 'WWDC ' + this.currentYear } }
         }]
       })
+      const ret = {}
+      for (var i = 0; i < scholars.length; i++) {
+        ret[scholars[i].recordName] = scholars[i]
+      }
+      this.scholars = ret
     },
     onTabChange (value) {
       this.currentYear = value
       this.queryScholars()
+    },
+    updateShowProfile (route) {
+      this.showProfile = (route.params.recordName !== undefined)
+      this.currentScholar = this.scholars[route.params.recordName]
     }
+  },
+  watch: {
+    '$route': 'updateShowProfile'
   },
   components: {
     TabBar,
