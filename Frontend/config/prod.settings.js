@@ -17,5 +17,11 @@ module.exports = {
     environment: 'production'
   },
 
-  wwdcYear: 'WWDC 2017'
+  wwdcYear: 'WWDC 2017',
+
+
+  // ** temporary **
+  team: [
+    '595274E5-A30D-4854-9139-13FCA4A29A84'
+  ]
 }

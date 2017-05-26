@@ -6,7 +6,7 @@
   .scholar-info
     .scholar-image
       img(:src="profilePictureURL")
-      img(src="~assets.images/wwdcscholars-icon-70.png").scholar-team-badge
+      img(src="~assets.images/wwdcscholars-icon-70.png", v-if="isTeamMember").scholar-team-badge
     h1.scholar-name {{ fullName }}
     .scholar-location {{ loc_city }}
 
@@ -56,6 +56,7 @@
 <script>
 /* global google */
 import moment from 'moment'
+import { settings } from 'config'
 import { Scholar, WWDCYearInfo, ScholarSocialMedia } from '../models'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
@@ -124,6 +125,9 @@ export default {
         ret.push('’' + y.substring(y.length - 2, y.length))
       }
       return ret.join(', ')
+    },
+    isTeamMember () {
+      return (settings.team.indexOf(this.recordName) >= 0)
     }
   },
   created () {
