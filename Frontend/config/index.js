@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  settings: require('./dev.settings'),
+  settings: (process.env.NODE_ENV === 'production') ? require('./prod.settings') : require('./dev.settings'),
   build: {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../../Resources/Views/index.html'), // TODO
