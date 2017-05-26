@@ -20,6 +20,15 @@
     box-shadow: 0 2px 8px 1px transparentize(black, 0.75)
     border-radius: $border-radius-large
 
+    @media (min-width: $screen-sm-min)
+      max-width: $container-sm
+
+    @media (min-width: $screen-md-min)
+      max-width: $container-md
+
+    @media (min-width: $screen-lg-min)
+      max-width: $container-lg
+
   .modal-header
     display: none
 
