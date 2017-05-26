@@ -1,6 +1,6 @@
 <template lang="pug">
 .page-scholars.section-accent-color-purple
-  modal(v-if="showProfile").modal-profile
+  modal(v-if="showProfile", :closeButton="true", @close="onProfileClose").modal-profile
     scholar-profile(slot="body", :year="currentYear", :scholar="currentScholar")
 
   .modal-background(:class="{ 'modal-background-blur': showProfile }")
@@ -64,6 +64,9 @@ export default {
     updateShowProfile (route) {
       this.showProfile = (route.params.recordName !== undefined)
       this.currentScholar = this.scholars[route.params.recordName]
+    },
+    onProfileClose () {
+      this.$router.push({ name: 'scholars' })
     }
   },
   watch: {
