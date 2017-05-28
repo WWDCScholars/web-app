@@ -1,0 +1,42 @@
+$swiper-arrow-length: 24px
+$swiper-arrow-width: 2px
+
+.section-accent-color-blue
+  .swiper-container
+    .swiper-button
+      background: 0
+      width: $swiper-arrow-length
+      height: $swiper-arrow-length
+      margin-top: -$swiper-arrow-length / 2
+      opacity: 0
+      transition: opacity 100ms linear
+
+      &:before, &:after
+        display: block
+        content: ''
+        position: absolute
+        background: $sch-blue
+
+      &:before
+        width: $swiper-arrow-length
+        height: $swiper-arrow-width
+
+      &:after
+        width: $swiper-arrow-width
+        height: $swiper-arrow-length
+
+      &.swiper-button-prev
+        transform: rotate(-45deg)
+
+      &.swiper-button-next
+        transform: rotate(135deg)
+
+    &:hover .swiper-button
+      opacity: 1
+
+      &.swiper-button-disabled
+        opacity: 0.35
+
+
+  .swiper-pagination-bullet-active
+    background: $sch-purple
