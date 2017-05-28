@@ -3,10 +3,10 @@
   page-header
     .header-links(slot="right")
       router-link(:to="{ name: 'scholars' }", :class="routeClass('scholars')").color-purple: span Scholars
-      router-link(:to="{ name: 'activity' }", :class="routeClass('activity')").color-purple: span Activity
-      router-link(:to="{ name: 'blog' }", :class="routeClass('blog')").color-red: span Blog
-      router-link(:to="{ name: 'store' }", :class="routeClass('store')").color-blue: span Store
-      router-link(:to="{ name: 'team' }", :class="routeClass('team')").color-orange: span Team
+      router-link(:to="{ name: 'activity' }", :class="routeClass('activity')").color-orange: span Activity
+      router-link(:to="{ name: 'blog' }", :class="routeClass('blog')").color-red1: span Blog
+      router-link(:to="{ name: 'store' }", :class="routeClass('store')").color-blue1: span Store
+      router-link(:to="{ name: 'team' }", :class="routeClass('team')").color-red2: span Team
       a(href="#").color-green: span My Profile
 
   router-view

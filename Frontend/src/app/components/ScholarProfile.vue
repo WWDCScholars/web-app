@@ -49,8 +49,8 @@
       swiper-slide(v-for="screenshot in yearInfo.screenshots").scholar-screenshot
         img(:src="screenshot.downloadURL")
       .swiper-pagination(slot="pagination")
-      .swiper-button-prev.swiper-button-black(slot="button-prev")
-      .swiper-button-next.swiper-button-black(slot="button-next")
+      .swiper-button-prev.swiper-button(slot="button-prev")
+      .swiper-button-next.swiper-button(slot="button-next")
 </template>
 
 <script>

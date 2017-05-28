@@ -25,8 +25,19 @@
         &:hover
           text-decoration: underline
 
-      &:hover
-        box-shadow: 0 0 8px transparentize($sch-purple, 0.8)
+@mixin activity-feed-color($name, $color)
+  .section-accent-color-#{$name}
+    .activity-feed
+      ul li:hover
+        box-shadow: 0 0 8px transparentize($color, 0.8)
 
         a
-          color: $sch-purple
+          color: $color
+
++activity-feed-color("purple", $sch-purple)
++activity-feed-color("red1", $sch-red1)
++activity-feed-color("red2", $sch-red2)
++activity-feed-color("blue1", $sch-blue1)
++activity-feed-color("blue2", $sch-blue2)
++activity-feed-color("green", $sch-green)
++activity-feed-color("orange", $sch-orange)

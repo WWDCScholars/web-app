@@ -1,5 +1,5 @@
 <template lang="pug">
-.page-store.section-accent-color-blue
+.page-store.section-accent-color-blue1
   tab-bar(name="store_section", :tabs="['T-shirts']", initial="T-shirts", @change="onTabChange")
 
   .container.container-outer

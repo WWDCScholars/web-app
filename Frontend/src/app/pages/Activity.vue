@@ -1,5 +1,5 @@
 <template lang="pug">
-.page-activity.section-accent-color-red
+.page-activity.section-accent-color-orange
   activity-feed
 </template>
 
