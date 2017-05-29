@@ -63,7 +63,7 @@ export default {
     },
     parseText () {
       var text = this.tweet.text
-      text = text.replace(/(#\S+)/g, '<a href="https://twitter.com/hashtag/$1">$1</a>')
+      text = text.replace(/(#\S+)/g, '<a href="https://twitter.com/hashtag/$1">$1</a>').replace('hashtag/#', 'hashtag/')
 
       this.text = text
     }
