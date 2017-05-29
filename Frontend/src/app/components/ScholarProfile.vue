@@ -37,20 +37,21 @@
       a(:href="url(socialMedia.website)", alt="Website", v-if="socialMedia.website").scholar-social-icon
         img(src="~assets.images/icon-website.png")
 
-  h2 Submission
   .scholar-info.scholar-submission
-    .scholar-infobox.scholar-submission-links(v-if="yearInfo && (yearInfo.githubAppLink || yearInfo.videoLink)")
-      a(:href="url(yearInfo.githubAppLink)", alt="GitHub", v-if="yearInfo.githubAppLink").scholar-social-icon
-        img(src="~assets.images/icon-github.png")
-      a(:href="url(yearInfo.videoLink)", alt="YouTube", v-if="yearInfo.videoLink").scholar-social-icon
-        img(src="~assets.images/icon-github.png")
+    .scholar-infobox
+      h2 Submission
+      //- .scholar-infobox.scholar-submission-links(v-if="yearInfo && (yearInfo.githubAppLink || yearInfo.videoLink)")
+      //-   a(:href="url(yearInfo.githubAppLink)", alt="GitHub", v-if="yearInfo.githubAppLink").scholar-social-icon
+      //-     img(src="~assets.images/icon-github.png")
+      //-   a(:href="url(yearInfo.videoLink)", alt="YouTube", v-if="yearInfo.videoLink").scholar-social-icon
+      //-     img(src="~assets.images/icon-github.png")
 
-    swiper.scholar-submission-screenshots(v-if="yearInfo && yearInfo.screenshots.length", :options="swiperOptions")
-      swiper-slide(v-for="screenshot in yearInfo.screenshots").scholar-screenshot
-        img(:src="screenshot.downloadURL")
-      .swiper-pagination(slot="pagination")
-      .swiper-button-prev.swiper-button(slot="button-prev")
-      .swiper-button-next.swiper-button(slot="button-next")
+      swiper.scholar-submission-screenshots(v-if="yearInfo && yearInfo.screenshots.length", :options="swiperOptions")
+        swiper-slide(v-for="screenshot in yearInfo.screenshots").scholar-screenshot
+          img(:src="screenshot.downloadURL")
+        .swiper-pagination(slot="pagination")
+        .swiper-button-prev.swiper-button(slot="button-prev")
+        .swiper-button-next.swiper-button(slot="button-next")
 </template>
 
 <script>
@@ -97,9 +98,11 @@ export default {
       },
       swiperOptions: {
         autoplay: 8000,
-        loop: true,
+        loop: false,
         grabCursor: false,
-        setWrapperSize: true,
+        setWrapperSize: false,
+        spaceBetween: 15,
+        slidesPerView: 'auto',
         paginationClickable: true,
         pagination: '.swiper-pagination',
         prevButton: '.swiper-button-prev',
