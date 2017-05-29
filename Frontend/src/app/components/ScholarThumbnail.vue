@@ -1,7 +1,7 @@
 <template lang="pug">
 router-link(:to="profileRoute").scholar-thumbnail
   .scholar-name {{ scholar.firstName }}
-  img(:src="profilePictureURL").scholar-image
+  img(v-lazy="profilePictureURL").scholar-image
 </template>
 
 <script>

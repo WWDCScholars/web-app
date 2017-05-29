@@ -10,6 +10,7 @@ import Store from 'vue-stash'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VeeValidate, { Validator } from 'vee-validate'
 import VueTimeago from 'vue-timeago'
+import VueLazyload from 'vue-lazyload'
 // import '../modules/inputValidators' // TODO
 import Raven from 'raven-js'
 import RavenVue from 'raven-js/plugins/vue'
@@ -30,6 +31,12 @@ Vue.use(VueTimeago, {
   locales: {
     'en-US': require('vue-timeago/locales/en-US.json')
   }
+})
+
+Vue.use(VueLazyload, {
+  // error: '',
+  loading: '/static/loading-spinner.svg',
+  attempt: 2
 })
 
 Raven

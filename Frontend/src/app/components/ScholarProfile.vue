@@ -5,7 +5,7 @@
 
   .scholar-info
     .scholar-image
-      img(:src="profilePictureURL")
+      img(v-lazy="profilePictureURL")
       img(src="~assets.images/wwdcscholars-icon-70.png", v-if="isTeamMember").scholar-team-badge
     h1.scholar-name {{ fullName }}
     .scholar-location {{ loc_city }}
