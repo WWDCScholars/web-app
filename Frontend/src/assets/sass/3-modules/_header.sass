@@ -3,9 +3,41 @@ header
   padding-left: 30px !important
   padding-right: 30px !important
 
+  .nav-mobile-toggle
+    display: none
+    width: 30px
+    height: 23px
+    padding: 0
+    border: 0
+    background: 0
+
+    span
+      display: block
+      width: 30px
+      height: 3px
+      background-color: $sch-purple
+      border-radius: 1px
+      position: relative
+
+      &:before, &:after
+        display: block
+        position: relative
+        content: ''
+        width: 30px
+        height: 3px
+        background-color: $sch-purple
+        border-radius: 1px
+
+      &:before
+        top: -9px
+
+      &:after
+        top: 6px
+
   .header-links
     height: 100%
     display: flex
+    margin-right: -15px
 
     a
       position: relative
@@ -25,3 +57,44 @@ header
         vertical-align: middle
         font-weight: 500
         font-size: 1.1em
+
+  @media (max-width: 850px)
+    h1
+      font-size: 1.5em
+
+    .nav-mobile-toggle
+      display: block
+      transform: rotate(0deg)
+      transition: transform 100ms linear
+
+      &.nav-mobile-toggle-on
+        transform: rotate(-90deg)
+
+    .header-links
+      display: block
+      opacity: 0
+      pointer-events: none
+      position: absolute
+      top: 75px
+      left: 0
+      width: 100%
+      height: calc(100% - 75px)
+      background: $white
+      z-index: 1002
+      padding-left: 30px
+      transition: opacity 100ms linear
+
+      &.nav-mobile-show
+        // display: block
+        opacity: 1
+        pointer-events: all
+
+      a
+        display: block
+        box-sizing: border-box
+        height: auto
+        padding: 30px
+        border-bottom: 2px solid $sch-gray3
+
+        &.active
+          border-bottom: 2px solid $sch-gray3

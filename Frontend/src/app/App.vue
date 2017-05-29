@@ -1,7 +1,10 @@
 <template lang="pug">
 #app
   page-header
-    .header-links(slot="right")
+    button(slot="right", @click="mobileMenu = !mobileMenu", :class="{ 'nav-mobile-toggle-on': mobileMenu }").nav-mobile-toggle
+      span
+
+    .header-links(slot="right", :class="{ 'nav-mobile-show': mobileMenu }")
       router-link(:to="{ name: 'scholars' }", :class="routeClass('scholars')").color-purple: span Scholars
       router-link(:to="{ name: 'activity' }", :class="routeClass('activity')").color-orange: span Activity
       //- router-link(:to="{ name: 'blog' }", :class="routeClass('blog')").color-red1: span Blog
@@ -19,10 +22,17 @@ export default {
   name: 'App',
   store: [],
   data () {
-    return {}
+    return {
+      mobileMenu: false
+    }
   },
   computed: {},
   mounted () {},
+  watch: {
+    '$route' (to, from) {
+      this.mobileMenu = false
+    }
+  },
   methods: {
     routeClass (name) {
       let r = this.$route
