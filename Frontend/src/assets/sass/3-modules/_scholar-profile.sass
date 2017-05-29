@@ -35,9 +35,8 @@
         width: 175px
         height: 175px
         object-fit: cover
-        margin-top: -75px
+        margin-top: -87px
         border: 8px solid $white
-        border-radius: $border-radius * 2
         border-radius: 50%
         overflow: hidden
 
@@ -85,6 +84,9 @@
         padding: 5px 30px
         flex-basis: 200px
 
+        @media (max-width: $screen-sm-min)
+          padding: 5px 8px
+
         .scholar-label
           font-weight: 600
           font-size: 1.3em
@@ -117,3 +119,28 @@
         height: 100%
         object-fit: contain
         background-color: $white
+
+  @media (max-width: 850px)
+    .scholar-map
+      height: 180px
+
+    h2
+      font-size: 1.3em
+
+    .scholar-info
+      .scholar-image
+        img
+          width: 150px
+          height: 150px
+          border-width: 6px
+          margin-top: -75px
+
+        .scholar-team-badge
+          width: 50px
+          height: 50px
+
+      .scholar-name
+        font-size: 1.5em
+
+      .scholar-location
+        font-size: 1.1em
