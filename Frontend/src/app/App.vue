@@ -1,6 +1,6 @@
 <template lang="pug">
 #app
-  page-header
+  page-header(:link="{ name: 'scholars' }")
     button(slot="right", @click="mobileMenu = !mobileMenu", :class="{ 'nav-mobile-toggle-on': mobileMenu }").nav-mobile-toggle
       span
 
