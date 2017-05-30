@@ -76,3 +76,5 @@ Frontend/app/config/development.js
 # Compiled Resources
 #Public/
 #Resources/
+
+Public/*.map
