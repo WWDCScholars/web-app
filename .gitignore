@@ -74,4 +74,5 @@ typings/
 Frontend/app/config/development.js
 
 # Compiled Resources
-Public/*hot-update*
+Public/
+Resources/
