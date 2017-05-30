@@ -6,7 +6,7 @@ const scholarSchema = Record.extend({
   firstName: String,
   lastName: String,
   email: String,
-  gender: String,
+  gender: { type: String, enum: ['male', 'female', 'other'] },
   birthday: Date,
   location: Location,
   shortBio: String,
