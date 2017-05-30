@@ -6,8 +6,9 @@
   .modal-background(:class="{ 'modal-background-blur': showProfile }")
     tab-bar(name="year", :tabs="['2013', '2014', '2015', '2016', '2017']", initial="2017", @change="onTabChange")
     .container.container-outer.color-black
-      .scholars-list
-        scholar-thumbnail(v-for="scholar in scholars", :scholar="scholar", :key="scholar.recordName")
+      .scholars-list(v-if="scholars['595274E5-A30D-4854-9139-13FCA4A29A84']")
+        scholar-thumbnail(v-for="i in 25", :scholar="scholars['595274E5-A30D-4854-9139-13FCA4A29A84']", :key="scholars['595274E5-A30D-4854-9139-13FCA4A29A84'].recordName")
+        //- scholar-thumbnail(v-for="scholar in scholars", :scholar="scholar", :key="scholar.recordName")
 </template>
 
 <script>
