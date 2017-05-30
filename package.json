@@ -44,6 +44,7 @@
     "http-proxy-middleware": "^0.17.4",
     "image-webpack-loader": "^3.3.1",
     "js-cloudkit": "moritzsternemann/js-cloudkit",
+    "jsonp": "^0.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "node-sass": "^4.5.2",

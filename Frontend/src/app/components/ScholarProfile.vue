@@ -37,21 +37,7 @@
       a(:href="url(socialMedia.website)", alt="Website", v-if="socialMedia.website").scholar-social-icon
         img(src="~assets.images/icon-website.png")
 
-  .scholar-info.scholar-submission
-    .scholar-infobox
-      h2 Submission
-      //- .scholar-infobox.scholar-submission-links(v-if="yearInfo && (yearInfo.githubAppLink || yearInfo.videoLink)")
-      //-   a(:href="url(yearInfo.githubAppLink)", alt="GitHub", v-if="yearInfo.githubAppLink").scholar-social-icon
-      //-     img(src="~assets.images/icon-github.png")
-      //-   a(:href="url(yearInfo.videoLink)", alt="YouTube", v-if="yearInfo.videoLink").scholar-social-icon
-      //-     img(src="~assets.images/icon-github.png")
-
-      swiper.scholar-submission-screenshots(v-if="yearInfo && yearInfo.screenshots.length", :options="swiperOptions")
-        swiper-slide(v-for="screenshot in yearInfo.screenshots").scholar-screenshot
-          img(:src="screenshot.downloadURL")
-        .swiper-pagination(slot="pagination")
-        .swiper-button-prev.swiper-button(slot="button-prev")
-        .swiper-button-next.swiper-button(slot="button-next")
+  scholar-submission(v-if="yearInfo", :yearInfo="yearInfo").scholar-info
 </template>
 
 <script>
@@ -59,7 +45,7 @@
 import moment from 'moment'
 import { settings } from 'config'
 import { Scholar, WWDCYearInfo, ScholarSocialMedia } from '../models'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import ScholarSubmission from './ScholarSubmission.vue'
 
 export default {
   name: 'scholar-profile',
@@ -95,18 +81,6 @@ export default {
           { featureType: 'road', stylers: [{ visibility: 'off' }] },
           { featureType: 'transit', stylers: [{ visibility: 'off' }] }
         ]
-      },
-      swiperOptions: {
-        autoplay: 8000,
-        loop: false,
-        grabCursor: false,
-        setWrapperSize: false,
-        spaceBetween: 15,
-        slidesPerView: 'auto',
-        paginationClickable: true,
-        pagination: '.swiper-pagination',
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next'
       }
     }
   },
@@ -235,8 +209,7 @@ export default {
     }
   },
   components: {
-    swiper,
-    swiperSlide
+    ScholarSubmission
   }
 }
 </script>
