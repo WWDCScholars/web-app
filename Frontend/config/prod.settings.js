@@ -1,7 +1,7 @@
 module.exports = {
   cloudKit: {
     containerIdentifier: 'iCloud.com.wwdcscholars.WWDCScholars',
-    apiToken: '1da0dbbbad61eba73c9a4bbe2524620e873cf8f61ec207ce4ab568d01278cbed',
+    apiToken: 'e2051b7e0c0ba1192afb28441a0854aab80b98eecf0a2baf4962341620381dc6',
     environment: 'production'
   },
   googleMaps: {
