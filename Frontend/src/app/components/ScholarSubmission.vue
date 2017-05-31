@@ -22,7 +22,6 @@
     swiper.scholar-submission-screenshots(v-if="(showAppStoreScreenshots || yearInfo.appType === 'online') && appStoreScreenshotUrls.length", :options="swiperOptions")
       swiper-slide(v-for="url in appStoreScreenshotUrls").scholar-screenshot
         img(:src="url")
-      .swiper-pagination(slot="pagination")
       .swiper-button-prev.swiper-button(slot="button-prev")
       .swiper-button-next.swiper-button(slot="button-next")
 </template>
@@ -52,8 +51,6 @@ export default {
         setWrapperSize: false,
         spaceBetween: 15,
         slidesPerView: 'auto',
-        paginationClickable: true,
-        pagination: '.swiper-pagination',
         prevButton: '.swiper-button-prev',
         nextButton: '.swiper-button-next'
       }
