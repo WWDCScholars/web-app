@@ -49,6 +49,10 @@ export default {
           fieldName: 'wwdcYears',
           comparator: 'LIST_CONTAINS',
           fieldValue: { value: { recordName: 'WWDC ' + this.currentYear } }
+        }, {
+          fieldName: 'status',
+          comparator: 'EQUALS',
+          fieldValue: { value: 'accepted' }
         }],
         sortBy: [
           { fieldName: 'firstName' }
