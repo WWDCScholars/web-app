@@ -52,7 +52,7 @@ export default {
         }, {
           fieldName: 'status',
           comparator: 'EQUALS',
-          fieldValue: { value: 'accepted' }
+          fieldValue: { value: 'approved' }
         }],
         sortBy: [
           { fieldName: 'firstName' }
