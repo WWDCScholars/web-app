@@ -17,7 +17,7 @@
           .swiper-button-prev.swiper-button(slot="button-prev")
           .swiper-button-next.swiper-button(slot="button-next")
 
-      h3 How do I order and recieve my T-shirt?
+      h3 How do I order and receive my T-shirt?
       p.
         Simply complete the DonorBox form on the right of this page and we will get your T-shirt prepared.
       p.
