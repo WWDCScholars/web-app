@@ -1,6 +1,6 @@
 <template lang="pug">
 .scholar-submission
-  .scholar-infobox(v-if="yearInfo")
+  .scholar-infobox(v-if="yearInfo && (yearInfo.screenshots.length || appStoreScreenshotUrls.length)")
     h2(v-if="yearInfo.appType === 'offline'") Scholarship Submission
     h2(v-else-if="yearInfo.appType === 'online'") App Submission
     h2(v-else-if="yearInfo.appType === 'both'") Submissions
