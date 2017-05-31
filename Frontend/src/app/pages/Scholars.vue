@@ -49,7 +49,10 @@ export default {
           fieldName: 'wwdcYears',
           comparator: 'LIST_CONTAINS',
           fieldValue: { value: { recordName: 'WWDC ' + this.currentYear } }
-        }]
+        }],
+        sortBy: [
+          { fieldName: 'firstName' }
+        ]
       })
       const ret = {}
       for (var i = 0; i < scholars.length; i++) {
