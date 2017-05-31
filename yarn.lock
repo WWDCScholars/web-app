@@ -6992,8 +6992,8 @@ write@^0.2.1:
     mkdirp "^0.5.1"
 
 wwdcscholars-web-assets@WWDCScholars/web-assets:
-  version "1.1.0"
-  resolved "https://codeload.github.com/WWDCScholars/web-assets/tar.gz/b2d87f018bd419fa06d937d38ca469719d87d708"
+  version "1.1.1"
+  resolved "https://codeload.github.com/WWDCScholars/web-assets/tar.gz/3f8f330415da436e1c1562156d890310ba5a879b"
 
 wwdcscholars-web-components@WWDCScholars/web-components:
   version "1.1.0"
