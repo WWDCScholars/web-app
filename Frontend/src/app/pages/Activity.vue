@@ -1,6 +1,7 @@
 <template lang="pug">
 .page-activity.section-accent-color-orange
-  activity-feed
+  .container.container-outer
+    activity-feed
 </template>
 
 <script>
