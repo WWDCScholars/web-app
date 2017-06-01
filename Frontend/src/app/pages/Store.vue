@@ -31,7 +31,7 @@
       table
         tr
           td: b Sizes
-          td XS, S, M, L, XL, XXL
+          td S, M, L, XL
         tr
           td(rowspan="2"): b Style
           td White (coloured logo, purple text)
