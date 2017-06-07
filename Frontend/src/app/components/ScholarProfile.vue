@@ -24,17 +24,17 @@
     .scholar-infobox.scholar-bio {{ s.shortBio }}
 
     .scholar-infobox.scholar-social-links(v-if="socialMedia")
-      a(:href="url(socialMedia.facebook)", alt="Facebook", v-if="socialMedia.facebook").scholar-social-icon
+      a(:href="url(socialMedia.facebook)", alt="Facebook", target="_blank", v-if="socialMedia.facebook").scholar-social-icon
         img(src="~assets.images/icon-facebook.png")
-      a(:href="url(socialMedia.github)", alt="GitHub", v-if="socialMedia.github").scholar-social-icon
+      a(:href="url(socialMedia.github)", alt="GitHub", target="_blank", v-if="socialMedia.github").scholar-social-icon
         img(src="~assets.images/icon-github.png")
-      a(:href="'imessage://' + socialMedia.imessage", alt="iMessage", v-if="socialMedia.imessage").scholar-social-icon
+      a(:href="'imessage://' + socialMedia.imessage", alt="iMessage", target="_blank", v-if="socialMedia.imessage").scholar-social-icon
         img(src="~assets.images/icon-messages.png")
-      a(:href="url(socialMedia.linkedin)", alt="LinkedIn", v-if="socialMedia.linkedin").scholar-social-icon
+      a(:href="url(socialMedia.linkedin)", alt="LinkedIn", target="_blank", v-if="socialMedia.linkedin").scholar-social-icon
         img(src="~assets.images/icon-linkedin.png")
-      a(:href="url(socialMedia.twitter)", alt="Twitter", v-if="socialMedia.twitter").scholar-social-icon
+      a(:href="url(socialMedia.twitter)", alt="Twitter", target="_blank", v-if="socialMedia.twitter").scholar-social-icon
         img(src="~assets.images/icon-twitter.png")
-      a(:href="url(socialMedia.website)", alt="Website", v-if="socialMedia.website").scholar-social-icon
+      a(:href="url(socialMedia.website)", alt="Website", target="_blank", v-if="socialMedia.website").scholar-social-icon
         img(src="~assets.images/icon-website.png")
 
   scholar-submission(v-if="yearInfo", :yearInfo="yearInfo").scholar-info
