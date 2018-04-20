@@ -1,8 +1,8 @@
 .scholars-list
-  display: flex
-  justify-content: center
-  align-items: center
-  flex-wrap: wrap
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr))
+  grid-gap: 15px
 
   .scholar-thumbnail
-    margin: 0 15px 30px
+    display: block
+    margin: 0 auto

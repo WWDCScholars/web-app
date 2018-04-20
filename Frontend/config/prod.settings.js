@@ -17,7 +17,7 @@ module.exports = {
     environment: 'production'
   },
 
-  wwdcYear: 'WWDC 2017',
+  wwdcYear: 'WWDC 2018',
 
 
   // ** temporary **

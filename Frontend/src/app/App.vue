@@ -2,7 +2,8 @@
 #app
   page-header(:link="{ name: 'scholars' }")
     button(slot="right", @click="mobileMenu = !mobileMenu", :class="{ 'nav-mobile-toggle-on': mobileMenu }").nav-mobile-toggle
-      span
+      each _ in [1, 2, 3, 4]
+        span
 
     .header-links(slot="right", :class="{ 'nav-mobile-show': mobileMenu }")
       router-link(:to="{ name: 'scholars' }", :class="routeClass('scholars')").color-purple: span Scholars

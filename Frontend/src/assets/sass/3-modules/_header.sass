@@ -6,34 +6,45 @@ header
 
   .nav-mobile-toggle
     display: none
+    position: relative
     width: 30px
     height: 23px
-    padding: 0
-    border: 0
-    background: 0
+    cursor: pointer
 
     span
       display: block
-      width: 30px
+      position: absolute
+      width: 100%
       height: 3px
       background-color: $sch-purple
-      border-radius: 1px
-      position: relative
+      left: 0
+      transition: 200ms ease-in-out
 
-      &:before, &:after
-        display: block
-        position: relative
-        content: ''
-        width: 30px
-        height: 3px
-        background-color: $sch-purple
-        border-radius: 1px
+      &:nth-child(1)
+        top: 0px
 
-      &:before
-        top: -9px
+      &:nth-child(2), &:nth-child(3)
+        top: 8px
 
-      &:after
-        top: 6px
+      &:nth-child(4)
+        top: 16px
+
+    &.nav-mobile-toggle-on span
+      &:nth-child(1)
+        top: 8px
+        left: 50%
+        width: 0%
+
+      &:nth-child(2)
+        transform: rotate(45deg)
+
+      &:nth-child(3)
+        transform: rotate(-45deg)
+
+      &:nth-child(4)
+        top: 8px
+        left: 50%
+        width: 0%
 
   .header-links
     height: 100%
@@ -65,11 +76,6 @@ header
 
     .nav-mobile-toggle
       display: block
-      transform: rotate(0deg)
-      transition: transform 100ms linear
-
-      &.nav-mobile-toggle-on
-        transform: rotate(-90deg)
 
     .header-links
       display: block

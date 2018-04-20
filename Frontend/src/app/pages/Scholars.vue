@@ -4,7 +4,7 @@
     scholar-profile(slot="body", :year="currentYear", :scholar="currentScholar")
 
   .modal-background(:class="{ 'modal-background-blur': showProfile }")
-    tab-bar(name="year", :tabs="['2013', '2014', '2015', '2016', '2017']", initial="2017", @change="onTabChange")
+    tab-bar(name="year", :tabs="['2013', '2014', '2015', '2016', '2017', '2018']", initial="2018", @change="onTabChange")
     .container.container-outer.color-black
       .scholars-list(v-if="scholars")
         scholar-thumbnail(v-for="scholar in scholars", :scholar="scholar", :key="scholar.recordName")
@@ -23,7 +23,7 @@ export default {
     return {
       scholars: {},
       scholarProfilePictures: [],
-      currentYear: '2017',
+      currentYear: '2018',
 
       showProfile: false,
       currentScholar: undefined

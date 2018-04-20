@@ -35,7 +35,7 @@ export default {
     async latestProfilePictureURL (scholar) {
       let infoRecord = scholar.wwdcYearInfos[scholar.wwdcYearInfos.length - 1]
       let info = await new WWDCYearInfo().fetch(infoRecord.recordName)
-      return info.profilePicture.downloadURL
+      return info.profilePicture_small.downloadURL
     }
   },
   components: {}
