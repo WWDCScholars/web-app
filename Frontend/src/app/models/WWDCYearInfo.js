@@ -7,6 +7,7 @@ const wwdcYearInfoSchema = cloudkit.Record.extend({
   appliedAs: { type: String, enum: ['student', 'stem', 'both'] },
   githubAppLink: String,
   profilePicture: Asset,
+  profilePicture_small: Asset,
   screenshots: [Asset],
   videoLink: String,
   scholar: Reference,

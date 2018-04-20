@@ -147,7 +147,7 @@ export default {
     },
     async latestProfilePictureURL () {
       let infoRecord = await this.loadYearInfo(true)
-      return infoRecord.profilePicture.downloadURL
+      return infoRecord.profilePicture_small.downloadURL
     },
     async loadYearInfo (latest) {
       latest = latest || false

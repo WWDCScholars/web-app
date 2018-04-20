@@ -7,7 +7,7 @@
     h3 Want everyone to know you're a Scholarship winner?
     h4.color-red1 T-Shirts will be available again shortly before WWDC 2018
     p.
-      Show support for the project and look good in the process with one of our 2017 T-shirts. We offer various unisex sizes in two different styles, featuring our WWDCScholars logo on front and text around back.
+      Show support for the project and look good in the process with one of our 2018 T-shirts. We offer various unisex sizes in two different styles, featuring our WWDCScholars logo on front and text around back.
 
     .image-slider
       swiper(:options="swiperOptions")
