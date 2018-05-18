@@ -12,6 +12,7 @@
       router-link(:to="{ name: 'store' }", :class="routeClass('store')").color-blue1: span Store
       //- router-link(:to="{ name: 'team' }", :class="routeClass('team')").color-red2: span Team
       //- a(href="#").color-green: span My Profile
+      a(href="https://join.wwdcscholars.com").btn: span Join
 
   router-view
 </template>

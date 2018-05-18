@@ -72,6 +72,22 @@ header
         font-weight: 500
         font-size: 1.1em
 
+      &.btn
+        &.active, &:hover
+          border-bottom: 3px solid transparent
+
+          span
+            background-color: lighten($sch-purple, 8%)
+
+        span
+          display: inline-block
+          background-color: $sch-purple
+          color: $white
+          padding: 4px 18px
+          border-radius: 32px
+          margin-top: 12px
+          transition: background-color 200ms linear
+
   @media (max-width: 850px)
     h1
       font-size: 1.5em
@@ -107,3 +123,7 @@ header
 
         &.active
           border-bottom: 2px solid $sch-gray3
+
+        &.btn
+          span
+            margin-top: 0
