@@ -5,7 +5,8 @@
   .container.container-outer
     .container-split-70
       h3 Want everyone to know you're a Scholarship winner?
-      h4.color-purple T-Shirts are now available until May 25, 2018!
+      //- h4.color-purple T-Shirts are now available until May 25, 2018!
+      h4.color-red2 T-Shirts will be available again after WWDC 2018
       p.
         Show support for the project and look good in the process with our  #WWDCScholars T-shirts. We offer various sizes for both Unisex and Ladies style featuring our logo on front and text around back.
 
@@ -18,13 +19,13 @@
           .swiper-button-prev.swiper-button(slot="button-prev")
           .swiper-button-next.swiper-button(slot="button-next")
 
-      h3 How do I order and receive my T-shirt?
-      p.
-        Simply complete the form and we will get your shirt prepared.
-      p.
-        We will only accept orders until May 25, 2018 and you'll receive your shirt during WWDC. We will reach out to you via email or iMessage in order for you to get your shirt.
-      p.
-        #[b Please note:] T-shirts are currently available for collection at WWDC only.
+      //- h3 How do I order and receive my T-shirt?
+      //- p.
+      //-   Simply complete the form and we will get your shirt prepared.
+      //- p.
+      //-   We will only accept orders until May 25, 2018 and you'll receive your shirt during WWDC. We will reach out to you via email or iMessage in order for you to get your shirt.
+      //- p.
+      //-   #[b Please note:] T-shirts are currently available for collection at WWDC only.
 
       h3 Product Information
       table
@@ -46,7 +47,7 @@
           .swiper-button-next.swiper-button(slot="button-next")
 
     .container-split-30
-      donor-box(name="wwdcscholars-shirts")
+      //- donor-box(name="wwdcscholars-shirts")
 </template>
 
 <script>
