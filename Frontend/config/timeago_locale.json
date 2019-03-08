@@ -1,9 +1,0 @@
-[
-  "just now",
-  "%ss",
-  "%sm",
-  "%sh",
-  ["%s day", "%s days"],
-  ["%s month", "%s moths"],
-  ["%s year", "%s years"]
-]
