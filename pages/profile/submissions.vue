@@ -1,0 +1,25 @@
+<template lang="pug">
+.container-outer
+  navigation-profile
+
+  profile-submission(year="2017")
+  profile-submission(year="2016")
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import {
+  NavigationProfile,
+  ProfileSubmission
+} from '~/components'
+
+@Component({
+  components: {
+    NavigationProfile,
+    ProfileSubmission
+  }
+})
+export default class PageProfileSocial extends Vue {}
+</script>
+
+<style lang="sass" scoped></style>
