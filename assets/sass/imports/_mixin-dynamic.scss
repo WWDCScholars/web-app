@@ -1,0 +1,74 @@
+// =============================================================================
+// ^FUNCTIONS.TEMP
+// =============================================================================
+// This is very tricky and, so far, the only way to make content of defined variables
+// inside of mixins available for `@content`
+
+$dyn-global-temp: null !global;
+
+// -----------------------------------------------------------------------------
+// Set
+// -----------------------------------------------------------------------------
+// Set data to global temp variable, which will be
+// available everywhere.
+// If second argument provided, mixin will consider
+// first argument to be a key of the map, and will
+// merge value with already existing (if any) map in
+// global temp variable under that key. Allows to pass
+// effectively multiple values to `@content`
+// @param  {*} $key        Value to be set or key of the map, under which
+//                         should be set value
+// @param  {*} $value:null Optional value, which should be set under first
+//                         argument as a key of the map
+
+@mixin dyn-set-temp ($key, $value:null) {
+  @if $dyn-global-temp == null {
+    $dyn-global-temp: () !global;
+  }
+
+  // allow $value to be anything, even `false`, but `null`
+  @if $value != null {
+    $result: ( $key: $value );
+    $dyn-global-temp: map-merge($dyn-global-temp, $result) !global;
+  }
+
+  @else {
+    $result: ( __value: $key );
+    $dyn-global-temp: map-merge($dyn-global-temp, $result) !global;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Read
+// -----------------------------------------------------------------------------
+// Returns current content of global temp variable.
+// If argument provided, will try to fetch value from
+// that key of map inside global temp variable
+// @param  {*} $key:false Optional argument, which forces function
+//                        to look value under that key
+// @return {*}            Content of global temp variable or it's map
+//                        under specified key
+
+@function dyn-temp ($key:false) {
+  @if not $key {
+    @if type-of($dyn-global-temp) == 'null' {
+      @error '[dyn-temp]: temp variable does not hold any value';
+    }
+    @return map-get($dyn-global-temp, __value);
+  }
+  @else {
+    @if type-of($dyn-global-temp) != 'map' {
+      @error '[dyn-temp]: can not get key `#{$key}` from #{type-of($dyn-global-temp)}, NOT a map';
+    }
+    $value: map-get($dyn-global-temp, $key);
+    @if not $value {
+      @error '[dyn-temp]: no such key in temp variable: #{$key}';
+    }
+    @return $value;
+  }
+}
+// -----------------------------------------------------------------------------
+// Purge
+// -----------------------------------------------------------------------------
+// Resets global temp variable to initial state
+@mixin dyn-purge-temp () { $dyn-global-temp: null !global; }

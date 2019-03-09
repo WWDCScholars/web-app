@@ -1,0 +1,12 @@
+@mixin form-colors
+  @each $name, $colors in $_form-colors
+    +form-color($name, map-get($colors, background), map-get($colors, foreground))
+      +dyn-set-temp('bg', map-get($colors, bg))
+      +dyn-set-temp('fg', map-get($colors, fg))
+      @content
+
+@mixin form-color($name, $color1, $color2)
+  .form-color-#{$name}
+    color: $color1
+
+    @content

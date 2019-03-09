@@ -1,0 +1,43 @@
+@mixin clearfix()
+  &:before, &:after
+    content: ' '
+    display: table
+
+  &:after
+    clear: both
+
+@mixin container-fixed()
+  margin-left: auto
+  margin-right: auto
+  padding-left: 15px
+  padding-right: 15px
+  +clearfix
+
+  +for-tablet-landscape-up
+    padding-left: 50px
+    padding-right: 50px
+
+.container
+  +container-fixed
+
+.container-outer
+
+
+.container-fluid
+  +container-fixed
+
+  +for-tablet-landscape-up
+    // max-width: 800px
+
+.container-section
+  max-width: 1030px
+  margin: 0 auto
+  margin-top: 30px
+  padding: 15px 30px 30px 30px
+  background-color: $white
+  border-radius: $border-radius
+
+  h2
+    text-align: left
+    margin: 0
+    margin-bottom: 15px
