@@ -64,6 +64,7 @@ const config = {
    */
   plugins: [
     '~/plugins/settings',
+    '~/plugins/vue2-google-maps'
   ],
 
   /*
