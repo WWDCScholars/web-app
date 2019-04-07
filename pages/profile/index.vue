@@ -1,11 +1,9 @@
 <template lang="pug">
-.container-outer
-  navigation-profile
-
-  .container-fluid.container-section
+.container-fluid
+  base-section
     h2 Basic Information
 
-    base-form.form-color-green
+    base-form
       .group.group-width-50
         h3 Profile Picture
         form-field(comment="This needs to be an image of you with a resolution of at least 250x250.")
@@ -88,7 +86,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import {
-  NavigationProfile,
+  BaseSection,
   BaseForm,
   BaseButton,
   FormField,
@@ -101,7 +99,7 @@ import {
 
 @Component({
   components: {
-    NavigationProfile,
+    BaseSection,
     BaseForm,
     BaseButton,
     FormField,

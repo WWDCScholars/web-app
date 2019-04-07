@@ -1,21 +1,19 @@
 <template lang="pug">
-.container-outer
-  navigation-profile
-
-  .container-fluid.container-section
+.container-fluid
+  base-section
     h2 Account Data
 
-    base-form.form-color-green
+    base-form
       .group
         h3 Download your account data
         p.
           Request to download a copy of your account data. You will receive an
           email with a link to download your data. Please allow up to 30 days
           for the email to arrive.
-      
+
       base-button.btn-cta Request Download
 
-  .container-fluid.container-section
+  base-section
     h2 Danger Zone
 
     base-form.form-color-red
@@ -26,21 +24,21 @@
           Your profile will no longer be viewable on WWDCScholars.com or
           WWDCScholars for iOS. All data associated with your account will be
           deleted permanently. This action cannot be reverted.
-      
+
       base-button.btn-cta Permanently Delete Your Account
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import {
-  NavigationProfile,
+  BaseSection,
   BaseForm,
   BaseButton
 } from '~/components'
 
 @Component({
   components: {
-    NavigationProfile,
+    BaseSection,
     BaseForm,
     BaseButton
   }
@@ -48,5 +46,4 @@ import {
 export default class PageProfileSocial extends Vue {}
 </script>
 
-<style lang="sass" scoped>
-</style>
+<style lang="sass" scoped></style>

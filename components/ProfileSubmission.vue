@@ -1,8 +1,8 @@
 <template lang="pug">
-.container-fluid.container-section
+base-section
   h2 WWDC {{ year }}
 
-  base-form.form-color-green
+  base-form
     .group
       h3 Applied As
       form-field
@@ -52,6 +52,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import BaseSection from './BaseSection.vue'
 import BaseForm from './BaseForm.vue'
 import BaseButton from './BaseButton.vue'
 import FormField from './FormField.vue'
@@ -63,6 +64,7 @@ import {
 
 @Component({
   components: {
+    BaseSection,
     BaseForm,
     BaseButton,
     FormField,

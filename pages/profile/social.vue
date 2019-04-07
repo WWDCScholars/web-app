@@ -1,11 +1,9 @@
 <template lang="pug">
-.container-outer
-  navigation-profile
-    
-  .container-fluid.container-section
+.container-fluid
+  base-section
     h2 Social Links
 
-    base-form.form-color-green
+    base-form
       .group
         h3 Where else can people find you?
         form-field
@@ -64,8 +62,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import {
-  NavigationProfile,
   InputText,
+  BaseSection,
   BaseForm,
   BaseButton,
   FormField
@@ -73,8 +71,8 @@ import {
 
 @Component({
   components: {
-    NavigationProfile,
     InputText,
+    BaseSection,
     BaseForm,
     BaseButton,
     FormField
@@ -93,5 +91,4 @@ export default class PageProfileSocial extends Vue {
 }
 </script>
 
-<style lang="sass" scoped>
-</style>
+<style lang="sass" scoped></style>
