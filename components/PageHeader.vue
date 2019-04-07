@@ -5,7 +5,7 @@ header.header
       span.wwdc WWDC
       span.scholars Scholars
   .spacer
-  slot(name="right")
+  slot
 </template>
 
 <script lang="ts">
@@ -27,13 +27,13 @@ export default class PageHeader extends Vue {}
   display: flex
   justify-content: space-between
   align-items: center
-  padding: 0 20px
+  padding: 0 25px 0 40px
 
   .header-link
     text-decoration: none
 
     h1
-      font-size: 1.6em
+      font-size: 2em
       margin: 0
       padding: 0
       line-height: 100%
@@ -41,5 +41,5 @@ export default class PageHeader extends Vue {}
       font-weight: 600
 
       .scholars
-        font-weight: 300
+        font-weight: 400
 </style>

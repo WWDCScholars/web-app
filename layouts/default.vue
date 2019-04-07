@@ -1,7 +1,7 @@
 <template lang="pug">
 .page
   page-header(:link="{ path: '/' }")
-    navigation(slot="right")
+    navigation
   .content-wrapper
     nuxt
   page-footer
