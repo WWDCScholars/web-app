@@ -3,25 +3,30 @@ nav.navigation
   nuxt-link(to="/").nuxt-link-root.color-purple: span Scholars
   nuxt-link(to="/activity").color-orange: span Activity
   nuxt-link(to="/store").color-blue1: span Store
-  nuxt-link(to="/profile").color-green: span Profile
+  nuxt-link(to="/about").color-green: span About
+  profile-button
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import ProfileButton from './ProfileButton.vue'
 
-@Component
+@Component({
+  components: { ProfileButton }
+})
 export default class Navigation extends Vue {}
 </script>
 
 <style lang="sass" scoped>
 .navigation
-  margin-right: -15px
   display: flex
   align-items: center
 
   > a
     display: table
     height: $header-height
+    font-size: 1.2em
+    font-weight: 500
     padding: 0 15px
     text-decoration: none
     border-bottom: 3px solid transparent
@@ -38,19 +43,6 @@ export default class Navigation extends Vue {}
     &:hover
       border-bottom: 3px solid
 
-    &.nav-filled
-      span
-        display: block
-        background-color: $sch-purple
-        color: $white
-        border-radius: 32px
-        margin-top: 14px
-        padding: 4px 18px
-        transition: 100ms linear background-color
-
-      &:hover
-        border-bottom-color: transparent
-
-        span
-          background-color: lighten($sch-purple, 10%)
+  .profile-button
+    height: $header-height
 </style>
