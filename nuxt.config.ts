@@ -78,6 +78,13 @@ const config: NuxtConfiguration = {
    */
   styleResources: {
     sass: ['~assets/sass/imports/_index.sass']
+  },
+
+  /*
+   ** Generate a 404 page
+   */
+  generate: {
+    fallback: '404.html'
   }
 }
 
