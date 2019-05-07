@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 const config = {
+=======
+import NuxtConfiguration from '@nuxt/config'
+import { config as dotenv } from 'dotenv'
+dotenv()
+
+const config: NuxtConfiguration = {
+>>>>>>> e29674f3ac45fbcee22ce347920dc249a5cbfcb8
   mode: 'spa',
 
   /*
@@ -36,6 +44,7 @@ const config = {
         href: '/icons/favicon-120.png',
         sizes: '120x120'
       }
+<<<<<<< HEAD
     ]
   },
 
@@ -44,6 +53,10 @@ const config = {
    */
   env: {
     ...process.env
+=======
+    ],
+    script: []
+>>>>>>> e29674f3ac45fbcee22ce347920dc249a5cbfcb8
   },
 
   /*
@@ -57,7 +70,7 @@ const config = {
   /*
    ** Global CSS
    */
-  css: [{ src: '~assets/sass/app/_index.sass', lang: 'sass' }],
+  css: ['~assets/sass/app/_index.sass'],
 
   /*
    ** Plugins to load before mounting the App
