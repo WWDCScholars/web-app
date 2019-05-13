@@ -19,18 +19,18 @@
         form-field.field-width-50
           input-text(
             type="text",
-            name="firstname",
-            placeholder="First Name",
+            name="givenname",
+            placeholder="Given Name",
             required="true",
-            v-model="firstname"
+            v-model="givenname"
           )
         form-field.field-width-50
           input-text(
             type="text",
-            name="lastname",
-            placeholder="Last Name",
+            name="familyname",
+            placeholder="Family Name",
             required="true",
-            v-model="lastname"
+            v-model="familyname"
           )
         form-field
           input-text(
@@ -114,8 +114,8 @@ export default class PageProfileBasic extends Vue {
   currentTab = 'Basic'
 
   profilePicture = ''
-  firstname = ''
-  lastname = ''
+  givenname = ''
+  familyname = ''
   email = ''
   birthday = new Date()
   gender = ''

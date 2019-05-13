@@ -14,6 +14,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { NavigationTabBar } from '~/components'
 
 @Component({
+  middleware: 'authenticated',
   components: { NavigationTabBar }
 })
 export default class PageProfile extends Vue {}
