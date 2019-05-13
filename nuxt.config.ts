@@ -71,7 +71,7 @@ const config: NuxtConfiguration = {
     '~/plugins/vue-lazyload',
     '~/plugins/vue2-google-maps',
 
-    '~/plugins/auth'
+    // '~/plugins/auth'
   ],
 
   /*
@@ -120,7 +120,6 @@ const config: NuxtConfiguration = {
     /*
      ** You can extend webpack config here
      */
-    // transpile: ['vue-mapkit'],
     extend(config: any/*, ctx*/) {
       config.node = {
         fs: 'empty'
