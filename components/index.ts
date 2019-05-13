@@ -11,6 +11,8 @@ export { default as BaseForm } from './BaseForm.vue'
 export { default as BaseButton } from './BaseButton.vue'
 export { default as FormField } from './FormField.vue'
 
+export { default as ScholarThumbnail } from './ScholarThumbnail.vue'
+
 export { default as ProfileSubmission } from './ProfileSubmission.vue'
 
 export { default as TeamCard } from './TeamCard.vue'

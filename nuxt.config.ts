@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-const config = {
-=======
 import NuxtConfiguration from '@nuxt/config'
 import { config as dotenv } from 'dotenv'
 dotenv()
 
 const config: NuxtConfiguration = {
->>>>>>> e29674f3ac45fbcee22ce347920dc249a5cbfcb8
   mode: 'spa',
 
   /*
@@ -44,19 +40,14 @@ const config: NuxtConfiguration = {
         href: '/icons/favicon-120.png',
         sizes: '120x120'
       }
-<<<<<<< HEAD
-    ]
+    ],
   },
 
   /*
    ** Inject process environment variables
    */
   env: {
-    ...process.env
-=======
-    ],
-    script: []
->>>>>>> e29674f3ac45fbcee22ce347920dc249a5cbfcb8
+    ...process.env as any
   },
 
   /*
@@ -76,8 +67,11 @@ const config: NuxtConfiguration = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/settings',
-    '~/plugins/vue2-google-maps'
+    '~/plugins/filters',
+    '~/plugins/vue-lazyload',
+    '~/plugins/vue2-google-maps',
+
+    '~/plugins/auth'
   ],
 
   /*
@@ -88,7 +82,14 @@ const config: NuxtConfiguration = {
     '@nuxtjs/style-resources',
 
     // Load environment variables from `.env`
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+
+    // CloudKit connection
+    ['@wwdcscholars/cloudkit', {
+      containerIdentifier: process.env.CLOUDKIT_CONTAINER_IDENTIFIER,
+      apiToken: process.env.CLOUDKIT_API_TOKEN,
+      environment: process.env.CLOUDKIT_ENVIRONMENT
+    }]
   ],
 
   /*
@@ -99,16 +100,41 @@ const config: NuxtConfiguration = {
   },
 
   /*
+   ** Extend router configuration
+   */
+  router: {
+    extendRoutes(routes: any[], resolve: Function) {
+      // Add route for year selection
+      routes.push({
+        name: 'scholars-year',
+        path: '/:year?',
+        component: resolve(__dirname, 'pages/index.vue')
+      })
+    }
+  },
+
+  /*
    ** Build configuration
    */
   build: {
     /*
      ** You can extend webpack config here
      */
-    extend(config: any) {
+    // transpile: ['vue-mapkit'],
+    extend(config: any/*, ctx*/) {
       config.node = {
         fs: 'empty'
       }
+
+      // // Run ESLint on save
+      // if (ctx.isDev && ctx.isClient) {
+      //   config.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: /(node_modules)/
+      //   })
+      // }
     }
   }
 }

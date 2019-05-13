@@ -1,14 +1,14 @@
 <template lang="pug">
 .profile-button(:class="{ 'nuxt-link-active': linkActive }")
-  nuxt-link(v-if="signedOut", to="/signin"): img(src="~assets/images/user.svg")
+  nuxt-link(v-if="!isAuthenticated", to="/signin"): img(src="~assets/images/user.svg")
   button(v-else, @click="open = !open")
     img(src="~assets/images/user.svg")
     .dropdown(:class="{ show: open }")
       .triangle
       .links
-        nuxt-link(to="/") Profile
+        nuxt-link(v-if="profileLink", :to="profileLink") Profile
         nuxt-link(to="/profile") Edit Profile
-        nuxt-link(to="/")
+        button(@click="onSignOutClicked")
           | Sign Out
           <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Icon/sign-out" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -20,20 +20,43 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { namespace } from 'vuex-class'
+import { CloudKit } from '@wwdcscholars/cloudkit'
+
+import * as auth from '~/store/auth'
+const Auth = namespace(auth.name)
 
 @Component
 export default class ProfileButton extends Vue {
   open: boolean = false
 
-  get signedOut(): boolean {
-    return true
-  }
+  @Auth.Getter
+  isAuthenticated!: boolean
+
+  @Auth.State
+  userScholarReference?: CloudKit.Reference
 
   get linkActive(): boolean {
     if (!this.$route.name) return false
 
     return this.$route.name.indexOf('profile') === 0
       || this.$route.name === 'signin'
+  }
+
+  get profileLink(): object | undefined {
+    if (!this.userScholarReference) return undefined
+
+    return {
+      name: 's-id-year',
+      params: {
+        id: this.userScholarReference.recordName
+      }
+    }
+  }
+
+  onSignOutClicked() {
+    this.$ck.signOut()
+    this.$router.replace('/')
   }
 }
 </script>
@@ -46,7 +69,7 @@ export default class ProfileButton extends Vue {
   &:hover, &.nuxt-link-active
     border-bottom-color: $sch-purple
 
-  button, a
+  > button, > a
     display: block
     height: $header-height
     padding: 0 25px
@@ -55,7 +78,7 @@ export default class ProfileButton extends Vue {
       position: relative
       top: 50%
 
-  a img
+  > a img
     transform: translateY(-50%)
 
 button
@@ -78,7 +101,7 @@ button
       border-radius: $border-radius-large
       overflow: hidden
 
-    a
+    a, button
       display: block
       font-size: 1.2em
       font-weight: 500
@@ -101,7 +124,7 @@ button
         path
           transition: fill 100ms linear
 
-      &:last-of-type
+      &:last-child
         border-bottom: 0
 
       &:hover

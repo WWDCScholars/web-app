@@ -14,17 +14,25 @@
         If you are new to WWDC scholarships and would like to learn more, we
         recommend you visit our #[nuxt-link(to="/about") about page].
 
-      button Sign in with Apple ID
+      a(:href="signInURL").btn-sign-in Sign in with Apple ID
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { namespace } from 'vuex-class'
 import { BaseSection } from '~/components'
 
+import * as auth from '~/store/auth'
+const Auth = namespace(auth.name)
+
 @Component({
+  middleware: 'anonymous',
   components: { BaseSection }
 })
-export default class PageSignin extends Vue {}
+export default class PageSignin extends Vue {
+  @Auth.State
+  signInURL!: string
+}
 </script>
 
 <style lang="sass" scoped>
@@ -64,9 +72,15 @@ export default class PageSignin extends Vue {}
     a
       color: $sch-blue1
 
-  button
+  .btn-sign-in
     display: block
     margin-top: 60px
     margin-left: auto
     margin-right: auto
+    padding: 10px 20px
+    font-weight: 500
+    color: black
+    border: 1px solid black
+    border-radius: $border-radius
+    text-decoration: none
 </style>
