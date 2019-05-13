@@ -4,15 +4,15 @@ nav.navigation
   nuxt-link(to="/activity").color-orange: span Activity
   nuxt-link(to="/store").color-blue1: span Store
   nuxt-link(to="/about").color-green: span About
-  profile-button
+  //- profile-button
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import ProfileButton from './ProfileButton.vue'
+// import ProfileButton from './ProfileButton.vue'
 
 @Component({
-  components: { ProfileButton }
+  // components: { ProfileButton }
 })
 export default class Navigation extends Vue {}
 </script>
