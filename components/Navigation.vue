@@ -1,6 +1,6 @@
 <template lang="pug">
 nav.navigation
-  nuxt-link(to="/").nuxt-link-root.color-purple: span Scholars
+  nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
   //- nuxt-link(to="/activity").color-orange: span Activity
   //- nuxt-link(to="/store").color-blue1: span Store
   nuxt-link(to="/about").color-green: span About
@@ -14,7 +14,13 @@ import { Component, Vue } from 'nuxt-property-decorator'
 @Component({
   // components: { ProfileButton }
 })
-export default class Navigation extends Vue {}
+export default class Navigation extends Vue {
+  get scholarsLinkActive(): object {
+    return {
+      'nuxt-link-profile-active': this.$route.name === 's-id-year'
+    }
+  }
+}
 </script>
 
 <style lang="sass" scoped>
@@ -39,6 +45,7 @@ export default class Navigation extends Vue {}
       font-size: 1.1em
 
     &.nuxt-link-exact-active,
+    &.nuxt-link-profile-active,
     &.nuxt-link-active:not(.nuxt-link-root),
     &:hover
       border-bottom: 3px solid
