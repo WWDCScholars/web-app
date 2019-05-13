@@ -1,16 +1,18 @@
 <template lang="pug">
-base-section.team-card
-  .image
-    img(v-lazy="image")
-  .info
-    .name {{ name }}
-    .age {{ age }}
-    .body
-      slot
+component(:is="rootComponent", :to="profileLink").team-card-link
+  base-section.team-card
+    .image
+      img(v-lazy="image")
+    .info
+      .name {{ name }}
+      .age {{ age }}
+      .body
+        slot
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { CloudKit } from '@wwdcscholars/cloudkit'
 import BaseSection from './BaseSection.vue'
 
 @Component({
@@ -23,14 +25,36 @@ export default class TeamCard extends Vue {
   age!: string
   @Prop({ required: true })
   image!: string
+  @Prop({ default: undefined })
+  scholar?: CloudKit.Reference
+
+  get profileLink(): object | undefined {
+    if (!this.scholar) return undefined
+
+    return {
+      name: 's-id-year',
+      params: {
+        id: this.scholar.recordName
+      }
+    }
+  }
+
+  get rootComponent(): string {
+    return this.scholar ? 'nuxt-link' : 'div'
+  }
 }
 </script>
 
 <style lang="sass" scoped>
+.team-card-link
+  display: block
+  text-decoration: none
+
 .team-card
   display: flex
   justify-content: flex-start
   align-items: center
+  color: $apl-black
 
 .image
   margin-right: 20px

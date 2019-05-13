@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import dayjs from 'dayjs'
 
 Vue.filter('pronoun',
   (gender: string) => gender === 'male' ? 'him' : gender === 'female' ? 'her' : 'them')
@@ -33,4 +34,11 @@ Vue.filter('quantize', (word: string, count: number) => {
     return word + 's'
   }
   return word
+})
+
+Vue.filter('yearDifference', (date?: number): number => {
+  if (!date) return 0
+
+  const dateObject = dayjs(date)
+  return dayjs().diff(dateObject, 'year')
 })

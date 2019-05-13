@@ -12,30 +12,14 @@
         .title WWDC#[span Scholars] Team
 
       .team-cards
-        team-card(name="Andrew Walker", age="22", image="/andrew.jpg").
-          Andrew has been working on iOS applications for 4 1/2 years. He
-          recently interned at Apple after attending WWDC as a scholarship
-          winner for three consecutive years.
-        
-        team-card(name="Matthijs Logemann", age="19", image="/andrew.jpg").
-          Andrew has been working on iOS applications for 4 1/2 years. He
-          recently interned at Apple after attending WWDC as a scholarship
-          winner for three consecutive years.
-        
-        team-card(name="Sam Eckert", age="18", image="/andrew.jpg").
-          Andrew has been working on iOS applications for 4 1/2 years. He
-          recently interned at Apple after attending WWDC as a scholarship
-          winner for three consecutive years.
-
-        team-card(name="Oliver Binns", age="24", image="/andrew.jpg").
-          Andrew has been working on iOS applications for 4 1/2 years. He
-          recently interned at Apple after attending WWDC as a scholarship
-          winner for three consecutive years.
-
-        team-card(name="Moritz Sternemann", age="22", image="/andrew.jpg").
-          Andrew has been working on iOS applications for 4 1/2 years. He
-          recently interned at Apple after attending WWDC as a scholarship
-          winner for three consecutive years.
+        team-card(
+          v-for="member in members",
+          :key="member.recordName"
+          :name="member.name",
+          :age="member.birthday | yearDifference",
+          :image="member.picture.downloadURL",
+          :scholar="member.scholar"
+        ) {{ member.biography }}
 
     .team-section
       .team-picture
@@ -53,7 +37,7 @@
             velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
             est laborum.
-        
+
         .subsection
           h4.color-red2 How can I apply?
           p.
@@ -64,7 +48,7 @@
             velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
             est laborum.
-          
+
         .subsection
           h4.color-red2 How do I join WWDCScholars?
           p.
@@ -79,10 +63,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { namespace } from 'vuex-class'
+import { TeamMember } from '@wwdcscholars/cloudkit'
 import {
   BaseSection,
   TeamCard
 } from '~/components'
+
+import { name as teamName } from '~/store/team'
+const Team = namespace(teamName)
 
 @Component({
   components: {
@@ -90,7 +79,14 @@ import {
     TeamCard
   }
 })
-export default class PageAbout extends Vue {}
+export default class PageAbout extends Vue {
+  @Team.Getter('allMembers')
+  members!: TeamMember[]
+
+  async fetch({ store }) {
+    await store.dispatch('team/queryMembers')
+  }
+}
 </script>
 
 <style lang="sass" scoped>
