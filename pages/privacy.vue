@@ -199,7 +199,28 @@
       <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">https://sentry.io/privacy/</a></p>
     <p>We use Sentry with the objective of detecting bugs and issues in our services. This establishes legitimate grounds as defined in Art. 6 Sect. 1 lit. f GDPR. Sentry has certified its compliance with the EU-U.S. Privacy Shield. To access the Privacy Shield
       List and to find details of Sentry's certification, please visit: <a href="www.privacyshield.gov" target="_blank" rel="noopener">www.privacyshield.gov</a></p>
-    <h2>7. Custom Services</h2>
+    <h2>7. Newsletter & Emails</h2>
+    <h3>SendGrid</h3>
+    <p>This website uses SendGrid for the sending of newsletters and further emails. The provider is the SendGrid, Inc., which maintains its registered business domicile in 1801 California Street, Suite 500, Boulder, CO 80202, United States, website: <a href="https://www.sendgrid.com"
+        target="_blank" rel="noopener">https://wwwd.sendgrid.com</a> (hereinafter referred to as SendGrid).</p>
+    <p>SendGrid services can, among other things, be used to organize and analyse the sending of newsletters. The data you enter for the purpose of subscribing to the newsletter are archived on SendGrid's servers.</p>
+    <p><strong>Data analysis by SendGrid</strong></p>
+    <p>Sending newsletters with SendGrid enables us to analyse the user patterns of our newsletter subscribers. Among other things, we can analyse how many recipients have opened their newsletter messages and how often they have clicked which link. With the
+      assistance of a tool called Conversion Tracking, it is also possible to determine whether, after clicking on a link in a newsletter, the subscriber carries out a predefined action (e.g. purchase of a product, sharing of information on social networks,
+      cancellation of the subscription). Moreover, we can also track when a newsletter message was opened. This allows us to deliver newsletter e-mails at times the newsletter subscriber is likely going to be the most active. We can even take the time zone
+      the subscriber lives in into account. SendGrid also offers us the option to divide newsletter recipients into groups based on their interests. This allows us to send our newsletter subscribers content that is the most compatible with their respective
+      interests.</p>
+    <p>For more information about SendGrid features and services, please visit: <a href="https://www.sendgrid.comg" target="_blank" rel="noopener">https://www.sendgrid.com</a>.</p>
+    <p><strong>Legal basis</strong></p>
+    <p>The data is processed based on your consent (Art. 6 Sect. 1 lit. a GDPR).  You may revoke any consent you have given at any time by unsubscribing from the newsletter. This shall be without prejudice to the lawfulness of any data processing transactions
+      that have taken place prior to your revocation.</p>
+    <p><strong>Storage period</strong></p>
+    <p>The data you archive with us for the purpose of the newsletter subscription shall be archived by us until you unsubscribe from the newsletter. Once you cancel your subscription to the newsletter, the data shall be deleted from our servers as well as those
+      of SendGrid. This shall not affect data we have been archiving for other purposes.</p>
+    <p>For more details, please consult the Data Protection Regulations of SendGrid at: <a href="https://sendgrid.com/policies/privacy/" target="_blank" rel="noopener">https://sendgrid.com/policies/privacy/</a>. SendGrid is taking part in the EU-US Privacy Shield.</p>
+    <p><strong>Execution of a contract data processing agreement</strong></p>
+    <p>We have executed a contract with SendGrid, in which we require SendGrid to protect our customers’ data and to refrain from sharing such data with third parties.</p>
+    <h2>8. Custom Services</h2>
     <h3>Submissions</h3>
     <p>We offer website visitors/app users the opportunity to submit their profiles to us (e.g. by submitting the online submission form). Below, we will brief you on the scope, purpose and use of the personal data collected from you in conjunction with the
       submission process. We assure you that the collection, processing and use of your data will occur in compliance with the applicable data privacy rights and all other statutory provisions and that your data will always be treated as strictly confidential,
