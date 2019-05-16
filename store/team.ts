@@ -26,7 +26,7 @@ export const actions: ActionTree<State, State> = {
   async queryMembers({ commit }): Promise<void> {
     const query: CloudKit.QueryBase = {
       filterBy: [],
-      sortBy: []
+      sortBy: [{ fieldName: 'name' }]
     }
 
     const result = await TeamMember.query(query)
