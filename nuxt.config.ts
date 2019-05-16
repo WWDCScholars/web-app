@@ -89,6 +89,12 @@ const config: NuxtConfiguration = {
       containerIdentifier: process.env.CLOUDKIT_CONTAINER_IDENTIFIER,
       apiToken: process.env.CLOUDKIT_API_TOKEN,
       environment: process.env.CLOUDKIT_ENVIRONMENT
+    }],
+
+    // Google Analytics
+    ['@nuxtjs/google-analytics', {
+      id: process.env.GOOGLE_ANALYTICS_ID,
+      dev: false
     }]
   ],
 
