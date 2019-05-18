@@ -2,6 +2,9 @@ import NuxtConfiguration from '@nuxt/config'
 import { config as dotenv } from 'dotenv'
 dotenv()
 
+const version = require('./package.json').version
+const isProduction = (process.env.NODE_ENV === 'production')
+
 const config: NuxtConfiguration = {
   mode: 'spa',
 
@@ -95,7 +98,10 @@ const config: NuxtConfiguration = {
     ['@nuxtjs/google-analytics', {
       id: process.env.GOOGLE_ANALYTICS_ID,
       dev: false
-    }]
+    }],
+
+    // Load sentry
+    '@nuxtjs/sentry'
   ],
 
   /*
@@ -103,6 +109,23 @@ const config: NuxtConfiguration = {
    */
   styleResources: {
     sass: ['~assets/sass/imports/_index.sass']
+  },
+
+  /*
+   ** Sentry configuration
+   */
+  sentry: {
+    disabled: !isProduction,
+    dsn: process.env.SENTRY_DSN,
+    config: {
+      environment: process.env.SENTRY_ENVIRONMENT,
+      release: `v${version}`,
+      autoBreadcrumbs: {
+        'ui': false,
+        'location': true,
+        'xhr': true
+      }
+    }
   },
 
   /*
