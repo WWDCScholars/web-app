@@ -65,6 +65,7 @@ export default class PageIndex extends Vue {
   }
 
   get currentScholars(): Scholar[] {
+    if (!this.currentYear) return []
     const currentYearRecordName = this.currentYear.recordName
     return Object.values(this.allScholars).filter(scholar => {
       return scholar.wwdcYears.some(ref => ref.recordName === currentYearRecordName)

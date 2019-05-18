@@ -173,7 +173,7 @@ export default class ScholarProfile extends Vue {
       const year = `WWDC ${this.$route.params.year}`
       return this.scholar.loadedYearInfos[year]
     } else {
-      const keys = Object.keys(this.scholar.loadedYearInfos)
+      const keys = Object.keys(this.scholar.loadedYearInfos).sort()
       return this.scholar.loadedYearInfos[keys[keys.length - 1]]
     }
   }
@@ -205,21 +205,23 @@ export default class ScholarProfile extends Vue {
 
   get submissionLinks(): { [year: string]: object } {
     if (!this.scholar.wwdcYears) return {}
-    return this.scholar.wwdcYears.reduce((acc, yearReference) => {
-      const year = yearReference.recordName.substring(5)
-      const lastYearReference = this.scholar.wwdcYears[this.scholar.wwdcYears.length - 1]
-      const yearParam = yearReference !== lastYearReference ? year : undefined
+    const sortedYears = this.scholar.wwdcYears.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
+    const lastYearReference = sortedYears[sortedYears.length - 1]
+    return sortedYears
+      .reduce((acc, yearReference) => {
+        const year = yearReference.recordName.substring(5)
+        const yearParam = yearReference.recordName === lastYearReference.recordName ? undefined : year
 
-      acc[year] = {
-        name: 's-id-year',
-        params: {
-          id: this.$route.params.id,
-          year: yearParam
+        acc[year] = {
+          name: 's-id-year',
+          params: {
+            id: this.$route.params.id,
+            year: yearParam
+          }
         }
-      }
 
-      return acc
-    }, {})
+        return acc
+      }, {})
   }
 
   get editProfileLinkVisible(): boolean {
@@ -250,17 +252,17 @@ export default class ScholarProfile extends Vue {
     }))
 
     if (scholar.wwdcYears.length >= 1) {
-      const years = scholar.wwdcYears
-      const yearInfos = scholar.wwdcYearInfos
+      const years = scholar.wwdcYears.map((year, index) => {
+        return [year, scholar.wwdcYearInfos[index]]
+      }) as [CloudKit.Reference, CloudKit.Reference][]
 
       // find year to fetch
-      const index = yearToFetch(years, params.year)
-      if (index === -1) {
+      const ytf = yearToFetch(years, params.year)
+      if (ytf === null) {
         return error({ code: 404, message: 'Year not found' })
       }
 
-      const yearReference = years[index]
-      const yearInfoReference = yearInfos[index]
+      const [yearReference, yearInfoReference] = ytf
 
       if (yearReference && yearInfoReference) {
         // fetch WWDCYear

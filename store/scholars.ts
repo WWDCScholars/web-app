@@ -42,6 +42,7 @@ export const actions: ActionTree<State, State> = {
     commit('insertScholar', scholar)
   },
   async queryScholars({ commit }, year: WWDCYear): Promise<void> {
+    if (!year) return
     const query: CloudKit.QueryBase = {
       filterBy: [{
         fieldName: 'wwdcYearsApproved',

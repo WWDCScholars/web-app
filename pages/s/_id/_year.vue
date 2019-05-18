@@ -8,7 +8,7 @@
 
   p.description {{ yearInfo.description }}
 
-  swiper(v-if="yearInfo.screenshots", :options="swiperOptions").screenshots
+  swiper(v-if="yearInfo.screenshots.length", :options="swiperOptions").screenshots
       swiper-slide(
         v-for="screenshot in yearInfo.screenshots",
         :key="screenshot.fileChecksum"
@@ -17,13 +17,15 @@
       .swiper-pagination(slot="pagination")
       .swiper-button-prev.swiper-button(slot="button-prev")
       .swiper-button-next.swiper-button(slot="button-next")
+  .no-screenshots(v-else)
+    i Unfortunately we don't have any screenshots of this submissions
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import { Scholar, WWDCYear, WWDCYearInfo } from '@wwdcscholars/cloudkit'
+import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
 import yearToFetch from '~/util/wwdcYear-index'
 
 import 'swiper/dist/css/swiper.css'
@@ -84,12 +86,16 @@ export default class ScholarProfileSubmission extends Vue {
 
     // else, load data for new route
     const scholar: Scholar = store.getters['scholars/byRecordName'](params.id)
+    if (!scholar) return
 
-    const index = yearToFetch(scholar.wwdcYears, params.year)
-    if (index === -1) return
+    const years = scholar.wwdcYears.map((year, index) => {
+        return [year, scholar.wwdcYearInfos[index]]
+      }) as [CloudKit.Reference, CloudKit.Reference][]
 
-    const yearReference = scholar.wwdcYears[index]
-    const yearInfoReference = scholar.wwdcYearInfos[index]
+    const ytf = yearToFetch(years, params.year)
+    if (ytf === null) return
+
+    const [yearReference, yearInfoReference] = ytf
 
     const promises: Promise<any>[] = []
     if (yearReference && yearInfoReference) {
