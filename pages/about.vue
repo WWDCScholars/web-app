@@ -142,6 +142,9 @@ h3
 
 .team-cards
   display: grid
-  grid-template-columns: 1fr 1fr
+  grid-template-columns: 1fr
   grid-gap: 40px
+
+  +for-tablet-landscape-up
+    grid-template-columns: 1fr 1fr
 </style>
