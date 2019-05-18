@@ -17,7 +17,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class Navigation extends Vue {
   get scholarsLinkActive(): object {
     return {
-      'nuxt-link-profile-active': this.$route.name === 's-id-year'
+      'nuxt-link-profile-active': this.$route.name === 's-id-year' || this.$route.name === 'scholars-year'
     }
   }
 }
