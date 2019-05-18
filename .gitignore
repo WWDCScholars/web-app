@@ -19,7 +19,7 @@ node_modules/
 *.tgz
 
 # dotenv environment variables file
-.env
+.env*
 
 # nuxt.js build output
 .nuxt
