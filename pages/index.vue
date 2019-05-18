@@ -8,12 +8,13 @@
         :key="year"
       ) {{ year }}
   .container-fluid.color-purple
-    .scholars-list
+    .scholars-list(v-if="currentScholars.length > 0")
       scholar-thumbnail(
         v-for="scholar in currentScholars",
         :scholar.once="scholar",
         :key="scholar.recordName"
       )
+    .no-scholars(v-else) #[i Unfortunately there are no Scholars to show yet]&nbsp;&nbsp;😭
 </template>
 
 <script lang="ts">
@@ -99,7 +100,6 @@ export default class PageIndex extends Vue {
 .scholars-list
   margin-top: 30px
   display: grid
-  // grid-template-columns: repeat(auto-fill, minmax(135px, 1fr))
   grid-template-columns: repeat(auto-fill, 160px)
   grid-auto-rows: 160px
   grid-gap: 15px
@@ -107,4 +107,9 @@ export default class PageIndex extends Vue {
 
   .scholar-thumbnail
     display: block
+
+.no-scholars
+  margin-top: 30px
+  text-align: center
+  color: $sch-gray0
 </style>
