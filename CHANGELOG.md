@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.2.0](https://github.com/WWDCScholars/web-app/compare/v3.1.0...v3.2.0) (2019-05-21)
+
+
+### Features
+
+* Add History Pushstate and primary domain redirects ([c96d324](https://github.com/WWDCScholars/web-app/commit/c96d324))
+
+
+
 # [3.1.0](https://github.com/WWDCScholars/web-app/compare/v3.0.0...v3.1.0) (2019-05-21)
 
 
