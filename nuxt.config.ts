@@ -157,6 +157,13 @@ const config: NuxtConfiguration = {
   },
 
   /*
+   ** Generate a 404 page
+   */
+  generate: {
+    fallback: '404.html'
+  },
+
+  /*
    ** Lifecycle hooks
    */
   hooks: {
