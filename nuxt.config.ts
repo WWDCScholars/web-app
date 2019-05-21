@@ -173,7 +173,9 @@ const config: NuxtConfiguration = {
     build: {
       done() {
         // misbehaving CloudKit import workaround
-        setTimeout(() => process.exit(0), 1000)
+        if (isProduction) {
+          setTimeout(() => process.exit(0), 1000)
+        }
       }
     }
   }
