@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.1.0](https://github.com/WWDCScholars/web-app/compare/v3.0.0...v3.1.0) (2019-05-21)
+
+
+### Bug Fixes
+
+* Add misbehaving CloudKit import workaround ([80ae8b4](https://github.com/WWDCScholars/web-app/commit/80ae8b4))
+* Properly display page on large screens ([1e5f50f](https://github.com/WWDCScholars/web-app/commit/1e5f50f))
+
+
+### Features
+
+* Display error message for no scholars ([d115692](https://github.com/WWDCScholars/web-app/commit/d115692))
+* Highlight navigation item on different year pages ([f0f636c](https://github.com/WWDCScholars/web-app/commit/f0f636c))
+
+
+### Performance Improvements
+
+* Reduce image sizes ([8f6c64c](https://github.com/WWDCScholars/web-app/commit/8f6c64c))
+
+
+
 # [3.0.0](https://github.com/WWDCScholars/web-app/compare/v3.0.0-pre.1...v3.0.0) (2019-05-18)
 
 
