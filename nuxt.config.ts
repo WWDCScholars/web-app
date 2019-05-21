@@ -164,6 +164,18 @@ const config: NuxtConfiguration = {
       //   })
       // }
     }
+  },
+
+  /*
+   ** Lifecycle hooks
+   */
+  hooks: {
+    build: {
+      done() {
+        // misbehaving CloudKit import workaround
+        setTimeout(() => process.exit(0), 1000)
+      }
+    }
   }
 }
 
