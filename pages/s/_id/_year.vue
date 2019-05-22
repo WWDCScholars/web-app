@@ -8,7 +8,10 @@
 
   p.description {{ yearInfo.description }}
 
-  swiper(v-if="yearInfo.screenshots.length", :options="swiperOptions").screenshots
+  swiper(
+    v-if="yearInfo.screenshots && yearInfo.screenshots.length",
+    :options="swiperOptions"
+  ).screenshots
       swiper-slide(
         v-for="screenshot in yearInfo.screenshots",
         :key="screenshot.fileChecksum"
@@ -18,7 +21,7 @@
       .swiper-button-prev.swiper-button(slot="button-prev")
       .swiper-button-next.swiper-button(slot="button-next")
   .no-screenshots(v-else)
-    i Unfortunately we don't have any screenshots of this submissions
+    i Unfortunately we don't have any screenshots of this submission.
 </template>
 
 <script lang="ts">
@@ -137,6 +140,10 @@ export default class ScholarProfileSubmission extends Vue {
 
     img
       height: 100%
+
+.no-screenshots
+  font-size: 0.8em
+  text-align: center
 
 $swiper-arrow-length: 20px
 $swiper-arrow-width: 2px
