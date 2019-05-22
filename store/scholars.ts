@@ -99,6 +99,10 @@ export const mutations: MutationTree<State> = {
     Vue.set(state.scholars, scholar.recordName, scholar)
   },
   setScholarYearInfo(state: State, p: { scholarRecordName: string; yearInfo: WWDCYearInfo}) {
+    if (!state.scholars[p.scholarRecordName]) {
+      return
+    }
+
     Vue.set(
       state.scholars[p.scholarRecordName].loadedYearInfos,
       p.yearInfo.year.recordName,
@@ -106,6 +110,10 @@ export const mutations: MutationTree<State> = {
     )
   },
   setScholarSocialMedia(state: State, p: { scholarRecordName: string, socialMedia: ScholarSocialMedia }) {
+    if (!state.scholars[p.scholarRecordName]) {
+      return
+    }
+
     Vue.set(
       state.scholars[p.scholarRecordName],
       'loadedSocialMedia',
