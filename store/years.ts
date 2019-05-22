@@ -15,6 +15,9 @@ export const state = (): State => ({
 export const getters: GetterTree<State, State> = {
   byRecordName: (state) => (recordName: string): WWDCYear => {
     return state.years[recordName]
+  },
+  sortedKeys: (state): string[] => {
+    return Object.keys(state.years).sort()
   }
 }
 

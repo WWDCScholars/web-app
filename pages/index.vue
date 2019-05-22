@@ -38,11 +38,14 @@ export default class PageIndex extends Vue {
   @Years.State('years')
   allYears!: { [recordName: string]: WWDCYear }
 
+  @Years.Getter('sortedKeys')
+  sortedYearKeys!: string[]
+
   @Scholars.State('scholars')
   allScholars!: { [recordName: string]: Scholar }
 
   get latestYear(): WWDCYear {
-    const keys = Object.keys(this.allYears)
+    const keys = this.sortedYearKeys
     return this.allYears[keys[keys.length - 1]]
   }
 
@@ -55,7 +58,8 @@ export default class PageIndex extends Vue {
   }
 
   get yearLinks(): { [year: string]: object } {
-    return Object.entries(this.allYears).reduce((acc, [, record]) => {
+    return this.sortedYearKeys.reduce((acc, key) => {
+      const record = this.allYears[key]
       const params = record === this.latestYear ? {} : { year: record.year }
       acc[record.year] = {
         name: 'scholars-year',
@@ -79,7 +83,7 @@ export default class PageIndex extends Vue {
     return /^\d{4}$/.test(year)
   }
 
-  async fetch ({ store, params }) {
+  async fetch ({ store, params, error }) {
     await store.dispatch('years/queryYears')
     const years = store.state.years.years
 
@@ -87,8 +91,14 @@ export default class PageIndex extends Vue {
     if (params.year) {
       year = years[`WWDC ${params.year}`]
     } else {
-      const keys = Object.keys(years)
+      const keys = store.getters['years/sortedKeys']
       year = years[keys[keys.length - 1]]
+    }
+    if (!year) {
+      return error({
+        statusCode: 404,
+        message: 'The requested year could not be found in our database.'
+      })
     }
 
     await store.dispatch('scholars/queryScholars', year)
