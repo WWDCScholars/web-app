@@ -5,7 +5,8 @@
     h2(v-else) Unfortunately there was a problem...
 
     .error-404(v-if="error.statusCode === 404")
-      p The link you clicked may be broken or no longer exists.
+      p(v-if="!error.message") The link you clicked may be broken or no longer exists.
+      p(v-else) {{ error.message }}
 </template>
 
 <script lang="ts">
