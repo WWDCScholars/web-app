@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.4.0](https://github.com/WWDCScholars/web-app/compare/v3.3.0...v3.4.0) (2019-05-22)
+
+
+### Bug Fixes
+
+* Always display years in correct order ([2fc0c4d](https://github.com/WWDCScholars/web-app/commit/2fc0c4d))
+* Guard setting year infos on non existing scholars ([a25922c](https://github.com/WWDCScholars/web-app/commit/a25922c))
+* Properly display error message if there are no screenshots for a submission ([f26d2bd](https://github.com/WWDCScholars/web-app/commit/f26d2bd))
+
+
+### Features
+
+* Display error message on 404 pages ([cd1258d](https://github.com/WWDCScholars/web-app/commit/cd1258d))
+
+
+
 # [3.3.0](https://github.com/WWDCScholars/web-app/compare/v3.2.0...v3.3.0) (2019-05-21)
 
 
