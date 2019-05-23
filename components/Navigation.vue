@@ -75,8 +75,12 @@ export default class Navigation extends Vue {
     height: $header-height
 
 .navigation-mobile
+  display: none
+
+  +for-phone-only
+    display: block
+
   nav
-    display: none
     position: absolute
     top: $header-height
     left: 0
@@ -84,12 +88,9 @@ export default class Navigation extends Vue {
     z-index: 998
     background-color: $white
     box-shadow: 0 5px 4px 2px $shadow
-
-    +for-phone-only
-      display: block
-      opacity: 0
-      pointer-events: none
-      transition: opacity 200ms ease-in-out
+    opacity: 0
+    pointer-events: none
+    transition: opacity 200ms ease-in-out
 
     &.navigation-mobile-open
       opacity: 1
