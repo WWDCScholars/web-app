@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.1](https://github.com/WWDCScholars/web-app/compare/v3.4.0...v3.4.1) (2019-05-23)
+
+
+### Bug Fixes
+
+* Build location string of components if no valid preformatted result is returned ([e519ed2](https://github.com/WWDCScholars/web-app/commit/e519ed2))
+* Don't try to fetch wwdcYears if empty ([0851dbf](https://github.com/WWDCScholars/web-app/commit/0851dbf))
+* Hide scholars without wwdcYears ([429d88f](https://github.com/WWDCScholars/web-app/commit/429d88f))
+
+
+
 # [3.4.0](https://github.com/WWDCScholars/web-app/compare/v3.3.0...v3.4.0) (2019-05-22)
 
 
