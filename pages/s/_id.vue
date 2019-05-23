@@ -296,18 +296,31 @@ export default class ScholarProfile extends Vue {
       }
 
       // find result with types = ['locality', 'political']
-      results = results.filter(result => {
+      const filteredResults = results.filter(result => {
         return result.types.length === 2
           && result.types.includes('locality')
           && result.types.includes('political')
       })
 
-      if (!results[0]) {
-        throw new Error(`Could not find valid geolocation for ${location}`)
+      if (!filteredResults[0]) {
+        let builtLocation: { city?: string; state?: string; country?: string } = {}
+        for (const component of results[0].address_components) {
+          if (component.types.includes('sublocality') || component.types.includes('locality')) {
+            builtLocation.city = component.long_name
+          }
+          if (component.types.includes('administrative_area_level_1')) {
+            builtLocation.state = component.short_name
+          }
+          if (component.types.includes('country')) {
+            builtLocation.country = component.long_name
+          }
+        }
+        let addressComponents = [builtLocation.city, builtLocation.state, builtLocation.country]
+        this.locationSlug = addressComponents.join(', ')
+      } else {
+        const result = results[0]
+        this.locationSlug = result.formatted_address
       }
-
-      const result = results[0]
-      this.locationSlug = result.formatted_address
     })
   }
 
