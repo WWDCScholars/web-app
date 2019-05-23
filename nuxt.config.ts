@@ -4,6 +4,7 @@ dotenv()
 
 const version = require('./package.json').version
 const isProduction = (process.env.NODE_ENV === 'production')
+const isLocal = (process.env.LOCAL === '1')
 
 const config: NuxtConfiguration = {
   mode: 'spa',
@@ -119,7 +120,7 @@ const config: NuxtConfiguration = {
     dsn: process.env.SENTRY_DSN,
     config: {
       environment: process.env.SENTRY_ENVIRONMENT,
-      release: `v${version}`,
+      release: `web-app@v${version}`,
       autoBreadcrumbs: {
         'ui': false,
         'location': true,
@@ -152,6 +153,11 @@ const config: NuxtConfiguration = {
     extend(config: any/*, ctx*/) {
       config.node = {
         fs: 'empty'
+      }
+
+      // enable source maps
+      if (isLocal) {
+        config.devtool = '#source-map'
       }
     }
   },
