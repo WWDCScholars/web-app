@@ -17,7 +17,6 @@
     "dev": "cross-env NODE_ENV=development nuxt",
     "build": "cross-env NODE_ENV=production nuxt build",
     "start": "cross-env NODE_ENV=production nuxt start",
-    "lint": "tslint --project .",
     "release:create": "standard-version",
     "release:create:pre": "standard-version --prerelease pre",
     "release:build": "cross-env NODE_ENV=production LOCAL=1 nuxt build",
@@ -32,7 +31,6 @@
     "@nuxtjs/style-resources": "^0.1.2",
     "@wwdcscholars/cloudkit": "^1.0.0-pre.14",
     "autosize": "^4.0.2",
-    "cross-env": "^5.2.0",
     "dayjs": "^1.7.8",
     "lodash.get": "^4.4.2",
     "node-sass": "^4.12.0",
@@ -51,11 +49,11 @@
   "devDependencies": {
     "@nuxt/typescript": "^2.6.2",
     "@sentry/cli": "^1.43.0",
+    "@types/dotenv": "^6.1.1",
     "@types/googlemaps": "^3.30.19",
     "@types/node": "^10.14.6",
+    "cross-env": "^5.2.0",
     "standard-version": "^5.0.2",
-    "tslint": "^5.15.0",
-    "tslint-config-standard": "^8.0.1",
     "typescript": "^3.4.3"
   }
 }
