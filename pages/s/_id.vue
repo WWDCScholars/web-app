@@ -251,7 +251,7 @@ export default class ScholarProfile extends Vue {
       socialMediaRecordName: scholar.socialMedia.recordName
     }))
 
-    if (scholar.wwdcYears.length >= 1) {
+    if (scholar.wwdcYears && scholar.wwdcYears.length >= 1) {
       const years = scholar.wwdcYears.map((year, index) => {
         return [year, scholar.wwdcYearInfos[index]]
       }) as [CloudKit.Reference, CloudKit.Reference][]
