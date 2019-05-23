@@ -29,6 +29,9 @@ export default class PageHeader extends Vue {}
   align-items: center
   padding: 0 25px 0 40px
 
+  +for-phone-only
+    padding: 0 20px 0 20px
+
   .header-link
     text-decoration: none
 
@@ -42,4 +45,7 @@ export default class PageHeader extends Vue {}
 
       .scholars
         font-weight: 400
+
+      +for-phone-only
+        font-size: 1.8em
 </style>
