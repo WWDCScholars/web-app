@@ -88,6 +88,9 @@ export default class PageAbout extends Vue {
 .container-fluid
   padding-top: 80px
 
+  +for-phone-only
+    padding-top: 60px
+
 h2
   font-size: 2.4em
   font-weight: 700
@@ -102,6 +105,14 @@ h3
   font-weight: 500
   text-align: center
   margin-bottom: 80px
+
++for-phone-only
+  h2
+    font-size: 2em
+
+  h3
+    font-size: 1.3em
+    margin-bottom: 60px
 
 .subsection
   a
@@ -130,6 +141,9 @@ h3
 
     span
       font-weight: 500
+
+    +for-phone-only
+      font-size: 1.2em
 
 .team-section
   margin-bottom: 40px

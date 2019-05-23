@@ -56,8 +56,15 @@ export default class TeamCard extends Vue {
   align-items: center
   color: $apl-black
 
+  +for-phone-only
+    flex-direction: column
+
 .image
   margin-right: 20px
+
+  +for-phone-only
+    margin-right: 0
+    margin-bottom: 10px
 
   img
     width: 80px
@@ -70,6 +77,7 @@ export default class TeamCard extends Vue {
   display: inline
   font-size: 1.4em
   font-weight: 700
+
 
 .name
   color: $sch-purple

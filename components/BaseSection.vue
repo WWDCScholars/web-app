@@ -17,6 +17,9 @@ export default class BaseSection extends Vue {}
   border-radius: $border-radius-large
   +shadow
 
+  +for-phone-only
+    padding: 20px 30px
+
   .subsection
     margin-bottom: 40px
 
