@@ -120,7 +120,7 @@ const config: NuxtConfiguration = {
     dsn: process.env.SENTRY_DSN,
     config: {
       environment: process.env.SENTRY_ENVIRONMENT,
-      release: `web-app@v${version}`,
+      release: `app@v${version}`,
       autoBreadcrumbs: {
         'ui': false,
         'location': true,
