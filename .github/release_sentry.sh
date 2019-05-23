@@ -11,7 +11,7 @@ PRJ=app
 URL=https://www.wwdcscholars.com
 
 # Get version (current tag)
-VERSION=web-app@`git describe --tags`
+VERSION=app@`git describe --tags`
 
 # Create new version in sentry
 sentry-cli releases -o $ORG -p $PRJ new --finalize $VERSION
