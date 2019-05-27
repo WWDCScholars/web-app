@@ -318,7 +318,7 @@ export default class ScholarProfile extends Vue {
         let addressComponents = [builtLocation.city, builtLocation.state, builtLocation.country]
         this.locationSlug = addressComponents.join(', ')
       } else {
-        const result = results[0]
+        const result = filteredResults[0]
         this.locationSlug = result.formatted_address
       }
     })
