@@ -2,7 +2,7 @@
   "private": true,
   "name": "wwdcscholars-web",
   "description": "WWDCScholars.com Website",
-  "version": "3.4.5",
+  "version": "3.5.0",
   "license": "MIT",
   "author": {
     "name": "Moritz Sternemann",

@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.5.0](https://github.com/WWDCScholars/web-app/compare/v3.4.5...v3.5.0) (2019-05-27)
+
+
+### Bug Fixes
+
+* Hide mobile menu on non-mobile devices ([9260f79](https://github.com/WWDCScholars/web-app/commit/9260f79))
+* Use filtered result in profile location slug ([db2438d](https://github.com/WWDCScholars/web-app/commit/db2438d)), closes [#3](https://github.com/WWDCScholars/web-app/issues/3)
+
+
+### Features
+
+* Add mobile menu ([adf64d4](https://github.com/WWDCScholars/web-app/commit/adf64d4))
+* Mobile layout for about page ([ce59441](https://github.com/WWDCScholars/web-app/commit/ce59441))
+* Scroll NavigationTabBar to right on mounted ([d48fdae](https://github.com/WWDCScholars/web-app/commit/d48fdae))
+
+
+
 ## [3.4.5](https://github.com/WWDCScholars/web-app/compare/v3.4.4...v3.4.5) (2019-05-23)
 
 
