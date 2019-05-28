@@ -135,6 +135,11 @@ export default class ScholarProfileSubmission extends Vue {
   height: 300px
   margin-top: 40px
 
+  +for-phone-only
+    left: -20px
+    right: -20px
+    width: calc(100% + 40px)
+
   .screenshot
     width: auto
 

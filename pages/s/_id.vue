@@ -349,11 +349,17 @@ export default class ScholarProfile extends Vue {
   margin-top: -30px
   padding: 30px 120px
 
+  +for-phone-only
+    padding: 30px 20px
+
   .image
     position: relative
     width: 185px
     height: 185px
     margin-top: -150px
+
+    +for-phone-only
+      margin: -150px auto 0 auto
 
     img
       width: 100%
