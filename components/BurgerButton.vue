@@ -24,9 +24,11 @@ export default class BurgerButton extends Vue {
 <style lang="sass" scoped>
 .burger-button
   position: relative
-  width: 28px
+  width: 26px
   height: 19px
   cursor: pointer
+  background: 0
+  border: 0
 
   span
     position: absolute
