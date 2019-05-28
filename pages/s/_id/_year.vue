@@ -160,12 +160,13 @@ $swiper-arrow-width: 2px
     margin-top: -$swiper-arrow-length / 2
     opacity: 0
     transition: opacity 100ms linear
+    outline: 0
 
     &:before, &:after
       content: ''
       display: block
       position: absolute
-      background-color: lighten($sch-purple, 30%)
+      background-color: $sch-purple
 
     &:before
       width: $swiper-arrow-length
@@ -186,10 +187,10 @@ $swiper-arrow-width: 2px
     transition: opacity 100ms linear
 
     .swiper-pagination-bullet
-      background: $sch-gray3
+      background: $sch-purple
 
     .swiper-pagination-bullet-active
-      background: lighten($sch-purple, 30%)
+      background: $sch-purple
 
   &:hover .swiper-button, &:hover .swiper-pagination-bullets
     opacity: 1
