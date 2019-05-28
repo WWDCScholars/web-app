@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.6.0](https://github.com/WWDCScholars/web-app/compare/v3.5.0...v3.6.0) (2019-05-28)
+
+
+### Bug Fixes
+
+* Remove button shape for mobile nav button ([3e68f71](https://github.com/WWDCScholars/web-app/commit/3e68f71))
+
+
+### Features
+
+* Basic mobile layout for profiles ([12e126e](https://github.com/WWDCScholars/web-app/commit/12e126e)), closes [#4](https://github.com/WWDCScholars/web-app/issues/4)
+* Visibility improvements for swiper buttons ([c3aa1e6](https://github.com/WWDCScholars/web-app/commit/c3aa1e6))
+
+
+
 # [3.5.0](https://github.com/WWDCScholars/web-app/compare/v3.4.5...v3.5.0) (2019-05-27)
 
 
