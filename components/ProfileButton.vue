@@ -1,6 +1,6 @@
 <template lang="pug">
 .profile-button(:class="{ 'nuxt-link-active': linkActive }")
-  nuxt-link(v-if="!isAuthenticated", to="/signin"): img(src="~assets/images/user.svg")
+  nuxt-link(v-if="!isAuthenticated", to="/signin"): img(src="~assets/images/sign-in-out.svg")
   button(v-else, @click="open = !open")
     img(src="~assets/images/user.svg")
     .dropdown(:class="{ show: open }")
