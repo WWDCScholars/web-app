@@ -121,7 +121,8 @@ interface Coordinate {
     BaseSection,
     BaseButton,
     Copyable
-  }
+  },
+  scrollToTop: true
 })
 export default class ScholarProfile extends Vue {
   locationSlug: string = '-'
