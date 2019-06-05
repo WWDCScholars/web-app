@@ -11,7 +11,7 @@
     //- nuxt-link(to="/store").color-blue1: span Store
     nuxt-link(to="/about").color-green: span About
     //- profile-button
-  nav.navigation-mobile
+  .navigation-mobile
     burger-button(v-model="menuOpen").navigation-mobile-toggle
     nav(:class="{ 'navigation-mobile-open': menuOpen }")
       nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
@@ -26,7 +26,7 @@ import BurgerButton from './BurgerButton.vue'
 
 @Component({
   components: {
-    BurgerButton
+    BurgerButton,
     // ProfileButton
   }
 })
@@ -58,10 +58,13 @@ export default class Navigation extends Vue {
 
 .appstore-download
   display: none
-  margin-right: 40px
+  margin-right: 30px
 
   +for-tablet-landscape-up
     display: block
+
+  img
+    height: 35px
 
 .navigation-large
   display: flex
