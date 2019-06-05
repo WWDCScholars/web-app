@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.2](https://github.com/WWDCScholars/web-app/compare/v3.7.1...v3.7.2) (2019-06-05)
+
+
+### Bug Fixes
+
+* Add missing appstore.svg ([3da1c6c](https://github.com/WWDCScholars/web-app/commit/3da1c6c))
+
+
+
 ## [3.7.1](https://github.com/WWDCScholars/web-app/compare/v3.7.0...v3.7.1) (2019-06-05)
 
 
