@@ -57,7 +57,11 @@ export default class Navigation extends Vue {
   align-items: center
 
 .appstore-download
+  display: none
   margin-right: 40px
+
+  +for-tablet-landscape-up
+    display: block
 
 .navigation-large
   display: flex
