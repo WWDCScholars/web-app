@@ -2,7 +2,7 @@
   "private": true,
   "name": "wwdcscholars-web",
   "description": "WWDCScholars.com Website",
-  "version": "3.7.2",
+  "version": "3.7.3",
   "license": "MIT",
   "author": {
     "name": "Moritz Sternemann",
@@ -29,7 +29,7 @@
     "@nuxtjs/google-analytics": "^2.2.0",
     "@nuxtjs/sentry": "^3.0.0",
     "@nuxtjs/style-resources": "^0.1.2",
-    "@wwdcscholars/cloudkit": "^1.0.0-pre.14",
+    "@wwdcscholars/cloudkit": "^1.0.0",
     "autosize": "^4.0.2",
     "dayjs": "^1.7.8",
     "lodash.get": "^4.4.2",
