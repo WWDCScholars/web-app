@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.1](https://github.com/WWDCScholars/web-app/compare/v3.7.0...v3.7.1) (2019-06-05)
+
+
+### Bug Fixes
+
+* Hide App Store button on small screens ([ace86f1](https://github.com/WWDCScholars/web-app/commit/ace86f1))
+
+
+
 # [3.7.0](https://github.com/WWDCScholars/web-app/compare/v3.6.0...v3.7.0) (2019-06-05)
 
 
