@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0](https://github.com/WWDCScholars/web-app/compare/v3.6.0...v3.7.0) (2019-06-05)
+
+
+### Bug Fixes
+
+* Scroll to top when opening profile ([2f79dc9](https://github.com/WWDCScholars/web-app/commit/2f79dc9))
+* Show sign in icon on profile button when signed out ([40b0c40](https://github.com/WWDCScholars/web-app/commit/40b0c40))
+
+
+### Features
+
+* Implement App Store link and Smart App Banner ([f2c64df](https://github.com/WWDCScholars/web-app/commit/f2c64df))
+
+
+
 # [3.6.0](https://github.com/WWDCScholars/web-app/compare/v3.5.0...v3.6.0) (2019-05-28)
 
 
