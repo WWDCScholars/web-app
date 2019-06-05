@@ -1,12 +1,17 @@
 <template lang="pug">
 .navigation
+  a(v-if="!isIOS",
+    href="https://itunes.apple.com/app/scholars-of-wwdc/id1459158255?mt=8",
+    target="_blank"
+  ).appstore-download
+    img(src="~assets/images/appstore.svg")
   nav.navigation-large
     nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
     //- nuxt-link(to="/activity").color-orange: span Activity
     //- nuxt-link(to="/store").color-blue1: span Store
     nuxt-link(to="/about").color-green: span About
     //- profile-button
-  .navigation-mobile
+  nav.navigation-mobile
     burger-button(v-model="menuOpen").navigation-mobile-toggle
     nav(:class="{ 'navigation-mobile-open': menuOpen }")
       nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
@@ -34,6 +39,10 @@ export default class Navigation extends Vue {
     }
   }
 
+  get isIOS(): boolean {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent)
+  }
+
   @Watch('$route')
   onRouteChanged() {
     this.menuOpen = false
@@ -42,6 +51,14 @@ export default class Navigation extends Vue {
 </script>
 
 <style lang="sass" scoped>
+.navigation
+  display: flex
+  justify-content: flex-end
+  align-items: center
+
+.appstore-download
+  margin-right: 40px
+
 .navigation-large
   display: flex
   align-items: center

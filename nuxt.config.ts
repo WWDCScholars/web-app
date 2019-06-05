@@ -25,7 +25,8 @@ const config: NuxtConfiguration = {
       },
       { name: 'keywords', content: 'WWDCScholars,WWDC,Scholars,Apple' },
       { name: 'author', content: 'WWDCScholars' },
-      { name: 'og:image', content: '/icons/fb-og-image.png' }
+      { name: 'og:image', content: '/icons/fb-og-image.png' },
+      { name: 'apple-itunes-app', content: 'app-id=1459158255' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico' },
