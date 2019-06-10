@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.8.1](https://github.com/WWDCScholars/web-app/compare/v3.8.0...v3.8.1) (2019-06-10)
+
+
+### Bug Fixes
+
+* Display biography on profile page ([5d43ffc](https://github.com/WWDCScholars/web-app/commit/5d43ffc)), closes [#6](https://github.com/WWDCScholars/web-app/issues/6)
+* Truncate long names in Scholar Thumbnail ([a60cc06](https://github.com/WWDCScholars/web-app/commit/a60cc06)), closes [#5](https://github.com/WWDCScholars/web-app/issues/5)
+
+
+
 # [3.8.0](https://github.com/WWDCScholars/web-app/compare/v3.7.3...v3.8.0) (2019-06-10)
 
 
