@@ -23,7 +23,7 @@
             span.age {{ age }}
           .location {{ locationSlug }}
 
-        p.short-bio {{ scholar.shortBio }}
+        p.short-bio {{ scholar.biography }}
 
         .social-links(v-if="scholar.loadedSocialMedia")
           a(v-if="scholar.loadedSocialMedia.twitter",
