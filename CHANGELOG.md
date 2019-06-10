@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.8.0](https://github.com/WWDCScholars/web-app/compare/v3.7.3...v3.8.0) (2019-06-10)
+
+
+### Features
+
+* Add Netlify link to page footer ([e52b19c](https://github.com/WWDCScholars/web-app/commit/e52b19c))
+
+
+
 ## [3.7.3](https://github.com/WWDCScholars/web-app/compare/v3.7.2...v3.7.3) (2019-06-05)
 
 
