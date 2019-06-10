@@ -3,8 +3,17 @@ import { config as dotenv } from 'dotenv'
 dotenv()
 
 const version = require('./package.json').version
-const isProduction = (process.env.NODE_ENV === 'production')
+const isDevelopment = (process.env.NODE_ENV === 'development')
 const isLocal = (process.env.LOCAL === '1')
+
+let envPrefix: string
+if (process.env.NODE_ENV === 'production') {
+  envPrefix = 'PROD'
+} else if (process.env.NODE_ENV === 'staging') {
+  envPrefix = 'STAGE'
+} else {
+  envPrefix = 'DEV'
+}
 
 const config: NuxtConfiguration = {
   mode: 'spa',
@@ -91,9 +100,9 @@ const config: NuxtConfiguration = {
 
     // CloudKit connection
     ['@wwdcscholars/cloudkit', {
-      containerIdentifier: process.env.CLOUDKIT_CONTAINER_IDENTIFIER,
-      apiToken: process.env.CLOUDKIT_API_TOKEN,
-      environment: process.env.CLOUDKIT_ENVIRONMENT
+      containerIdentifier: process.env[`${envPrefix}_CLOUDKIT_CONTAINER_IDENTIFIER`],
+      apiToken: process.env[`${envPrefix}_CLOUDKIT_API_TOKEN`],
+      environment: process.env[`${envPrefix}_CLOUDKIT_ENVIRONMENT`]
     }],
 
     // Google Analytics
@@ -117,7 +126,7 @@ const config: NuxtConfiguration = {
    ** Sentry configuration
    */
   sentry: {
-    disabled: !isProduction,
+    disabled: isDevelopment,
     dsn: process.env.SENTRY_DSN,
     config: {
       environment: process.env.SENTRY_ENVIRONMENT,
@@ -177,7 +186,7 @@ const config: NuxtConfiguration = {
     build: {
       done() {
         // misbehaving CloudKit import workaround
-        if (isProduction) {
+        if (!isDevelopment) {
           setTimeout(() => process.exit(0), 1000)
         }
       }
