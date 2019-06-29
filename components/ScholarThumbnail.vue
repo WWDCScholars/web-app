@@ -2,6 +2,7 @@
 nuxt-link(:to.once="{ name: 's-id-year', params: { id: scholar.recordName } }").scholar-thumbnail
   span.name {{ scholar.givenName }}
   img(v-lazy="profilePictureURL").image
+  .image-loading
 </template>
 
 <script lang="ts">
@@ -41,13 +42,34 @@ export default class ScholarThumbnail extends Vue {
     object-fit: cover
 
     &[lazy="loading"], &[lazy="error"]
-      padding: 35% 40% 45%
+      padding: 10% 20% 30%
+
+    $gradient-start: rgba(246, 247, 248, 0)
+    $gradient-mid: $sch-gray2
+    &[lazy="loading"] + .image-loading
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      z-index: 998
+      background: transparent
+      background-image: linear-gradient(to right, $gradient-start 0%, $gradient-mid 20%, $gradient-start 40%, $gradient-start 100%)
+      background-repeat: no-repeat
+      background-size: 200% 100%
+      animation-duration: 1.5s
+      animation-fill-mode: forwards
+      animation-iteration-count: infinite
+      animation-name: shimmer
+      animation-timing-function: linear
 
   .name
     position: absolute
     bottom: 0px
     left: 0px
     width: 100%
+    z-index: 999
     background-color: transparentize($sch-purple, 0.25)
     color: $white
     font-size: 1.1em
@@ -57,4 +79,10 @@ export default class ScholarThumbnail extends Vue {
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
+
+@keyframes shimmer
+  0%
+    background-position: -468px 0
+  100%
+    background-position: 468px 0
 </style>
