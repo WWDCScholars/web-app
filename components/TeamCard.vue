@@ -69,9 +69,13 @@ export default class TeamCard extends Vue {
   img
     width: 80px
     height: 80px
+    object-fit: cover
     border: 4px solid $white
     border-radius: 50%
     +shadow
+
+    &[lazy="loading"]
+      padding: 5%
 
 .name, .age
   display: inline
