@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.9.0](https://github.com/WWDCScholars/web-app/compare/v3.8.1...v3.9.0) (2019-07-03)
+
+
+### Features
+
+* Adjust loading layout in team card ([716e936](https://github.com/WWDCScholars/web-app/commit/716e936))
+* Replace loading indicator with logo ([97e3e50](https://github.com/WWDCScholars/web-app/commit/97e3e50))
+
+
+
 ## [3.8.1](https://github.com/WWDCScholars/web-app/compare/v3.8.0...v3.8.1) (2019-06-10)
 
 
