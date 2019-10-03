@@ -1,4 +1,4 @@
-import NuxtConfiguration from '@nuxt/config'
+import { Configuration } from '@nuxt/types'
 import { config as dotenv } from 'dotenv'
 dotenv()
 
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
   envPrefix = 'DEV'
 }
 
-const config: NuxtConfiguration = {
+const config: Configuration = {
   mode: 'spa',
 
   /*
@@ -152,6 +152,11 @@ const config: NuxtConfiguration = {
       })
     }
   },
+
+  /*
+   ** Build modules
+   */
+  buildModules: ['@nuxt/typescript-build'],
 
   /*
    ** Build configuration

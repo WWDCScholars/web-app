@@ -36,7 +36,6 @@ export default class PageSignin extends Vue {
 </script>
 
 <style lang="sass" scoped>
-
 .container-outer
   position: absolute
   height: 100%
