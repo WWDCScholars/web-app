@@ -1,6 +1,13 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [3.10.0](https://github.com/WWDCScholars/web-app/compare/v3.9.0...v3.10.0) (2019-10-03)
+
+
+### Features
+
+* only show active team members ([045463e](https://github.com/WWDCScholars/web-app/commit/045463e))
 
 # [3.9.0](https://github.com/WWDCScholars/web-app/compare/v3.8.1...v3.9.0) (2019-07-03)
 
