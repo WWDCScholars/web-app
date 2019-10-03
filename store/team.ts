@@ -25,7 +25,11 @@ export const getters: GetterTree<State, State> = {
 export const actions: ActionTree<State, State> = {
   async queryMembers({ commit }): Promise<void> {
     const query: CloudKit.QueryBase = {
-      filterBy: [],
+      filterBy: [{
+        fieldName: 'isActive',
+        comparator: CloudKit.QueryFilterComparator.EQUALS,
+        fieldValue: { value: 1 }
+      }],
       sortBy: [{ fieldName: 'name' }]
     }
 
