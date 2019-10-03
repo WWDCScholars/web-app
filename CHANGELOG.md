@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.10.1](https://github.com/WWDCScholars/web-app/compare/v3.10.0...v3.10.1) (2019-10-03)
+
+
+### Bug Fixes
+
+* Add missing border radius to scholar thumbnail ([b81638a](https://github.com/WWDCScholars/web-app/commit/b81638a))
+
 ## [3.10.0](https://github.com/WWDCScholars/web-app/compare/v3.9.0...v3.10.0) (2019-10-03)
 
 
