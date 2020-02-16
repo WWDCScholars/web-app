@@ -1,20 +1,18 @@
 <template lang="pug">
-.container-outer
-  .container-fluid
-    base-section
-      h2.color-blue1 Welcome to WWDC#[span Scholars]
-      h3 Use your iCloud account to register or sign in
-      p.
-        If you are creating an account for the first time, or adding a new
-        scholarship to an existing account, you will be required to verify your
-        acceptance status by providing evidence in the form of an email
-        screenshot.
+.container-fluid
+  base-section
+    h2.color-blue1 Welcome to WWDC#[span Scholars]
+    h3 Use your iCloud account to sign in
+    p.
+      If you are creating an account for the first time, or adding a new
+      scholarship to an existing account, you will be required to verify your
+      acceptance status by providing evidence in the form of forwarding your invitation email.
 
-      p.
-        If you are new to WWDC scholarships and would like to learn more, we
-        recommend you visit our #[nuxt-link(to="/about") about page].
+    p.
+      If you are new to WWDC scholarships and would like to learn more, we
+      recommend you visit our #[nuxt-link(to="/about") about page].
 
-      a(:href="signInURL").btn-sign-in Sign in with Apple ID
+    a(:href="signInURL").btn-sign-in Sign in with Apple ID
 </template>
 
 <script lang="ts">
@@ -36,13 +34,6 @@ export default class PageSignin extends Vue {
 </script>
 
 <style lang="sass" scoped>
-.container-outer
-  position: absolute
-  height: 100%
-
-.container-fluid
-  height: 100%
-
 .section
   height: calc(100% - 40px)
   display: flex

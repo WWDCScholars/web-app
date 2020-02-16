@@ -1,6 +1,7 @@
 <template lang="pug">
 .profile-button(:class="{ 'nuxt-link-active': linkActive }")
-  nuxt-link(v-if="!isAuthenticated", to="/signin"): img(src="~assets/images/sign-in-out.svg")
+  nuxt-link(v-if="!isAuthenticated", to="/signin")
+    img(src="~assets/images/sign-in-out.svg")
   button(v-else, @click="open = !open")
     img(src="~assets/images/user.svg")
     .dropdown(:class="{ show: open }")
@@ -10,6 +11,7 @@
         nuxt-link(to="/profile") Edit Profile
         button(@click="onSignOutClicked")
           | Sign Out
+          //- This is an SVG so that we can change the path color on hover
           <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Icon/sign-out" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <path d="M17.6568542,17.7071068 L1.5,17.7071068 C0.671572875,17.7071068 4.6934861e-16,17.0355339 0,16.2071068 L0,16.2071068 C-4.69425623e-16,15.3785437 0.671436838,14.7067305 1.49999976,14.7062662 L17.5857864,14.6972524 L15.0621186,12.1805201 C14.4763333,11.5963446 14.4750282,10.6479039 15.0592037,10.0621186 C15.0596889,10.0616321 15.0601744,10.061146 15.0606602,10.0606602 L15.0606602,10.0606602 C15.6464466,9.47487373 16.5961941,9.47487373 17.1819805,10.0606602 L21.9497475,14.8284271 C22.7307961,15.6094757 22.7307961,16.8758057 21.9497475,17.6568542 L17.1819805,22.4246212 C16.5961941,23.0104076 15.6464466,23.0104076 15.0606602,22.4246212 L15.0606602,22.4246212 C14.4748737,21.8388348 14.4748737,20.8890873 15.0606602,20.3033009 L17.6568542,17.7071068 Z" id="Path" fill="#413599" fill-rule="nonzero"></path>
@@ -36,6 +38,9 @@ export default class ProfileButton extends Vue {
   @Auth.State
   userScholarReference?: CloudKit.Reference
 
+  @Auth.Action
+  signOut!: () => Promise<void>
+
   get linkActive(): boolean {
     if (!this.$route.name) return false
 
@@ -55,7 +60,8 @@ export default class ProfileButton extends Vue {
   }
 
   onSignOutClicked() {
-    this.$ck.signOut()
+    console.log(this['$ck'])
+    this.signOut()
     this.$router.replace('/')
   }
 }
@@ -70,16 +76,10 @@ export default class ProfileButton extends Vue {
     border-bottom-color: $sch-purple
 
   > button, > a
-    display: block
+    display: flex
     height: $header-height
     padding: 0 25px
-
-    img
-      position: relative
-      top: 50%
-
-  > a img
-    transform: translateY(-50%)
+    align-items: center
 
 button
   border: 0

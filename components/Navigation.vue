@@ -10,7 +10,7 @@
     //- nuxt-link(to="/activity").color-orange: span Activity
     //- nuxt-link(to="/store").color-blue1: span Store
     nuxt-link(to="/about").color-green: span About
-    //- profile-button
+    profile-button
   .navigation-mobile
     burger-button(v-model="menuOpen").navigation-mobile-toggle
     nav(:class="{ 'navigation-mobile-open': menuOpen }")
@@ -22,12 +22,12 @@
 import { Component, Watch, Vue } from 'nuxt-property-decorator'
 import { Route } from 'vue-router'
 import BurgerButton from './BurgerButton.vue'
-// import ProfileButton from './ProfileButton.vue'
+import ProfileButton from './ProfileButton.vue'
 
 @Component({
   components: {
     BurgerButton,
-    // ProfileButton
+    ProfileButton
   }
 })
 export default class Navigation extends Vue {

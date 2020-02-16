@@ -1,5 +1,5 @@
 import { ActionTree, MutationTree, GetterTree } from 'vuex'
-import { Users, Scholar, CloudKit } from '@wwdcscholars/cloudkit'
+import { Users, Scholar, CloudKit, ck } from '@wwdcscholars/cloudkit'
 
 export const name = 'auth'
 
@@ -34,7 +34,7 @@ export const actions: ActionTree<State, State> = {
       commit('setUserScholarReference', user.scholar)
       scholar = await Scholar.fetch(user.scholar.recordName)
     }
-    console.log('fetched scholar')
+    console.log('fetched scholar', scholar)
 
     if (scholar) {
       commit('scholars/insertScholar', scholar, { root: true })
@@ -50,6 +50,9 @@ export const actions: ActionTree<State, State> = {
     commit('setUserIdentity', undefined)
     commit('setUserScholarReference', undefined)
     commit('setSignInURL', auth._signInURL)
+  },
+  async signOut(): Promise<void> {
+    ck.signOut()
   }
 }
 

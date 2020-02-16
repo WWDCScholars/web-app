@@ -85,7 +85,7 @@ const config: Configuration = {
     '~/plugins/vue-lazyload',
     '~/plugins/vue2-google-maps',
 
-    // '~/plugins/auth'
+    '~/plugins/auth'
   ],
 
   /*
