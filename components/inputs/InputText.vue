@@ -18,6 +18,12 @@
       :value="value",
       @input="update($event.target.value)"
     )
+    input(
+      v-else-if="type === 'search'",
+      :name.once="name",
+      :value="value",
+      @input="update($event.target.value)"
+    )
     autosize-textarea(
       v-else-if="type === 'textarea'",
       :name.once="name",
@@ -90,6 +96,9 @@ export default class InputText extends Vue {
     color: $apl-black
     appearance: none
     transition: border-color 100ms linear, box-shadow 100ms linear
+
+  textarea
+    padding-top: 10px
 
   .title
     position: absolute

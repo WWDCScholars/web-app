@@ -4,56 +4,56 @@
     h2 Social Links
 
     base-form
-      .group
+      .group(v-if="socialMedia")
         h3 Where else can people find you?
         form-field
           input-text(
             type="url",
             name="twitter",
             placeholder="Twitter Profile URL",
-            v-model="twitter"
+            :value="socialMedia.twitter"
           )
         form-field
           input-text(
             type="url",
             name="github",
             placeholder="GitHub Profile URL",
-            v-model="github"
+            :value="socialMedia.github"
           )
         form-field
           input-text(
             type="text",
             name="discord",
             placeholder="Discord Username",
-            v-model="discord"
+            :value="socialMedia.discord"
           )
         form-field
           input-text(
             type="url",
             name="linkedin",
             placeholder="LinkedIn Profile URL",
-            v-model="linkedin"
+            :value="socialMedia.linkedin"
           )
         form-field
           input-text(
-            type="url",
+            type="text",
             name="imessage",
             placeholder="iMessage Number or Email",
-            v-model="imessage"
+            :value="socialMedia.imessage"
           )
         form-field
           input-text(
             type="url",
             name="facebook",
             placeholder="Facebook Profile URL",
-            v-model="facebook"
+            :value="socialMedia.facebook"
           )
         form-field
           input-text(
             type="url",
             name="website",
             placeholder="Personal Website URL",
-            v-model="website"
+            :value="socialMedia.website"
           )
 
       base-button.btn-cta Save
@@ -61,6 +61,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { namespace } from 'vuex-class'
+import { Scholar, ScholarSocialMedia, CloudKit } from '@wwdcscholars/cloudkit'
 import {
   InputText,
   BaseSection,
@@ -68,6 +70,12 @@ import {
   BaseButton,
   FormField
 } from '~/components'
+
+import { name as authName } from '~/store/auth'
+const Auth = namespace(authName)
+
+import { name as scholarsName } from '~/store/scholars'
+const Scholars = namespace(scholarsName)
 
 @Component({
   components: {
@@ -79,15 +87,39 @@ import {
   }
 })
 export default class PageProfileSocial extends Vue {
-  currentTab = ''
+  @Auth.State
+  userScholarReference?: CloudKit.Reference
 
-  twitter = ''
-  github = ''
-  discord = ''
-  linkedin = ''
-  imessage = ''
-  facebook = ''
-  website = ''
+  @Scholars.Getter('byRecordName') scholarByRecordName
+
+  get scholar(): Scholar | null {
+    if (!this.userScholarReference) return null
+
+    return this.scholarByRecordName(this.userScholarReference.recordName)
+  }
+
+  get socialMedia(): ScholarSocialMedia | null {
+    if (!this.scholar || !this.scholar.loadedSocialMedia) return null
+
+    return this.scholar.loadedSocialMedia
+  }
+
+  async fetch({ store, route, from }) {
+    // if (route.fullPath === from.fullPath) return
+
+    // else, load data for new route
+    const userScholarReference = store.state.auth.userScholarReference
+    if (!userScholarReference) return
+
+    await store.dispatch('scholars/fetchScholar', userScholarReference.recordName)
+    const scholar: Scholar = store.getters['scholars/byRecordName'](userScholarReference.recordName)
+    if (!scholar) return
+
+    await store.dispatch('scholars/loadSocialMediaIfMissing', {
+      scholarRecordName: scholar.recordName,
+      socialMediaRecordName: scholar.socialMedia.recordName
+    })
+  }
 }
 </script>
 

@@ -17,5 +17,12 @@ import { NavigationTabBar } from '~/components'
   middleware: 'authenticated',
   components: { NavigationTabBar }
 })
-export default class PageProfile extends Vue {}
+export default class PageProfile extends Vue {
+  async fetch({ store }) {
+    const userScholarReference = store.state.auth.userScholarReference
+    if (!userScholarReference) return
+
+    await store.dispatch('scholars/fetchScholar', userScholarReference.recordName)
+  }
+}
 </script>

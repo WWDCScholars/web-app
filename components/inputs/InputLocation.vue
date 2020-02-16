@@ -15,14 +15,14 @@
     )
 
   gmap-map(
-    :center="value",
+    :center="center",
     :options.once="mapOptions",
     :zoom.once="1",
     ref="map"
   ).map
     gmap-marker(
-      v-if="value.lat !== 0 || value.lng !== 0",
-      :position="value",
+      v-if="center.lat !== 0 || center.lng !== 0",
+      :position="center",
       :clickable="true",
       :draggable="false"
     )
@@ -30,14 +30,15 @@
 
 <script lang="ts">
 import { Component, Model, Prop, Vue } from 'nuxt-property-decorator'
+import { CloudKit } from '@wwdcscholars/cloudkit'
 import InputText from './InputText.vue'
 
 @Component({
   components: { InputText }
 })
 export default class InputLocation extends Vue {
-  @Model('change', { default: () => ({ lat: 0, lng: 0 }) })
-  value!: { lat: number; lng: number }
+  @Model('change', { default: () => ({ latitude: 0, longitude: 0 }) })
+  value!: CloudKit.Location
 
   @Prop({ required: true })
   name!: string
@@ -46,7 +47,7 @@ export default class InputLocation extends Vue {
   @Prop({ default: false })
   required!: boolean
 
-  value_validate: { lat: number; lng: number } = this.value || { lat: 0, lng: 0 }  // tslint:disable-line
+  value_validate: { latitude: number; longitude: number } = this.value || { latitude: 0, longitude: 0 }  // tslint:disable-line
 
   inputValue: string = ''
   zoom: number = 1
@@ -56,8 +57,16 @@ export default class InputLocation extends Vue {
     scrollWheel: false
   }
 
-  created() {
-    if (this.value && this.value.lat !== 0 && this.value.lng !== 0) {
+  get center(): google.maps.LatLngLiteral {
+    return {
+      lat: this.value.latitude,
+      lng: this.value.longitude
+    }
+  }
+
+  async created() {
+    await this['$gmapApiPromiseLazy']()
+    if (this.value && this.value.latitude !== 0 && this.value.longitude !== 0) {
       this.setInputValueFromCoords(this.value)
     }
   }
@@ -65,8 +74,8 @@ export default class InputLocation extends Vue {
   setPlace(place) {
     if (!place) { return }
     const value = {
-      lat: place.geometry.location.lat(),
-      lng: place.geometry.location.lng()
+      latitude: place.geometry.location.lat(),
+      longitude: place.geometry.location.lng()
     }
     this.value_validate = value
     this.$emit('change', value)
@@ -74,9 +83,11 @@ export default class InputLocation extends Vue {
     this.$refs.map['fitBounds'](place.geometry.viewport)
   }
 
-  setInputValueFromCoords(location) {
+  setInputValueFromCoords({ latitude, longitude }) {
     const geocoder = new google.maps.Geocoder()
-    geocoder.geocode({ location }, (results, status) => {
+    geocoder.geocode({
+      location: { lat: latitude, lng: longitude }
+    }, (results, status) => {
       if (status !== google.maps.GeocoderStatus.OK) {
         return
       }

@@ -11,7 +11,7 @@
             name="profilePicture",
             accept="image/*",
             required="true",
-            v-model="profilePicture"
+            :value="[scholar.profilePicture.downloadURL]"
           )#input-profile-picture
 
       .group.group-width-50
@@ -22,7 +22,7 @@
             name="givenname",
             placeholder="Given Name",
             required="true",
-            v-model="givenname"
+            :value="scholar.givenName"
           )
         form-field.field-width-50
           input-text(
@@ -30,33 +30,33 @@
             name="familyname",
             placeholder="Family Name",
             required="true",
-            v-model="familyname"
+            :value="scholar.familyName"
           )
         form-field
           input-text(
             type="email",
             name="email",
             placeholder="Email",
-            required="true",
-            v-model="email"
+            :required.once="true",
+            :value="scholar.loadedPrivate.email"
           )
         form-field
           input-date(
             name="birthday",
-            placeholder="Date of Birth (dd/mm/yyyy)",
+            placeholder="Date of Birth (yyyy-mm-dd)",
             onlyPast="true",
             displayFormat="Y-m-d",
-            required="true",
-            v-model="birthday"
+            :required.once="true",
+            :value="scholar.birthday"
           )
 
         h3 Gender
         form-field
           input-radio-group(
             name="gender",
-            :options.once="['male', 'female', 'other']",
-            required="true",
-            v-model="gender"
+            :options.once="genderOptions",
+            :required.once="true",
+            :value="scholar.gender"
           )
 
       .group
@@ -66,7 +66,7 @@
             name="location",
             placeholder="Hometown / Nearest City",
             required="true",
-            v-model="location"
+            :value="scholar.location"
           )
 
       .group
@@ -77,7 +77,7 @@
             name="shortBio",
             maxLength="300",
             required="true",
-            v-model="shortBio"
+            :value="scholar.biography"
           )
 
       base-button.btn-cta Save
@@ -85,6 +85,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { namespace } from 'vuex-class'
+import { Scholar, CloudKit } from '@wwdcscholars/cloudkit'
 import {
   BaseSection,
   BaseForm,
@@ -96,6 +98,12 @@ import {
   InputImage,
   InputRadioGroup
 } from '~/components'
+
+import { name as authName } from '~/store/auth'
+const Auth = namespace(authName)
+
+import { name as scholarsName } from '~/store/scholars'
+const Scholars = namespace(scholarsName)
 
 @Component({
   components: {
@@ -111,16 +119,39 @@ import {
   }
 })
 export default class PageProfileBasic extends Vue {
-  currentTab = 'Basic'
+  genderOptions: { label: string; value: string }[] = [
+    { label: 'male', value: 'male' },
+    { label: 'female', value: 'female' },
+    { label: 'other', value: 'other' }
+  ]
 
-  profilePicture = ''
-  givenname = ''
-  familyname = ''
-  email = ''
-  birthday = new Date()
-  gender = ''
-  location = { lat: 0, lng: 0 }
-  shortBio = ''
+  @Auth.State
+  userScholarReference?: CloudKit.Reference
+
+  @Scholars.Getter('byRecordName') scholarByRecordName
+
+  get scholar(): Scholar | null {
+    if (!this.userScholarReference) return null
+
+    return this.scholarByRecordName(this.userScholarReference.recordName)
+  }
+
+  async fetch({ store, route, from }) {
+    // if (route.fullPath === from.fullPath) return
+
+    // else, load data for new route
+    const userScholarReference = store.state.auth.userScholarReference
+    if (!userScholarReference) return
+
+    await store.dispatch('scholars/fetchScholar', userScholarReference.recordName)
+    const scholar: Scholar = store.getters['scholars/byRecordName'](userScholarReference.recordName)
+    if (!scholar) return
+
+    await store.dispatch('scholars/loadPrivateIfMissing', {
+      scholarRecordName: scholar.recordName,
+      privateRecordName: scholar.scholarPrivate.recordName
+    })
+  }
 }
 </script>
 
