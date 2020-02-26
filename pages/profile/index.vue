@@ -9,7 +9,7 @@
           h3 Profile Picture
           form-field(
             name="Profile Picture",
-            rules="required_image|image|dimensions:250,-1,250,-1",
+            rules="required_image|dimensions:250,-1,250,-1",
             comment="This needs to be an image of you with a resolution of at least 250x250.",
             v-slot="{ validate }"
           )
