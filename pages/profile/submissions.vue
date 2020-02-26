@@ -2,6 +2,7 @@
 .container-fluid
   profile-submission(
     v-for="year in wwdcYears",
+    :key="year.recordName",
     :yearRecordName="year.recordName",
     :yearInfo="yearInfos[year.recordName]"
   )
@@ -26,7 +27,7 @@ const Scholars = namespace(scholarsName)
     ProfileSubmission
   }
 })
-export default class PageProfileSocial extends Vue {
+export default class PageProfileSubmission extends Vue {
   @Auth.State
   userScholarReference?: CloudKit.Reference
 
