@@ -1,15 +1,18 @@
 <template lang="pug">
 .btn
   slot(v-if="hasNobtnSlot", name="nobtn")
-  button(v-else)
+  button(v-else, :disabled="disabled")
     slot
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class BaseButton extends Vue {
+  @Prop({ type: Boolean, default: false })
+  disabled!: boolean
+
   get hasNobtnSlot(): boolean {
     return !!this.$slots.nobtn
   }
@@ -57,6 +60,10 @@ export default class BaseButton extends Vue {
       &:hover
         background-color: darken($bg, 10%)
         border-color: darken($bg, 10%)
+
+      &:disabled
+        background-color: $sch-gray2
+        border-color: $sch-gray1
 
     &.btn-round > button, a
       background-color: $fg
