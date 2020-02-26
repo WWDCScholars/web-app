@@ -84,6 +84,7 @@ const config: Configuration = {
     '~/plugins/filters',
     '~/plugins/vue-lazyload',
     '~/plugins/vue2-google-maps',
+    '~/plugins/vee-validate',
 
     '~/plugins/auth'
   ],
@@ -162,6 +163,9 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
+    transpile: [
+      'vee-validate/dist/rules'
+    ],
     /*
      ** You can extend webpack config here
      */
