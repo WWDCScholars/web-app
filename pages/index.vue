@@ -8,7 +8,8 @@
         :key="year"
       ) {{ year }}
   .container-fluid.color-purple
-    .scholars-list(v-if="currentScholars.length > 0")
+    .loading-scholars(v-if="$fetchState.pending") #[i Gathering the brightest minds from around the world]&nbsp;&nbsp;🤓
+    .scholars-list(v-else-if="currentScholars.length > 0")
       scholar-thumbnail(
         v-for="scholar in currentScholars",
         :scholar.once="scholar",
@@ -120,7 +121,7 @@ export default class PageIndex extends Vue {
   .scholar-thumbnail
     display: block
 
-.no-scholars
+.no-scholars, .loading-scholars
   margin-top: 30px
   text-align: center
   color: $sch-gray0
