@@ -23,7 +23,7 @@ export default class PageHeader extends Vue {}
   background-color: transparentize($sch-gray4, 0.1)
   border-bottom: 1.5px solid $sch-gray2
   color: $white
-  z-index: 999
+  z-index: 1000
   display: flex
   justify-content: space-between
   align-items: center
