@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.11.0](https://github.com/WWDCScholars/web-app/compare/v3.10.1...v3.11.0) (2020-05-11)
+
+
+### Features
+
+* Add scholars loading message to main page ([354f7fc](https://github.com/WWDCScholars/web-app/commit/354f7fc28e735fef6d1703fe8db1d1d01bbbad68))
+* Update application notice for 2020 ([6e9f292](https://github.com/WWDCScholars/web-app/commit/6e9f292ef4a0b5be93fda3a649629560830f7edd))
+
+
+### Bug Fixes
+
+* Move header above scholar thumbnails in z direction ([cc5831f](https://github.com/WWDCScholars/web-app/commit/cc5831fa6a875014e6701132a22f7301abcd5b6a))
+
 ### [3.10.1](https://github.com/WWDCScholars/web-app/compare/v3.10.0...v3.10.1) (2019-10-03)
 
 
