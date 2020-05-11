@@ -145,7 +145,7 @@ export default class ScholarProfile extends Vue {
 
   get scholar(): Scholar {
     const { id } = this.$route.params
-    return this.scholarByRecordName(id)
+    return this.scholarByRecordName(id) || {}
   }
 
   get fullName(): string {
@@ -181,11 +181,12 @@ export default class ScholarProfile extends Vue {
 
   get profilePictureURL(): string {
     if (!this.scholar.profilePicture) return ''
+
     return this.scholar.profilePicture.downloadURL
   }
 
   get mapCenter(): Coordinate {
-    if (!this.scholar.location) return { lat: 0, lng: 0 }
+    if (!this.scholar.location || !this.scholar.location.latitude || !this.scholar.location.longitude) return { lat: 0, lng: 0 }
 
     return {
       lat: this.scholar.location.latitude,
@@ -234,20 +235,21 @@ export default class ScholarProfile extends Vue {
     return /\b[0-9A-F]{8}\b-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-\b[0-9A-F]{12}\b/.test(params.id)
   }
 
-  async fetch({ params, store, error }) {
-    await store.dispatch('scholars/fetchScholar', params.id)
-    const scholar: Scholar = store.getters['scholars/byRecordName'](params.id)
+  async fetch() {
+    await this.$store.dispatch('scholars/fetchScholar', this.$route.params.id)
+    const scholar: Scholar = this.$store.getters['scholars/byRecordName'](this.$route.params.id)
 
     if (!scholar) {
-      return error({
-        statusCode: 404,
-        message: 'Scholar not found'
-      })
+      if (process.server) {
+        this.$nuxt.context.res.statusCode = 404
+      }
+
+      throw new Error('Scholar not found')
     }
 
     const promises: Promise<any>[] = []
 
-    promises.push(store.dispatch('scholars/loadSocialMediaIfMissing', {
+    promises.push(this.$store.dispatch('scholars/loadSocialMediaIfMissing', {
       scholarRecordName: scholar.recordName,
       socialMediaRecordName: scholar.socialMedia.recordName
     }))
@@ -258,19 +260,23 @@ export default class ScholarProfile extends Vue {
       }) as [CloudKit.Reference, CloudKit.Reference][]
 
       // find year to fetch
-      const ytf = yearToFetch(years, params.year)
+      const ytf = yearToFetch(years, this.$route.params.year)
       if (ytf === null) {
-        return error({ code: 404, message: 'Year not found' })
+        if (process.server) {
+          this.$nuxt.context.res.statusCode = 404
+        }
+
+        throw new Error('Year not found')
       }
 
       const [yearReference, yearInfoReference] = ytf
 
       if (yearReference && yearInfoReference) {
         // fetch WWDCYear
-        promises.push(store.dispatch('years/fetchYear', yearReference.recordName))
+        promises.push(this.$store.dispatch('years/fetchYear', yearReference.recordName))
 
         // fetch WWDCYearInfo
-        promises.push(store.dispatch('scholars/loadYearInfoIfMissing', {
+        promises.push(this.$store.dispatch('scholars/loadYearInfoIfMissing', {
           scholarRecordName: scholar.recordName,
           yearInfoRecordName: yearInfoReference.recordName
         }))

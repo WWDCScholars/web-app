@@ -78,8 +78,8 @@ export default class PageAbout extends Vue {
   @Team.Getter('allMembers')
   members!: TeamMember[]
 
-  async fetch({ store }) {
-    await store.dispatch('team/queryMembers')
+  async fetch() {
+    await this.$store.dispatch('team/queryMembers')
   }
 }
 </script>

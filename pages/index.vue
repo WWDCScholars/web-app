@@ -83,25 +83,27 @@ export default class PageIndex extends Vue {
     return /^\d{4}$/.test(year)
   }
 
-  async fetch ({ store, params, error }) {
-    await store.dispatch('years/queryYears')
-    const years = store.state.years.years
+  async fetch() {
+    await this.$store.dispatch('years/queryYears')
+    const years = this.$store.state.years.years
 
     let year: WWDCYear
-    if (params.year) {
-      year = years[`WWDC ${params.year}`]
+  
+    if (this.$route.params.year) {
+      year = years[`WWDC ${this.$route.params.year}`]
     } else {
-      const keys = store.getters['years/sortedKeys']
+      const keys = this.$store.getters['years/sortedKeys']
       year = years[keys[keys.length - 1]]
     }
     if (!year) {
-      return error({
-        statusCode: 404,
-        message: 'The requested year could not be found in our database.'
-      })
+      if (process.server) {
+        this.$nuxt.context.res.statusCode = 404
+      }
+
+      throw new Error('The requested year could not be found in our database.')
     }
 
-    await store.dispatch('scholars/queryScholars', year)
+    await this.$store.dispatch('scholars/queryScholars', year)
   }
 }
 </script>

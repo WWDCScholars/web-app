@@ -13,8 +13,8 @@
     :options="swiperOptions"
   ).screenshots
       swiper-slide(
-        v-for="screenshot in yearInfo.screenshots",
-        :key="screenshot.fileChecksum"
+        v-for="(screenshot, index) in yearInfo.screenshots",
+        :key="index"
       ).screenshot
         img(:src="screenshot.downloadURL")
       .swiper-pagination(slot="pagination")
@@ -27,18 +27,18 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
 import yearToFetch from '~/util/wwdcYear-index'
 
-import 'swiper/dist/css/swiper.css'
+import 'swiper/css/swiper.css'
 
 import * as years from '~/store/years'
 const Years = namespace(years.name)
 
 @Component({
   components: {
-    swiper, swiperSlide
+    Swiper, SwiperSlide
   }
 })
 export default class ScholarProfileSubmission extends Vue {
@@ -84,18 +84,18 @@ export default class ScholarProfileSubmission extends Vue {
     return /\d{4}/.test(params.year)
   }
 
-  async fetch({ params, store, route, from }) {
-    if (route.fullPath === from.fullPath) return
+  async fetch() {
+    if (this.$route.fullPath === this.$nuxt.context.from.fullPath) return
 
     // else, load data for new route
-    const scholar: Scholar = store.getters['scholars/byRecordName'](params.id)
+    const scholar: Scholar = this.$store.getters['scholars/byRecordName'](this.$route.params.id)
     if (!scholar) return
 
     const years = scholar.wwdcYears.map((year, index) => {
         return [year, scholar.wwdcYearInfos[index]]
       }) as [CloudKit.Reference, CloudKit.Reference][]
 
-    const ytf = yearToFetch(years, params.year)
+    const ytf = yearToFetch(years, this.$route.params.year)
     if (ytf === null) return
 
     const [yearReference, yearInfoReference] = ytf
@@ -103,10 +103,10 @@ export default class ScholarProfileSubmission extends Vue {
     const promises: Promise<any>[] = []
     if (yearReference && yearInfoReference) {
       // fetch WWDCYear
-      promises.push(store.dispatch('years/fetchYear', yearReference.recordName))
+      promises.push(this.$store.dispatch('years/fetchYear', yearReference.recordName))
 
       // fetch WWDCYearInfo
-      promises.push(store.dispatch('scholars/loadYearInfoIfMissing', {
+      promises.push(this.$store.dispatch('scholars/loadYearInfoIfMissing', {
         scholarRecordName: scholar.recordName,
         yearInfoRecordName: yearInfoReference.recordName
       }))
