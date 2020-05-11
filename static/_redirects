@@ -2,4 +2,4 @@
 /*    /index.html   200
 
 # Redirect Netlify subdomain to primary domain
-https://wwdcscholars.netlify.com/* https://www.wwdcscholars.com/:splat 301!
+https://wwdcscholars.netlify.app/* https://www.wwdcscholars.com/:splat 301!
