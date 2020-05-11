@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.11.3](https://github.com/WWDCScholars/web-app/compare/v3.11.2...v3.11.3) (2020-05-11)
+
+
+### Bug Fixes
+
+* Change redirect order to make netlify subdomain redirect work ([d1e17c5](https://github.com/WWDCScholars/web-app/commit/d1e17c5e2bddfc61191930d5bbf9bfc557678296))
+
 ### [3.11.2](https://github.com/WWDCScholars/web-app/compare/v3.11.1...v3.11.2) (2020-05-11)
 
 
