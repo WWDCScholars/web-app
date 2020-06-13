@@ -97,6 +97,10 @@ export default class InputLocation extends Vue {
       do {
         result = results[resultIndex--]
       } while (result.address_components[0].types[0] !== 'locality')
+      if (!result) {
+        return
+      }
+
       this.inputValue = result.formatted_address
       this.$refs.map['fitBounds'](result.geometry.viewport)
     })
