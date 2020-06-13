@@ -1,5 +1,8 @@
 <template lang="pug">
-nuxt-link(:to.once="{ name: 's-id-year', params: { id: scholar.recordName } }").scholar-thumbnail
+nuxt-link(
+  :to.once="{ name: 's-id-year', params: { id: scholar.recordName } }",
+  :id="scholar.recordName"
+).scholar-thumbnail
   span.name {{ scholar.givenName }}
   img(v-lazy="profilePictureURL").image
   .image-loading
