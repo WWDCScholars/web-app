@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.12.0](https://github.com/WWDCScholars/web-app/compare/v3.11.5...v3.12.0) (2020-06-18)
+
+
+### Features
+
+* Add link to join page to page navigation ([12f358e](https://github.com/WWDCScholars/web-app/commit/12f358eef11949b227f9df721fad9318441a7f73))
+
 ### [3.11.5](https://github.com/WWDCScholars/web-app/compare/v3.11.4...v3.11.5) (2020-05-19)
 
 ### [3.11.4](https://github.com/WWDCScholars/web-app/compare/v3.11.3...v3.11.4) (2020-05-18)
