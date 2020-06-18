@@ -25,16 +25,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
-import yearToFetch from '~/util/wwdcYear-index'
+import { routeMatchYear, yearMatchYearInfo } from '~/util/wwdcYear-index'
 
 import 'swiper/css/swiper.css'
 
-import * as years from '~/store/years'
-const Years = namespace(years.name)
+import { name as scholarsName } from '~/store/scholars'
+const Scholars = namespace(scholarsName)
+
+import { name as yearsName } from '~/store/years'
+const Years = namespace(yearsName)
 
 @Component({
   components: {
@@ -44,9 +47,6 @@ const Years = namespace(years.name)
 export default class ScholarProfileSubmission extends Vue {
   @Prop({ required: true })
   scholar!: Scholar
-
-  @Prop({ required: true })
-  yearInfo!: WWDCYearInfo
 
   swiperOptions = {
     autoplay: {
@@ -67,11 +67,28 @@ export default class ScholarProfileSubmission extends Vue {
     }
   }
 
-  @Years.Getter('byRecordName') yearByRecordName
+  @Years.Getter('byRecordName')
+  yearByRecordName!: (recordName: string) => WWDCYear | undefined
+
+  @Years.Action
+  fetchYear!: (recordName: string) => Promise<void>
+
+  @Scholars.Action('loadYearInfoIfMissing')
+  scholarLoadYearInfoIfMissing!: (payload: { scholarRecordName: string, yearInfoRecordName: string }) => Promise<void>
+
+  get wwdcYearReference(): CloudKit.Reference | undefined {
+    if (!this.scholar) return undefined
+    return routeMatchYear(this.scholar.wwdcYearsApproved, this.$route.params.year)
+  }
 
   get wwdcYear(): WWDCYear | undefined {
-    if (!this.yearInfo) return undefined
-    return this.yearByRecordName(this.yearInfo.year.recordName)
+    if (!this.wwdcYearReference) return undefined
+    return this.yearByRecordName(this.wwdcYearReference.recordName)
+  }
+
+  get yearInfo(): WWDCYearInfo | undefined {
+    if (!this.scholar || !this.wwdcYearReference) return undefined
+    return this.scholar.loadedYearInfos[this.wwdcYearReference.recordName]
   }
 
   get challengeDescription(): string {
@@ -85,36 +102,25 @@ export default class ScholarProfileSubmission extends Vue {
   }
 
   async fetch() {
-    if (this.$route.fullPath === this.$nuxt.context.from.fullPath) return
+    if (!this.scholar || !this.wwdcYearReference) return
 
-    // else, load data for new route
-    const scholar: Scholar = this.$store.getters['scholars/byRecordName'](this.$route.params.id)
-    if (!scholar) return
+    // load data for year
+    const yearInfoReference = yearMatchYearInfo(this.scholar.wwdcYearInfos, this.scholar.wwdcYearsApproved, this.wwdcYearReference.recordName)
+    if (!yearInfoReference) return
 
-    const years = scholar.wwdcYears.map((year, index) => {
-        return [year, scholar.wwdcYearInfos[index]]
-      }) as [CloudKit.Reference, CloudKit.Reference][]
-
-    const ytf = yearToFetch(years, this.$route.params.year)
-    if (ytf === null) return
-
-    const [yearReference, yearInfoReference] = ytf
-
-    const promises: Promise<any>[] = []
-    if (yearReference && yearInfoReference) {
-      // fetch WWDCYear
-      promises.push(this.$store.dispatch('years/fetchYear', yearReference.recordName))
-
-      // fetch WWDCYearInfo
-      promises.push(this.$store.dispatch('scholars/loadYearInfoIfMissing', {
-        scholarRecordName: scholar.recordName,
+    await Promise.all([
+      this.fetchYear(this.wwdcYearReference.recordName),
+      this.scholarLoadYearInfoIfMissing({
+        scholarRecordName: this.scholar.recordName,
         yearInfoRecordName: yearInfoReference.recordName
-      }))
-    }
-
-    await Promise.all(promises)
+      })
+    ])
   }
 
+  @Watch('$route.params')
+  onParamsChanged() {
+    this.$fetch()
+  }
 }
 </script>
 

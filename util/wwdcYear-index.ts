@@ -12,3 +12,26 @@ export default function (years: [CloudKit.Reference, CloudKit.Reference][], year
   const sortedYears = years.slice().sort((lhs, rhs) => lhs[0].recordName.localeCompare(rhs[0].recordName))
   return sortedYears[sortedYears.length - 1]
 }
+
+export const routeMatchYear = (years: CloudKit.Reference[], routeYear?: string): CloudKit.Reference | undefined => {
+  if (!years.length) return undefined
+
+  if (routeYear) {
+    return years.find(wwdcYear => wwdcYear.recordName.substring(5) === routeYear)
+  }
+
+  // else, return last year
+  const sortedYears = years
+    .slice()
+    .sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
+  return sortedYears[sortedYears.length - 1]
+}
+
+export const yearMatchYearInfo = (yearInfos: CloudKit.Reference[], years: CloudKit.Reference[], wwdcYearRecordName: string): CloudKit.Reference | undefined => {
+  if (!yearInfos.length || !years.length || yearInfos.length != years.length) return undefined
+
+  const yearIndex = years.findIndex(year => year.recordName === wwdcYearRecordName)
+  if (yearIndex < 0) return undefined
+
+  return yearInfos[yearIndex]
+}
