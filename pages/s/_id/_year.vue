@@ -28,6 +28,7 @@
 import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import { SwiperOptions } from 'swiper'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
 import { routeMatchYear, yearMatchYearInfo } from '~/util/wwdcYear-index'
 
@@ -47,25 +48,6 @@ const Years = namespace(yearsName)
 export default class ScholarProfileSubmission extends Vue {
   @Prop({ required: true })
   scholar!: Scholar
-
-  swiperOptions = {
-    autoplay: {
-      delay: 8000,
-      disableOnInteraction: true
-    },
-    loop: false,
-    grabCursor: false,
-    setWrapperSize: false,
-    spaceBetween: 15,
-    slidesPerView: 'auto',
-    navigation: {
-      prevEl: '.swiper-button-prev',
-      nextEl: '.swiper-button-next'
-    },
-    pagination: {
-      el: '.swiper-pagination'
-    }
-  }
 
   @Years.Getter('byRecordName')
   yearByRecordName!: (recordName: string) => WWDCYear | undefined
@@ -94,6 +76,30 @@ export default class ScholarProfileSubmission extends Vue {
   get challengeDescription(): string {
     if (!this.wwdcYear) return ''
     return this.wwdcYear.challengeDescription || ''
+  }
+
+  get swiperOptions(): SwiperOptions {
+    const shouldLoop = (this.yearInfo?.screenshots?.length ?? 0) > 1
+
+    return {
+      autoplay: {
+        delay: 8000,
+        disableOnInteraction: true
+      },
+      loop: shouldLoop,
+      grabCursor: false,
+      setWrapperSize: false,
+      spaceBetween: 15,
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next'
+      },
+      pagination: {
+        el: '.swiper-pagination'
+      }
+    }
   }
 
   validate({ params }): boolean {
