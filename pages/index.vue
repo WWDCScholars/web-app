@@ -73,9 +73,11 @@ export default class PageIndex extends Vue {
   get currentScholars(): Scholar[] {
     if (!this.currentYear) return []
     const currentYearRecordName = this.currentYear.recordName
-    return Object.values(this.allScholars).filter(scholar => {
-      return scholar.wwdcYears && scholar.wwdcYears.some(ref => ref.recordName === currentYearRecordName)
-    })
+    return Object.values(this.allScholars)
+      .filter(scholar => {
+        return scholar.wwdcYearsApproved && scholar.wwdcYearsApproved.some(yearReference => yearReference.recordName === currentYearRecordName)
+      })
+      .sort((lhs, rhs) => lhs.givenName.localeCompare(rhs.givenName))
   }
 
   validate({ params }): boolean {
@@ -89,7 +91,7 @@ export default class PageIndex extends Vue {
     const years = this.$store.state.years.years
 
     let year: WWDCYear
-  
+
     if (this.$route.params.year) {
       year = years[`WWDC ${this.$route.params.year}`]
     } else {
