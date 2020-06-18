@@ -401,7 +401,7 @@ export default class ScholarProfile extends Vue {
   .short-bio
     margin-top: 30px
     font-size: 0.9em
-    white-space: pre
+    white-space: pre-line
 
   .social-links
     display: flex

@@ -126,7 +126,7 @@ export default class ScholarProfileSubmission extends Vue {
 
 .description
   font-size: 0.9em
-  white-space: pre
+  white-space: pre-line
 
 .screenshots
   position: relative
