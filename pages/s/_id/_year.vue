@@ -18,8 +18,8 @@
       ).screenshot
         img(:src="screenshot.downloadURL")
       .swiper-pagination(slot="pagination")
-      .swiper-button-prev.swiper-button(slot="button-prev")
-      .swiper-button-next.swiper-button(slot="button-next")
+      img(slot="button-prev", src="~assets/images/arrow-left.png").swiper-button-prev.swiper-button
+      img(slot="button-next", src="~assets/images/arrow-left.png").swiper-button-next.swiper-button
   .no-screenshots(v-else)
     i Unfortunately we don't have any screenshots of this submission.
 </template>
@@ -157,51 +157,39 @@ export default class ScholarProfileSubmission extends Vue {
   font-size: 0.8em
   text-align: center
 
-$swiper-arrow-length: 20px
-$swiper-arrow-width: 2px
+$swiper-arrow-width: 34px
+$swiper-arrow-height: 52px
 .swiper-container
   .swiper-button
     background: 0
-    width: $swiper-arrow-length
-    height: $swiper-arrow-length
-    margin-top: -$swiper-arrow-length / 2
-    opacity: 0
+    width: $swiper-arrow-width
+    height: $swiper-arrow-height
+    margin-top: -$swiper-arrow-height / 2
+    opacity: 0.5
     transition: opacity 100ms linear
     outline: 0
 
-    &:before, &:after
-      content: ''
-      display: block
-      position: absolute
-      background-color: $sch-purple
-
-    &:before
-      width: $swiper-arrow-length
-      height: $swiper-arrow-width
-
-    &:after
-      width: $swiper-arrow-width
-      height: $swiper-arrow-length
-
-    &.swiper-button-prev
-      transform: rotate(-45deg)
-
     &.swiper-button-next
-      transform: rotate(135deg)
+      transform: rotate(180deg)
+
+    &.swiper-button-disabled
+      opacity: 0
 
   /deep/.swiper-pagination-bullets
-    opacity: 0
+    opacity: 0.7
     transition: opacity 100ms linear
 
     .swiper-pagination-bullet
-      background: $sch-purple
+      background-color: $white
+      box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5)
+      opacity: 1
 
     .swiper-pagination-bullet-active
-      background: $sch-purple
+      background-color: $sch-purple
 
   &:hover .swiper-button, &:hover .swiper-pagination-bullets
     opacity: 1
 
     &.swiper-button-disabled
-      opacity: 0.35
+      opacity: 0
 </style>
