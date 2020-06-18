@@ -94,6 +94,7 @@
 
 <script lang="ts">
 import dayjs from 'dayjs'
+import { MetaInfo } from 'vue-meta'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { CloudKit, Scholar } from '@wwdcscholars/cloudkit'
@@ -216,6 +217,14 @@ export default class ScholarProfile extends Vue {
   get editProfileLinkVisible(): boolean {
     return this.userScholarReference !== undefined
       && this.userScholarReference.recordName === this.scholar?.recordName
+  }
+
+  head(): MetaInfo {
+    const title = this.scholar ? `${this.fullName} | WWDCScholars` : undefined
+
+    return {
+      title
+    }
   }
 
   validate({ params }): boolean {
