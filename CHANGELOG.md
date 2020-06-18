@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.13.0](https://github.com/WWDCScholars/web-app/compare/v3.12.2...v3.13.0) (2020-06-18)
+
+
+### Features
+
+* Center submission screenshots and loop them ([82a89ef](https://github.com/WWDCScholars/web-app/commit/82a89eff3d633f8db8102fbe37f75bcbd6d79100))
+* Full name in page title on profile page ([e86eba0](https://github.com/WWDCScholars/web-app/commit/e86eba0328cddc55abb18a375c5b8bbe2db181a9))
+* Improve submission screenshot swiper buttons ([6a8e4db](https://github.com/WWDCScholars/web-app/commit/6a8e4dbf13f77931262f71f6f1eae43f45a2c069))
+
+
+### Bug Fixes
+
+* Always display scholars in the right order and only with approved years ([f7b3287](https://github.com/WWDCScholars/web-app/commit/f7b3287e04425de707eb59247886cd8164062b80))
+* properly load year infos on profile ([f303546](https://github.com/WWDCScholars/web-app/commit/f3035461a476b61bfee84238a12055f15ab9a554))
+
 ### [3.12.2](https://github.com/WWDCScholars/web-app/compare/v3.12.1...v3.12.2) (2020-06-18)
 
 
