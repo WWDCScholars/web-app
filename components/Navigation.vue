@@ -10,12 +10,14 @@
     //- nuxt-link(to="/activity").color-orange: span Activity
     //- nuxt-link(to="/store").color-blue1: span Store
     nuxt-link(to="/about").color-green: span About
+    a(href="https://join.wwdcscholars.com", target="_blank").color-blue1: span Join
     //- profile-button
   .navigation-mobile
     burger-button(v-model="menuOpen").navigation-mobile-toggle
     nav(:class="{ 'navigation-mobile-open': menuOpen }")
       nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
       nuxt-link(to="/about").color-green: span About
+      a(href="https://join.wwdcscholars.com", target="_blank").color-blue1: span Join
 </template>
 
 <script lang="ts">
