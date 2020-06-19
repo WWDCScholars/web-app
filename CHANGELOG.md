@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.13.1](https://github.com/WWDCScholars/web-app/compare/v3.13.0...v3.13.1) (2020-06-19)
+
+
+### Bug Fixes
+
+* Only display approved submissions on the profile page ([ee0a368](https://github.com/WWDCScholars/web-app/commit/ee0a36890ffb30f29086bf87506cf3f64e4f3fae))
+
 ## [3.13.0](https://github.com/WWDCScholars/web-app/compare/v3.12.2...v3.13.0) (2020-06-18)
 
 
