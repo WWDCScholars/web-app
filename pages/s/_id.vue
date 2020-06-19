@@ -194,8 +194,8 @@ export default class ScholarProfile extends Vue {
   }
 
   get submissionLinks(): { [year: string]: object } {
-    if (!this.scholar || !this.scholar.wwdcYears) return {}
-    const sortedYears = this.scholar.wwdcYears.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
+    if (!this.scholar || !this.scholar.wwdcYearsApproved) return {}
+    const sortedYears = this.scholar.wwdcYearsApproved.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
     const lastYearReference = sortedYears[sortedYears.length - 1]
     return sortedYears
       .reduce((acc, yearReference) => {
