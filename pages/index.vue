@@ -8,7 +8,7 @@
         :key="year"
       ) {{ year }}
   .container-fluid.color-purple
-    .loading-scholars(v-if="$fetchState.pending") #[i Gathering the brightest minds from around the world]&nbsp;&nbsp;🤓
+    .loading-scholars(v-if="$fetchState.pending && currentScholars.length < 1") #[i Gathering the brightest minds from around the world]&nbsp;&nbsp;🤓
     .scholars-list(v-else-if="currentScholars.length > 0")
       scholar-thumbnail(
         v-for="scholar in currentScholars",
