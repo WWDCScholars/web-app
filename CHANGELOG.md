@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.13.2](https://github.com/WWDCScholars/web-app/compare/v3.13.1...v3.13.2) (2020-07-09)
+
+
+### Bug Fixes
+
+* Only insert non-existing scholars from query result ([710c44a](https://github.com/WWDCScholars/web-app/commit/710c44a1ff463afb940f3c1ce4b808e8cf7490fc))
+* Only show loading message when there are no scholars in the store ([e716984](https://github.com/WWDCScholars/web-app/commit/e716984d8305eea4f46b40b66de123bbc6eca264))
+
 ### [3.13.1](https://github.com/WWDCScholars/web-app/compare/v3.13.0...v3.13.1) (2020-06-19)
 
 
