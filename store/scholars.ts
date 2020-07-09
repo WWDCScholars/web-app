@@ -41,7 +41,7 @@ export const actions: ActionTree<State, State> = {
     const scholar = await Scholar.fetch(recordName)
     commit('insertScholar', scholar)
   },
-  async queryScholars({ commit }, year: WWDCYear): Promise<void> {
+  async queryScholars({ state, commit }, year: WWDCYear): Promise<void> {
     if (!year) return
     const query: CloudKit.QueryBase = {
       filterBy: [{
@@ -59,7 +59,9 @@ export const actions: ActionTree<State, State> = {
     }
 
     const result = await Scholar.query(query)
+    const existingScholars = new Set(Object.keys(state.scholars))
     result
+      .filter(scholar => !existingScholars.has(scholar.recordName))
       .forEach(scholar => commit('insertScholar', scholar))
   },
   async loadYearInfoIfMissing({ state, dispatch }, { scholarRecordName, yearInfoRecordName }) {
