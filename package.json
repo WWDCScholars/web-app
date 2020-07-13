@@ -55,7 +55,7 @@
     "@types/googlemaps": "^3.39.4",
     "@types/node": "^13.13.5",
     "cross-env": "^7.0.2",
-    "standard-version": "^8.0.0",
+    "standard-version": "^8.0.1",
     "typescript": "^3.8.3"
   }
 }
