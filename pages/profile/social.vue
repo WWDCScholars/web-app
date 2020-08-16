@@ -3,11 +3,11 @@
   base-section
     h2 Social Links
 
-    ValidationObserver(v-slot="{ invalid, changed }")
+    ValidationObserver(v-slot="{ invalid, changed }", ref="form")
       base-form
         .group
           h3 Where else can people find you?
-          form-field(name="Twitter", rules="url")
+          form-field(name="Twitter", rules="url", vid="twitter")
             input-text(
               type="url",
               name="twitter",
@@ -15,7 +15,7 @@
               v-model="formData.twitter"
             )
 
-          form-field(name="GitHub", rules="url")
+          form-field(name="GitHub", rules="url", vid="github")
             input-text(
               type="url",
               name="github",
@@ -23,7 +23,7 @@
               v-model="formData.github"
             )
 
-          form-field(name="Discord", rules="min:2|max:32")
+          form-field(name="Discord", rules="min:2|max:32", vid="discord")
             input-text(
               type="text",
               name="discord",
@@ -31,7 +31,7 @@
               v-model="formData.discord"
             )
 
-          form-field(name="LinkedIn", rules="url")
+          form-field(name="LinkedIn", rules="url", vid="linkedin")
             input-text(
               type="url",
               name="linkedin",
@@ -39,7 +39,7 @@
               v-model="formData.linkedin"
             )
 
-          form-field(name="iMessage", rules="phoneOrEmail")
+          form-field(name="iMessage", rules="phoneOrEmail", vid="imessage")
             input-text(
               type="text",
               name="imessage",
@@ -47,7 +47,7 @@
               v-model="formData.imessage"
             )
 
-          form-field(name="Facebook", rules="url")
+          form-field(name="Facebook", rules="url", vid="facebook")
             input-text(
               type="url",
               name="facebook",
@@ -55,7 +55,7 @@
               v-model="formData.facebook"
             )
 
-          form-field(name="Website", rules="url")
+          form-field(name="Website", rules="url", vid="website")
             input-text(
               type="url",
               name="website",
@@ -81,12 +81,10 @@ import {
   FormField
 } from '~/components'
 import { ValidationObserver } from 'vee-validate'
+import { handleSave } from '~/util/edit-profile'
 
-import { name as authName } from '~/store/auth'
-const Auth = namespace(authName)
-
-import { name as scholarsName } from '~/store/scholars'
-const Scholars = namespace(scholarsName)
+import { name as profileName } from '~/store/profile'
+const Profile = namespace(profileName)
 
 @Component({
   components: {
@@ -109,16 +107,8 @@ export default class PageProfileSocial extends Vue {
     website?: string
   } = {}
 
-  @Auth.State
-  userScholarReference?: CloudKit.Reference
-
-  @Scholars.Getter('byRecordName') scholarByRecordName
-
-  get scholar(): Scholar | null {
-    if (!this.userScholarReference) return null
-
-    return this.scholarByRecordName(this.userScholarReference.recordName)
-  }
+  @Profile.Getter
+  scholar?: Scholar
 
   get socialMedia(): ScholarSocialMedia | null {
     if (!this.scholar || !this.scholar.loadedSocialMedia) return null
@@ -126,38 +116,46 @@ export default class PageProfileSocial extends Vue {
     return this.scholar.loadedSocialMedia
   }
 
-  async fetch({ store, route, from }) {
-    // if (route.fullPath === from.fullPath) return
-
-    // else, load data for new route
-    const userScholarReference = store.state.auth.userScholarReference
-    if (!userScholarReference) return
-
-    await store.dispatch('scholars/fetchScholar', userScholarReference.recordName)
-    const scholar: Scholar = store.getters['scholars/byRecordName'](userScholarReference.recordName)
-    if (!scholar) return
-
-    await store.dispatch('scholars/loadSocialMediaIfMissing', {
-      scholarRecordName: scholar.recordName,
-      socialMediaRecordName: scholar.socialMedia.recordName
-    })
+  async fetch({ store }) {
+    await store.dispatch('profile/loadScholar')
+    await store.dispatch('profile/loadSocial')
   }
 
   created() {
+    this.loadFormData()
+  }
+
+  loadFormData() {
     this.formData = {
-      twitter: this.scholar?.loadedSocialMedia?.twitter,
-      github: this.scholar?.loadedSocialMedia?.github,
-      discord: this.scholar?.loadedSocialMedia?.discord,
-      linkedin: this.scholar?.loadedSocialMedia?.linkedin,
-      imessage: this.scholar?.loadedSocialMedia?.imessage,
-      facebook: this.scholar?.loadedSocialMedia?.facebook,
-      website: this.scholar?.loadedSocialMedia?.website,
+      twitter: this.socialMedia?.twitter,
+      github: this.socialMedia?.github,
+      discord: this.socialMedia?.discord,
+      linkedin: this.socialMedia?.linkedin,
+      imessage: this.socialMedia?.imessage,
+      facebook: this.socialMedia?.facebook,
+      website: this.socialMedia?.website,
     }
   }
 
-  submit() {
+  async submit() {
+    if (!this.socialMedia) return
 
+    handleSave(
+      this.$refs.form,
+      this.formData,
+      this.$nuxt,
+      async (changes) => {
+        await this.saveSocial({
+          socialMedia: this.socialMedia!,
+          changes
+        })
+        this.loadFormData()
+      }
+    )
   }
+
+  @Profile.Action
+  saveSocial!: (payload: { socialMedia: ScholarSocialMedia, changes: object }) => Promise<void>
 }
 </script>
 
