@@ -81,6 +81,7 @@ const config: Configuration = {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    '~/plugins/globals',
     '~/plugins/filters',
     '~/plugins/vue-lazyload',
     '~/plugins/vue2-google-maps',
