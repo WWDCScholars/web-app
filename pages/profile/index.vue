@@ -3,12 +3,13 @@
   base-section
     h2 Basic Information
 
-    ValidationObserver(v-slot="{ invalid, changed }")
+    ValidationObserver(v-slot="{ invalid, changed }", ref="form")
       base-form
         .group.group-width-50
           h3 Profile Picture
           form-field(
             name="Profile Picture",
+            vid="profilePicture",
             rules="required_image|dimensions:250,-1,250,-1",
             comment="This needs to be an image of you with a resolution of at least 250x250.",
             v-slot="{ validate }"
@@ -41,7 +42,7 @@
               :disabled="true",
               :value.once="scholar.familyName"
             )
-          form-field(name="Email", rules="email|required")
+          form-field(name="Email", rules="email|required", vid="email")
             input-text(
               type="email",
               name="email",
@@ -49,7 +50,7 @@
               :required.once="true",
               v-model="formData.email"
             )
-          form-field(name="Date of Birth", rules="required")
+          form-field(name="Date of Birth", rules="required", vid="birthday")
             input-date(
               name="birthday",
               placeholder="Date of Birth (yyyy-mm-dd)",
@@ -60,7 +61,7 @@
             )
 
           h3 Gender
-          form-field(name="Gender")
+          form-field(name="Gender", vid="gender")
             input-radio-group(
               name="gender",
               :options.once="genderOptions",
@@ -70,7 +71,7 @@
 
         .group
           h3 Tell us where you are from
-          form-field(name="Location", rules="required")
+          form-field(name="Location", rules="required", vid="location")
             input-location(
               name="location",
               placeholder="Hometown / Nearest City",
@@ -80,7 +81,7 @@
 
         .group
           h3 Describe yourself in less than 300 characters
-          form-field(name="Biography", rules="required|max:300")
+          form-field(name="Biography", rules="required|max:300", vid="biography")
             input-text(
               type="textarea",
               name="biography",
@@ -111,12 +112,10 @@ import {
   InputRadioGroup
 } from '~/components'
 import { ValidationObserver } from 'vee-validate'
+import { handleSave } from '~/util/edit-profile'
 
-import { name as authName } from '~/store/auth'
-const Auth = namespace(authName)
-
-import { name as scholarsName } from '~/store/scholars'
-const Scholars = namespace(scholarsName)
+import { name as profileName } from '~/store/profile'
+const Profile = namespace(profileName)
 
 @Component({
   components: {
@@ -148,35 +147,19 @@ export default class PageProfileBasic extends Vue {
     biography?: string;
   } = {}
 
-  @Auth.State
-  userScholarReference?: CloudKit.Reference
+  @Profile.Getter
+  scholar?: Scholar
 
-  @Scholars.Getter('byRecordName') scholarByRecordName
-
-  get scholar(): Scholar | null {
-    if (!this.userScholarReference) return null
-
-    return this.scholarByRecordName(this.userScholarReference.recordName)
-  }
-
-  async fetch({ store, route, from }) {
-    // if (route.fullPath === from.fullPath) return
-
-    // else, load data for new route
-    const userScholarReference = store.state.auth.userScholarReference
-    if (!userScholarReference) return
-
-    await store.dispatch('scholars/fetchScholar', userScholarReference.recordName)
-    const scholar: Scholar = store.getters['scholars/byRecordName'](userScholarReference.recordName)
-    if (!scholar) return
-
-    await store.dispatch('scholars/loadPrivateIfMissing', {
-      scholarRecordName: scholar.recordName,
-      privateRecordName: scholar.scholarPrivate.recordName
-    })
+  async fetch({ store }) {
+    await store.dispatch('profile/loadScholar')
+    await store.dispatch('profile/loadPrivate')
   }
 
   created() {
+    this.loadFormData()
+  }
+
+  loadFormData() {
     this.formData = {
       profilePicture: this.scholar?.profilePicture.downloadURL,
       email: this.scholar?.loadedPrivate?.email,
@@ -187,9 +170,25 @@ export default class PageProfileBasic extends Vue {
     }
   }
 
-  submit() {
+  async submit() {
+    if (!this.scholar) return
 
+    handleSave(
+      this.$refs.form,
+      this.formData,
+      this.$nuxt,
+      async (changes) => {
+        await this.saveBasic({
+          scholar: this.scholar!,
+          changes
+        })
+        this.loadFormData()
+      }
+    )
   }
+
+  @Profile.Action
+  saveBasic!: (payload: { scholar: Scholar; changes: object }) => Promise<void>
 }
 </script>
 
