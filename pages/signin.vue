@@ -1,16 +1,20 @@
 <template lang="pug">
-.container-fluid
-  base-section
-    h2.color-blue1 Welcome to WWDC#[span Scholars]
-    h3 Use your iCloud account to sign in
+.container-fluid.color-gray
+  section.section
+    h2.color-blue1 Welcome to WWDCScholars!
+    h3.color-blue1 Sign In with your Apple ID to Manage Your Profile
+
     p.
-      If you are creating an account for the first time, or adding a new
-      scholarship to an existing account, you will be required to verify your
-      acceptance status by providing evidence in the form of forwarding your invitation email.
+      Are you a WWDC Scholarship or Swift Student Challenge Winner? You can showcase your submission by signing up at #[a(href="https://join.wwdcscholars.com") join.wwdcscholars.com]!
 
     p.
       If you are new to WWDC scholarships and would like to learn more, we
       recommend you visit our #[nuxt-link(to="/about") about page].
+
+    p: i.
+      Do you have a legacy WWDCScholars profile with email and password credentials? Sign in at #[a(href="https://join.wwdcscholars.com") join.wwdcscholars.com] and follow the instructions to link your profile to your iCloud account. This is required to make your existing profile public again.
+
+    hr
 
     a(:href="signInURL").btn-sign-in Sign in with Apple ID
 </template>
@@ -35,41 +39,42 @@ export default class PageSignin extends Vue {
 
 <style lang="sass" scoped>
 .section
-  height: calc(100% - 40px)
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
+  text-align: center
 
   h2
-    font-size: 2.4em
-    font-weight: 700
+    font-size: 2em
+    font-weight: 600
     text-align: center
-
-    span
-      font-weight: 500
+    margin-bottom: 30px
 
   h3
-    font-size: 1.6em
-    font-weight: 400
-    text-align: center
-    margin-bottom: 60px
+    font-size: 1.4em
+    font-weight: 500
+    text-align: left
+    margin-bottom: 10px
 
   p
-    width: 50%
     margin: 0 auto 20px
+    text-align: left
 
     a
       color: $sch-blue1
 
+    i
+      font-size: 0.9em
+
+      a
+        color: $sch-gray
+
+  hr
+    margin: 50px -15px
+
   .btn-sign-in
-    display: block
-    margin-top: 60px
-    margin-left: auto
-    margin-right: auto
+    display: inline-block
     padding: 10px 20px
     font-weight: 500
     color: black
+    background-color: $white
     border: 1px solid black
     border-radius: $border-radius
     text-decoration: none
