@@ -21,4 +21,6 @@ export { default as TeamCard } from './TeamCard.vue'
 
 export { default as Copyable } from './Copyable.vue'
 
+export { default as LoadingSpinner } from './LoadingSpinner.vue'
+
 export * from './inputs'
