@@ -1,6 +1,7 @@
 <template lang="pug">
 .profile-button(:class="{ 'nuxt-link-active': linkActive }")
-  nuxt-link(v-if="!isAuthenticated", to="/signin")
+  .auth-pending(v-if="isPending"): loading-spinner
+  nuxt-link(v-else-if="!isAuthenticated", to="/signin")
     img(src="~assets/images/sign-in-out.svg")
   button(v-else, @click="open = !open")
     img(src="~assets/images/user.svg")
@@ -24,13 +25,20 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { CloudKit } from '@wwdcscholars/cloudkit'
+import LoadingSpinner from './LoadingSpinner.vue'
 
 import * as auth from '~/store/auth'
 const Auth = namespace(auth.name)
 
-@Component
+@Component({
+  components: { LoadingSpinner }
+})
 export default class ProfileButton extends Vue {
   open: boolean = false
+  isPending: boolean = true
+
+  @Auth.State
+  pending!: Promise<void>
 
   @Auth.Getter
   isAuthenticated!: boolean
@@ -59,6 +67,10 @@ export default class ProfileButton extends Vue {
     }
   }
 
+  created() {
+    this.pending.then(() => this.isPending = false)
+  }
+
   onSignOutClicked() {
     console.log(this['$ck'])
     this.signOut()
@@ -69,6 +81,7 @@ export default class ProfileButton extends Vue {
 
 <style lang="sass" scoped>
 .profile-button
+  width: 82px
   border-bottom: 3px solid transparent
   transition: border-bottom-color 100ms linear
 
@@ -76,6 +89,12 @@ export default class ProfileButton extends Vue {
     border-bottom-color: $sch-purple
 
   > button, > a
+    display: flex
+    height: $header-height
+    padding: 0 25px
+    align-items: center
+
+  .auth-pending
     display: flex
     height: $header-height
     padding: 0 25px
