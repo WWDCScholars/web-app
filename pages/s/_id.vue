@@ -81,9 +81,10 @@
 
           .submission-selector
             nuxt-link(
-              v-for="(link, year) in submissionLinks",
+              v-for="({ link, activeClass }, year) in submissionLinks",
               :to="link",
-              :key="year"
+              :key="year",
+              :class="activeClass"
             ) {{ year }}
 
           nuxt-child(:scholar="scholar", :yearInfo="yearInfo")
@@ -212,13 +213,19 @@ export default class ScholarProfile extends Vue {
       .reduce((acc, yearReference) => {
         const year = yearReference.recordName.substring(5)
         const yearParam = yearReference.recordName === lastYearReference.recordName ? undefined : year
+        const exactActive = !yearParam && this.$route.params.year === lastYearReference.recordName.substring(5)
+          ? 'nuxt-link-exact-active'
+          : undefined
 
         acc[year] = {
-          name: 's-id-year',
-          params: {
-            id: this.$route.params.id,
-            year: yearParam
-          }
+          link: {
+            name: 's-id-year',
+            params: {
+              id: this.$route.params.id,
+              year: yearParam
+            }
+          },
+          activeClass: exactActive
         }
 
         return acc
