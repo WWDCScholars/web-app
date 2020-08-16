@@ -1,11 +1,14 @@
 <template lang="pug">
 .container-fluid
   profile-submission(
+    v-if="wwdcYears.length > 0",
     v-for="year in wwdcYears",
     :key="year.recordName",
     :yearRecordName="year.recordName",
     :yearInfo="yearInfos[year.recordName]"
   )
+  .profile-submissions-empty(v-else)
+    i You don't have any submissions yet
 </template>
 
 <script lang="ts">
@@ -16,30 +19,18 @@ import {
   ProfileSubmission
 } from '~/components'
 
-import { name as authName } from '~/store/auth'
-const Auth = namespace(authName)
-
-import { name as scholarsName } from '~/store/scholars'
-const Scholars = namespace(scholarsName)
+import { name as profileName } from '~/store/profile'
+const Profile = namespace(profileName)
 
 @Component({
-  components: {
-    ProfileSubmission
-  }
+  components: { ProfileSubmission }
 })
 export default class PageProfileSubmission extends Vue {
-  @Auth.State
-  userScholarReference?: CloudKit.Reference
-
-  @Scholars.Getter('byRecordName') scholarByRecordName
-
-  get scholar(): Scholar | null {
-    if (!this.userScholarReference) return null
-    return this.scholarByRecordName(this.userScholarReference.recordName)
-  }
+  @Profile.Getter
+  scholar?: Scholar
 
   get wwdcYears(): CloudKit.Reference[] {
-    if (!this.scholar) return []
+    if (!this.scholar || !this.scholar.wwdcYears) return []
     return this.scholar.wwdcYears
   }
 
@@ -49,25 +40,16 @@ export default class PageProfileSubmission extends Vue {
   }
 
   async fetch({ store, route, from }) {
-    // if (route.fullPath === from.fullPath) return
+    await store.dispatch('profile/loadScholar')
 
-    // else, load data for new route
-    const userScholarReference = store.state.auth.userScholarReference
-    if (!userScholarReference) return
-
-    await store.dispatch('scholars/fetchScholar', userScholarReference.recordName)
-    const scholar: Scholar = store.getters['scholars/byRecordName'](userScholarReference.recordName)
-    if (!scholar) return
-
-    scholar.wwdcYearInfos.forEach((yearInfoReference) => {
-      // don't await to make page load faster
-      store.dispatch('scholars/loadYearInfoIfMissing', {
-        scholarRecordName: scholar.recordName,
-        yearInfoRecordName: yearInfoReference.recordName
-      })
-    })
+    // load lazy, no need to await
+    store.dispatch('profile/loadYearInfos')
   }
 }
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="sass" scoped>
+.profile-submissions-empty
+  padding: 40px 10px
+  text-align: center
+</style>
