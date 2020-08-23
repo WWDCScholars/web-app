@@ -1,18 +1,32 @@
 <template lang="pug">
 header.header
+  slot(name="left")
+
   nuxt-link(to="/").header-link
     h1
       span.wwdc WWDC
       span.scholars Scholars
+
   .spacer
-  slot
+
+  a(v-if="!isIOS",
+    href="https://itunes.apple.com/app/scholars-of-wwdc/id1459158255?mt=8",
+    target="_blank"
+  ).appstore-download
+    img(src="~assets/images/appstore.svg")
+
+  slot(name="right")
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
-export default class PageHeader extends Vue {}
+export default class PageHeader extends Vue {
+  get isIOS(): boolean {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent)
+  }
+}
 </script>
 
 <style lang="sass" scoped>
@@ -21,7 +35,6 @@ export default class PageHeader extends Vue {}
   width: 100%
   height: $header-height
   background-color: transparentize($sch-gray4, 0.1)
-  border-bottom: 1.5px solid $sch-gray2
   color: $white
   z-index: 999
   display: flex
@@ -30,22 +43,37 @@ export default class PageHeader extends Vue {}
   padding: 0 25px 0 40px
 
   +for-phone-only
+    height: $header-height-mobile
+
+  &:after
+    content: ''
+    display: block
+    z-index: 999
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    height: 1.5px
+    background-color: $sch-gray2
+
+  +for-phone-only
     padding: 0 20px 0 20px
 
   .header-link
     text-decoration: none
+    z-index: 999
 
     h1
-      font-size: 2em
       margin: 0
       padding: 0
       line-height: 100%
       color: $sch-purple
+      font-size: 2em
       font-weight: 600
 
       .scholars
         font-weight: 400
 
       +for-phone-only
-        font-size: 1.8em
+        font-size: 1.2em
 </style>

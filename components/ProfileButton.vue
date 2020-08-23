@@ -72,7 +72,6 @@ export default class ProfileButton extends Vue {
   }
 
   onSignOutClicked() {
-    console.log(this['$ck'])
     this.signOut()
     this.$router.replace('/')
   }

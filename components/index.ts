@@ -1,6 +1,7 @@
 export { default as PageHeader } from './PageHeader.vue'
 export { default as PageFooter } from './PageFooter.vue'
-export { default as Navigation } from './Navigation.vue'
+export { default as NavigationDesktop } from './NavigationDesktop.vue'
+export { default as NavigationMobile } from './NavigationMobile.vue'
 export { default as TabBar } from './TabBar.vue'
 
 export { default as NavigationTabBar } from './NavigationTabBar.vue'
