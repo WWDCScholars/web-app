@@ -108,6 +108,7 @@ button
     position: absolute
     top: #{$header-height - 13px}
     right: 15px
+    z-index: 1000
     background-color: $white
     border-radius: $border-radius-large
     +shadow
