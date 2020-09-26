@@ -8,17 +8,17 @@ base-section
       :to="profileSubmissionLink(yearInfo)"
     ).status {{ yearInfo.status }}
 
-  ValidationObserver(v-slot="{ invalid }", ref="form")
+  ValidationObserver(v-slot="{ invalid }", tag="div", ref="form")
     base-form(v-if="yearInfo")
       .group
         h3 Applied As
         form-field(name="Applied As", vid="appliedAs")
           input-radio-group(
-              :name="yearRecordName + '_appliedAs'",
-              :options.once="appliedAsOptions",
-              :required.once="true",
-              v-model="formData.appliedAs"
-            )
+            :name="yearRecordName + '_appliedAs'",
+            :options.once="appliedAsOptions",
+            :required.once="true",
+            v-model="formData.appliedAs"
+          )
 
       .group
         h3 Describe your winning project in less than 300 characters
@@ -65,15 +65,16 @@ base-section
             v-model="formData.appstoreLink"
           )
 
-      .form-color-red
+      .group
+        .form-color-red
+          base-button(
+            confirm="Do you really wan't to delete this submission? This action cannot be undone.",
+            @click="deleteYear"
+          ) Delete
         base-button(
-          confirm="Do you really wan't to delete this submission? This action cannot be undone.",
-          @click="deleteYear"
-        ) Delete
-      base-button(
-        :disabled="invalid || !customChanged",
-        @click="submit"
-      ).btn-cta Save
+          :disabled="invalid || !customChanged",
+          @click="submit"
+        ).btn-cta Save
     .loading(v-else) Loading...
 </template>
 

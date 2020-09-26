@@ -42,7 +42,6 @@ export default class InputRadioGroup extends Vue {
   flex-wrap: wrap
   justify-content: flex-start
   align-items: center
-  margin-right: -15px
 
   .input-radio
     position: relative

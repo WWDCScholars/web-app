@@ -73,6 +73,9 @@ export default class BaseButton extends Vue {
     text-decoration: none
     transition: background-color 100ms linear, border-color 100ms linear, color 100ms linear
 
+    +for-phone-only
+      min-width: 100px
+
     &:hover
       background-color: darken($background-gray, 6%)
 
