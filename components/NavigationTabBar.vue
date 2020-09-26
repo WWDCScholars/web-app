@@ -14,7 +14,14 @@ import TabBar from './TabBar.vue'
 export default class NavigationTabBar extends Vue {
   mounted() {
     const tabBar = this.$refs.tabBar as Element
-    tabBar.scrollLeft = tabBar.scrollWidth
+    const activeLink = tabBar.getElementsByClassName('nuxt-link-exact-active')
+    if (activeLink[0]) {
+      activeLink[0].scrollIntoView({
+        behavior: 'auto',
+        block: 'end',
+        inline: 'center'
+      })
+    }
   }
 }
 </script>
