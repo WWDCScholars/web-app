@@ -21,7 +21,7 @@
           h2
             span.name {{ fullName }}
             span.age {{ age }}
-          .location {{ locationSlug }}
+          h3.location {{ locationSlug }}
 
         p.short-bio {{ scholar.biography }}
 
@@ -367,7 +367,7 @@ export default class ScholarProfile extends Vue {
     margin-top: -150px
 
     +for-phone-only
-      margin: -150px auto 0 auto
+      margin: -125px auto 0 auto
 
     img
       width: 100%
@@ -394,10 +394,17 @@ export default class ScholarProfile extends Vue {
       margin-left: 10px
       color: lighten($sch-purple, 40%)
 
+    +for-phone-only
+      margin-top: 20px
+      font-size: 1.4em
+
   .location
     font-size: 1.2em
     font-weight: 500
     color: $apl-black2
+
+    +for-phone-only
+      font-size: 1em
 
   .short-bio
     margin-top: 30px
@@ -437,6 +444,9 @@ export default class ScholarProfile extends Vue {
       font-size: 1.6em
       font-weight: 700
       color: $sch-purple
+
+      +for-phone-only
+        font-size: 1.2em
 
   .submission-selector
     display: flex
@@ -480,4 +490,7 @@ export default class ScholarProfile extends Vue {
     position: absolute
     top: 30px
     right: 30px
+
+    +for-phone-only
+      display: none
 </style>

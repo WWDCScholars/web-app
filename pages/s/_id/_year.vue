@@ -144,7 +144,9 @@ export default class ScholarProfileSubmission extends Vue {
     width: auto
 
     img
+      max-width: 100vw
       height: 100%
+      object-fit: contain
 
 .no-screenshots
   font-size: 0.8em

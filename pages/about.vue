@@ -131,6 +131,9 @@ h3
     border-radius: $border-radius-large
     +shadow
 
+    +for-phone-only
+      border-radius: 0
+
   .title
     position: absolute
     bottom: 8%
