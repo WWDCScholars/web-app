@@ -3,9 +3,10 @@
   .tab-bar-container
     navigation-tab-bar.form-color-purple
       nuxt-link(
-        v-for="(link, year) in yearLinks",
-        :to="link",
-        :key="year"
+        v-for="(linkObject, year) in yearLinks",
+        :to="linkObject.link",
+        :key="year",
+        :class="{ 'nuxt-link-exact-active': linkObject.customExactActive }"
       ) {{ year }}
   .container-fluid.color-purple
     .scholars-list(v-if="currentScholars.length > 0")
@@ -61,9 +62,13 @@ export default class PageIndex extends Vue {
     return this.sortedYearKeys.reduce((acc, key) => {
       const record = this.allYears[key]
       const params = record === this.latestYear ? {} : { year: record.year }
+      const customExactActive = record === this.latestYear && record.year == this.$route.params.year
       acc[record.year] = {
-        name: 'scholars-year',
-        params
+        customExactActive,
+        link:{
+          name: 'scholars-year',
+          params
+        }
       }
       return acc
     }, {})
