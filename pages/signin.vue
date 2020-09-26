@@ -66,6 +66,10 @@ export default class PageSignin extends Vue {
       a
         color: $sch-gray
 
+    +for-phone-only
+      padding-left: 15px
+      padding-right: 15px
+
   hr
     margin: 50px -15px
 

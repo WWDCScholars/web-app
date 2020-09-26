@@ -10,6 +10,8 @@
       li: nuxt-link(v-if="profileLink", :to="profileLink").color-purple: span Profile
       li: nuxt-link(to="/profile").color-purple: span Edit Profile
       li: button(@click="onSignOutClicked").color-purple: span Sign Out
+    ul(v-else-if="!isPending")
+      li: nuxt-link(to="/signin").color-purple: span Sign In
 </template>
 
 <script lang="ts">
