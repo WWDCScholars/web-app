@@ -1,5 +1,11 @@
+# Redirect Netlify subdomain to primary domain
+https://wwdcscholars.netlify.app/* https://www.wwdcscholars.com/:splat 301!
+
+# App Store Redirect
+/app https://apps.apple.com/app/wwdcscholars/id1459158255?mt=8 301!
+
+# Discord Redirect
+/discord https://discord.gg/Vn5bHDg 301!
+
 # SPA History Pushstate
 /*    /index.html   200
-
-# Redirect Netlify subdomain to primary domain
-https://wwdcscholars.netlify.com/* https://www.wwdcscholars.com/:splat 301!

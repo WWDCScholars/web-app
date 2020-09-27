@@ -2,6 +2,90 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.13.2](https://github.com/WWDCScholars/web-app/compare/v3.13.1...v3.13.2) (2020-07-09)
+
+
+### Bug Fixes
+
+* Only insert non-existing scholars from query result ([710c44a](https://github.com/WWDCScholars/web-app/commit/710c44a1ff463afb940f3c1ce4b808e8cf7490fc))
+* Only show loading message when there are no scholars in the store ([e716984](https://github.com/WWDCScholars/web-app/commit/e716984d8305eea4f46b40b66de123bbc6eca264))
+
+### [3.13.1](https://github.com/WWDCScholars/web-app/compare/v3.13.0...v3.13.1) (2020-06-19)
+
+
+### Bug Fixes
+
+* Only display approved submissions on the profile page ([ee0a368](https://github.com/WWDCScholars/web-app/commit/ee0a36890ffb30f29086bf87506cf3f64e4f3fae))
+
+## [3.13.0](https://github.com/WWDCScholars/web-app/compare/v3.12.2...v3.13.0) (2020-06-18)
+
+
+### Features
+
+* Center submission screenshots and loop them ([82a89ef](https://github.com/WWDCScholars/web-app/commit/82a89eff3d633f8db8102fbe37f75bcbd6d79100))
+* Full name in page title on profile page ([e86eba0](https://github.com/WWDCScholars/web-app/commit/e86eba0328cddc55abb18a375c5b8bbe2db181a9))
+* Improve submission screenshot swiper buttons ([6a8e4db](https://github.com/WWDCScholars/web-app/commit/6a8e4dbf13f77931262f71f6f1eae43f45a2c069))
+
+
+### Bug Fixes
+
+* Always display scholars in the right order and only with approved years ([f7b3287](https://github.com/WWDCScholars/web-app/commit/f7b3287e04425de707eb59247886cd8164062b80))
+* properly load year infos on profile ([f303546](https://github.com/WWDCScholars/web-app/commit/f3035461a476b61bfee84238a12055f15ab9a554))
+
+### [3.12.2](https://github.com/WWDCScholars/web-app/compare/v3.12.1...v3.12.2) (2020-06-18)
+
+
+### Bug Fixes
+
+* Biography and description lines wrap ([9244029](https://github.com/WWDCScholars/web-app/commit/9244029407bffe25dfd0219cb96702165a684ed2))
+
+### [3.12.1](https://github.com/WWDCScholars/web-app/compare/v3.12.0...v3.12.1) (2020-06-18)
+
+
+### Bug Fixes
+
+* Make profile biography and submission description line-break aware ([2cb192c](https://github.com/WWDCScholars/web-app/commit/2cb192c7fdfa4e44485c848af9766538467efd91))
+
+## [3.12.0](https://github.com/WWDCScholars/web-app/compare/v3.11.5...v3.12.0) (2020-06-18)
+
+
+### Features
+
+* Add link to join page to page navigation ([12f358e](https://github.com/WWDCScholars/web-app/commit/12f358eef11949b227f9df721fad9318441a7f73))
+
+### [3.11.5](https://github.com/WWDCScholars/web-app/compare/v3.11.4...v3.11.5) (2020-05-19)
+
+### [3.11.4](https://github.com/WWDCScholars/web-app/compare/v3.11.3...v3.11.4) (2020-05-18)
+
+### [3.11.3](https://github.com/WWDCScholars/web-app/compare/v3.11.2...v3.11.3) (2020-05-11)
+
+
+### Bug Fixes
+
+* Change redirect order to make netlify subdomain redirect work ([d1e17c5](https://github.com/WWDCScholars/web-app/commit/d1e17c5e2bddfc61191930d5bbf9bfc557678296))
+
+### [3.11.2](https://github.com/WWDCScholars/web-app/compare/v3.11.1...v3.11.2) (2020-05-11)
+
+
+### Bug Fixes
+
+* Adapt redirect for new netlify domain ([bfbb795](https://github.com/WWDCScholars/web-app/commit/bfbb79529432a4a219a4de3bedf40485655134b4))
+
+### [3.11.1](https://github.com/WWDCScholars/web-app/compare/v3.11.0...v3.11.1) (2020-05-11)
+
+## [3.11.0](https://github.com/WWDCScholars/web-app/compare/v3.10.1...v3.11.0) (2020-05-11)
+
+
+### Features
+
+* Add scholars loading message to main page ([354f7fc](https://github.com/WWDCScholars/web-app/commit/354f7fc28e735fef6d1703fe8db1d1d01bbbad68))
+* Update application notice for 2020 ([6e9f292](https://github.com/WWDCScholars/web-app/commit/6e9f292ef4a0b5be93fda3a649629560830f7edd))
+
+
+### Bug Fixes
+
+* Move header above scholar thumbnails in z direction ([cc5831f](https://github.com/WWDCScholars/web-app/commit/cc5831fa6a875014e6701132a22f7301abcd5b6a))
+
 ### [3.10.1](https://github.com/WWDCScholars/web-app/compare/v3.10.0...v3.10.1) (2019-10-03)
 
 

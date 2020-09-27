@@ -14,65 +14,64 @@
     :options="swiperOptions"
   ).screenshots
       swiper-slide(
-        v-for="screenshot in yearInfo.screenshots",
-        :key="screenshot.fileChecksum"
+        v-for="(screenshot, index) in yearInfo.screenshots",
+        :key="index"
       ).screenshot
         img(:src="screenshot.downloadURL")
       .swiper-pagination(slot="pagination")
-      .swiper-button-prev.swiper-button(slot="button-prev")
-      .swiper-button-next.swiper-button(slot="button-next")
+      img(slot="button-prev", src="~assets/images/arrow-left.png").swiper-button-prev.swiper-button
+      img(slot="button-next", src="~assets/images/arrow-left.png").swiper-button-next.swiper-button
   .no-screenshots(v-else)
     i Unfortunately we don't have any screenshots of this submission.
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import { SwiperOptions } from 'swiper'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
-import yearToFetch from '~/util/wwdcYear-index'
+import { routeMatchYear, yearMatchYearInfo } from '~/util/wwdcYear-index'
 
-import 'swiper/dist/css/swiper.css'
+import 'swiper/css/swiper.css'
 
-import * as years from '~/store/years'
-const Years = namespace(years.name)
+import { name as scholarsName } from '~/store/scholars'
+const Scholars = namespace(scholarsName)
+
+import { name as yearsName } from '~/store/years'
+const Years = namespace(yearsName)
 
 @Component({
   components: {
-    swiper, swiperSlide
+    Swiper, SwiperSlide
   }
 })
 export default class ScholarProfileSubmission extends Vue {
   @Prop({ required: true })
   scholar!: Scholar
 
-  @Prop({ required: true })
-  yearInfo!: WWDCYearInfo
+  @Years.Getter('byRecordName')
+  yearByRecordName!: (recordName: string) => WWDCYear | undefined
 
-  swiperOptions = {
-    autoplay: {
-      delay: 8000,
-      disableOnInteraction: true
-    },
-    loop: false,
-    grabCursor: false,
-    setWrapperSize: false,
-    spaceBetween: 15,
-    slidesPerView: 'auto',
-    navigation: {
-      prevEl: '.swiper-button-prev',
-      nextEl: '.swiper-button-next'
-    },
-    pagination: {
-      el: '.swiper-pagination'
-    }
+  @Years.Action
+  fetchYear!: (recordName: string) => Promise<void>
+
+  @Scholars.Action('loadYearInfoIfMissing')
+  scholarLoadYearInfoIfMissing!: (payload: { scholarRecordName: string, yearInfoRecordName: string }) => Promise<void>
+
+  get wwdcYearReference(): CloudKit.Reference | undefined {
+    if (!this.scholar) return undefined
+    return routeMatchYear(this.scholar.wwdcYearsApproved, this.$route.params.year)
   }
 
-  @Years.Getter('byRecordName') yearByRecordName
-
   get wwdcYear(): WWDCYear | undefined {
-    if (!this.yearInfo) return undefined
-    return this.yearByRecordName(this.yearInfo.year.recordName)
+    if (!this.wwdcYearReference) return undefined
+    return this.yearByRecordName(this.wwdcYearReference.recordName)
+  }
+
+  get yearInfo(): WWDCYearInfo | undefined {
+    if (!this.scholar || !this.wwdcYearReference) return undefined
+    return this.scholar.loadedYearInfos[this.wwdcYearReference.recordName]
   }
 
   get challengeDescription(): string {
@@ -80,42 +79,55 @@ export default class ScholarProfileSubmission extends Vue {
     return this.wwdcYear.challengeDescription || ''
   }
 
+  get swiperOptions(): SwiperOptions {
+    const shouldLoop = (this.yearInfo?.screenshots?.length ?? 0) > 1
+
+    return {
+      autoplay: {
+        delay: 8000,
+        disableOnInteraction: true
+      },
+      loop: shouldLoop,
+      grabCursor: false,
+      setWrapperSize: false,
+      spaceBetween: 15,
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next'
+      },
+      pagination: {
+        el: '.swiper-pagination'
+      }
+    }
+  }
+
   validate({ params }): boolean {
     if (!params.year) return true
     return /\d{4}/.test(params.year)
   }
 
-  async fetch({ params, store, route, from }) {
-    if (route.fullPath === from.fullPath) return
+  async fetch() {
+    if (!this.scholar || !this.wwdcYearReference) return
 
-    // else, load data for new route
-    const scholar: Scholar = store.getters['scholars/byRecordName'](params.id)
-    if (!scholar) return
+    // load data for year
+    const yearInfoReference = yearMatchYearInfo(this.scholar.wwdcYearInfos, this.scholar.wwdcYearsApproved, this.wwdcYearReference.recordName)
+    if (!yearInfoReference) return
 
-    const years = scholar.wwdcYears.map((year, index) => {
-        return [year, scholar.wwdcYearInfos[index]]
-      }) as [CloudKit.Reference, CloudKit.Reference][]
-
-    const ytf = yearToFetch(years, params.year)
-    if (ytf === null) return
-
-    const [yearReference, yearInfoReference] = ytf
-
-    const promises: Promise<any>[] = []
-    if (yearReference && yearInfoReference) {
-      // fetch WWDCYear
-      promises.push(store.dispatch('years/fetchYear', yearReference.recordName))
-
-      // fetch WWDCYearInfo
-      promises.push(store.dispatch('scholars/loadYearInfoIfMissing', {
-        scholarRecordName: scholar.recordName,
+    await Promise.all([
+      this.fetchYear(this.wwdcYearReference.recordName),
+      this.scholarLoadYearInfoIfMissing({
+        scholarRecordName: this.scholar.recordName,
         yearInfoRecordName: yearInfoReference.recordName
-      }))
-    }
-
-    await Promise.all(promises)
+      })
+    ])
   }
 
+  @Watch('$route.params')
+  onParamsChanged() {
+    this.$fetch()
+  }
 }
 </script>
 
@@ -127,6 +139,7 @@ export default class ScholarProfileSubmission extends Vue {
 
 .description
   font-size: 0.9em
+  white-space: pre-line
 
 .screenshots
   position: relative
@@ -153,51 +166,39 @@ export default class ScholarProfileSubmission extends Vue {
   font-size: 0.8em
   text-align: center
 
-$swiper-arrow-length: 20px
-$swiper-arrow-width: 2px
+$swiper-arrow-width: 34px
+$swiper-arrow-height: 52px
 .swiper-container
   .swiper-button
     background: 0
-    width: $swiper-arrow-length
-    height: $swiper-arrow-length
-    margin-top: -$swiper-arrow-length / 2
-    opacity: 0
+    width: $swiper-arrow-width
+    height: $swiper-arrow-height
+    margin-top: -$swiper-arrow-height / 2
+    opacity: 0.5
     transition: opacity 100ms linear
     outline: 0
 
-    &:before, &:after
-      content: ''
-      display: block
-      position: absolute
-      background-color: $sch-purple
-
-    &:before
-      width: $swiper-arrow-length
-      height: $swiper-arrow-width
-
-    &:after
-      width: $swiper-arrow-width
-      height: $swiper-arrow-length
-
-    &.swiper-button-prev
-      transform: rotate(-45deg)
-
     &.swiper-button-next
-      transform: rotate(135deg)
+      transform: rotate(180deg)
+
+    &.swiper-button-disabled
+      opacity: 0
 
   /deep/.swiper-pagination-bullets
-    opacity: 0
+    opacity: 0.7
     transition: opacity 100ms linear
 
     .swiper-pagination-bullet
-      background: $sch-purple
+      background-color: $white
+      box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5)
+      opacity: 1
 
     .swiper-pagination-bullet-active
-      background: $sch-purple
+      background-color: $sch-purple
 
   &:hover .swiper-button, &:hover .swiper-pagination-bullets
     opacity: 1
 
     &.swiper-button-disabled
-      opacity: 0.35
+      opacity: 0
 </style>

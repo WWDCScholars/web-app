@@ -24,22 +24,22 @@ WWDC_YEAR="<The WWDCYear key to use>"
 
 #### Install dependencies
 ```
-$ yarn install // or npm
+$ npm install
 ```
 
 #### Build and run the app
 - In development mode using a local development server with hot-reload, etc.
   ```
-  $ yarn dev
+  $ npm dev
   ```
 - In production mode for static hosting
   ```
-  $ yarn generate
+  $ npm generate
   ```
 - In production mode with server-side rendering support
   ```
-  $ yarn build
-  $ yarn start // start the server
+  $ npm build
+  $ npm start
   ```
 When building for production you can find the results in `dist/`.
 

@@ -14,7 +14,7 @@
       )
 
     .container-fluid
-      base-section
+      base-section(v-if="scholar")
         .image
           img(v-lazy="profilePictureURL")
         .basic-info
@@ -87,7 +87,7 @@
               :class="activeClass"
             ) {{ year }}
 
-          nuxt-child(:scholar="scholar", :yearInfo="yearInfo")
+          nuxt-child(:scholar="scholar")
 
         base-button(v-if="editProfileLinkVisible").btn-round.edit-profile
           nuxt-link(slot="nobtn", to="/profile") Edit Profile
@@ -95,10 +95,10 @@
 
 <script lang="ts">
 import dayjs from 'dayjs'
+import { MetaInfo } from 'vue-meta'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
-import { CloudKit, Scholar, WWDCYearInfo } from '@wwdcscholars/cloudkit'
-import yearToFetch from '~/util/wwdcYear-index'
+import { CloudKit, Scholar } from '@wwdcscholars/cloudkit'
 
 import {
   BaseSection,
@@ -144,49 +144,38 @@ export default class ScholarProfile extends Vue {
   @Auth.State
   userScholarReference?: CloudKit.Reference
 
-  get scholar(): Scholar {
+  get scholar(): Scholar | undefined {
     const { id } = this.$route.params
     return this.scholarByRecordName(id)
   }
 
   get fullName(): string {
-    if (!this.scholar.givenName && !this.scholar.familyName) return ''
+    if (!this.scholar || (!this.scholar.givenName && !this.scholar.familyName)) return ''
     return this.scholar.givenName + ' ' + this.scholar.familyName
   }
 
   get age(): string {
-    if (!this.scholar.birthday) return ''
+    if (!this.scholar || !this.scholar.birthday) return ''
     const birthday = dayjs(this.scholar.birthday)
     return `${dayjs().diff(birthday, 'year')}`
   }
 
   get attended(): string {
-    if (!this.scholar.wwdcYears) return ''
+    if (!this.scholar || !this.scholar.wwdcYears) return ''
 
     return this.scholar.wwdcYears
       .map(year => `’${year.recordName.substring(7)}`)
       .join(', ')
   }
 
-  get yearInfo(): WWDCYearInfo | undefined {
-    if (!this.scholar.wwdcYears) return undefined
-
-    if (this.$route.params.year) {
-      const year = `WWDC ${this.$route.params.year}`
-      return this.scholar.loadedYearInfos[year]
-    } else {
-      const keys = Object.keys(this.scholar.loadedYearInfos).sort()
-      return this.scholar.loadedYearInfos[keys[keys.length - 1]]
-    }
-  }
-
   get profilePictureURL(): string {
-    if (!this.scholar.profilePicture) return ''
+    if (!this.scholar || !this.scholar.profilePicture) return ''
+
     return this.scholar.profilePicture.downloadURL
   }
 
   get mapCenter(): Coordinate {
-    if (!this.scholar.location) return { lat: 0, lng: 0 }
+    if (!this.scholar || !this.scholar.location || !this.scholar.location.latitude || !this.scholar.location.longitude) return { lat: 0, lng: 0 }
 
     return {
       lat: this.scholar.location.latitude,
@@ -195,19 +184,19 @@ export default class ScholarProfile extends Vue {
   }
 
   get mapZoom(): number {
-    if (!this.scholar.location) return 0
+    if (!this.scholar || !this.scholar.location) return 0
 
     return 6
   }
 
   get numAttended(): number {
-    if (!this.scholar.wwdcYears) return 0
+    if (!this.scholar || !this.scholar.wwdcYears) return 0
     return this.scholar.wwdcYears.length
   }
 
   get submissionLinks(): { [year: string]: object } {
-    if (!this.scholar.wwdcYears) return {}
-    const sortedYears = this.scholar.wwdcYears.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
+    if (!this.scholar || !this.scholar.wwdcYearsApproved) return {}
+    const sortedYears = this.scholar.wwdcYearsApproved.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
     const lastYearReference = sortedYears[sortedYears.length - 1]
     return sortedYears
       .reduce((acc, yearReference) => {
@@ -234,65 +223,47 @@ export default class ScholarProfile extends Vue {
 
   get editProfileLinkVisible(): boolean {
     return this.userScholarReference !== undefined
-      && this.userScholarReference.recordName === this.scholar.recordName
+      && this.userScholarReference.recordName === this.scholar?.recordName
+  }
+
+  head(): MetaInfo {
+    const title = this.scholar ? `${this.fullName} | WWDCScholars` : undefined
+
+    return {
+      title
+    }
   }
 
   validate({ params }): boolean {
     return /\b[0-9A-F]{8}\b-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-\b[0-9A-F]{12}\b/.test(params.id)
   }
 
-  async fetch({ params, store, error }) {
-    await store.dispatch('scholars/fetchScholar', params.id)
-    const scholar: Scholar = store.getters['scholars/byRecordName'](params.id)
+  async fetch() {
+    await this.$store.dispatch('scholars/fetchScholar', this.$route.params.id)
+    const scholar: Scholar = this.$store.getters['scholars/byRecordName'](this.$route.params.id)
 
     if (!scholar) {
-      return error({
-        statusCode: 404,
-        message: 'Scholar not found'
-      })
+      if (process.server) {
+        this.$nuxt.context.res.statusCode = 404
+      }
+
+      throw new Error('Scholar not found')
     }
 
-    const promises: Promise<any>[] = []
-
-    promises.push(store.dispatch('scholars/loadSocialMediaIfMissing', {
+    // TODO: Maybe we don't have to await this.
+    await this.$store.dispatch('scholars/loadSocialMediaIfMissing', {
       scholarRecordName: scholar.recordName,
       socialMediaRecordName: scholar.socialMedia.recordName
-    }))
-
-    if (scholar.wwdcYears && scholar.wwdcYears.length >= 1) {
-      const years = scholar.wwdcYears.map((year, index) => {
-        return [year, scholar.wwdcYearInfos[index]]
-      }) as [CloudKit.Reference, CloudKit.Reference][]
-
-      // find year to fetch
-      const ytf = yearToFetch(years, params.year)
-      if (ytf === null) {
-        return error({ code: 404, message: 'Year not found' })
-      }
-
-      const [yearReference, yearInfoReference] = ytf
-
-      if (yearReference && yearInfoReference) {
-        // fetch WWDCYear
-        promises.push(store.dispatch('years/fetchYear', yearReference.recordName))
-
-        // fetch WWDCYearInfo
-        promises.push(store.dispatch('scholars/loadYearInfoIfMissing', {
-          scholarRecordName: scholar.recordName,
-          yearInfoRecordName: yearInfoReference.recordName
-        }))
-      }
-    }
-
-    await Promise.all(promises)
+    })
   }
 
-  async created() {
+  created() {
     // wait unitl google maps is initialized
-    await this['$gmapApiPromiseLazy']()
-
-    // geocode readable location
-    this.loadLocationSlug(this.mapCenter)
+    this['$gmapApiPromiseLazy']()
+      .then(() => {
+        // geocode readable location
+        this.loadLocationSlug(this.mapCenter)
+      })
   }
 
   loadLocationSlug(location: Coordinate): void {
@@ -409,6 +380,7 @@ export default class ScholarProfile extends Vue {
   .short-bio
     margin-top: 30px
     font-size: 0.9em
+    white-space: pre-line
 
   .social-links
     display: flex
