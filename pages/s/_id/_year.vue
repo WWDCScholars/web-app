@@ -1,9 +1,10 @@
 <template lang="pug">
 .submission(v-if="wwdcYear && yearInfo")
   p.challenge-description
-    | {{ challengeDescription }}
+    span(v-if="challengeDescription")
+      | {{ challengeDescription }}&nbsp;
     span(v-if="yearInfo.description").
-      &nbsp;Here’s how {{ scholar.givenName }} describes
+      Here’s how {{ scholar.givenName }} describes
       {{ scholar.gender | possessivePronoun }} winning submission.
 
   p.description {{ yearInfo.description }}

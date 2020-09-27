@@ -452,8 +452,9 @@ export default class ScholarProfile extends Vue {
     display: flex
     justify-content: flex-start
     align-items: flex-start
+    flex-wrap: wrap
     margin-top: 15px
-    margin-bottom: 30px
+    margin-bottom: 15px
 
     a
       position: relative
@@ -464,6 +465,7 @@ export default class ScholarProfile extends Vue {
       border-radius: 22px
       text-decoration: none
       margin-right: 15px
+      margin-bottom: 15px
       transition: background-color 100ms linear, color 100ms linear
 
       &:hover
