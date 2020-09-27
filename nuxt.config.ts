@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const config: Configuration = {
-  mode: 'spa',
+  ssr: false,
 
   /*
    ** Headers of the page
@@ -58,11 +58,13 @@ const config: Configuration = {
   },
 
   /*
-   ** Inject process environment variables
+   ** Runtime configuration
    */
-  env: {
-    ...process.env as any
+
+  publicRuntimeConfig: {
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
   },
+  privateRuntimeConfig: {},
 
   /*
    ** Customize the progress-bar color
@@ -96,9 +98,6 @@ const config: Configuration = {
   modules: [
     // Load global SASS variables and mixins
     '@nuxtjs/style-resources',
-
-    // Load environment variables from `.env`
-    '@nuxtjs/dotenv',
 
     // CloudKit connection
     ['@wwdcscholars/cloudkit', {

@@ -6,5 +6,5 @@ interface Window {
 }
 
 declare module 'pica/dist/pica' {
-  export = Pica
+  export = pica
 }

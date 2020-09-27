@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import * as VueGoogleMaps from 'vue2-google-maps/src/main'
 
-export default ({ env }) => {
+export default ({ $config }) => {
   Vue.use(VueGoogleMaps, {
     load: {
-      key: env.GOOGLE_MAPS_API_KEY,
+      key: $config.googleMapsApiKey,
       libraries: 'places',
       language: 'en'
     }
