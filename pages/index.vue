@@ -63,7 +63,7 @@ export default class PageIndex extends Vue {
     return this.sortedYearKeys.reduce((acc, key) => {
       const record = this.allYears[key]
       const params = record === this.latestYear ? {} : { year: record.year }
-      const customExactActive = record === this.latestYear && record.year == this.$route.params.year
+      const customExactActive = record === this.latestYear && (record.year == this.$route.params.year || !this.$route.params.year)
       acc[record.year] = {
         customExactActive,
         link:{
