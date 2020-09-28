@@ -150,9 +150,8 @@ export default class PageProfileBasic extends Vue {
   @Profile.Getter
   scholar?: Scholar
 
-  async fetch({ store }) {
-    await store.dispatch('profile/loadScholar')
-    await store.dispatch('profile/loadPrivate')
+  async fetch() {
+    await this.$store.dispatch('profile/loadPrivate')
   }
 
   created() {

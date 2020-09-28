@@ -116,9 +116,8 @@ export default class PageProfileSocial extends Vue {
     return this.scholar.loadedSocialMedia
   }
 
-  async fetch({ store }) {
-    await store.dispatch('profile/loadScholar')
-    await store.dispatch('profile/loadSocial')
+  async fetch() {
+    await this.$store.dispatch('profile/loadSocial')
   }
 
   created() {

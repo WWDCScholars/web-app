@@ -52,9 +52,8 @@ export default class BaseForm extends Vue {}
         grid-column: span 1
 
   /deep/ .btn-cta
-    grid-column: 2
+    grid-column: span 2
     justify-self: end
-    white-space: nowrap
     width: auto
 </style>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-.container-outer.form-color-purple(v-if="scholar")
+.container-outer.form-color-purple(v-if="!$fetchState.pending && scholar")
   navigation-tab-bar
     nuxt-link(to="/profile") Basic
     nuxt-link(to="/profile/social") Social
@@ -7,6 +7,10 @@
     nuxt-link(to="/profile/account") Account
 
   nuxt-child
+.container-outer(v-else-if="$fetchState.pending")
+  .container-fluid
+    .loading-section
+      loading-spinner()
 .container-outer(v-else)
   .container-fluid
     .error-section
@@ -18,21 +22,28 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { Scholar } from '@wwdcscholars/cloudkit'
-import { NavigationTabBar } from '~/components'
+import { LoadingSpinner, NavigationTabBar } from '~/components'
+
+import { name as authName } from '~/store/auth'
+const Auth = namespace(authName)
 
 import { name as profileName } from '~/store/profile'
 const Profile = namespace(profileName)
 
 @Component({
   middleware: 'authenticated',
-  components: { NavigationTabBar }
+  components: { LoadingSpinner, NavigationTabBar }
 })
 export default class PageProfile extends Vue {
+  @Auth.State('pendingPromise')
+  authPendingPromise!: Promise<void>
+
   @Profile.Getter
   scholar?: Scholar
 
-  async fetch({ store }) {
-    await store.dispatch('profile/loadScholar')
+  async fetch() {
+    await this.authPendingPromise
+    await this.$store.dispatch('profile/loadScholar')
   }
 }
 </script>
@@ -44,4 +55,8 @@ export default class PageProfile extends Vue {
 
   a
     color: $apl-black
+
+.loading-section
+  padding: 40px 10px
+  text-align: center
 </style>

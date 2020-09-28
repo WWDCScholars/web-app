@@ -39,11 +39,9 @@ export default class PageProfileSubmission extends Vue {
     return this.scholar.loadedYearInfos
   }
 
-  async fetch({ store, route, from }) {
-    await store.dispatch('profile/loadScholar')
-
+  fetch() {
     // load lazy, no need to await
-    store.dispatch('profile/loadYearInfos')
+    this.$store.dispatch('profile/loadYearInfos')
   }
 }
 </script>
