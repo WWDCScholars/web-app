@@ -15,7 +15,8 @@ export const types = {
 let pendingPromiseResolve: () => void
 
 export interface State {
-  pending: Promise<void>
+  pendingPromise: Promise<void>
+  isPending: boolean
   userIdentity?: CloudKit.UserIdentity
   user?: Users
   userScholarReference?: CloudKit.Reference
@@ -24,7 +25,8 @@ export interface State {
 }
 
 export const state = (): State => ({
-  pending: new Promise((resolve) => pendingPromiseResolve = resolve),
+  pendingPromise: new Promise((resolve) => pendingPromiseResolve = resolve),
+  isPending: true,
   userIdentity: undefined,
   userScholarReference: undefined,
   user: undefined,
@@ -87,7 +89,8 @@ export const mutations: MutationTree<State> = {
   [types.setSignInURL](state, url: string) {
     Vue.set(state, 'signInURL', url)
   },
-  [types.donePending]() {
+  [types.donePending](state) {
+    Vue.set(state, 'isPending', false)
     pendingPromiseResolve()
   }
 }

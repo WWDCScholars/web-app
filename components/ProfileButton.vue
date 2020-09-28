@@ -1,6 +1,6 @@
 <template lang="pug">
 .profile-button(:class="{ 'nuxt-link-active': linkActive }")
-  .auth-pending(v-if="isPending"): loading-spinner
+  .auth-pending(v-if="isAuthPending"): loading-spinner
   nuxt-link(v-else-if="!isAuthenticated", to="/signin")
     img(src="~assets/images/sign-in-out.svg")
   button(v-else, @click="open = !open")
@@ -35,10 +35,9 @@ const Auth = namespace(auth.name)
 })
 export default class ProfileButton extends Vue {
   open: boolean = false
-  isPending: boolean = true
 
-  @Auth.State
-  pending!: Promise<void>
+  @Auth.State('isPending')
+  isAuthPending!: boolean
 
   @Auth.Getter
   isAuthenticated!: boolean
@@ -65,10 +64,6 @@ export default class ProfileButton extends Vue {
         id: this.userScholarReference.recordName
       }
     }
-  }
-
-  created() {
-    this.pending.then(() => this.isPending = false)
   }
 
   onSignOutClicked() {

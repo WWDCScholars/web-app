@@ -6,11 +6,11 @@
       li: nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
       li: nuxt-link(to="/about").color-green: span About
       li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue1: span Join
-    ul(v-if="!isPending && isAuthenticated")
+    ul(v-if="!isAuthPending && isAuthenticated")
       li: nuxt-link(v-if="profileLink", :to="profileLink").color-purple: span Profile
       li: nuxt-link(to="/profile").color-purple: span Edit Profile
       li: button(@click="onSignOutClicked").color-purple: span Sign Out
-    ul(v-else-if="!isPending")
+    ul(v-else-if="!isAuthPending")
       li: nuxt-link(to="/signin").color-purple: span Sign In
 </template>
 
@@ -28,10 +28,9 @@ const Auth = namespace(auth.name)
 })
 export default class NavigationMobile extends Vue {
   menuOpen: boolean = false
-  isPending: boolean = true
 
-  @Auth.State
-  pending!: Promise<void>
+  @Auth.State('isPending')
+  isAuthPending!: boolean
 
   @Auth.Getter
   isAuthenticated!: boolean
@@ -57,10 +56,6 @@ export default class NavigationMobile extends Vue {
         id: this.userScholarReference.recordName
       }
     }
-  }
-
-  created() {
-    this.pending.then(() => this.isPending = false)
   }
 
   onSignOutClicked() {
