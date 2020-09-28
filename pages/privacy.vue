@@ -242,9 +242,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 @Component
-export default class PagePrivacy extends Vue {}
+export default class PagePrivacy extends Vue {
+  head(): MetaInfo {
+    return { title: 'Privacy Policy | WWDCScholars' }
+  }
+}
 </script>
 
 <style lang="sass" scoped>

@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import { namespace } from 'vuex-class'
 import { Scholar } from '@wwdcscholars/cloudkit'
 import { LoadingSpinner, NavigationTabBar } from '~/components'
@@ -40,6 +41,10 @@ export default class PageProfile extends Vue {
 
   @Profile.Getter
   scholar?: Scholar
+
+  head(): MetaInfo {
+    return { title: 'Profile | WWDCScholars' }
+  }
 
   async fetch() {
     await this.authPendingPromise
