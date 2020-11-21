@@ -130,7 +130,7 @@ const config: Configuration = {
     disabled: isDevelopment,
     dsn: process.env.SENTRY_DSN,
     config: {
-      environment: process.env.SENTRY_ENVIRONMENT,
+      environment: process.env[`${envPrefix}_SENTRY_ENVIRONMENT`],
       release: `app@v${version}`,
       autoBreadcrumbs: {
         'ui': false,
