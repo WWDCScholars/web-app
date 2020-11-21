@@ -9,6 +9,11 @@
   # Default build command.
   command = "npm run build:prod"
 
+# Branch Deploy context: all deploys that are not from a pull/merge request or
+# from the Production branch will inherit these settings.
+[context.branch-deploy]
+  command = "npm run build:stage"
+
 # Redirect Netlify subdomain to primary domain
 [[redirects]]
   from = "https://wwdcscholars.netlify.app"
