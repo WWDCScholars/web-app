@@ -91,6 +91,7 @@ export const actions: ActionTree<State, RootState> = {
   },
   async loadDownloadRequest({ getters, commit }) {
     const scholar: Scholar = getters.scholar
+    if (!scholar) return
 
     const results = await GDPRRequest.query({
       filterBy: [{
@@ -104,7 +105,7 @@ export const actions: ActionTree<State, RootState> = {
       }, {
         fieldName: 'scholar',
         comparator: CloudKit.QueryFilterComparator.EQUALS,
-        fieldValue: { value: scholar.recordName }
+        fieldValue: { value: { recordName: scholar.recordName } }
       }]
     })
 
