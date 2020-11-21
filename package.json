@@ -22,10 +22,11 @@
     "start:stage": "cross-env NODE_ENV=staging nuxt-ts start",
     "release:create": "standard-version",
     "release:create:pre": "standard-version --prerelease pre",
-    "release:build": "cross-env NODE_ENV=production LOCAL=1 nuxt-ts build",
+    "release:build:prod": "cross-env NODE_ENV=production LOCAL=1 nuxt-ts build",
+    "release:build:stage": "cross-env NODE_ENV=production LOCAL=1 nuxt-ts build",
     "release:sentry": "./.github/release_sentry.sh",
     "release:publish": "git push --follow-tags",
-    "release": "npm run release:create && npm run release:build && npm run release:publish && npm run release:sentry"
+    "release": "npm run release:create && npm run release:build:prod && npm run release:publish && npm run release:sentry"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.6",
