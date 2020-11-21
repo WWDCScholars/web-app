@@ -57,6 +57,10 @@ export default class PageProfileAccount extends Vue {
   @Profile.Getter
   hasPendingDownloadRequest!: boolean
 
+  async fetch() {
+    await this.$store.dispatch('profile/loadDownloadRequest')
+  }
+
   async requestDownload() {
     if (this.hasPendingDownloadRequest) {
       return
