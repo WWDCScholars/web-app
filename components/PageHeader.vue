@@ -76,4 +76,8 @@ export default class PageHeader extends Vue {
 
       +for-phone-only
         font-size: 1.2em
+
+  .appstore-download
+    margin-left: auto
+    margin-right: 30px
 </style>
