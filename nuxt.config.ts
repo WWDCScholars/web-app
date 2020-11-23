@@ -106,10 +106,9 @@ const config: Configuration = {
       environment: process.env[`${envPrefix}_CLOUDKIT_ENVIRONMENT`]
     }],
 
-    // Google Analytics
-    ['@nuxtjs/google-analytics', {
-      id: process.env.GOOGLE_ANALYTICS_ID,
-      dev: false
+    // Plausible Analytics
+    ['vue-plausible', {
+      domain: process.env[`${envPrefix}_PLAUSIBLE_DOMAIN`]
     }],
 
     // Load sentry
