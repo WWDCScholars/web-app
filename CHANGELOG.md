@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.1...v3.14.0-pre.2) (2020-11-23)
+
+
+### Bug Fixes
+
+* Align App Store link properly ([085a590](https://github.com/WWDCScholars/web-app/commit/085a590e15e23c580f33b1be3d24f495f7dd61c9))
+
 ## [3.14.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.0...v3.14.0-pre.1) (2020-11-23)
 
 
