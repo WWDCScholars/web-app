@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.0...v3.14.0-pre.1) (2020-11-23)
+
+
+### Features
+
+* Replace Google Analytics with Plausible Analytics ([ca204db](https://github.com/WWDCScholars/web-app/commit/ca204db99572ab8d7eb10c107911c46a1be3cff3))
+* **profile:** Load existing GDPRRequests in profile/account ([df196dd](https://github.com/WWDCScholars/web-app/commit/df196dd0e24c81397cb305640a5c7b2640677ee0))
+
 ## [3.14.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.13.2...v3.14.0-pre.0) (2020-11-21)
 
 
