@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import { Component, Model, Vue } from 'nuxt-property-decorator'
+import { throttle, debounce } from 'throttle-debounce'
 import { InputText } from '../inputs'
 
 @Component
@@ -79,15 +80,23 @@ export default class MKSearch extends Vue {
       this.autocompleteResults = []
       return
     }
-    // TODO: Throttle, dont start new search until first one finishes
 
     if (value.length < 1) return
+    if (value.length < 5) {
+      this.autocompleteInputThrottled(value)
+    } else {
+      this.autocompleteInputDebounced(value)
+    }
+  }
 
+  autocompleteInputDebounced = debounce(500, this.autocompleteInput)
+  autocompleteInputThrottled = throttle(500, this.autocompleteInput)
+  autocompleteInput(input: string) {
     if (this.searchRequestId) {
       this.search?.cancel(this.searchRequestId)
     }
 
-    this.searchRequestId = this.search?.autocomplete(value.trim(), (error, response) => {
+    this.searchRequestId = this.search?.autocomplete(input, (error, response) => {
       if (error) {
         console.error(error)
         return

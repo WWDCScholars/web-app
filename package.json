@@ -46,6 +46,7 @@
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^8.0.2",
     "swiper": "^5.3.8",
+    "throttle-debounce": "^3.0.1",
     "vee-validate": "^3.4.0",
     "vue-awesome-swiper": "^4.1.1",
     "vue-flatpickr-component": "^8.1.6",
@@ -61,6 +62,7 @@
     "@types/dotenv": "^8.2.0",
     "@types/node": "^13.13.5",
     "@types/pica": "^5.1.1",
+    "@types/throttle-debounce": "^2.1.0",
     "cross-env": "^7.0.2",
     "standard-version": "^9.0.0",
     "typescript": "^3.9.7"
