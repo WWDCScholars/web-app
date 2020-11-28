@@ -1,16 +1,9 @@
 <template lang="pug">
 .container-outer.form-color-purple
   .scholar-profile
-    gmap-map(
-      :center="mapCenter",
-      :zoom="mapZoom",
-      :options.once="mapOptions"
-    ).map
-      gmap-marker(
-        v-if="mapCenter.lat && mapCenter.lng",
-        :position="mapCenter",
-        :clickable.once="true",
-        :draggable.once="false"
+    .profile-map
+      profile-map(
+        :coordinate="location"
       )
 
     .container-fluid
@@ -96,14 +89,15 @@
 <script lang="ts">
 import dayjs from 'dayjs'
 import { MetaInfo } from 'vue-meta'
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { CloudKit, Scholar } from '@wwdcscholars/cloudkit'
 
 import {
   BaseSection,
   BaseButton,
-  Copyable
+  Copyable,
+  ProfileMap
 } from '~/components'
 
 import * as auth from '~/store/auth'
@@ -112,32 +106,18 @@ const Auth = namespace(auth.name)
 import * as scholars from '~/store/scholars'
 const Scholars = namespace(scholars.name)
 
-interface Coordinate {
-  lat: number
-  lng: number
-}
-
 @Component({
   components: {
     BaseSection,
     BaseButton,
-    Copyable
+    Copyable,
+    ProfileMap
   },
   scrollToTop: true
 })
 export default class ScholarProfile extends Vue {
+  mapKitInitialized: boolean = false
   locationSlug: string = '-'
-
-  mapOptions = {
-    disableDefaultUI: true,
-    gestureHandling: 'none',
-    scrollwheel: false,
-    styles: [
-      { featureType: 'poi', stylers: [{ visibility: 'off' }] },
-      { featureType: 'road', stylers: [{ visibility: 'off' }] },
-      { featureType: 'transit', stylers: [{ visibility: 'off' }] }
-    ]
-  }
 
   @Scholars.Getter('byRecordName') scholarByRecordName
 
@@ -174,13 +154,10 @@ export default class ScholarProfile extends Vue {
     return this.scholar.profilePicture.downloadURL
   }
 
-  get mapCenter(): Coordinate {
-    if (!this.scholar || !this.scholar.location || !this.scholar.location.latitude || !this.scholar.location.longitude) return { lat: 0, lng: 0 }
+  get location(): mapkit.Coordinate | undefined {
+    if (!this.scholar || !this.scholar.location || !this.mapKitInitialized) return undefined
 
-    return {
-      lat: this.scholar.location.latitude,
-      lng: this.scholar.location.longitude
-    }
+    return new mapkit.Coordinate(this.scholar.location.latitude, this.scholar.location.longitude)
   }
 
   get mapZoom(): number {
@@ -257,49 +234,33 @@ export default class ScholarProfile extends Vue {
     })
   }
 
-  created() {
-    // wait unitl google maps is initialized
-    this['$gmapApiPromiseLazy']()
-      .then(() => {
-        // geocode readable location
-        this.loadLocationSlug(this.mapCenter)
-      })
+  async created() {
+    await this.$loadMapKit()
+    this.mapKitInitialized = true
+    this.loadLocationSlug(this.location, undefined)
   }
 
-  loadLocationSlug(location: Coordinate): void {
-    const geocoder = new google.maps.Geocoder()
-    geocoder.geocode({ location }, (results, status) => {
-      if (status !== google.maps.GeocoderStatus.OK || !results[0]) {
-        this.locationSlug = '-'
+  @Watch('location')
+  loadLocationSlug(newLocation?: mapkit.Coordinate, oldLocation?: mapkit.Coordinate): void {
+    if (!newLocation || (newLocation.latitude === oldLocation?.latitude && newLocation.longitude == oldLocation?.longitude)) return
+
+    const geocoder = new mapkit.Geocoder()
+    geocoder.reverseLookup(newLocation, (error, response) => {
+      if (error) {
+        console.error(error)
         return
       }
 
-      // find result with types = ['locality', 'political']
-      const filteredResults = results.filter(result => {
-        return result.types.length === 2
-          && result.types.includes('locality')
-          && result.types.includes('political')
-      })
+      if (!response.results[0]) return
+      const result = response.results[0]
 
-      if (!filteredResults[0]) {
-        let builtLocation: { city?: string; state?: string; country?: string } = {}
-        for (const component of results[0].address_components) {
-          if (component.types.includes('sublocality') || component.types.includes('locality')) {
-            builtLocation.city = component.long_name
-          }
-          if (component.types.includes('administrative_area_level_1')) {
-            builtLocation.state = component.short_name
-          }
-          if (component.types.includes('country')) {
-            builtLocation.country = component.long_name
-          }
-        }
-        let addressComponents = [builtLocation.city, builtLocation.state, builtLocation.country]
-        this.locationSlug = addressComponents.join(', ')
-      } else {
-        const result = filteredResults[0]
-        this.locationSlug = result.formatted_address
-      }
+      let slugComponents: string[] = []
+      if (result.locality) slugComponents.push(result.locality)
+      if (result.administrativeAreaCode) slugComponents.push(result.administrativeAreaCode)
+      if (result.country) slugComponents.push(result.country)
+      else slugComponents.push(result.countryCode)
+
+      this.locationSlug = slugComponents.join(', ')
     })
   }
 
@@ -317,7 +278,7 @@ export default class ScholarProfile extends Vue {
 </script>
 
 <style lang="sass" scoped>
-.map
+.profile-map
   width: 100%
   height: 360px
   position: relative

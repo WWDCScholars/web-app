@@ -136,13 +136,6 @@
     <p>If you are logged into your YouTube account while you visit our site, you enable YouTube to directly allocate your browsing patterns to your personal profile. You have the option to prevent this by logging out of your YouTube account.</p>
     <p>The use of YouTube is based on our interest in presenting our online content in an appealing manner. Pursuant to Art. 6 Sect. 1 lit. f GDPR, this is a legitimate interest.</p>
     <p>For more information on how YouTube handles user data, please consult the YouTube Data Privacy Policy under: <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener">https://policies.google.com/privacy?hl=en</a>.</p>
-    <h3>Google Maps</h3>
-    <p>Via an API, this website/app uses the mapping service Google Maps. The provider is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.</p>
-    <p>To enable the use of the Google Maps features, your IP address must be stored. As a rule, this information is transferred to one of Google’s servers in the United States, where it is archived. The operator of this website/app has no control over the data
-      transfer.
-    </p>
-    <p>We use Google Maps to present our online content in an appealing manner and to make the locations disclosed on our website/in our app easy to find. This constitutes a legitimate interest as defined in Art. 6 Sect. 1 lit. f GDPR.</p>
-    <p>For more information on the handling of user data, please review Google’s Data Privacy Declaration under: <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener">https://policies.google.com/privacy?hl=en</a>.</p>
     <h3>Apple Maps</h3>
     <p>We are using the mapping service provided by Apple Maps. The provider of this service is Apple Inc., 1 Apple Park Way, Cupertino, CA 95014, USA.</p>
     <p>When you visit any website/use any app, into which Apple Maps has been embedded, your IP address and other information concerning your behavior patterns on this website/in this app will be transferred to Apple. Under certain circumstances, Apple Maps

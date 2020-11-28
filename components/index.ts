@@ -14,6 +14,7 @@ export { default as FormField } from './FormField.vue'
 
 export { default as ScholarThumbnail } from './ScholarThumbnail.vue'
 
+export { default as ProfileMap } from './ProfileMap.vue'
 export { default as ProfileSubmission } from './ProfileSubmission.vue'
 
 export { default as BurgerButton } from './BurgerButton.vue'
@@ -25,3 +26,4 @@ export { default as Copyable } from './Copyable.vue'
 export { default as LoadingSpinner } from './LoadingSpinner.vue'
 
 export * from './inputs'
+export * from './mapkit'

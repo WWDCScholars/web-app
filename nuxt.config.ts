@@ -62,7 +62,10 @@ const config: Configuration = {
    */
 
   publicRuntimeConfig: {
-    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
+    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`],
+    colors: {
+      purple: 'rgb(65, 53, 153)'
+    }
   },
   privateRuntimeConfig: {},
 
@@ -86,7 +89,7 @@ const config: Configuration = {
     '~/plugins/globals',
     '~/plugins/filters',
     '~/plugins/vue-lazyload',
-    '~/plugins/vue2-google-maps',
+    '~/plugins/mapkit',
     '~/plugins/vee-validate',
 
     '~/plugins/auth'

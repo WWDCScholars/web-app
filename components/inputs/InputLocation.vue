@@ -1,44 +1,52 @@
 <template lang="pug">
 .input-location
-  input-text(
-    type="text",
-    :name.once="name",
-    :placeholder.once="placeholder",
-    :required.once="required",
-    :value="inputValue"
+  MKSearch(
+    v-model="textValue",
+    @change="selectedResultChanged"
   )
-    gmap-autocomplete(
-      :types.once="['(cities)']",
-      placeholder="",
-      :value="inputValue",
-      @place_changed="setPlace"
+    input-text(
+      type="text",
+      :name.once="name",
+      :placeholder.once="placeholder",
+      :required.once="required",
+      :value="textValue"
     )
 
-  gmap-map(
-    :center="center",
-    :options.once="mapOptions",
-    :zoom.once="1",
-    ref="map"
-  ).map
-    gmap-marker(
-      v-if="center.lat !== 0 || center.lng !== 0",
-      :position="center",
-      :clickable="true",
-      :draggable="false"
-    )
+  .input-map
+    MKMap(
+      ref="map",
+      mapType="mutedStandard",
+      showsCompass="hidden",
+      showsScale="hidden",
+      :showsMapTypeControl="false",
+      :showsZoomControl="true",
+      :showsUserLocationControl="false",
+      :showsPointsOfInterest="false"
+    ).map
+      MKMarkerAnnotation(
+        v-if="center",
+        :coordinate="center",
+        :options="annotationOptions"
+      )
 </template>
 
 <script lang="ts">
-import { Component, Model, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, Model, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { CloudKit } from '@wwdcscholars/cloudkit'
 import InputText from './InputText.vue'
+import { MKSearch, MKMap, MKMarkerAnnotation } from '../mapkit'
 
 @Component({
-  components: { InputText }
+  components: {
+    InputText,
+    MKSearch,
+    MKMap,
+    MKMarkerAnnotation
+  }
 })
 export default class InputLocation extends Vue {
-  @Model('change', { default: () => ({ latitude: 0, longitude: 0 }) })
-  value!: CloudKit.Location
+  @Model('change', { default: undefined })
+  value!: CloudKit.Location | undefined
 
   @Prop({ required: true })
   name!: string
@@ -47,62 +55,67 @@ export default class InputLocation extends Vue {
   @Prop({ default: false })
   required!: boolean
 
-  value_validate: { latitude: number; longitude: number } = this.value || { latitude: 0, longitude: 0 }  // tslint:disable-line
-
-  inputValue: string = ''
-  zoom: number = 1
-  mapOptions: object = {
-    disableDefaultUI: true,
-    gestureHandling: 'none',
-    scrollWheel: false
+  textValue: string = ''
+  searchResults: mapkit.SearchAutocompleteResult[] = []
+  center: mapkit.Coordinate | null = null
+  annotationOptions: mapkit.MarkerAnnotationConstructorOptions = {
+    enabled: false,
+    color: this.$config.colors.purple,
+    glyphColor: 'white',
+    glyphImage: { 1: '/icons/logo_plain_minimal.svg' }
   }
 
-  get center(): google.maps.LatLngLiteral {
-    return {
-      lat: this.value.latitude,
-      lng: this.value.longitude
-    }
-  }
+  value_validate: { latitude: number; longitude: number } = this.value || { latitude: 0, longitude: 0 }
 
   async created() {
-    await this['$gmapApiPromiseLazy']()
-    if (this.value && this.value.latitude !== 0 && this.value.longitude !== 0) {
-      this.setInputValueFromCoords(this.value)
-    }
+    await this.$loadMapKit()
+
+    if (!this.value) return
+    this.center = new mapkit.Coordinate(this.value.latitude, this.value.longitude)
+    this.geocodeInputValue(this.center)
   }
 
-  setPlace(place) {
-    if (!place) { return }
+  selectedResultChanged(result: mapkit.SearchAutocompleteResult) {
     const value = {
-      latitude: place.geometry.location.lat(),
-      longitude: place.geometry.location.lng()
+      latitude: result.coordinate.latitude,
+      longitude: result.coordinate.longitude
     }
+    this.center = result.coordinate
     this.value_validate = value
     this.$emit('change', value)
-    this.inputValue = place.formatted_address
-    this.$refs.map['fitBounds'](place.geometry.viewport)
+    this.textValue = result.displayLines.join(', ')
   }
 
-  setInputValueFromCoords({ latitude, longitude }) {
-    const geocoder = new google.maps.Geocoder()
-    geocoder.geocode({
-      location: { lat: latitude, lng: longitude }
-    }, (results, status) => {
-      if (status !== google.maps.GeocoderStatus.OK) {
+  @Watch('center')
+  onCenterChanged() {
+    const map = this.$refs.map as MKMap
+    if (!map || !this.center) return
+
+    const region = new mapkit.CoordinateRegion(
+      this.center,
+      new mapkit.CoordinateSpan(7, 7)
+    )
+    map.setRegion(region)
+  }
+
+  geocodeInputValue(coordinate: mapkit.Coordinate) {
+    const geocoder = new mapkit.Geocoder()
+    geocoder.reverseLookup(coordinate, (error, response) => {
+      if (error) {
+        console.error(error)
         return
       }
 
-      let resultIndex = results.length - 1
-      let result
-      do {
-        result = results[resultIndex--]
-      } while (result.address_components[0].types[0] !== 'locality')
-      if (!result) {
-        return
-      }
+      if (!response.results[0]) return
+      const result = response.results[0]
 
-      this.inputValue = result.formatted_address
-      this.$refs.map['fitBounds'](result.geometry.viewport)
+      let slugComponents: string[] = []
+      if (result.locality) slugComponents.push(result.locality)
+      if (result.administrativeAreaCode) slugComponents.push(result.administrativeAreaCode)
+      if (result.country) slugComponents.push(result.country)
+      else slugComponents.push(result.countryCode)
+
+      this.textValue = slugComponents.join(', ')
     })
   }
 }
@@ -110,10 +123,49 @@ export default class InputLocation extends Vue {
 
 <style lang="sass" scoped>
 .input-location
-  .map
+  position: relative
+
+  /deep/ .mk-autocomplete-results
+    z-index: 1000
+    top: calc(100% - 1px)
+    background-color: $white
+    border: 1px solid $form-border-color
+    border-radius: $border-radius
+    box-shadow: 0 2px 6px $shadow
+
+    .mk-result
+      padding: 5px 15px
+
+  .input-map
+    z-index: 999
+    position: relative
     width: 100%
     padding-top: 51%
     margin-top: 15px
     border-radius: $border-radius
     overflow: hidden
+    background-color: $sch-gray0
+
+    .map
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+
++form-colors
+  $bg: dyn-temp('bg')
+  $fg: dyn-temp('fg')
+
+  .input-location
+    /deep/ .mk-autocomplete-results
+      box-shadow: 0 2px 6px transparentize($bg, 0.6)
+
+      .mk-result
+        &:hover, &.mk-result-selected
+          color: $fg
+          background-color: $bg
+
+          span
+            color: transparentize($fg, 0.2)
 </style>
