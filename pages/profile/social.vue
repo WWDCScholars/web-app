@@ -97,16 +97,6 @@ const Profile = namespace(profileName)
   }
 })
 export default class PageProfileSocial extends Vue {
-  formData: {
-    twitter?: string,
-    github?: string,
-    discord?: string,
-    linkedin?: string,
-    imessage?: string,
-    facebook?: string,
-    website?: string
-  } = {}
-
   @Profile.Getter
   scholar?: Scholar
 
@@ -116,16 +106,16 @@ export default class PageProfileSocial extends Vue {
     return this.scholar.loadedSocialMedia
   }
 
-  async fetch() {
-    await this.$store.dispatch('profile/loadSocial')
-  }
-
-  created() {
-    this.loadFormData()
-  }
-
-  loadFormData() {
-    this.formData = {
+  get formData(): {
+    twitter?: string,
+    github?: string,
+    discord?: string,
+    linkedin?: string,
+    imessage?: string,
+    facebook?: string,
+    website?: string
+  } {
+    return {
       twitter: this.socialMedia?.twitter,
       github: this.socialMedia?.github,
       discord: this.socialMedia?.discord,
@@ -134,6 +124,10 @@ export default class PageProfileSocial extends Vue {
       facebook: this.socialMedia?.facebook,
       website: this.socialMedia?.website,
     }
+  }
+
+  async fetch() {
+    await this.$store.dispatch('profile/loadSocial')
   }
 
   async submit() {
@@ -148,7 +142,6 @@ export default class PageProfileSocial extends Vue {
           socialMedia: this.socialMedia!,
           changes
         })
-        this.loadFormData()
       }
     )
   }

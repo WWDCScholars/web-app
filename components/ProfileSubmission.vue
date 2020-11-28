@@ -79,7 +79,7 @@ base-section
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch, Vue, namespace } from 'nuxt-property-decorator'
+import { Component, Prop, Vue, namespace } from 'nuxt-property-decorator'
 import { Location } from 'vue-router'
 import { WWDCYearInfo, WWDCYear, CloudKit } from '@wwdcscholars/cloudkit'
 import BaseSection from './BaseSection.vue'
@@ -121,15 +121,6 @@ export default class ProfileSubmission extends Vue {
     { label: 'STEM', value: 'stem' },
     { label: 'Both', value: 'both' }
   ]
-
-  formData: {
-    appliedAs?: string,
-    description?: string,
-    screenshots?: (CloudKit.Asset | File)[],
-    videoLink?: string,
-    githubLink?: string,
-    appstoreLink?: string
-  } = {}
 
   screenshotsValue: (CloudKit.Asset | File)[] | undefined = []
 
@@ -174,14 +165,15 @@ export default class ProfileSubmission extends Vue {
     return false
   }
 
-  created() {
-    this.loadFormData()
-  }
-
-  loadFormData() {
-    this.screenshotsValue = this.yearInfo?.screenshots
-
-    this.formData = {
+  get formData(): {
+    appliedAs?: ('student' | 'stem' | 'both'),
+    description?: string,
+    screenshots?: (CloudKit.Asset | File)[],
+    videoLink?: string,
+    githubLink?: string,
+    appstoreLink?: string
+  } {
+    return {
       appliedAs: this.yearInfo?.appliedAs,
       description: this.yearInfo?.description,
       screenshots: this.screenshotsValue,
@@ -189,6 +181,10 @@ export default class ProfileSubmission extends Vue {
       githubLink: this.yearInfo?.githubLink,
       appstoreLink: this.yearInfo?.appstoreLink
     }
+  }
+
+  created() {
+    this.screenshotsValue = this.yearInfo?.screenshots
   }
 
   async submit() {
@@ -203,7 +199,6 @@ export default class ProfileSubmission extends Vue {
           yearInfo: this.yearInfo!,
           changes
         })
-        this.loadFormData()
       }
     )
   }
@@ -220,11 +215,6 @@ export default class ProfileSubmission extends Vue {
         await this.deleteYearInfo(this.yearInfo!)
       }
     )
-  }
-
-  @Watch('yearInfo')
-  yearInfoChanged() {
-    this.loadFormData()
   }
 
   profileSubmissionLink(yearInfo: WWDCYearInfo): Location {

@@ -138,28 +138,18 @@ export default class PageProfileBasic extends Vue {
     { label: 'other', value: 'other' }
   ]
 
-  formData: {
-    profilePicture?: string | File;
-    email?: string;
-    birthday?: number;
-    gender?: ('male' | 'female' | 'other');
-    location?: CloudKit.Location;
-    biography?: string;
-  } = {}
-
   @Profile.Getter
   scholar?: Scholar
 
-  async fetch() {
-    await this.$store.dispatch('profile/loadPrivate')
-  }
-
-  created() {
-    this.loadFormData()
-  }
-
-  loadFormData() {
-    this.formData = {
+  get formData(): {
+    profilePicture?: string | File,
+    email?: string,
+    birthday?: number,
+    gender?: ('male' | 'female' | 'other'),
+    location?: CloudKit.Location,
+    biography?: string
+  } {
+    return {
       profilePicture: this.scholar?.profilePicture.downloadURL,
       email: this.scholar?.loadedPrivate?.email,
       birthday: this.scholar?.birthday,
@@ -167,6 +157,10 @@ export default class PageProfileBasic extends Vue {
       location: this.scholar?.location,
       biography: this.scholar?.biography
     }
+  }
+
+  async fetch() {
+    await this.$store.dispatch('profile/loadPrivate')
   }
 
   async submit() {
@@ -181,7 +175,6 @@ export default class PageProfileBasic extends Vue {
           scholar: this.scholar!,
           changes
         })
-        this.loadFormData()
       }
     )
   }
