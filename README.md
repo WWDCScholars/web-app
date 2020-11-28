@@ -10,14 +10,14 @@ WWDCScholars is based on [Apple's BaaS, CloudKit](https://developer.apple.com/ic
 
 #### Create a `.env` file at the root of this project that looks like this:
 ```
-CLOUDKIT_CONTAINER_IDENTIFIER="<CloudKit Container Identifier>"
-CLOUDKIT_API_TOKEN="<CloudKit API Token>"
-CLOUDKIT_ENVIRONMENT="<CloudKit Environment>"
+DEV_CLOUDKIT_CONTAINER_IDENTIFIER="<CloudKit Container Identifier>"
+DEV_CLOUDKIT_API_TOKEN="<CloudKit API Token>"
+DEV_CLOUDKIT_ENVIRONMENT="<CloudKit Environment>"
 
 DEV_MAPKIT_JWT="<MapKit JS JWT>"
 
 SENTRY_DSN="<Sentry DSN>"
-SENTRY_ENVIRONMENT="<Sentry Environment>"
+DEV_SENTRY_ENVIRONMENT="<Sentry Environment>"
 
 DEV_PLAUSIBLE_DOMAIN="" # no analytics for dev environment
 
@@ -36,12 +36,7 @@ $ npm install
   ```
 - In production mode for static hosting
   ```
-  $ npm generate
-  ```
-- In production mode with server-side rendering support
-  ```
   $ npm build
-  $ npm start
   ```
 When building for production you can find the results in `dist/`.
 
