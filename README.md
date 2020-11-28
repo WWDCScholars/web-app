@@ -19,6 +19,8 @@ GOOGLE_MAPS_API_KEY="<Google Maps API Key>"
 SENTRY_DSN="<Sentry DSN>"
 SENTRY_ENVIRONMENT="<Sentry Environment>"
 
+DEV_PLAUSIBLE_DOMAIN="" # no analytics for dev environment
+
 WWDC_YEAR="<The WWDCYear key to use>"
 ```
 
