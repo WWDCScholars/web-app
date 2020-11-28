@@ -117,25 +117,25 @@
     <p>We share personal data with third parties only if this is necessary in conjunction with the handling of the contract; for instance, with the financial institution tasked with the processing of payments.</p>
     <p>Any further transfer of data shall not occur or shall only occur if you have expressly consented to the transfer. Any sharing of your data with third parties in the absence of your express consent, for instance for advertising purposes, shall not occur.</p>
     <p>The basis for the processing of data is Art. 6 Sect. 1 lit. b GDPR, which permits the processing of data for the fulfilment of a contract or for pre-contractual actions.</p>
-    <h2>4. Social media</h2>
+    <!--<h2>4. Social media</h2>
     <h3>Twitter plug-in</h3>
     <p>We have integrated functions of the social media platform Twitter into our website/app. These functions are provided by Twitter Inc., 1355 Market Street, Suite 900, San Francisco, CA 94103, USA. While you use Twitter and the „Re-Tweet“ function, websites/apps
       you visit are linked to your Twitter account and disclosed to other users. During this process, data are transferred to Twitter as well. We must point out, that we, the providers of the website/app and its pages do not know anything about the content
       of the data transferred and the use of this information by Twitter. For more details, please consult Twitter’s Data Privacy Declaration at: <a href="https://twitter.com/en/privacy" target="_blank" rel="noopener">https://twitter.com/en/privacy</a>.</p>
     <p>The use of Twitter plug-ins is based on Art. 6 Sect. 1 lit. f GDPR. The operator of the website/app has a legitimate interest in being as visible as possible on social media.</p>
-    <p>You have the option to reset your data protection settings on Twitter under the account settings at <a href="https://twitter.com/account/settings" target="_blank" rel="noopener">https://twitter.com/account/settings</a>.</p>
+    <p>You have the option to reset your data protection settings on Twitter under the account settings at <a href="https://twitter.com/account/settings" target="_blank" rel="noopener">https://twitter.com/account/settings</a>.</p>-->
     <h2>5. Analysis tools and advertising</h2>
     <h3>Plausible Analytics</h3>
     <p>We use the open source Plausible Analytics routed through our stats subdomain to count website visits. You can see the same data we can see on <a href="https://plausible.io/wwdcscholars.com" target="_blank" rel="noopener">the public dashboard</a>. No cookies are used and no personal data, not even an IP address or browser user agent, is stored. For more information, see <a href="https://plausible.io/data-policy" target="_blank" rel="noopener">the Plausible Data Policy</a>.</p>
     <h2>6. Plug-ins and Tools</h2>
-    <h3>YouTube</h3>
+    <!--<h3>YouTube</h3>
     <p>Our website/app uses plug-ins of the YouTube platform, which is operated by Google. The website operator is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.</p>
     <p>If you visit a page on our website/in our app into which a YouTube plug-in has been integrated, a connection with YouTube’s servers will be established. As a result, the YouTube server will be notified, which of our pages you have visited.</p>
     <p>Furthermore, YouTube will be able to place various cookies on your device. With the assistance of these cookies, YouTube will be able to obtain information about our website visitor/app user. Among other things, this information will be used to generate
       video statistics with the aim of improving the user friendliness of the site and to prevent attempts to commit fraud. These cookies will stay on your device until you delete them.</p>
     <p>If you are logged into your YouTube account while you visit our site, you enable YouTube to directly allocate your browsing patterns to your personal profile. You have the option to prevent this by logging out of your YouTube account.</p>
     <p>The use of YouTube is based on our interest in presenting our online content in an appealing manner. Pursuant to Art. 6 Sect. 1 lit. f GDPR, this is a legitimate interest.</p>
-    <p>For more information on how YouTube handles user data, please consult the YouTube Data Privacy Policy under: <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener">https://policies.google.com/privacy?hl=en</a>.</p>
+    <p>For more information on how YouTube handles user data, please consult the YouTube Data Privacy Policy under: <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener">https://policies.google.com/privacy?hl=en</a>.</p>-->
     <h3>Apple Maps</h3>
     <p>We are using the mapping service provided by Apple Maps. The provider of this service is Apple Inc., 1 Apple Park Way, Cupertino, CA 95014, USA.</p>
     <p>When you visit any website/use any app, into which Apple Maps has been embedded, your IP address and other information concerning your behavior patterns on this website/in this app will be transferred to Apple. Under certain circumstances, Apple Maps
