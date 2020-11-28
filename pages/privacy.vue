@@ -20,10 +20,6 @@
       eradicated. Please do not hesitate to contact us at any time under the address disclosed in section „Information Required by Law“ on this website/in this app if you have questions about this or any other data protection related issues. You also have
       the right to log a complaint with the competent supervising agency.</p>
     <p>Moreover, under certain circumstances, you have the right to demand the restriction of the processing of your personal data. For details, please consult the Data Protection Declaration under section „Right to Restriction of Data Processing.“</p>
-    <h3>Analysis tools and tools provided by third parties</h3>
-    <p>There is a possibility that your browsing patterns will be statistically analysed when your visit our website/use our app. Such analyses are performed primarily with cookies and with what we refer to as analysis programmes. As a rule, the analyses of
-      your browsing patterns are conducted anonymously; i.e. the browsing patterns cannot be traced back to you.</p>
-    <p>You have the option to object to such analyses or you can prevent their performance by not using certain tools. For detailed information about the tools and about your options to object, please consult our Data Protection Declaration below.</p>
     <h2>2. General information and mandatory information</h2>
     <h3>Data protection</h3>
     <p>The operators of this website/app and its pages take the protection of your personal data very seriously. Hence, we handle your personal data as confidential information and in compliance with the statutory data protection regulations and this Data Protection
