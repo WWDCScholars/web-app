@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { ActionTree, MutationTree, GetterTree } from 'vuex'
 import {
   GDPRRequest,
+  RecordFields,
   Scholar,
   ScholarPrivate,
   ScholarSocialMedia,
@@ -114,7 +115,7 @@ export const actions: ActionTree<State, RootState> = {
     }
   },
 
-  async saveBasic({ getters, commit }, { scholar, changes }: { scholar: Scholar; changes: object }): Promise<void> {
+  async saveBasic({ getters, commit }, { scholar, changes }: { scholar: Scholar; changes: RecordFields }): Promise<void> {
     let updatedPrivate: ScholarPrivate | undefined = undefined
     if (changes.hasOwnProperty('email') && getters.scholar?.loadedPrivate) {
       updatedPrivate  = ScholarPrivate.clone(getters.scholar.loadedPrivate) as ScholarPrivate
@@ -158,9 +159,9 @@ export const actions: ActionTree<State, RootState> = {
       }, { root: true })
     }
   },
-  async saveYearInfo({ commit }, { yearInfo, changes }: { yearInfo: WWDCYearInfo, changes: object }) {
+  async saveYearInfo({ commit }, { yearInfo, changes }: { yearInfo: WWDCYearInfo, changes: RecordFields }) {
     if (changes['screenshots'] && changes['screenshots']['value']) {
-      const promises = changes['screenshots']['value']
+      const promises = (changes['screenshots']['value'] as CloudKit.RecordField[])
         .map(screenshot => {
           if (screenshot instanceof File) {
             return resizeImage(screenshot, this.$g('submission.screenshot.maxSize'))
@@ -169,7 +170,7 @@ export const actions: ActionTree<State, RootState> = {
           }
         })
 
-      changes['screenshots']['value'] = await Promise.all(promises)
+      changes['screenshots']['value'] = await Promise.all(promises) as any
     }
 
     let updatedYearInfo = WWDCYearInfo.clone(yearInfo)
@@ -186,7 +187,7 @@ export const actions: ActionTree<State, RootState> = {
       yearInfo: updatedYearInfo
     }, { root: true })
   },
-  async saveSocial({ commit }, { socialMedia, changes }: { socialMedia: ScholarSocialMedia; changes: object }) {
+  async saveSocial({ commit }, { socialMedia, changes }: { socialMedia: ScholarSocialMedia; changes: RecordFields }) {
     const updatedSocial = ScholarSocialMedia.clone(socialMedia)
     updatedSocial.setFields(changes)
     await updatedSocial.save()
@@ -205,7 +206,7 @@ export const actions: ActionTree<State, RootState> = {
       .findIndex(y => y.recordName === yearInfo.recordName)
     if (yearToRemoveIndex < 0) return
 
-    const fieldsToUpdate = {
+    const fieldsToUpdate: any = {
       wwdcYears: { value: arrayWithoutIndex(scholar.wwdcYears, yearToRemoveIndex) },
       wwdcYearInfos: { value: arrayWithoutIndex(scholar.wwdcYearInfos, yearToRemoveIndex) },
     }

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { ActionTree, MutationTree, GetterTree } from 'vuex'
-import { Users, Scholar, CloudKit, ck } from '@wwdcscholars/cloudkit'
+import { Users, Scholar, CloudKit, connection } from '@wwdcscholars/cloudkit'
 
 export const name = 'auth'
 
@@ -72,7 +72,7 @@ export const actions: ActionTree<State, State> = {
     commit(types.donePending)
   },
   async signOut(): Promise<void> {
-    ck.signOut()
+    connection.signOut()
   }
 }
 

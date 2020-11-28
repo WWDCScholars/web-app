@@ -33,7 +33,7 @@
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/sentry": "^4.0.3",
     "@nuxtjs/style-resources": "^1.0.0",
-    "@wwdcscholars/cloudkit": "^1.2.0",
+    "@wwdcscholars/cloudkit": "^3.1.1",
     "autosize": "^4.0.2",
     "awesome-phonenumber": "^2.38.0",
     "dayjs": "^1.8.26",
