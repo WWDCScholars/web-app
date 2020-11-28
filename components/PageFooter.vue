@@ -3,8 +3,8 @@ footer
   nuxt-link(to="/imprint") Imprint
   span.separator
   nuxt-link(to="/privacy") Privacy Policy
-  span.separator
-  a(href="https://netlify.com", target="_blank") Hosted on Netlify
+  //- span.separator
+  //- a(href="https://netlify.com", target="_blank") Hosted on Netlify
   span.separator
   a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
 </template>
