@@ -15,23 +15,18 @@
   .input-map
     MKMap(
       ref="map",
-      mapType="mutedStandard",
-      showsCompass="hidden",
-      showsScale="hidden",
-      :showsMapTypeControl="false",
-      :showsZoomControl="true",
-      :showsUserLocationControl="false",
-      :showsPointsOfInterest="false"
+      :options="mapOptions",
+      :region="region"
     ).map
       MKMarkerAnnotation(
         v-if="center",
+        :options="annotationOptions",
         :coordinate="center",
-        :options="annotationOptions"
       )
 </template>
 
 <script lang="ts">
-import { Component, Model, Prop, Watch, Vue } from 'nuxt-property-decorator'
+import { Component, Model, Prop, Vue } from 'nuxt-property-decorator'
 import { CloudKit } from '@wwdcscholars/cloudkit'
 import InputText from './InputText.vue'
 import { MKSearch, MKMap, MKMarkerAnnotation } from '../mapkit'
@@ -58,11 +53,29 @@ export default class InputLocation extends Vue {
   textValue: string = ''
   searchResults: mapkit.SearchAutocompleteResult[] = []
   center: mapkit.Coordinate | null = null
+  mapOptions: mapkit.MapConstructorOptions = {
+    mapType: 'mutedStandard',
+    showsCompass: 'hidden',
+    showsScale: 'hidden',
+    showsMapTypeControl: false,
+    showsZoomControl: true,
+    showsUserLocationControl: false,
+    showsPointsOfInterest: false
+  }
   annotationOptions: mapkit.MarkerAnnotationConstructorOptions = {
     enabled: false,
     color: this.$config.colors.purple,
     glyphColor: 'white',
     glyphImage: { 1: '/icons/logo_plain_minimal.svg' }
+  }
+
+  get region(): mapkit.CoordinateRegion | undefined {
+    if (!this.center) return undefined
+
+    return new mapkit.CoordinateRegion(
+      this.center,
+      new mapkit.CoordinateSpan(11, 11)
+    )
   }
 
   value_validate: { latitude: number; longitude: number } = this.value || { latitude: 0, longitude: 0 }
@@ -84,18 +97,6 @@ export default class InputLocation extends Vue {
     this.value_validate = value
     this.$emit('change', value)
     this.textValue = result.displayLines.join(', ')
-  }
-
-  @Watch('center')
-  onCenterChanged() {
-    const map = this.$refs.map as MKMap
-    if (!map || !this.center) return
-
-    const region = new mapkit.CoordinateRegion(
-      this.center,
-      new mapkit.CoordinateSpan(7, 7)
-    )
-    map.setRegion(region)
   }
 
   geocodeInputValue(coordinate: mapkit.Coordinate) {

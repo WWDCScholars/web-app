@@ -1,25 +1,19 @@
 <template lang="pug">
 MKMap(
-  v-if="coordinate",
   ref="map",
-  mapType="mutedStandard",
-  showsCompass="hidden",
-  showsScale="hidden",
-  :padding="{ bottom: 30 }",
-  :showsMapTypeControl="false",
-  :showsUserLocationControl="false",
-  :showsPointsOfInterest="false",
-  :center="coordinate",
-  :cameraDistance="cameraDistance"
+  :options="mapOptions",
+  :region="region"
 ).profile-map
   MKMarkerAnnotation(
+    v-if="coordinate",
+    :options="annotationOptions",
     :coordinate="coordinate",
-    :options="annotationOptions"
+    :title="annotationTitle"
   )
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { MKMap, MKMarkerAnnotation } from './mapkit'
 
 @Component({
@@ -29,7 +23,17 @@ export default class ProfileMap extends Vue {
   @Prop({ default: undefined })
   coordinate?: mapkit.Coordinate
 
-  cameraDistance: number = 2000000
+  @Prop({ default: undefined })
+  annotationTitle?: string
+
+  mapOptions: mapkit.MapConstructorOptions = {
+    mapType: 'mutedStandard',
+    showsCompass: 'hidden',
+    showsScale: 'hidden',
+    showsMapTypeControl: false,
+    showsUserLocationControl: false,
+    showsPointsOfInterest: false
+  }
   annotationOptions: mapkit.MarkerAnnotationConstructorOptions = {
     enabled: false,
     color: this.$config.colors.purple,
@@ -37,24 +41,18 @@ export default class ProfileMap extends Vue {
     glyphImage: { 1: '/icons/logo_plain_minimal.svg' }
   }
 
-  async create() {
-    await this.$loadMapKit()
-  }
+  get region(): mapkit.CoordinateRegion | undefined {
+    if (!this.coordinate) return undefined
 
-  mounted() {
-    this.onCoordinateChanged()
-  }
-
-  @Watch('coordinate')
-  onCoordinateChanged() {
-    const map = this.$refs.map as MKMap
-    if (!map || !this.coordinate) return
-
-    const region = new mapkit.CoordinateRegion(
+    return new mapkit.CoordinateRegion(
       this.coordinate,
       new mapkit.CoordinateSpan(11, 11)
     )
-    map.setRegion(region)
+  }
+
+  async created() {
+    await this.$loadMapKit()
+    this.mapOptions.padding = new mapkit.Padding({ bottom: 30 })
   }
 }
 </script>

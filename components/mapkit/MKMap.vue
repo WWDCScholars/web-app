@@ -4,7 +4,6 @@
 </template>
 
 <script lang="ts">
-import { resolve } from 'dns'
 import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { featureEnum } from '~/util/mapkit'
 
@@ -12,52 +11,55 @@ let resolveReady: (map?: mapkit.Map) => void
 
 @Component
 export default class MKMap extends Vue {
-  @Prop({ default: 'standard' })
-  mapType!: string
+  @Prop({ default: () => ({}), type: Object })
+  options!: mapkit.MapConstructorOptions
 
-  @Prop({ default: undefined })
-  padding!: { top?: number, right?: number, bottom?: number, left?: number }
+  @Prop({ default: undefined, type: String })
+  mapType?: string
 
-  @Prop({ default: 'adaptive' })
-  showsCompass!: string
+  @Prop({ default: undefined, type: Object })
+  padding?: mapkit.Padding
 
-  @Prop({ default: true })
-  showsMapTypeControl!: boolean
+  @Prop({ default: undefined, type: String })
+  showsCompass?: string
 
-  @Prop({ default: true })
-  showsZoomControl!: boolean
+  @Prop({ default: undefined, type: Boolean })
+  showsMapTypeControl?: boolean
 
-  @Prop({ default: false })
-  showsUserLocationControl!: boolean
+  @Prop({ default: undefined, type: Boolean })
+  showsZoomControl?: boolean
 
-  @Prop({ default: false })
-  showsPointsOfInterest!: boolean
+  @Prop({ default: undefined, type: Boolean })
+  showsUserLocationControl?: boolean
 
-  @Prop({ default: 'adaptive' })
-  showsScale!: string
+  @Prop({ default: undefined, type: Boolean })
+  showsPointsOfInterest?: boolean
 
-  @Prop({ default: '' })
-  tintColor!: string
+  @Prop({ default: undefined, type: String })
+  showsScale?: string
 
-  @Prop({ default: undefined })
+  @Prop({ default: undefined, type: String })
+  tintColor?: string
+
+  @Prop({ default: undefined, type: Object })
   center?: mapkit.Coordinate
 
-  @Prop({ default: undefined })
+  @Prop({ default: undefined, type: Object })
   region?: mapkit.CoordinateRegion
 
-  @Prop({ default: undefined })
+  @Prop({ default: undefined, type: Object })
   rotation?: number
 
-  @Prop({ default: undefined })
+  @Prop({ default: undefined, type: Object })
   visibleMapRect?: mapkit.MapRect
 
-  @Prop({ default: undefined })
+  @Prop({ default: undefined, type: Object })
   cameraBoundary?: mapkit.CameraBoundaryDescription
 
-  @Prop({ default: undefined })
+  @Prop({ default: undefined, type: Number })
   cameraDistance?: number
 
-  @Prop({ default: undefined })
+  @Prop({ default: undefined, type: Object })
   cameraZoomRange?: mapkit.CameraZoomRange
 
   $map?: mapkit.Map
@@ -66,10 +68,8 @@ export default class MKMap extends Vue {
     resolveReady = resolve
   })
 
-  items: any[] = []
-
-  mounted() {
-    this.init()
+  async mounted() {
+    await this.init()
   }
 
   beforeDestroy() {
@@ -78,30 +78,16 @@ export default class MKMap extends Vue {
 
   async init() {
     await this.$loadMapKit()
-    this.$map = new mapkit.Map(this.$refs.mapKitMap as any)
+    this.$map = new mapkit.Map(
+      this.$refs.mapKitMap as any,
+      this.options
+    )
     resolveReady(this.$map)
-    this.setMapType(this.mapType)
-    this.setPadding(this.padding)
-    this.setShowsCompass(this.showsCompass)
-    this.setShowsMapTypeControl(this.showsMapTypeControl)
-    this.setShowsZoomControl(this.showsZoomControl)
-    this.setShowsUserLocationControl(this.showsUserLocationControl)
-    this.setShowsPointsOfInterest(this.showsPointsOfInterest)
-    this.setShowsScale(this.showsScale)
-    this.setTintColor(this.tintColor)
-    this.setCenter(this.center)
-    this.setRegion(this.region)
-    this.setRotation(this.rotation)
-    this.setVisibleMapRect(this.visibleMapRect)
-    this.setCameraBoundary(this.cameraBoundary)
-    this.setCameraDistance(this.cameraDistance)
-    this.setCameraZoomRange(this.cameraZoomRange)
   }
 
   @Watch('mapType')
-  setMapType(mapType: string) {
-    mapType = mapType.toLowerCase()
-    if (mapType != 'standard' && mapType != 'satellite' && mapType != 'hybrid') {
+  setMapType(mapType?: string) {
+    if (mapType != 'standard' && mapType != 'satellite' && mapType != 'hybrid' && mapType != 'mutedStandard') {
       mapType = 'standard'
     }
 
@@ -109,48 +95,43 @@ export default class MKMap extends Vue {
   }
 
   @Watch('padding')
-  setPadding(padding: { top?: number, right?: number, bottom?: number, left?: number }) {
-    const { top, right, bottom, left } = {
-      ...{ top: 0, right: 0, bottom: 0, left: 0 },
-      ...padding
-    }
-
-    if (this.$map) this.$map.padding = new mapkit.Padding(top, right, bottom, left)
+  setPadding(padding?: mapkit.Padding) {
+    if (padding && this.$map) this.$map.padding = padding
   }
 
   @Watch('showsCompass')
-  setShowsCompass(showsCompass: string) {
-    if (this.$map) this.$map.showsCompass = featureEnum(showsCompass)
+  setShowsCompass(showsCompass?: string) {
+    if (showsCompass && this.$map) this.$map.showsCompass = featureEnum(showsCompass)
   }
 
   @Watch('showsMapTypeControl')
-  setShowsMapTypeControl(showsMapTypeControl: boolean) {
-    if (this.$map) this.$map.showsMapTypeControl = showsMapTypeControl
+  setShowsMapTypeControl(showsMapTypeControl?: boolean) {
+    if (showsMapTypeControl && this.$map) this.$map.showsMapTypeControl = showsMapTypeControl
   }
 
   @Watch('showsZoomControl')
-  setShowsZoomControl(showsZoomControl: boolean) {
-    if (this.$map) this.$map.showsZoomControl = showsZoomControl
+  setShowsZoomControl(showsZoomControl?: boolean) {
+    if (showsZoomControl && this.$map) this.$map.showsZoomControl = showsZoomControl
   }
 
   @Watch('showsUserLocationControl')
-  setShowsUserLocationControl(showsUserLocationControl: boolean) {
-    if (this.$map) this.$map.showsUserLocationControl = showsUserLocationControl
+  setShowsUserLocationControl(showsUserLocationControl?: boolean) {
+    if (showsUserLocationControl && this.$map) this.$map.showsUserLocationControl = showsUserLocationControl
   }
 
   @Watch('showsPointsOfInterest')
-  setShowsPointsOfInterest(showsPointsOfInterest: boolean) {
-    if (this.$map) this.$map.showsPointsOfInterest = showsPointsOfInterest
+  setShowsPointsOfInterest(showsPointsOfInterest?: boolean) {
+    if (showsPointsOfInterest && this.$map) this.$map.showsPointsOfInterest = showsPointsOfInterest
   }
 
   @Watch('showsScale')
-  setShowsScale(showsScale: string) {
-    if (this.$map) this.$map.showsScale = featureEnum(showsScale)
+  setShowsScale(showsScale?: string) {
+    if (showsScale && this.$map) this.$map.showsScale = featureEnum(showsScale)
   }
 
   @Watch('tintColor')
-  setTintColor(tintColor: string) {
-    if (this.$map) this.$map.tintColor = tintColor
+  setTintColor(tintColor?: string) {
+    if (tintColor && this.$map) this.$map.tintColor = tintColor
   }
 
   @Watch('center')

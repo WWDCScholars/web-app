@@ -3,7 +3,8 @@
   .scholar-profile
     .profile-map
       profile-map(
-        :coordinate="location"
+        :coordinate="location",
+        :annotationTitle="locationCity"
       )
 
     .container-fluid
@@ -118,6 +119,7 @@ const Scholars = namespace(scholars.name)
 export default class ScholarProfile extends Vue {
   mapKitInitialized: boolean = false
   locationSlug: string = '-'
+  locationCity: string =''
 
   @Scholars.Getter('byRecordName') scholarByRecordName
 
@@ -261,6 +263,7 @@ export default class ScholarProfile extends Vue {
       else slugComponents.push(result.countryCode)
 
       this.locationSlug = slugComponents.join(', ')
+      this.locationCity = result.locality ?? ''
     })
   }
 
