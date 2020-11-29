@@ -1,7 +1,7 @@
 <template lang="pug">
 .container-outer
   .tab-bar-container
-    navigation-tab-bar.form-color-purple
+    navigation-tab-bar.form-color-purple.years-tab-bar
       nuxt-link(
         v-for="(linkObject, year) in yearLinks",
         :to="linkObject.link",
@@ -9,7 +9,8 @@
         :class="{ 'nuxt-link-exact-active': linkObject.customExactActive }"
       ) {{ year }}
   .container-fluid.color-purple
-    .loading-scholars(v-if="$fetchState.pending && currentScholars.length < 1") #[i Gathering the brightest minds from around the world]&nbsp;&nbsp;🤓
+    .scholars-list.scholars-list-loading(v-if="$fetchState.pending && currentScholars.length < 1")
+      .scholar-thumbnail-loading(v-for="index in 6", :key="index")
     .scholars-list(v-else-if="currentScholars.length > 0")
       scholar-thumbnail(
         v-for="scholar in currentScholars",
@@ -117,6 +118,9 @@ export default class PageIndex extends Vue {
 </script>
 
 <style lang="sass" scoped>
+.years-tab-bar
+  min-height: 60px
+
 .scholars-list
   margin-top: 30px
   display: grid
@@ -125,10 +129,32 @@ export default class PageIndex extends Vue {
   grid-gap: 15px
   justify-content: center
 
+  &.scholars-list-loading
+    grid-template-rows: 160px 0 0 0
+
   .scholar-thumbnail
     display: block
 
-.no-scholars, .loading-scholars
+  .scholar-thumbnail-loading
+    border-radius: $border-radius-large
+    background-color: $background-gray
+    background-image: linear-gradient(to top, $background-gray, transparentize($sch-gray3, 0.9)), linear-gradient(to right, $sch-gray3 0%, $background-gray 20%, $sch-gray3 40%, $sch-gray3 100%)
+    background-repeat: no-repeat
+    background-size: 800% 100%
+    animation-name: shimmer
+    animation-duration: 1s
+    animation-fill-mode: forwards
+    animation-iteration-count: infinite
+    animation-timing-function: linear
+
+@keyframes shimmer
+  0%
+    background-position: top right
+
+  100%
+    background-position: top left
+
+.no-scholars
   margin-top: 30px
   text-align: center
   color: $sch-gray0
