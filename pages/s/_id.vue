@@ -19,7 +19,7 @@
 
         p.short-bio {{ scholar.biography }}
 
-        .social-links(v-if="scholar.loadedSocialMedia")
+        .social-links(v-if="socialMedia")
           a(v-if="scholar.loadedSocialMedia.twitter",
             :href="scholar.loadedSocialMedia.twitter",
             alt="Twitter",
@@ -92,7 +92,7 @@ import dayjs from 'dayjs'
 import { MetaInfo } from 'vue-meta'
 import { Component, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
-import { CloudKit, Scholar } from '@wwdcscholars/cloudkit'
+import { CloudKit, Scholar, ScholarSocialMedia } from '@wwdcscholars/cloudkit'
 
 import {
   BaseSection,
@@ -142,12 +142,10 @@ export default class ScholarProfile extends Vue {
     return `${dayjs().diff(birthday, 'year')}`
   }
 
-  get attended(): string {
-    if (!this.scholar || !this.scholar.wwdcYears) return ''
+  get socialMedia(): ScholarSocialMedia | undefined {
+    if (!this.scholar || !this.scholar.loadedSocialMedia || Object.keys(this.scholar.loadedSocialMedia.fields).length <= 1) return undefined
 
-    return this.scholar.wwdcYears
-      .map(year => `’${year.recordName.substring(7)}`)
-      .join(', ')
+    return this.scholar.loadedSocialMedia
   }
 
   get profilePictureURL(): string {
