@@ -44,24 +44,12 @@ export const actions: ActionTree<State, State> = {
   async onAuthenticated({ commit }, userIdentity: CloudKit.UserIdentity): Promise<void> {
     const user = await Users.fetch(userIdentity.userRecordName)
     commit(types.setUser, user)
-
-    let scholar: Scholar | undefined
-
-    // fetch Scholar if it exists
-    if (user.scholar) {
-      commit(types.setUserScholarReference, user.scholar)
-      scholar = await Scholar.fetch(user.scholar.recordName)
-    }
-
-    if (scholar) {
-      commit('scholars/insertScholar', scholar, { root: true })
-    } else {
-      // create a new one and update the user
-      // redirect to signup
-    }
-
+    commit(types.setUserScholarReference, user.scholar)
     commit(types.setUserIdentity, userIdentity)
     commit(types.donePending)
+
+    // TODO: redirect to signup if no scholar exists
+    // maybe the redirect needs to happen in the middleware
   },
   async onUnauthenticated({ commit }, container: CloudKit.Container): Promise<void> {
     const auth = container['_auth']
