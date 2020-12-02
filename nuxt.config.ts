@@ -111,7 +111,8 @@ const config: Configuration = {
 
     // Plausible Analytics
     ['vue-plausible', {
-      domain: process.env[`${envPrefix}_PLAUSIBLE_DOMAIN`]
+      domain: process.env[`${envPrefix}_PLAUSIBLE_DOMAIN`],
+      apiHost: process.env[`${envPrefix}_PLAUSIBLE_API_HOST`]
     }],
 
     // Load sentry
