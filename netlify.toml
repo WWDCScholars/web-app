@@ -21,6 +21,13 @@
   status = 301
   force = true
 
+# Redirect staging Netlify subdomain to staging primary domain
+[[redirects]]
+  from = "https://develop--wwdcscholars.netlify.app"
+  to = "https://develop.wwdcscholars.com"
+  status = 301
+  force = true
+
 # App Store Redirect
 [[redirects]]
   from = "/app"
