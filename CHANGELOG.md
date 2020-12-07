@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.4](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.3...v3.14.0-pre.4) (2020-12-07)
+
+
+### Bug Fixes
+
+* Don't load scholar in sign-in ([460e6d8](https://github.com/WWDCScholars/web-app/commit/460e6d8da83b5b9c1f65ffdd254afab107b5cdfb))
+* Hide social media row if none available ([15f14ad](https://github.com/WWDCScholars/web-app/commit/15f14added32f2b1fcb4e60997e7750bf2e8ac92))
+
 ## [3.14.0-pre.3](https://github.com/WWDCScholars/web-app/compare/v3.13.2...v3.14.0-pre.3) (2020-11-29)
 
 
