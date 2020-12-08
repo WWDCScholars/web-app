@@ -14,6 +14,12 @@
 [context.branch-deploy]
   command = "npm run build:stage"
 
+# Content-Security-Policy
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' stats.wwdcscholars.com *.apple-mapkit.com; frame-src 'none'; img-src 'self' *.icloud-content.com *.apple-mapkit.com; report-uri https://o74679.ingest.sentry.io/api/1462765/security/?sentry_key=b2d9a03750d74cec92f876941726c269"
+
 # Redirect Netlify subdomain to primary domain
 [[redirects]]
   from = "https://wwdcscholars.netlify.app"
