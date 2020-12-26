@@ -146,10 +146,9 @@ const config: NuxtConfig = {
     config: {
       environment: process.env[`${envPrefix}_SENTRY_ENVIRONMENT`],
       release: `app@v${version}`,
-      autoBreadcrumbs: {
-        'ui': false,
-        'location': true,
-        'xhr': true
+      beforeBreadcrumb(breadcrumb, hint) {
+        if (breadcrumb.type === 'ui') return null
+        return breadcrumb
       }
     }
   },
