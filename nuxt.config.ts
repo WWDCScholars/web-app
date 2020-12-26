@@ -1,5 +1,6 @@
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 import { config as dotenv } from 'dotenv'
+
 dotenv()
 
 const version = require('./package.json').version
@@ -15,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
   envPrefix = 'DEV'
 }
 
-const config: Configuration = {
+const config: NuxtConfig = {
   ssr: false,
 
   /*
@@ -102,18 +103,11 @@ const config: Configuration = {
     // Load global SASS variables and mixins
     '@nuxtjs/style-resources',
 
-    // CloudKit connection
-    ['@wwdcscholars/cloudkit', {
-      containerIdentifier: process.env[`${envPrefix}_CLOUDKIT_CONTAINER_IDENTIFIER`],
-      apiToken: process.env[`${envPrefix}_CLOUDKIT_API_TOKEN`],
-      environment: process.env[`${envPrefix}_CLOUDKIT_ENVIRONMENT`]
-    }],
+    // Load CloudKit
+    '@wwdcscholars/cloudkit',
 
-    // Plausible Analytics
-    ['vue-plausible', {
-      domain: process.env[`${envPrefix}_PLAUSIBLE_DOMAIN`],
-      apiHost: process.env[`${envPrefix}_PLAUSIBLE_API_HOST`]
-    }],
+    // Load Plausible Analytics
+    'vue-plausible',
 
     // Load sentry
     '@nuxtjs/sentry'
@@ -124,6 +118,23 @@ const config: Configuration = {
    */
   styleResources: {
     sass: ['~assets/sass/imports/_index.sass']
+  },
+
+  /*
+   ** CloudKit configuration
+   */
+  cloudKit: {
+    containerIdentifier: process.env[`${envPrefix}_CLOUDKIT_CONTAINER_IDENTIFIER`],
+    apiToken: process.env[`${envPrefix}_CLOUDKIT_API_TOKEN`],
+    environment: process.env[`${envPrefix}_CLOUDKIT_ENVIRONMENT`]
+  },
+
+  /*
+   ** Plausible Analytics configuration
+   */
+  plausible: {
+    domain: process.env[`${envPrefix}_PLAUSIBLE_DOMAIN`],
+    apiHost: process.env[`${envPrefix}_PLAUSIBLE_API_HOST`]
   },
 
   /*
