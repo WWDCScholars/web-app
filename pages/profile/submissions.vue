@@ -1,11 +1,11 @@
 <template lang="pug">
 .container-fluid
   profile-submission(
-    v-if="wwdcYears.length > 0",
-    v-for="year in wwdcYears",
-    :key="year.recordName",
-    :yearRecordName="year.recordName",
-    :yearInfo="yearInfos[year.recordName]"
+    v-if="submissions.length > 0",
+    v-for="submission in submissions",
+    :key="submission.year.recordName",
+    :yearRecordName="submission.year.recordName",
+    :yearInfoRecordName="submission.yearInfo.recordName"
   )
   .profile-submissions-empty(v-else)
     i You don't have any submissions yet
@@ -14,7 +14,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
-import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
+import { Scholar, CloudKit } from '@wwdcscholars/cloudkit'
 import {
   ProfileSubmission
 } from '~/components'
@@ -29,19 +29,16 @@ export default class PageProfileSubmission extends Vue {
   @Profile.Getter
   scholar?: Scholar
 
-  get wwdcYears(): CloudKit.Reference[] {
-    if (!this.scholar || !this.scholar.wwdcYears) return []
+  get submissions(): { year: CloudKit.Reference, yearInfo: CloudKit.Reference }[] {
+    if (!this.scholar || !this.scholar.wwdcYears || !this.scholar.wwdcYearInfos) return []
+
     return this.scholar.wwdcYears
-  }
-
-  get yearInfos(): { [yearRecordName: string]: WWDCYearInfo } | null {
-    if (!this.scholar) return null
-    return this.scholar.loadedYearInfos
-  }
-
-  fetch() {
-    // load lazy, no need to await
-    this.$store.dispatch('profile/loadYearInfos')
+      .map((year, index) => {
+        return {
+          year,
+          yearInfo: this.scholar!.wwdcYearInfos[index]
+        }
+      })
   }
 }
 </script>

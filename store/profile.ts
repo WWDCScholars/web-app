@@ -52,7 +52,7 @@ export const actions: ActionTree<State, RootState> = {
   },
   async loadPrivate({ getters, dispatch }) {
     const scholar = getters.scholar as Scholar
-    if (!scholar) return
+    if (!scholar || !scholar.scholarPrivate) return
 
     return dispatch('scholars/loadPrivateIfMissing', {
       scholarRecordName: scholar.recordName,
@@ -68,27 +68,14 @@ export const actions: ActionTree<State, RootState> = {
       socialMediaRecordName: scholar.socialMedia.recordName
     }, { root: true })
   },
-  async loadYearInfos({ getters, dispatch }, yearInfoRecordNames?: string[]) {
+  async loadYearInfo({ getters, dispatch }, yearInfoRecordName: string) {
     const scholar = getters.scholar as Scholar
     if (!scholar) return
 
-    let references: string[] = []
-    if (yearInfoRecordNames) {
-      references = yearInfoRecordNames
-    } else if (scholar.wwdcYearInfos) {
-      references = scholar.wwdcYearInfos.map(r => r.recordName)
-    } else {
-      return
-    }
-
-    const promises = references.map(recordName => {
-      return dispatch('scholars/loadYearInfoIfMissing', {
-        scholarRecordName: scholar.recordName,
-        yearInfoRecordName: recordName
-      }, { root: true })
-    })
-
-    return Promise.all(promises)
+    return dispatch('scholars/loadYearInfoIfMissing', {
+      scholarRecordName: scholar.recordName,
+      yearInfoRecordName
+    }, { root: true })
   },
   async loadDownloadRequest({ getters, commit }) {
     const scholar: Scholar = getters.scholar

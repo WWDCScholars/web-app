@@ -81,7 +81,7 @@ base-section
 <script lang="ts">
 import { Component, Prop, Vue, namespace } from 'nuxt-property-decorator'
 import { Location } from 'vue-router'
-import { WWDCYearInfo, WWDCYear, CloudKit } from '@wwdcscholars/cloudkit'
+import { Scholar, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
 import BaseSection from './BaseSection.vue'
 import BaseForm from './BaseForm.vue'
 import BaseButton from './BaseButton.vue'
@@ -113,8 +113,11 @@ export default class ProfileSubmission extends Vue {
   @Prop({ type: String, required: true })
   yearRecordName!: string
 
-  @Prop({ type: Object, default: null })
-  yearInfo?: WWDCYearInfo
+  @Prop({ type: String, required: true })
+  yearInfoRecordName!: string
+
+  @Profile.Getter
+  scholar?: Scholar
 
   appliedAsOptions: { label: string; value: string }[] = [
     { label: 'Student', value: 'student' },
@@ -122,7 +125,13 @@ export default class ProfileSubmission extends Vue {
     { label: 'Both', value: 'both' }
   ]
 
-  screenshotsValue: (CloudKit.Asset | File)[] | undefined = []
+  screenshotsValue: (CloudKit.Asset | File)[] = []
+
+  get yearInfo(): WWDCYearInfo | undefined {
+    if (!this.scholar || !this.scholar.loadedYearInfos.hasOwnProperty(this.yearRecordName)) return undefined
+
+    return this.scholar?.loadedYearInfos[this.yearRecordName]
+  }
 
   get screenshots(): (string | File)[] {
     return this.screenshotsValue
@@ -183,8 +192,10 @@ export default class ProfileSubmission extends Vue {
     }
   }
 
-  created() {
-    this.screenshotsValue = this.yearInfo?.screenshots
+  async fetch() {
+    await this.$store.dispatch('profile/loadYearInfo', this.yearInfoRecordName)
+
+    this.screenshotsValue = this.yearInfo?.screenshots ?? []
   }
 
   async submit() {
