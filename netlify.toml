@@ -18,7 +18,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy-Report-Only = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' *.apple-mapkit.com; connect-src stats.wwdcscholars.com api.apple-cloudkit.com *.apple-mapkit.com; frame-src 'none'; img-src 'self' data: *.icloud-content.com *.apple-mapkit.com; font-src data:; report-uri https://o74679.ingest.sentry.io/api/1462765/security/?sentry_key=b2d9a03750d74cec92f876941726c269"
+    Content-Security-Policy-Report-Only = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' *.apple-mapkit.com; connect-src stats.wwdcscholars.com api.apple-cloudkit.com *.apple-mapkit.com; frame-src 'none'; img-src 'self' data: *.icloud-content.com *.apple-mapkit.com; font-src data:; child-src: 'self'; report-uri https://o74679.ingest.sentry.io/api/1462765/security/?sentry_key=b2d9a03750d74cec92f876941726c269"
 
 # Redirect Netlify subdomain to primary domain
 [[redirects]]
