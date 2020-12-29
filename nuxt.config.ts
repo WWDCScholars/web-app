@@ -189,7 +189,7 @@ const config: NuxtConfig = {
 
       // enable source maps
       if (isLocal) {
-        config.devtool = '#source-map'
+        config.devtool = 'source-map'
       }
     }
   },
