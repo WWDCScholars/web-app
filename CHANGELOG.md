@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.8](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.7...v3.14.0-pre.8) (2020-12-29)
+
+
+### Features
+
+* Add report-only Content-Security-Policy header for testing ([484cb21](https://github.com/WWDCScholars/web-app/commit/484cb21bd46367377f85f2110c5328311aff7cdd))
+* Load year infos in ProfileSubmission module ([9a7f350](https://github.com/WWDCScholars/web-app/commit/9a7f350aa5c229ad4589ba94464501106339f8b4))
+
 ## [3.14.0-pre.7](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.6...v3.14.0-pre.7) (2020-12-08)
 
 ## [3.14.0-pre.6](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.5...v3.14.0-pre.6) (2020-12-07)
