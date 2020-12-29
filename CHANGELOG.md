@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.11](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.10...v3.14.0-pre.11) (2020-12-29)
+
+
+### Bug Fixes
+
+* Add data to img CSP ([48c41ef](https://github.com/WWDCScholars/web-app/commit/48c41ef067636609b6884ad1a354b4b23406ae3c))
+* Add self to child CSP for workers ([c202f93](https://github.com/WWDCScholars/web-app/commit/c202f93431d92cfea74a448e55acc97e731e9801))
+
 ## [3.14.0-pre.10](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.9...v3.14.0-pre.10) (2020-12-29)
 
 
