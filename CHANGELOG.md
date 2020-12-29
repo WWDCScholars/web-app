@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.9](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.8...v3.14.0-pre.9) (2020-12-29)
+
+
+### Bug Fixes
+
+* Add unsafe-inline to style- and script CSP, Move stats domain to connect CSP ([80014c7](https://github.com/WWDCScholars/web-app/commit/80014c75ee9b00be5614477883e451a4c7043454))
+
 ## [3.14.0-pre.8](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.7...v3.14.0-pre.8) (2020-12-29)
 
 
