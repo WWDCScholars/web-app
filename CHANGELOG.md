@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.12](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.11...v3.14.0-pre.12) (2020-12-29)
+
+
+### Bug Fixes
+
+* Change devtool to webpack documented value ([2556be6](https://github.com/WWDCScholars/web-app/commit/2556be6830f114df519d9723877402c708118ace))
+* Fix CSP syntax ([9fde003](https://github.com/WWDCScholars/web-app/commit/9fde003729bac9d64118cd1806653edcdf977966))
+
 ## [3.14.0-pre.11](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.10...v3.14.0-pre.11) (2020-12-29)
 
 
