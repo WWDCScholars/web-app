@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.13](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.12...v3.14.0-pre.13) (2020-12-29)
+
+
+### Bug Fixes
+
+* Change child CSP to blob for workers ([21411a6](https://github.com/WWDCScholars/web-app/commit/21411a6c4d3f02a280be55a6f0d1b7f12ce2f661))
+
 ## [3.14.0-pre.12](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.11...v3.14.0-pre.12) (2020-12-29)
 
 
