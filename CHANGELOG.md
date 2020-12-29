@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.10](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.9...v3.14.0-pre.10) (2020-12-29)
+
+
+### Bug Fixes
+
+* Add cloudkit and mapkit to connect CSP, add data for font CSP ([4f35b32](https://github.com/WWDCScholars/web-app/commit/4f35b320b4f9df5b03a12e89e6e44a04adea4072))
+
 ## [3.14.0-pre.9](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.8...v3.14.0-pre.9) (2020-12-29)
 
 
