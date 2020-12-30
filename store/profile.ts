@@ -10,6 +10,7 @@ import {
   WWDCYearInfo,
   CloudKit
 } from '@wwdcscholars/cloudkit'
+import { v4 as uuid } from 'uuid'
 import { RootState } from '~/store'
 import { arrayWithoutIndex } from '~/util/array'
 import { resizeImage } from '~/util/image'
@@ -103,12 +104,28 @@ export const actions: ActionTree<State, RootState> = {
   },
 
   async saveBasic({ getters, commit }, { scholar, changes }: { scholar: Scholar; changes: RecordFields }): Promise<void> {
-    let updatedPrivate: ScholarPrivate | undefined = undefined
-    if (changes.hasOwnProperty('email') && getters.scholar?.loadedPrivate) {
-      updatedPrivate  = ScholarPrivate.clone(getters.scholar.loadedPrivate) as ScholarPrivate
-      updatedPrivate.setFields({ email: changes['email'] })
+    let updatedPrivate: ScholarPrivate | undefined
+    if (changes.hasOwnProperty('email') || changes.hasOwnProperty('birthday')) {
+      if (getters.scholar?.loadedPrivate) {
+        updatedPrivate = ScholarPrivate.clone(getters.scholar.loadedPrivate)
+      } else {
+        updatedPrivate = new ScholarPrivate()
+        updatedPrivate.recordName = uuid().toUpperCase()
+        updatedPrivate.scholar = {
+          recordName: scholar.recordName!,
+          action: CloudKit.ReferenceAction.DELETE_SELF
+        }
+      }
+
+      if (changes['email']) {
+        updatedPrivate!.email = changes['email'].value as string
+      }
+      if (changes['birthday']) {
+        updatedPrivate!.birthday = changes['birthday'].value as number
+      }
+
       delete changes['email']
-      await updatedPrivate.save()
+      await updatedPrivate!.save()
     }
 
     let loadedPrivateForFetch: ScholarPrivate | undefined
