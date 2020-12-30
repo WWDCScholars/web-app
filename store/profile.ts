@@ -93,7 +93,7 @@ export const actions: ActionTree<State, RootState> = {
       }, {
         fieldName: 'scholar',
         comparator: CloudKit.QueryFilterComparator.EQUALS,
-        fieldValue: { value: { recordName: scholar.recordName } }
+        fieldValue: { value: { recordName: scholar.recordName! } }
       }]
     })
 
@@ -126,14 +126,29 @@ export const actions: ActionTree<State, RootState> = {
 
       let updatedScholar = Scholar.clone(scholar) as Scholar
       updatedScholar.setFields(changes)
+      if (updatedPrivate) {
+        updatedScholar.scholarPrivate = {
+          recordName: updatedPrivate.recordName!,
+          action: CloudKit.ReferenceAction.DELETE_SELF
+        }
+      }
       await updatedScholar.save()
 
       // If the profile picture changed, we have to fetch the record again to get the new downloadURL
       // Afterwards set the private again
       if (changes['profilePicture']) {
-        updatedScholar = await Scholar.fetch(updatedScholar.recordName)
+        updatedScholar = await Scholar.fetch(updatedScholar.recordName!)
       }
       commit('scholars/insertScholar', updatedScholar, { root: true })
+    }
+
+    if (updatedPrivate) {
+      let updatedScholar = Scholar.clone(scholar)
+      updatedScholar.scholarPrivate = {
+        recordName: updatedPrivate.recordName!,
+        action: CloudKit.ReferenceAction.DELETE_SELF
+      }
+      await updatedScholar.save()
     }
 
     // when the private changed or we fetched a new scholar because the picture changed, we have to set the loadedPrivate again
@@ -166,7 +181,7 @@ export const actions: ActionTree<State, RootState> = {
 
     // When screenshots changed, we have to fetch the record again
     if (changes['screenshots']) {
-      updatedYearInfo = await WWDCYearInfo.fetch(updatedYearInfo.recordName)
+      updatedYearInfo = await WWDCYearInfo.fetch(updatedYearInfo.recordName!)
     }
 
     commit('scholars/setScholarYearInfo', {
@@ -224,7 +239,7 @@ export const actions: ActionTree<State, RootState> = {
 
     const createdRequest = await GDPRRequest.create({
       fields: {
-        scholar: { value: { recordName: scholar.recordName, action: CloudKit.ReferenceAction.DELETE_SELF }},
+        scholar: { value: { recordName: scholar.recordName!, action: CloudKit.ReferenceAction.DELETE_SELF }},
         type: { value: 'download' }
       }
     })

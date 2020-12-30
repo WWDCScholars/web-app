@@ -56,7 +56,7 @@ export const actions: ActionTree<State, State> = {
       filterBy: [{
         fieldName: 'wwdcYearsApproved',
         comparator: CloudKit.QueryFilterComparator.LIST_CONTAINS,
-        fieldValue: { value: { recordName: year.recordName } }
+        fieldValue: { value: { recordName: year.recordName! } }
       }, {
         fieldName: 'gdprConsentAt',
         comparator: CloudKit.QueryFilterComparator.LESS_THAN,
@@ -70,7 +70,7 @@ export const actions: ActionTree<State, State> = {
     const result = await Scholar.query(query)
     const existingScholars = new Set(Object.keys(state.scholars))
     result
-      .filter(scholar => !existingScholars.has(scholar.recordName))
+      .filter(scholar => !existingScholars.has(scholar.recordName!))
       .forEach(scholar => commit(types.insertScholar, scholar))
   },
   async loadPrivateIfMissing({ state, dispatch }, { scholarRecordName, privateRecordName }) {
@@ -120,7 +120,7 @@ export const actions: ActionTree<State, State> = {
 
 export const mutations: MutationTree<State> = {
   [types.insertScholar](state: State, scholar: Scholar) {
-    Vue.set(state.scholars, scholar.recordName, scholar)
+    Vue.set(state.scholars, scholar.recordName!, scholar)
   },
   [types.setScholarPrivate](state: State, p: { scholarRecordName: string; scholarPrivate: ScholarPrivate }) {
     if (!state.scholars[p.scholarRecordName]) return

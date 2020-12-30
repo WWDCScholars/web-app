@@ -42,6 +42,6 @@ export const actions: ActionTree<State, State> = {
 
 export const mutations: MutationTree<State> = {
   insertYear(state: State, year: WWDCYear) {
-    Vue.set(state.years, year.recordName, year)
+    Vue.set(state.years, year.recordName!, year)
   }
 }

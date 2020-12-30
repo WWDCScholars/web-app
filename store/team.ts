@@ -40,6 +40,6 @@ export const actions: ActionTree<State, State> = {
 
 export const mutations: MutationTree<State> = {
   [types.insertMember](state: State, member: TeamMember) {
-    Vue.set(state.members, member.recordName, member)
+    Vue.set(state.members, member.recordName!, member)
   }
 }

@@ -118,7 +118,7 @@ export default class ScholarProfileSubmission extends Vue {
     await Promise.all([
       this.fetchYear(this.wwdcYearReference.recordName),
       this.scholarLoadYearInfoIfMissing({
-        scholarRecordName: this.scholar.recordName,
+        scholarRecordName: this.scholar.recordName!,
         yearInfoRecordName: yearInfoReference.recordName
       })
     ])
