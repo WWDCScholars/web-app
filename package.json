@@ -59,7 +59,7 @@
   "devDependencies": {
     "@nuxt/types": "^2.14.0",
     "@nuxt/typescript-build": "^2.0.3",
-    "@sentry/cli": "^1.52.3",
+    "@sentry/cli": "^1.63.1",
     "@types/apple-mapkit-js-browser": "^5.50.0",
     "@types/dotenv": "^8.2.0",
     "@types/node": "^13.13.5",
