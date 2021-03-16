@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.14](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.13...v3.14.0-pre.14) (2021-03-16)
+
+
+### Bug Fixes
+
+* Add blob: to image CSP ([045b508](https://github.com/WWDCScholars/web-app/commit/045b508f1c9bd804068a4838263bb6cd526da3e9))
+* Add iCloud to connect CSP ([d0d9792](https://github.com/WWDCScholars/web-app/commit/d0d97929192d0723a5fb31607502b7dbec5e2e68))
+* Add sentry to connect CSP ([cd7d110](https://github.com/WWDCScholars/web-app/commit/cd7d11016b27dfb5658fcd3e036fa920a15f66e1))
+* Create ScholarPrivate on save if missing ([3ebdb6e](https://github.com/WWDCScholars/web-app/commit/3ebdb6ef9d20976bf4add8fb3d20199d96d5a642))
+
 ## [3.14.0-pre.13](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.12...v3.14.0-pre.13) (2020-12-29)
 
 
