@@ -216,15 +216,20 @@ export default class ScholarProfile extends Vue {
   }
 
   async fetch() {
-    await this.$store.dispatch('scholars/fetchScholar', this.$route.params.id)
+    try {
+      await this.$store.dispatch('scholars/fetchScholar', this.$route.params.id)
+    }
+    catch (e) {
+       this.$nuxt.error({
+        message: 'The Scholar could not be found',
+        statusCode: 404
+      })
+      return
+    }
+
     const scholar: Scholar = this.$store.getters['scholars/byRecordName'](this.$route.params.id)
-
     if (!scholar) {
-      if (process.server) {
-        this.$nuxt.context.res.statusCode = 404
-      }
-
-      throw new Error('Scholar not found')
+      return
     }
 
     // TODO: Maybe we don't have to await this.
