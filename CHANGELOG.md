@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.16](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.15...v3.14.0-pre.16) (2021-03-18)
+
+
+### Features
+
+* 404 page for scholar not found ([b3fb110](https://github.com/WWDCScholars/web-app/commit/b3fb110fad8d08e8c1e260e4b41bae50e414af20))
+
+
+### Bug Fixes
+
+* Enforce maxLength property of textarea ([6d68dd6](https://github.com/WWDCScholars/web-app/commit/6d68dd6a5202d5f80691292ecc3027208208bf43))
+* Inset MapKit controls only when necessary ([451abd5](https://github.com/WWDCScholars/web-app/commit/451abd5ed68960638f877109419287f3d7937618))
+
 ## [3.14.0-pre.15](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.14...v3.14.0-pre.15) (2021-03-18)
 
 ## [3.14.0-pre.14](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.13...v3.14.0-pre.14) (2021-03-16)
