@@ -49,11 +49,6 @@ export default class ProfileMap extends Vue {
       new mapkit.CoordinateSpan(11, 11)
     )
   }
-
-  async created() {
-    await this.$loadMapKit()
-    this.mapOptions.padding = new mapkit.Padding({ bottom: 30 })
-  }
 }
 </script>
 
@@ -61,4 +56,12 @@ export default class ProfileMap extends Vue {
 .profile-map
   width: 100%
   height: 100%
+
+  /deep/ .mk-controls-container
+    inset: 0px 0px 30px
+
+@media (min-width: #{$container-max-width + 60px})
+  .profile-map
+    /deep/ .mk-controls-container
+      inset: 0px 0px 0px
 </style>
