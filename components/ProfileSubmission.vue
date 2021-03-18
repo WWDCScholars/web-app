@@ -21,12 +21,12 @@ base-section
           )
 
       .group
-        h3 Describe your winning project in less than 300 characters
-        form-field(name="Description", vid="description")
+        h3 Describe your winning project in less than 500 characters
+        form-field(name="Description", rules="required|max:500", vid="description")
           input-text(
             type="textarea",
             name="description",
-            maxLength="300",
+            maxLength="500",
             required="true",
             v-model="formData.description"
           )

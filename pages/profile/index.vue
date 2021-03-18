@@ -80,12 +80,12 @@
             )
 
         .group
-          h3 Describe yourself in less than 300 characters
-          form-field(name="Biography", rules="required|max:300", vid="biography")
+          h3 Describe yourself in less than 500 characters
+          form-field(name="Biography", rules="required|max:500", vid="biography")
             input-text(
               type="textarea",
               name="biography",
-              maxLength="300",
+              maxLength="500",
               required="true",
               v-model="formData.biography"
             )
