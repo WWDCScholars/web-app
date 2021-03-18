@@ -32,6 +32,7 @@
       :name.once="name",
       :disabled="disabled",
       :value="value",
+      :maxLength="maxLength",
       @input="update($event)"
     )
     input(
@@ -44,7 +45,7 @@
     )
     span.title {{ placeholder }}
     span.optional(v-if="!required") Optional
-  .comment(v-if="type === 'textarea'") {{ maxLength - length }} / {{ maxLength }} characters remaining
+  .comment(v-if="type === 'textarea'") {{ Math.max(maxLength - length, 0) }} / {{ maxLength }} characters remaining
 </template>
 
 <script lang="ts">
