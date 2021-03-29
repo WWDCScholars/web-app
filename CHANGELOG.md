@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0](https://github.com/WWDCScholars/web-app/compare/v3.13.2...v3.14.0) (2021-03-29)
+
+
+### Bug Fixes
+
+* Add light boarder around map in InputLocation ([0eed787](https://github.com/WWDCScholars/web-app/commit/0eed787bc72e1ba8ec76b33119aa5545c6080a6f))
+* Don't set `Secure` flag for cookie in development mode ([d7ce99b](https://github.com/WWDCScholars/web-app/commit/d7ce99bc024fbee5799f026ef003df4d28fca8bb))
+* Move mobile auth links up so they don't disappear behind the Safari toolbar ([224465f](https://github.com/WWDCScholars/web-app/commit/224465fc5a4d77d4079b532fa9d9c9caf51e2daf))
+
 ## [3.14.0-pre.16](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.15...v3.14.0-pre.16) (2021-03-18)
 
 
