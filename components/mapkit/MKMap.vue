@@ -7,7 +7,7 @@
 import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { featureEnum } from '~/util/mapkit'
 
-let resolveReady: (map?: mapkit.Map) => void
+let resolveReady: (map: mapkit.Map) => void
 
 @Component
 export default class MKMap extends Vue {
