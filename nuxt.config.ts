@@ -124,9 +124,14 @@ const config: NuxtConfig = {
    ** CloudKit configuration
    */
   cloudKit: {
-    containerIdentifier: process.env[`${envPrefix}_CLOUDKIT_CONTAINER_IDENTIFIER`],
-    apiToken: process.env[`${envPrefix}_CLOUDKIT_API_TOKEN`],
-    environment: process.env[`${envPrefix}_CLOUDKIT_ENVIRONMENT`]
+    container: {
+      containerIdentifier: process.env[`${envPrefix}_CLOUDKIT_CONTAINER_IDENTIFIER`],
+      apiToken: process.env[`${envPrefix}_CLOUDKIT_API_TOKEN`],
+      environment: process.env[`${envPrefix}_CLOUDKIT_ENVIRONMENT`]
+    },
+    authTokenStore: {
+      secure: !isDevelopment // don't set `Secure` flag in development mode
+    }
   },
 
   /*

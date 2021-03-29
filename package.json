@@ -33,7 +33,7 @@
   "dependencies": {
     "@nuxtjs/sentry": "^5.0.3",
     "@nuxtjs/style-resources": "^1.0.0",
-    "@wwdcscholars/cloudkit": "^3.5.0",
+    "@wwdcscholars/cloudkit": "^3.6.0",
     "autosize": "^4.0.2",
     "awesome-phonenumber": "^2.38.0",
     "dayjs": "^1.8.26",
