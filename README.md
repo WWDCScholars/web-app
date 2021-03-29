@@ -1,4 +1,4 @@
-<p align="center"><a href="https://www.wwdcscholars.com" target="\_blank"><img width="90" height="90" src="https://raw.githubusercontent.com/WWDCScholars/web-app/master/.github/logo.png"></a></p>
+<p align="center"><a href="https://www.wwdcscholars.com" target="\_blank"><img width="90" height="90" src="https://raw.githubusercontent.com/WWDCScholars/web-app/main/.github/logo.png"></a></p>
 
 # [WWDCScholars Website](https://www.wwdcscholars.com) &middot; [![Netlify Status](https://api.netlify.com/api/v1/badges/dfda3ed0-fe8b-4cc7-a051-f39126a20128/deploy-status)](https://app.netlify.com/sites/wwdcscholars/deploys)
 WWDCScholars is a community of [Apple WWDC Scholarship](https://developer.apple.com/wwdc/scholarships/) winners. Every year bright minds from all around the world compete against each other for a free ticket to Apple's yearly developers conference. The scholarship recipients share their winning projects in [our iOS App](https://itunes.apple.com/us/app/scholars-of-wwdc/id999731893?mt=8) and on [our website (www.wwdcscholars.com)](https://www.wwdcscholars.com).
@@ -65,4 +65,4 @@ I'm [Moritz Sternemann](https://github.com/moritzsternemann), a computer-science
 - [Form (github.com/WWDCScholars/web-form)](https://github.com/WWDCScholars/web-form)
 
 ## License
-The *WWDCScholars Website* is available under the MIT license. See the [LICENSE](https://github.com/WWDCScholars/web-app/blob/master/LICENSE) file for more information.
+The *WWDCScholars Website* is available under the MIT license. See the [LICENSE](https://github.com/WWDCScholars/web-app/blob/main/LICENSE) file for more information.
