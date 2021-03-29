@@ -1,9 +1,10 @@
 <template lang="pug">
 .submission(v-if="wwdcYear && yearInfo")
   p.challenge-description
-    | {{ challengeDescription }}
+    span(v-if="challengeDescription")
+      | {{ challengeDescription }}&nbsp;
     span(v-if="yearInfo.description").
-      &nbsp;Here’s how {{ scholar.givenName }} describes
+      Here’s how {{ scholar.givenName }} describes
       {{ scholar.gender | possessivePronoun }} winning submission.
 
   p.description {{ yearInfo.description }}
@@ -117,7 +118,7 @@ export default class ScholarProfileSubmission extends Vue {
     await Promise.all([
       this.fetchYear(this.wwdcYearReference.recordName),
       this.scholarLoadYearInfoIfMissing({
-        scholarRecordName: this.scholar.recordName,
+        scholarRecordName: this.scholar.recordName!,
         yearInfoRecordName: yearInfoReference.recordName
       })
     ])
@@ -157,7 +158,9 @@ export default class ScholarProfileSubmission extends Vue {
     width: auto
 
     img
+      max-width: 100vw
       height: 100%
+      object-fit: contain
 
 .no-screenshots
   font-size: 0.8em

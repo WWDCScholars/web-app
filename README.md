@@ -6,18 +6,20 @@ WWDCScholars is a community of [Apple WWDC Scholarship](https://developer.apple.
 This repository contains the [Vue.js](https://vuejs.org) based website that lists current and previous scholarship winners from all around the world.
 
 ## Getting Started
-WWDCScholars is based on [Apple's BaaS, CloudKit](https://developer.apple.com/icloud/cloudkit/). To use this project you need to obtain credentials for [CloudKit](https://developer.apple.com/library/content/documentation/DataManagement/Conceptual/CloudKitQuickStart/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014987), the [Google Maps API](https://developers.google.com/maps/) and the [Sentry Error Tracking Service](https://sentry.io/).
+WWDCScholars is based on [Apple's BaaS, CloudKit](https://developer.apple.com/icloud/cloudkit/). To use this project you need to obtain credentials for [CloudKit](https://developer.apple.com/library/content/documentation/DataManagement/Conceptual/CloudKitQuickStart/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014987), the [Apple MapKit JS API](https://developer.apple.com/documentation/mapkitjs/) and the [Sentry Error Tracking Service](https://sentry.io/).
 
 #### Create a `.env` file at the root of this project that looks like this:
 ```
-CLOUDKIT_CONTAINER_IDENTIFIER="<CloudKit Container Identifier>"
-CLOUDKIT_API_TOKEN="<CloudKit API Token>"
-CLOUDKIT_ENVIRONMENT="<CloudKit Environment>"
+DEV_CLOUDKIT_CONTAINER_IDENTIFIER="<CloudKit Container Identifier>"
+DEV_CLOUDKIT_API_TOKEN="<CloudKit API Token>"
+DEV_CLOUDKIT_ENVIRONMENT="<CloudKit Environment>"
 
-GOOGLE_MAPS_API_KEY="<Google Maps API Key>"
+DEV_MAPKIT_JWT="<MapKit JS JWT>"
 
 SENTRY_DSN="<Sentry DSN>"
-SENTRY_ENVIRONMENT="<Sentry Environment>"
+DEV_SENTRY_ENVIRONMENT="<Sentry Environment>"
+
+DEV_PLAUSIBLE_DOMAIN="" # no analytics for dev environment
 
 WWDC_YEAR="<The WWDCYear key to use>"
 ```
@@ -34,12 +36,7 @@ $ npm install
   ```
 - In production mode for static hosting
   ```
-  $ npm generate
-  ```
-- In production mode with server-side rendering support
-  ```
   $ npm build
-  $ npm start
   ```
 When building for production you can find the results in `dist/`.
 

@@ -8,6 +8,7 @@
       v-else-if="type === 'email'"
       type="email",
       :name.once="name",
+      :disabled="disabled",
       :value="value",
       @input="update($event.target.value)"
     )
@@ -15,25 +16,36 @@
       v-else-if="type === 'url'",
       type="url",
       :name.once="name",
+      :disabled="disabled",
+      :value="value",
+      @input="update($event.target.value)"
+    )
+    input(
+      v-else-if="type === 'search'",
+      :name.once="name",
+      :disabled="disabled",
       :value="value",
       @input="update($event.target.value)"
     )
     autosize-textarea(
       v-else-if="type === 'textarea'",
       :name.once="name",
+      :disabled="disabled",
       :value="value",
+      :maxLength="maxLength",
       @input="update($event)"
     )
     input(
       v-else,
       type="text",
       :name.once="name",
+      :disabled="disabled",
       :value="value",
       @input="update($event.target.value)",
     )
     span.title {{ placeholder }}
     span.optional(v-if="!required") Optional
-    .comment(v-if="type === 'textarea'") {{ maxLength - length }} / {{ maxLength }} characters remaining
+  .comment(v-if="type === 'textarea'") {{ Math.max(maxLength - length, 0) }} / {{ maxLength }} characters remaining
 </template>
 
 <script lang="ts">
@@ -55,6 +67,8 @@ export default class InputText extends Vue {
   placeholder!: string
   @Prop({ default: false })
   required!: boolean
+  @Prop({ default: false })
+  disabled!: boolean
   @Prop({ default: 0 })
   maxLength!: number
 
@@ -77,8 +91,11 @@ export default class InputText extends Vue {
 
 <style lang="sass" scoped>
 .input-text
-  position: relative
   width: 100%
+
+  label
+    display: block
+    position: relative
 
   input, textarea
     width: 100%
@@ -90,6 +107,12 @@ export default class InputText extends Vue {
     color: $apl-black
     appearance: none
     transition: border-color 100ms linear, box-shadow 100ms linear
+
+    &:disabled
+      color: $sch-gray0
+
+  textarea
+    padding-top: 10px
 
   .title
     position: absolute

@@ -1,5 +1,8 @@
 <template lang="pug">
-nuxt-link(:to.once="{ name: 's-id-year', params: { id: scholar.recordName } }").scholar-thumbnail
+nuxt-link(
+  :to.once="{ name: 's-id-year', params: { id: scholar.recordName } }",
+  :id="scholar.recordName"
+).scholar-thumbnail
   span.name {{ scholar.givenName }}
   img(v-lazy="profilePictureURL").image
   .image-loading
@@ -53,7 +56,7 @@ export default class ScholarThumbnail extends Vue {
       left: 0
       width: 100%
       height: 100%
-      z-index: 998
+      z-index: 499
       background: transparent
       background-image: linear-gradient(to right, $gradient-start 0%, $gradient-mid 20%, $gradient-start 40%, $gradient-start 100%)
       background-repeat: no-repeat
@@ -71,7 +74,7 @@ export default class ScholarThumbnail extends Vue {
     width: 100%
     border-bottom-left-radius: $border-radius-large
     border-bottom-right-radius: $border-radius-large
-    z-index: 999
+    z-index: 500
     background-color: transparentize($sch-purple, 0.25)
     color: $white
     font-size: 1.1em

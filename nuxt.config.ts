@@ -1,5 +1,6 @@
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 import { config as dotenv } from 'dotenv'
+
 dotenv()
 
 const version = require('./package.json').version
@@ -15,8 +16,8 @@ if (process.env.NODE_ENV === 'production') {
   envPrefix = 'DEV'
 }
 
-const config: Configuration = {
-  mode: 'spa',
+const config: NuxtConfig = {
+  ssr: false,
 
   /*
    ** Headers of the page
@@ -58,11 +59,16 @@ const config: Configuration = {
   },
 
   /*
-   ** Inject process environment variables
+   ** Runtime configuration
    */
-  env: {
-    ...process.env as any
+
+  publicRuntimeConfig: {
+    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`],
+    colors: {
+      purple: 'rgb(65, 53, 153)'
+    }
   },
+  privateRuntimeConfig: {},
 
   /*
    ** Customize the progress-bar color
@@ -81,11 +87,13 @@ const config: Configuration = {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    '~/plugins/globals',
     '~/plugins/filters',
     '~/plugins/vue-lazyload',
-    '~/plugins/vue2-google-maps',
+    '~/plugins/mapkit',
+    '~/plugins/vee-validate',
 
-    // '~/plugins/auth'
+    '~/plugins/auth'
   ],
 
   /*
@@ -95,21 +103,11 @@ const config: Configuration = {
     // Load global SASS variables and mixins
     '@nuxtjs/style-resources',
 
-    // Load environment variables from `.env`
-    '@nuxtjs/dotenv',
+    // Load CloudKit
+    '@wwdcscholars/cloudkit',
 
-    // CloudKit connection
-    ['@wwdcscholars/cloudkit', {
-      containerIdentifier: process.env[`${envPrefix}_CLOUDKIT_CONTAINER_IDENTIFIER`],
-      apiToken: process.env[`${envPrefix}_CLOUDKIT_API_TOKEN`],
-      environment: process.env[`${envPrefix}_CLOUDKIT_ENVIRONMENT`]
-    }],
-
-    // Google Analytics
-    ['@nuxtjs/google-analytics', {
-      id: process.env.GOOGLE_ANALYTICS_ID,
-      dev: false
-    }],
+    // Load Plausible Analytics
+    'vue-plausible',
 
     // Load sentry
     '@nuxtjs/sentry'
@@ -123,18 +121,34 @@ const config: Configuration = {
   },
 
   /*
+   ** CloudKit configuration
+   */
+  cloudKit: {
+    containerIdentifier: process.env[`${envPrefix}_CLOUDKIT_CONTAINER_IDENTIFIER`],
+    apiToken: process.env[`${envPrefix}_CLOUDKIT_API_TOKEN`],
+    environment: process.env[`${envPrefix}_CLOUDKIT_ENVIRONMENT`]
+  },
+
+  /*
+   ** Plausible Analytics configuration
+   */
+  plausible: {
+    domain: process.env[`${envPrefix}_PLAUSIBLE_DOMAIN`],
+    apiHost: process.env[`${envPrefix}_PLAUSIBLE_API_HOST`]
+  },
+
+  /*
    ** Sentry configuration
    */
   sentry: {
     disabled: isDevelopment,
     dsn: process.env.SENTRY_DSN,
     config: {
-      environment: process.env.SENTRY_ENVIRONMENT,
+      environment: process.env[`${envPrefix}_SENTRY_ENVIRONMENT`],
       release: `app@v${version}`,
-      autoBreadcrumbs: {
-        'ui': false,
-        'location': true,
-        'xhr': true
+      beforeBreadcrumb(breadcrumb, hint) {
+        if (breadcrumb.type === 'ui') return null
+        return breadcrumb
       }
     }
   },
@@ -162,6 +176,9 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
+    transpile: [
+      'vee-validate/dist/rules'
+    ],
     /*
      ** You can extend webpack config here
      */
@@ -172,7 +189,7 @@ const config: Configuration = {
 
       // enable source maps
       if (isLocal) {
-        config.devtool = '#source-map'
+        config.devtool = 'source-map'
       }
     }
   },

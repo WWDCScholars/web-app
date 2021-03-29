@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { ActionTree, MutationTree, GetterTree } from 'vuex'
 import {
   Scholar,
+  ScholarPrivate,
   ScholarSocialMedia,
   WWDCYearInfo,
   WWDCYear,
@@ -18,6 +19,14 @@ function isEmpty(obj: object | undefined): boolean {
 }
 
 export const name = 'scholars'
+
+export const types = {
+  insertScholar: 'insertScholar',
+  setScholarPrivate: 'setScholarPrivate',
+  setScholarYearInfo: 'setScholarYearInfo',
+  setScholarSocialMedia: 'setScholarSocialMedia',
+  removeScholarYearInfo: 'removeScholarYearInfo'
+}
 
 export interface State {
   scholars: { [recordName: string]: Scholar }
@@ -47,7 +56,7 @@ export const actions: ActionTree<State, State> = {
       filterBy: [{
         fieldName: 'wwdcYearsApproved',
         comparator: CloudKit.QueryFilterComparator.LIST_CONTAINS,
-        fieldValue: { value: { recordName: year.recordName } }
+        fieldValue: { value: { recordName: year.recordName! } }
       }, {
         fieldName: 'gdprConsentAt',
         comparator: CloudKit.QueryFilterComparator.LESS_THAN,
@@ -61,8 +70,16 @@ export const actions: ActionTree<State, State> = {
     const result = await Scholar.query(query)
     const existingScholars = new Set(Object.keys(state.scholars))
     result
-      .filter(scholar => !existingScholars.has(scholar.recordName))
-      .forEach(scholar => commit('insertScholar', scholar))
+      .filter(scholar => !existingScholars.has(scholar.recordName!))
+      .forEach(scholar => commit(types.insertScholar, scholar))
+  },
+  async loadPrivateIfMissing({ state, dispatch }, { scholarRecordName, privateRecordName }) {
+    if (!state.scholars[scholarRecordName]) throw new Error('CloudKit: Scholar for private record does not exist.')
+    const scholar = state.scholars[scholarRecordName]
+
+    if (!isEmpty(scholar.loadedPrivate)) return
+
+    await dispatch('upgradeScholarWithPrivate', privateRecordName)
   },
   async loadYearInfoIfMissing({ state, dispatch }, { scholarRecordName, yearInfoRecordName }) {
     if (!state.scholars[scholarRecordName]) throw new Error('CloudKit: Scholar for year info record does not exist.')
@@ -84,26 +101,38 @@ export const actions: ActionTree<State, State> = {
 
     await dispatch('upgradeScholarWithSocialMedia', socialMediaRecordName)
   },
+  async upgradeScholarWithPrivate({ commit }, recordName: string) {
+    const scholarPrivate = await ScholarPrivate.fetch(recordName)
+    const scholarRecordName = scholarPrivate.scholar.recordName
+    commit(types.setScholarPrivate, { scholarRecordName, scholarPrivate })
+  },
   async upgradeScholarWithYearInfo({ commit }, recordName: string) {
     const yearInfo = await WWDCYearInfo.fetch(recordName)
     const scholarRecordName = yearInfo.scholar.recordName
-    commit('setScholarYearInfo', { scholarRecordName, yearInfo })
+    commit(types.setScholarYearInfo, { scholarRecordName, yearInfo })
   },
   async upgradeScholarWithSocialMedia({ commit }, recordName: string) {
     const socialMedia = await ScholarSocialMedia.fetch(recordName)
     const scholarRecordName = socialMedia.scholar.recordName
-    commit('setScholarSocialMedia', { scholarRecordName, socialMedia })
+    commit(types.setScholarSocialMedia, { scholarRecordName, socialMedia })
   }
 }
 
 export const mutations: MutationTree<State> = {
-  insertScholar(state: State, scholar: Scholar) {
-    Vue.set(state.scholars, scholar.recordName, scholar)
+  [types.insertScholar](state: State, scholar: Scholar) {
+    Vue.set(state.scholars, scholar.recordName!, scholar)
   },
-  setScholarYearInfo(state: State, p: { scholarRecordName: string; yearInfo: WWDCYearInfo}) {
-    if (!state.scholars[p.scholarRecordName]) {
-      return
-    }
+  [types.setScholarPrivate](state: State, p: { scholarRecordName: string; scholarPrivate: ScholarPrivate }) {
+    if (!state.scholars[p.scholarRecordName]) return
+
+    Vue.set(
+      state.scholars[p.scholarRecordName],
+      'loadedPrivate',
+      p.scholarPrivate
+    )
+  },
+  [types.setScholarYearInfo](state: State, p: { scholarRecordName: string; yearInfo: WWDCYearInfo}) {
+    if (!state.scholars[p.scholarRecordName]) return
 
     Vue.set(
       state.scholars[p.scholarRecordName].loadedYearInfos,
@@ -111,10 +140,36 @@ export const mutations: MutationTree<State> = {
       p.yearInfo
     )
   },
-  setScholarSocialMedia(state: State, p: { scholarRecordName: string, socialMedia: ScholarSocialMedia }) {
-    if (!state.scholars[p.scholarRecordName]) {
-      return
+  [types.removeScholarYearInfo](state: State, p: { scholarRecordName: string; yearInfoRecordName: string, yearToRemoveIndex: number; approvedYearToRemoveIndex: number }) {
+    if (!state.scholars[p.scholarRecordName]) return
+
+    // remove loaded year info
+    Vue.delete(
+      state.scholars[p.scholarRecordName].loadedYearInfos,
+      p.yearInfoRecordName
+    )
+
+    // remove in scholar wwdcYears, wwdcYearsApproved and wwdcYearInfos
+    if (p.yearToRemoveIndex > -1) {
+      Vue.delete(
+        state.scholars[p.scholarRecordName].wwdcYears,
+        p.yearToRemoveIndex
+      )
+      Vue.delete(
+        state.scholars[p.scholarRecordName].wwdcYearInfos,
+        p.yearToRemoveIndex
+      )
     }
+
+    if (p.approvedYearToRemoveIndex > -1) {
+      Vue.delete(
+        state.scholars[p.scholarRecordName].wwdcYearsApproved,
+        p.approvedYearToRemoveIndex
+      )
+    }
+  },
+  [types.setScholarSocialMedia](state: State, p: { scholarRecordName: string, socialMedia: ScholarSocialMedia }) {
+    if (!state.scholars[p.scholarRecordName]) return
 
     Vue.set(
       state.scholars[p.scholarRecordName],

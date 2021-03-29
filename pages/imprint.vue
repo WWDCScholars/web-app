@@ -49,9 +49,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 @Component
-export default class PageImprint extends Vue {}
+export default class PageImprint extends Vue {
+  head(): MetaInfo {
+    return { title: 'Imprint | WWDCScholars' }
+  }
+}
 </script>
 
 <style lang="sass" scoped>

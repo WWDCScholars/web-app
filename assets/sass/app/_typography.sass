@@ -3,16 +3,29 @@ h2
   text-align: center
   font-weight: 600
 
+  +for-phone-only
+    font-size: 28px
+
 h3
   font-size: 28px
   font-weight: 600
+
+  +for-phone-only
+    font-size: 20px
 
 h4
   font-size: 20px
   font-weight: 400
 
+  +for-phone-only
+    font-size: 12px
+
 h2, h3, h4
   margin: 0
+
+  +for-phone-only
+    padding-left: 15px
+    padding-right: 15px
 
 p
   font-size: 18px
@@ -22,6 +35,3 @@ hr
   background-color: $sch-gray2
   height: 1.5px
   border: 0
-
-  +for-tablet-landscape-up
-    margin: 50px -35px

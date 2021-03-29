@@ -58,6 +58,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import { namespace } from 'vuex-class'
 import { TeamMember } from '@wwdcscholars/cloudkit'
 import {
@@ -77,6 +78,10 @@ const Team = namespace(teamName)
 export default class PageAbout extends Vue {
   @Team.Getter('allMembers')
   members!: TeamMember[]
+
+  head(): MetaInfo {
+    return { title: 'About | WWDCScholars' }
+  }
 
   async fetch() {
     await this.$store.dispatch('team/queryMembers')
@@ -130,6 +135,9 @@ h3
     width: 100%
     border-radius: $border-radius-large
     +shadow
+
+    +for-phone-only
+      border-radius: 0
 
   .title
     position: absolute

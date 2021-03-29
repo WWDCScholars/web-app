@@ -2,6 +2,223 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0-pre.16](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.15...v3.14.0-pre.16) (2021-03-18)
+
+
+### Features
+
+* 404 page for scholar not found ([b3fb110](https://github.com/WWDCScholars/web-app/commit/b3fb110fad8d08e8c1e260e4b41bae50e414af20))
+
+
+### Bug Fixes
+
+* Enforce maxLength property of textarea ([6d68dd6](https://github.com/WWDCScholars/web-app/commit/6d68dd6a5202d5f80691292ecc3027208208bf43))
+* Inset MapKit controls only when necessary ([451abd5](https://github.com/WWDCScholars/web-app/commit/451abd5ed68960638f877109419287f3d7937618))
+
+## [3.14.0-pre.15](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.14...v3.14.0-pre.15) (2021-03-18)
+
+## [3.14.0-pre.14](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.13...v3.14.0-pre.14) (2021-03-16)
+
+
+### Bug Fixes
+
+* Add blob: to image CSP ([045b508](https://github.com/WWDCScholars/web-app/commit/045b508f1c9bd804068a4838263bb6cd526da3e9))
+* Add iCloud to connect CSP ([d0d9792](https://github.com/WWDCScholars/web-app/commit/d0d97929192d0723a5fb31607502b7dbec5e2e68))
+* Add sentry to connect CSP ([cd7d110](https://github.com/WWDCScholars/web-app/commit/cd7d11016b27dfb5658fcd3e036fa920a15f66e1))
+* Create ScholarPrivate on save if missing ([3ebdb6e](https://github.com/WWDCScholars/web-app/commit/3ebdb6ef9d20976bf4add8fb3d20199d96d5a642))
+
+## [3.14.0-pre.13](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.12...v3.14.0-pre.13) (2020-12-29)
+
+
+### Bug Fixes
+
+* Change child CSP to blob for workers ([21411a6](https://github.com/WWDCScholars/web-app/commit/21411a6c4d3f02a280be55a6f0d1b7f12ce2f661))
+
+## [3.14.0-pre.12](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.11...v3.14.0-pre.12) (2020-12-29)
+
+
+### Bug Fixes
+
+* Change devtool to webpack documented value ([2556be6](https://github.com/WWDCScholars/web-app/commit/2556be6830f114df519d9723877402c708118ace))
+* Fix CSP syntax ([9fde003](https://github.com/WWDCScholars/web-app/commit/9fde003729bac9d64118cd1806653edcdf977966))
+
+## [3.14.0-pre.11](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.10...v3.14.0-pre.11) (2020-12-29)
+
+
+### Bug Fixes
+
+* Add data to img CSP ([48c41ef](https://github.com/WWDCScholars/web-app/commit/48c41ef067636609b6884ad1a354b4b23406ae3c))
+* Add self to child CSP for workers ([c202f93](https://github.com/WWDCScholars/web-app/commit/c202f93431d92cfea74a448e55acc97e731e9801))
+
+## [3.14.0-pre.10](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.9...v3.14.0-pre.10) (2020-12-29)
+
+
+### Bug Fixes
+
+* Add cloudkit and mapkit to connect CSP, add data for font CSP ([4f35b32](https://github.com/WWDCScholars/web-app/commit/4f35b320b4f9df5b03a12e89e6e44a04adea4072))
+
+## [3.14.0-pre.9](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.8...v3.14.0-pre.9) (2020-12-29)
+
+
+### Bug Fixes
+
+* Add unsafe-inline to style- and script CSP, Move stats domain to connect CSP ([80014c7](https://github.com/WWDCScholars/web-app/commit/80014c75ee9b00be5614477883e451a4c7043454))
+
+## [3.14.0-pre.8](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.7...v3.14.0-pre.8) (2020-12-29)
+
+
+### Features
+
+* Add report-only Content-Security-Policy header for testing ([484cb21](https://github.com/WWDCScholars/web-app/commit/484cb21bd46367377f85f2110c5328311aff7cdd))
+* Load year infos in ProfileSubmission module ([9a7f350](https://github.com/WWDCScholars/web-app/commit/9a7f350aa5c229ad4589ba94464501106339f8b4))
+
+## [3.14.0-pre.7](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.6...v3.14.0-pre.7) (2020-12-08)
+
+## [3.14.0-pre.6](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.5...v3.14.0-pre.6) (2020-12-07)
+
+## [3.14.0-pre.5](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.4...v3.14.0-pre.5) (2020-12-07)
+
+## [3.14.0-pre.4](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.3...v3.14.0-pre.4) (2020-12-07)
+
+
+### Bug Fixes
+
+* Don't load scholar in sign-in ([460e6d8](https://github.com/WWDCScholars/web-app/commit/460e6d8da83b5b9c1f65ffdd254afab107b5cdfb))
+* Hide social media row if none available ([15f14ad](https://github.com/WWDCScholars/web-app/commit/15f14added32f2b1fcb4e60997e7750bf2e8ac92))
+
+## [3.14.0-pre.3](https://github.com/WWDCScholars/web-app/compare/v3.13.2...v3.14.0-pre.3) (2020-11-29)
+
+
+### Features
+
+* Add disabled prop to BaseButton ([18a68a3](https://github.com/WWDCScholars/web-app/commit/18a68a3c1d049a48216d9ab797d836aa9eb2ae0c))
+* Add disabled property to to InputText ([e8a9f00](https://github.com/WWDCScholars/web-app/commit/e8a9f003db2fa8a59d68d4fb0ca0c15b0260ee47))
+* Add globals plugin for configuration data ([5d63f03](https://github.com/WWDCScholars/web-app/commit/5d63f038145785c5039939b1e93c0d104b7e8281))
+* Add input validation to profile pages ([fe8a53b](https://github.com/WWDCScholars/web-app/commit/fe8a53b42ba3935e614c254cbc73edc33f41003a))
+* Add isPending bool to auth and use it in components ([f870e94](https://github.com/WWDCScholars/web-app/commit/f870e94d30fc77773a276152718f593464809f87))
+* Add nuxt typing for CKConnection instance ([da9d808](https://github.com/WWDCScholars/web-app/commit/da9d80869ef9a3878deb9f627197dc58ce856ac1))
+* Add some custom input validation rules ([037ea10](https://github.com/WWDCScholars/web-app/commit/037ea10a4c345c8e6e9c142e181c85a66c5c7d2d))
+* Add title to about, profile, imprint and privacy policy pages ([5f90ad7](https://github.com/WWDCScholars/web-app/commit/5f90ad7b260782128d56437e006af8e1558c6e5d))
+* Auth state handling in profile for new nuxt fetch ([7a11b76](https://github.com/WWDCScholars/web-app/commit/7a11b7638e2ad82c74473b8f34b0a335c426f0b0))
+* Display error message ([764e8c0](https://github.com/WWDCScholars/web-app/commit/764e8c049c0950c0ac2ac9f5039a284ddd7437b4))
+* Highlight year link if param is provided for latest year ([4d2d04b](https://github.com/WWDCScholars/web-app/commit/4d2d04b0557219195574cb9b626e706bf157a13a))
+* Improved wording and styling for signin page ([a98f899](https://github.com/WWDCScholars/web-app/commit/a98f8995f35b68f86bf48e05ede3c309c2d6e3cb))
+* Input validation using vee-validate and basic rules ([b499862](https://github.com/WWDCScholars/web-app/commit/b499862e405dfbeaadd704f543635dc33a1d8635))
+* Maintain scroll position on navigation when it makes sense ([81a5000](https://github.com/WWDCScholars/web-app/commit/81a500009988929da42d8edb63edcabda4f7ae3c))
+* Mobile adjustments for About and Scholar ([96985cd](https://github.com/WWDCScholars/web-app/commit/96985cdcf7e4f72a327fd0beacf5a757e04d4243))
+* Mobile adjustments for Profile Editing ([d4fd1f9](https://github.com/WWDCScholars/web-app/commit/d4fd1f9a977a3c18cc688bdc8a55b67cd85d1667))
+* Mobile adjustments for Signin ([69ffd31](https://github.com/WWDCScholars/web-app/commit/69ffd3103f0a03708dd4c8f0f18db4c2b03a3027))
+* Replace Google Analytics with Plausible Analytics ([f14ea74](https://github.com/WWDCScholars/web-app/commit/f14ea74055d139e3162eed9fc6e3bf366efc99d1))
+* Replace Google Maps with Apple MapKit JS ([384c736](https://github.com/WWDCScholars/web-app/commit/384c736e9ec9a90b49ae09b8a96384f3435d842c))
+* Replace Navigation with separate desktop and mobile versions ([74fcc1d](https://github.com/WWDCScholars/web-app/commit/74fcc1d3710b6da48de342cd02f8c5794e662daf))
+* Scroll to selected link in tab bars ([262fb47](https://github.com/WWDCScholars/web-app/commit/262fb47f50a5679494d8d7de13b28ed6632e3418))
+* Shimmer loading for scholars list ([3118908](https://github.com/WWDCScholars/web-app/commit/3118908cef7628184b0527cc880673d2eb0de698))
+* Temporarly remove netlify footer link ([e706736](https://github.com/WWDCScholars/web-app/commit/e706736209c2bf443665d885a3667edfb18de9ca))
+* Throttle and debounce MapKit searches ([edf4d0e](https://github.com/WWDCScholars/web-app/commit/edf4d0e01feb4ac4b3082aa12b8d70e0715acfd1))
+* Update privacy policy for plausible, add stats link to footer ([1cabd24](https://github.com/WWDCScholars/web-app/commit/1cabd24006a4aaf7ef59285aff60df983529d6ef))
+* **auth:** Enable authentication ([7775ca5](https://github.com/WWDCScholars/web-app/commit/7775ca57a589456a758e17975cabbf33852de497))
+* **auth:** Make auth async on site load ([e9d89e4](https://github.com/WWDCScholars/web-app/commit/e9d89e413c3844990f8b06befef0c689747d24ca))
+* **Components:** Add button with confirm dialog ([e46bd62](https://github.com/WWDCScholars/web-app/commit/e46bd62ab869d9df5b3fb6e2f57a11a214f932fd))
+* **Components:** Add LoadingSpinner ([8d4a5a6](https://github.com/WWDCScholars/web-app/commit/8d4a5a653d1dc8e0690e6d821f35dd07520bfe4c))
+* **Components:** Give ScholarThumbnails an id to improve list rendering ([cf75361](https://github.com/WWDCScholars/web-app/commit/cf75361e96d760e689b564a5b26f371f10c80745))
+* **profile:** Implement scholar profile pages, no editing yet ([d5c1e9e](https://github.com/WWDCScholars/web-app/commit/d5c1e9e170427bfbcf79b78855edf5c0e8de3316))
+* **profile:** Load existing GDPRRequests in profile/account ([688bd4d](https://github.com/WWDCScholars/web-app/commit/688bd4d993c435b1fa72d639407e0e94928ef0c7))
+* **Profile:** Add convenience method to submit forms ([eba42ba](https://github.com/WWDCScholars/web-app/commit/eba42bac3a9a71a3bc5ce68b0f39fecbedb008ae))
+* **Profile:** Add editing API access logic ([90d0a18](https://github.com/WWDCScholars/web-app/commit/90d0a18e019223aed52dfe9a94612eca70ffa6bb))
+* **Profile:** Add imageOrString validation rule for InputImage fields ([91d4a2b](https://github.com/WWDCScholars/web-app/commit/91d4a2b68a6210650a17bf5eb3db40791bdf6191))
+* **Profile:** Functionality of account page ([b429f61](https://github.com/WWDCScholars/web-app/commit/b429f619e0494b1d6d7b1eed87dc758daf21e025))
+* **Profile:** Handle non-existent profile ([00fb080](https://github.com/WWDCScholars/web-app/commit/00fb0801fa159dd50acd937ea8fb32ffe9cb5b25))
+* **Profile:** Submission of basic profile edits ([b99b4ba](https://github.com/WWDCScholars/web-app/commit/b99b4bacf4798374f63432137c116127a31821a2))
+* **Profile:** Submission of scholarship year changes ([d6f6d66](https://github.com/WWDCScholars/web-app/commit/d6f6d66c44417fa3be23540da2cfaba930abf063))
+* **Profile:** Submission of social changes ([9ba6e42](https://github.com/WWDCScholars/web-app/commit/9ba6e421242bdcaadc139991cfd26ffb6838c7e2))
+* Split InputImage to InputImage and InputImageMultiple ([bb34fee](https://github.com/WWDCScholars/web-app/commit/bb34feecf537b10e5695981dfd63cc0cdd0e4227))
+* Wrap form fields in ValidationProvider ([ab7d20b](https://github.com/WWDCScholars/web-app/commit/ab7d20bfc93b2ce60950eb24ac4e7bbe22d2dc22))
+
+
+### Bug Fixes
+
+* Align App Store link properly ([c74b2be](https://github.com/WWDCScholars/web-app/commit/c74b2be2aa6819392a4da4699cfa4d4b85b002b6))
+* Correctly redirect to profile edit after sign in ([ca49876](https://github.com/WWDCScholars/web-app/commit/ca4987613294eb7416449a6321df2782e6bdbd5b))
+* Correctly select tab bar yer when the route does not exactly match ([8346881](https://github.com/WWDCScholars/web-app/commit/8346881bf65071826655a93488752446eb8d2451))
+* Highlight nav link on default year route ([454446c](https://github.com/WWDCScholars/web-app/commit/454446c204880feedb5b750b47b82869db1cb717))
+* InputDate styling ([6023739](https://github.com/WWDCScholars/web-app/commit/6023739d1fcd8d9f4aafc766b2a2835c92b44e62))
+* Move profile button dropdown above header shadow ([94386cc](https://github.com/WWDCScholars/web-app/commit/94386cc91d7935d75f72a2ff1ff6e629d51aef09))
+* Remove currently unused Twitter and YouTube entries from privacy policy ([236bd88](https://github.com/WWDCScholars/web-app/commit/236bd88147fd352a3122f50f8f15839d070169b6))
+* Remove obsolete statement from privacy policy ([529bd57](https://github.com/WWDCScholars/web-app/commit/529bd5711491bc107ec3b8529e790d2e1e7bded0))
+* Remove unnecessary image type validation ([4b84913](https://github.com/WWDCScholars/web-app/commit/4b849131bde024cc8a139f2558082655d05e14b8))
+* Scroll tab bar into view whenever it changes ([1055047](https://github.com/WWDCScholars/web-app/commit/10550474a5051b897c50b2657281ff28931873e2))
+* Wrap year selector in scholar profile ([29bdb3e](https://github.com/WWDCScholars/web-app/commit/29bdb3ea83c0d1a4915e322118ae7db090d85c07))
+* **Components:** Handle unsuccessful reverse geocoding in InputLocation ([55dc3a3](https://github.com/WWDCScholars/web-app/commit/55dc3a3ec37b26fd73a57de14e4fc0ff07c368ba))
+
+## [3.14.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.1...v3.14.0-pre.2) (2020-11-23)
+
+
+### Bug Fixes
+
+* Align App Store link properly ([085a590](https://github.com/WWDCScholars/web-app/commit/085a590e15e23c580f33b1be3d24f495f7dd61c9))
+
+## [3.14.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v3.14.0-pre.0...v3.14.0-pre.1) (2020-11-23)
+
+
+### Features
+
+* Replace Google Analytics with Plausible Analytics ([ca204db](https://github.com/WWDCScholars/web-app/commit/ca204db99572ab8d7eb10c107911c46a1be3cff3))
+* **profile:** Load existing GDPRRequests in profile/account ([df196dd](https://github.com/WWDCScholars/web-app/commit/df196dd0e24c81397cb305640a5c7b2640677ee0))
+
+## [3.14.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.13.2...v3.14.0-pre.0) (2020-11-21)
+
+
+### Features
+
+* Add globals plugin for configuration data ([5d63f03](https://github.com/WWDCScholars/web-app/commit/5d63f038145785c5039939b1e93c0d104b7e8281))
+* Add isPending bool to auth and use it in components ([f870e94](https://github.com/WWDCScholars/web-app/commit/f870e94d30fc77773a276152718f593464809f87))
+* Add title to about, profile, imprint and privacy policy pages ([5f90ad7](https://github.com/WWDCScholars/web-app/commit/5f90ad7b260782128d56437e006af8e1558c6e5d))
+* Auth state handling in profile for new nuxt fetch ([7a11b76](https://github.com/WWDCScholars/web-app/commit/7a11b7638e2ad82c74473b8f34b0a335c426f0b0))
+* Highlight year link if param is provided for latest year ([4d2d04b](https://github.com/WWDCScholars/web-app/commit/4d2d04b0557219195574cb9b626e706bf157a13a))
+* Improved wording and styling for signin page ([a98f899](https://github.com/WWDCScholars/web-app/commit/a98f8995f35b68f86bf48e05ede3c309c2d6e3cb))
+* Maintain scroll position on navigation when it makes sense ([81a5000](https://github.com/WWDCScholars/web-app/commit/81a500009988929da42d8edb63edcabda4f7ae3c))
+* Mobile adjustments for About and Scholar ([96985cd](https://github.com/WWDCScholars/web-app/commit/96985cdcf7e4f72a327fd0beacf5a757e04d4243))
+* Mobile adjustments for Profile Editing ([d4fd1f9](https://github.com/WWDCScholars/web-app/commit/d4fd1f9a977a3c18cc688bdc8a55b67cd85d1667))
+* Mobile adjustments for Signin ([69ffd31](https://github.com/WWDCScholars/web-app/commit/69ffd3103f0a03708dd4c8f0f18db4c2b03a3027))
+* Replace Navigation with separate desktop and mobile versions ([74fcc1d](https://github.com/WWDCScholars/web-app/commit/74fcc1d3710b6da48de342cd02f8c5794e662daf))
+* Scroll to selected link in tab bars ([262fb47](https://github.com/WWDCScholars/web-app/commit/262fb47f50a5679494d8d7de13b28ed6632e3418))
+* **auth:** Enable authentication ([7775ca5](https://github.com/WWDCScholars/web-app/commit/7775ca57a589456a758e17975cabbf33852de497))
+* **auth:** Make auth async on site load ([e9d89e4](https://github.com/WWDCScholars/web-app/commit/e9d89e413c3844990f8b06befef0c689747d24ca))
+* **Components:** Add button with confirm dialog ([e46bd62](https://github.com/WWDCScholars/web-app/commit/e46bd62ab869d9df5b3fb6e2f57a11a214f932fd))
+* **Components:** Add LoadingSpinner ([8d4a5a6](https://github.com/WWDCScholars/web-app/commit/8d4a5a653d1dc8e0690e6d821f35dd07520bfe4c))
+* **Components:** Give ScholarThumbnails an id to improve list rendering ([cf75361](https://github.com/WWDCScholars/web-app/commit/cf75361e96d760e689b564a5b26f371f10c80745))
+* **profile:** Implement scholar profile pages, no editing yet ([d5c1e9e](https://github.com/WWDCScholars/web-app/commit/d5c1e9e170427bfbcf79b78855edf5c0e8de3316))
+* **Profile:** Add convenience method to submit forms ([eba42ba](https://github.com/WWDCScholars/web-app/commit/eba42bac3a9a71a3bc5ce68b0f39fecbedb008ae))
+* **Profile:** Add editing API access logic ([90d0a18](https://github.com/WWDCScholars/web-app/commit/90d0a18e019223aed52dfe9a94612eca70ffa6bb))
+* **Profile:** Add imageOrString validation rule for InputImage fields ([91d4a2b](https://github.com/WWDCScholars/web-app/commit/91d4a2b68a6210650a17bf5eb3db40791bdf6191))
+* **Profile:** Functionality of account page ([b429f61](https://github.com/WWDCScholars/web-app/commit/b429f619e0494b1d6d7b1eed87dc758daf21e025))
+* **Profile:** Handle non-existent profile ([00fb080](https://github.com/WWDCScholars/web-app/commit/00fb0801fa159dd50acd937ea8fb32ffe9cb5b25))
+* **Profile:** Submission of basic profile edits ([b99b4ba](https://github.com/WWDCScholars/web-app/commit/b99b4bacf4798374f63432137c116127a31821a2))
+* **Profile:** Submission of scholarship year changes ([d6f6d66](https://github.com/WWDCScholars/web-app/commit/d6f6d66c44417fa3be23540da2cfaba930abf063))
+* **Profile:** Submission of social changes ([9ba6e42](https://github.com/WWDCScholars/web-app/commit/9ba6e421242bdcaadc139991cfd26ffb6838c7e2))
+* Add disabled prop to BaseButton ([18a68a3](https://github.com/WWDCScholars/web-app/commit/18a68a3c1d049a48216d9ab797d836aa9eb2ae0c))
+* Add disabled property to to InputText ([e8a9f00](https://github.com/WWDCScholars/web-app/commit/e8a9f003db2fa8a59d68d4fb0ca0c15b0260ee47))
+* Add input validation to profile pages ([fe8a53b](https://github.com/WWDCScholars/web-app/commit/fe8a53b42ba3935e614c254cbc73edc33f41003a))
+* Add nuxt typing for CKConnection instance ([da9d808](https://github.com/WWDCScholars/web-app/commit/da9d80869ef9a3878deb9f627197dc58ce856ac1))
+* Add some custom input validation rules ([037ea10](https://github.com/WWDCScholars/web-app/commit/037ea10a4c345c8e6e9c142e181c85a66c5c7d2d))
+* Display error message ([764e8c0](https://github.com/WWDCScholars/web-app/commit/764e8c049c0950c0ac2ac9f5039a284ddd7437b4))
+* Input validation using vee-validate and basic rules ([b499862](https://github.com/WWDCScholars/web-app/commit/b499862e405dfbeaadd704f543635dc33a1d8635))
+* Split InputImage to InputImage and InputImageMultiple ([bb34fee](https://github.com/WWDCScholars/web-app/commit/bb34feecf537b10e5695981dfd63cc0cdd0e4227))
+* Wrap form fields in ValidationProvider ([ab7d20b](https://github.com/WWDCScholars/web-app/commit/ab7d20bfc93b2ce60950eb24ac4e7bbe22d2dc22))
+
+
+### Bug Fixes
+
+* Correctly redirect to profile edit after sign in ([ca49876](https://github.com/WWDCScholars/web-app/commit/ca4987613294eb7416449a6321df2782e6bdbd5b))
+* Correctly select tab bar yer when the route does not exactly match ([8346881](https://github.com/WWDCScholars/web-app/commit/8346881bf65071826655a93488752446eb8d2451))
+* Highlight nav link on default year route ([454446c](https://github.com/WWDCScholars/web-app/commit/454446c204880feedb5b750b47b82869db1cb717))
+* InputDate styling ([6023739](https://github.com/WWDCScholars/web-app/commit/6023739d1fcd8d9f4aafc766b2a2835c92b44e62))
+* Move profile button dropdown above header shadow ([94386cc](https://github.com/WWDCScholars/web-app/commit/94386cc91d7935d75f72a2ff1ff6e629d51aef09))
+* Remove unnecessary image type validation ([4b84913](https://github.com/WWDCScholars/web-app/commit/4b849131bde024cc8a139f2558082655d05e14b8))
+* Scroll tab bar into view whenever it changes ([1055047](https://github.com/WWDCScholars/web-app/commit/10550474a5051b897c50b2657281ff28931873e2))
+* Wrap year selector in scholar profile ([29bdb3e](https://github.com/WWDCScholars/web-app/commit/29bdb3ea83c0d1a4915e322118ae7db090d85c07))
+* **Components:** Handle unsuccessful reverse geocoding in InputLocation ([55dc3a3](https://github.com/WWDCScholars/web-app/commit/55dc3a3ec37b26fd73a57de14e4fc0ff07c368ba))
+
 ### [3.13.2](https://github.com/WWDCScholars/web-app/compare/v3.13.1...v3.13.2) (2020-07-09)
 
 

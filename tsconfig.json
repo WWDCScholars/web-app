@@ -23,6 +23,9 @@
       ],
       "@/*": [
         "./*"
+      ],
+      "@wwdcscholars/cloudkit": [
+        "node_modules/@wwdcscholars/cloudkit/lib/esm"
       ]
     },
     "types": [

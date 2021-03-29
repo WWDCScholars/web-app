@@ -1,16 +1,10 @@
 <template lang="pug">
 .container-outer.form-color-purple
   .scholar-profile
-    gmap-map(
-      :center="mapCenter",
-      :zoom="mapZoom",
-      :options.once="mapOptions"
-    ).map
-      gmap-marker(
-        v-if="mapCenter.lat && mapCenter.lng",
-        :position="mapCenter",
-        :clickable.once="true",
-        :draggable.once="false"
+    .profile-map
+      profile-map(
+        :coordinate="location",
+        :annotationTitle="locationCity"
       )
 
     .container-fluid
@@ -21,11 +15,11 @@
           h2
             span.name {{ fullName }}
             span.age {{ age }}
-          .location {{ locationSlug }}
+          h3.location {{ locationSlug }}
 
         p.short-bio {{ scholar.biography }}
 
-        .social-links(v-if="scholar.loadedSocialMedia")
+        .social-links(v-if="socialMedia")
           a(v-if="scholar.loadedSocialMedia.twitter",
             :href="scholar.loadedSocialMedia.twitter",
             alt="Twitter",
@@ -81,9 +75,10 @@
 
           .submission-selector
             nuxt-link(
-              v-for="(link, year) in submissionLinks",
+              v-for="({ link, activeClass }, year) in submissionLinks",
               :to="link",
-              :key="year"
+              :key="year",
+              :class="activeClass"
             ) {{ year }}
 
           nuxt-child(:scholar="scholar")
@@ -95,14 +90,15 @@
 <script lang="ts">
 import dayjs from 'dayjs'
 import { MetaInfo } from 'vue-meta'
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
-import { CloudKit, Scholar } from '@wwdcscholars/cloudkit'
+import { CloudKit, Scholar, ScholarSocialMedia } from '@wwdcscholars/cloudkit'
 
 import {
   BaseSection,
   BaseButton,
-  Copyable
+  Copyable,
+  ProfileMap
 } from '~/components'
 
 import * as auth from '~/store/auth'
@@ -111,32 +107,19 @@ const Auth = namespace(auth.name)
 import * as scholars from '~/store/scholars'
 const Scholars = namespace(scholars.name)
 
-interface Coordinate {
-  lat: number
-  lng: number
-}
-
 @Component({
   components: {
     BaseSection,
     BaseButton,
-    Copyable
+    Copyable,
+    ProfileMap
   },
   scrollToTop: true
 })
 export default class ScholarProfile extends Vue {
+  mapKitInitialized: boolean = false
   locationSlug: string = '-'
-
-  mapOptions = {
-    disableDefaultUI: true,
-    gestureHandling: 'none',
-    scrollwheel: false,
-    styles: [
-      { featureType: 'poi', stylers: [{ visibility: 'off' }] },
-      { featureType: 'road', stylers: [{ visibility: 'off' }] },
-      { featureType: 'transit', stylers: [{ visibility: 'off' }] }
-    ]
-  }
+  locationCity: string =''
 
   @Scholars.Getter('byRecordName') scholarByRecordName
 
@@ -159,12 +142,10 @@ export default class ScholarProfile extends Vue {
     return `${dayjs().diff(birthday, 'year')}`
   }
 
-  get attended(): string {
-    if (!this.scholar || !this.scholar.wwdcYears) return ''
+  get socialMedia(): ScholarSocialMedia | undefined {
+    if (!this.scholar || !this.scholar.loadedSocialMedia || Object.keys(this.scholar.loadedSocialMedia.fields).length <= 1) return undefined
 
-    return this.scholar.wwdcYears
-      .map(year => `’${year.recordName.substring(7)}`)
-      .join(', ')
+    return this.scholar.loadedSocialMedia
   }
 
   get profilePictureURL(): string {
@@ -173,13 +154,10 @@ export default class ScholarProfile extends Vue {
     return this.scholar.profilePicture.downloadURL
   }
 
-  get mapCenter(): Coordinate {
-    if (!this.scholar || !this.scholar.location || !this.scholar.location.latitude || !this.scholar.location.longitude) return { lat: 0, lng: 0 }
+  get location(): mapkit.Coordinate | undefined {
+    if (!this.scholar || !this.scholar.location || !this.mapKitInitialized) return undefined
 
-    return {
-      lat: this.scholar.location.latitude,
-      lng: this.scholar.location.longitude
-    }
+    return new mapkit.Coordinate(this.scholar.location.latitude, this.scholar.location.longitude)
   }
 
   get mapZoom(): number {
@@ -201,13 +179,19 @@ export default class ScholarProfile extends Vue {
       .reduce((acc, yearReference) => {
         const year = yearReference.recordName.substring(5)
         const yearParam = yearReference.recordName === lastYearReference.recordName ? undefined : year
+        const exactActive = !yearParam && this.$route.params.year === lastYearReference.recordName.substring(5)
+          ? 'nuxt-link-exact-active'
+          : undefined
 
         acc[year] = {
-          name: 's-id-year',
-          params: {
-            id: this.$route.params.id,
-            year: yearParam
-          }
+          link: {
+            name: 's-id-year',
+            params: {
+              id: this.$route.params.id,
+              year: yearParam
+            }
+          },
+          activeClass: exactActive
         }
 
         return acc
@@ -232,15 +216,20 @@ export default class ScholarProfile extends Vue {
   }
 
   async fetch() {
-    await this.$store.dispatch('scholars/fetchScholar', this.$route.params.id)
+    try {
+      await this.$store.dispatch('scholars/fetchScholar', this.$route.params.id)
+    }
+    catch (e) {
+       this.$nuxt.error({
+        message: 'The Scholar could not be found',
+        statusCode: 404
+      })
+      return
+    }
+
     const scholar: Scholar = this.$store.getters['scholars/byRecordName'](this.$route.params.id)
-
     if (!scholar) {
-      if (process.server) {
-        this.$nuxt.context.res.statusCode = 404
-      }
-
-      throw new Error('Scholar not found')
+      return
     }
 
     // TODO: Maybe we don't have to await this.
@@ -250,49 +239,34 @@ export default class ScholarProfile extends Vue {
     })
   }
 
-  created() {
-    // wait unitl google maps is initialized
-    this['$gmapApiPromiseLazy']()
-      .then(() => {
-        // geocode readable location
-        this.loadLocationSlug(this.mapCenter)
-      })
+  async created() {
+    await this.$loadMapKit()
+    this.mapKitInitialized = true
+    this.loadLocationSlug(this.location, undefined)
   }
 
-  loadLocationSlug(location: Coordinate): void {
-    const geocoder = new google.maps.Geocoder()
-    geocoder.geocode({ location }, (results, status) => {
-      if (status !== google.maps.GeocoderStatus.OK || !results[0]) {
-        this.locationSlug = '-'
+  @Watch('location')
+  loadLocationSlug(newLocation?: mapkit.Coordinate, oldLocation?: mapkit.Coordinate): void {
+    if (!newLocation || (newLocation.latitude === oldLocation?.latitude && newLocation.longitude == oldLocation?.longitude)) return
+
+    const geocoder = new mapkit.Geocoder()
+    geocoder.reverseLookup(newLocation, (error, response) => {
+      if (error) {
+        console.error(error)
         return
       }
 
-      // find result with types = ['locality', 'political']
-      const filteredResults = results.filter(result => {
-        return result.types.length === 2
-          && result.types.includes('locality')
-          && result.types.includes('political')
-      })
+      if (!response.results[0]) return
+      const result = response.results[0]
 
-      if (!filteredResults[0]) {
-        let builtLocation: { city?: string; state?: string; country?: string } = {}
-        for (const component of results[0].address_components) {
-          if (component.types.includes('sublocality') || component.types.includes('locality')) {
-            builtLocation.city = component.long_name
-          }
-          if (component.types.includes('administrative_area_level_1')) {
-            builtLocation.state = component.short_name
-          }
-          if (component.types.includes('country')) {
-            builtLocation.country = component.long_name
-          }
-        }
-        let addressComponents = [builtLocation.city, builtLocation.state, builtLocation.country]
-        this.locationSlug = addressComponents.join(', ')
-      } else {
-        const result = filteredResults[0]
-        this.locationSlug = result.formatted_address
-      }
+      let slugComponents: string[] = []
+      if (result.locality) slugComponents.push(result.locality)
+      if (result.administrativeAreaCode) slugComponents.push(result.administrativeAreaCode)
+      if (result.country) slugComponents.push(result.country)
+      else slugComponents.push(result.countryCode)
+
+      this.locationSlug = slugComponents.join(', ')
+      this.locationCity = result.locality ?? ''
     })
   }
 
@@ -310,7 +284,7 @@ export default class ScholarProfile extends Vue {
 </script>
 
 <style lang="sass" scoped>
-.map
+.profile-map
   width: 100%
   height: 360px
   position: relative
@@ -331,7 +305,7 @@ export default class ScholarProfile extends Vue {
     margin-top: -150px
 
     +for-phone-only
-      margin: -150px auto 0 auto
+      margin: -125px auto 0 auto
 
     img
       width: 100%
@@ -358,10 +332,17 @@ export default class ScholarProfile extends Vue {
       margin-left: 10px
       color: lighten($sch-purple, 40%)
 
+    +for-phone-only
+      margin-top: 20px
+      font-size: 1.4em
+
   .location
     font-size: 1.2em
     font-weight: 500
     color: $apl-black2
+
+    +for-phone-only
+      font-size: 1em
 
   .short-bio
     margin-top: 30px
@@ -403,12 +384,16 @@ export default class ScholarProfile extends Vue {
       font-weight: 700
       color: $sch-purple
 
+      +for-phone-only
+        font-size: 1.2em
+
   .submission-selector
     display: flex
     justify-content: flex-start
     align-items: flex-start
+    flex-wrap: wrap
     margin-top: 15px
-    margin-bottom: 30px
+    margin-bottom: 15px
 
     a
       position: relative
@@ -419,6 +404,7 @@ export default class ScholarProfile extends Vue {
       border-radius: 22px
       text-decoration: none
       margin-right: 15px
+      margin-bottom: 15px
       transition: background-color 100ms linear, color 100ms linear
 
       &:hover
@@ -445,4 +431,7 @@ export default class ScholarProfile extends Vue {
     position: absolute
     top: 30px
     right: 30px
+
+    +for-phone-only
+      display: none
 </style>

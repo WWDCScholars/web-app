@@ -14,7 +14,7 @@ export default class BaseForm extends Vue {}
 .form
   width: 100%
   display: grid
-  gird-template-columns: 1fr 1fr
+  grid-template-columns: 1fr 1fr
   grid-gap: 0 15px
 
   .group
@@ -28,6 +28,9 @@ export default class BaseForm extends Vue {}
     &.group-width-50
       grid-column: span 1
 
+      +for-phone-only
+        grid-column: span 2
+
     h3, .field, p
       grid-column: span 2
 
@@ -40,14 +43,17 @@ export default class BaseForm extends Vue {}
       font-size: 1em
       font-weight: 400
 
+      +for-phone-only
+        padding-left: 0
+        padding-right: 0
+
     .field
       &.field-width-50
         grid-column: span 1
 
   /deep/ .btn-cta
-    grid-column: 2
+    grid-column: span 2
     justify-self: end
-    white-space: nowrap
     width: auto
 </style>
 

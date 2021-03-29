@@ -62,8 +62,11 @@ export default class InputDate extends Vue {
 
 <style lang="sass" scoped>
 .input-date
-  position: relative
   width: 100%
+
+  label
+    display: block
+    position: relative
 
   input
     width: 100%

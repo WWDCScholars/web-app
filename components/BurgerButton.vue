@@ -24,8 +24,8 @@ export default class BurgerButton extends Vue {
 <style lang="sass" scoped>
 .burger-button
   position: relative
-  width: 26px
-  height: 19px
+  width: 30px
+  height: 30px
   cursor: pointer
   background: 0
   border: 0
@@ -33,25 +33,25 @@ export default class BurgerButton extends Vue {
   span
     position: absolute
     display: block
-    width: 100%
-    height: 3px
-    left: 0px
+    width: 26px
+    height: 2px
+    left: 2px
     background-color: $sch-purple
     transition: 300ms ease-in-out
 
     &:nth-child(1)
-      top: 0px
+      top: 6px
 
     &:nth-child(2), &:nth-child(3)
-      top: 8px
+      top: 14px
 
     &:nth-child(4)
-      top: 16px
+      top: 22px
 
   &.burger-button-active
     span
       &:nth-child(1)
-        top: 8px
+        top: 14px
         left: 50%
         width: 0%
 
@@ -62,7 +62,7 @@ export default class BurgerButton extends Vue {
         transform: rotate(-45deg)
 
       &:nth-child(4)
-        top: 8px
+        top: 14px
         left: 50%
         width: 0%
 </style>

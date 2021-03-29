@@ -9,25 +9,26 @@
 @mixin container-fixed()
   margin-left: auto
   margin-right: auto
-  padding-left: 15px
-  padding-right: 15px
+  padding-left: 30px
+  padding-right: 30px
   +clearfix
 
   +for-tablet-landscape-up
     padding-left: 50px
     padding-right: 50px
 
+  +for-phone-only
+    padding-left: 0
+    padding-right: 0
+
 .container
   +container-fixed
-
-.container-outer
-
 
 .container-fluid
   +container-fixed
 
   +for-desktop-up
-    max-width: 1150px
+    max-width: $container-max-width
 
   > .section
     margin-top: 40px

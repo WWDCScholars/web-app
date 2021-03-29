@@ -5,11 +5,11 @@
       type="radio",
       :name.once="name",
       :required.once="required",
-      :value="option",
-      :checked="option === value"
+      :value="option.value",
+      :checked="option.value === value"
       @change="update($event.target.value)"
     )
-    span {{ option }}
+    span {{ option.label }}
 </template>
 
 <script lang="ts">
@@ -20,11 +20,11 @@ export default class InputRadioGroup extends Vue {
   @Model('change')
   value!: string
 
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   name!: string
-  @Prop({ required: true })
-  options!: string[]
-  @Prop({ default: false })
+  @Prop({ type: Array, required: true })
+  options!: { label: string, value: string }[]
+  @Prop({ type: Boolean, default: false })
   required!: boolean
 
   value_validate: string = this.value || ''  // tslint:disable-line
@@ -42,7 +42,6 @@ export default class InputRadioGroup extends Vue {
   flex-wrap: wrap
   justify-content: flex-start
   align-items: center
-  margin-right: -15px
 
   .input-radio
     position: relative
