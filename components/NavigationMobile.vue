@@ -6,11 +6,11 @@
       li: nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
       li: nuxt-link(to="/about").color-green: span About
       li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue1: span Join
-    ul(v-if="!isAuthPending && isAuthenticated")
+    ul(v-if="!isAuthPending && isAuthenticated").auth-links
       li: nuxt-link(v-if="profileLink", :to="profileLink").color-purple: span Profile
       li: nuxt-link(to="/profile").color-purple: span Edit Profile
       li: button(@click="onSignOutClicked").color-purple: span Sign Out
-    ul(v-else-if="!isAuthPending")
+    ul(v-else-if="!isAuthPending").auth-links
       li: nuxt-link(to="/signin").color-purple: span Sign In
 </template>
 
@@ -90,7 +90,7 @@ export default class NavigationMobile extends Vue {
     z-index: 998
     display: flex
     flex-direction: column
-    justify-content: space-between
+    justify-content: flex-start
     align-items: flex-start
     padding-top: $header-height-mobile
     background-color: $white
@@ -108,6 +108,9 @@ export default class NavigationMobile extends Vue {
       padding: 5px 40px 5px 20px
       width: 100%
 
+      &.auth-links
+        border-top: 1px solid $sch-gray1
+
       li
         a, button
           position: relative
@@ -118,7 +121,6 @@ export default class NavigationMobile extends Vue {
           margin-left: 20px
           background: 0
           border: 0
-          border-bottom: 1px solid $sch-gray1
           text-align: left
           text-decoration: none
 
@@ -139,7 +141,4 @@ export default class NavigationMobile extends Vue {
           &.nuxt-link-active:not(.nuxt-link-root)
             &:before
               display: block
-
-        &:last-of-type a, button
-          border-bottom: 0
 </style>
