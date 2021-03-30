@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.14.2](https://github.com/WWDCScholars/web-app/compare/v3.14.1...v3.14.2) (2021-03-30)
+
 ### [3.14.1](https://github.com/WWDCScholars/web-app/compare/v3.14.0...v3.14.1) (2021-03-29)
 
 ## [3.14.0](https://github.com/WWDCScholars/web-app/compare/v3.13.2...v3.14.0) (2021-03-29)
