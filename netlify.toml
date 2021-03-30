@@ -44,7 +44,7 @@
 # Discord Redirect
 [[redirects]]
   from = "/discord"
-  to = "https://discord.gg/Vn5bHDg"
+  to = "https://discord.gg/XEBR9qWUpE"
   status = 301
   force = true
 
