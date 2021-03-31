@@ -100,9 +100,6 @@ const config: NuxtConfig = {
    ** Nuxt.js modules
    */
   modules: [
-    // Load global SASS variables and mixins
-    '@nuxtjs/style-resources',
-
     // Load CloudKit
     '@wwdcscholars/cloudkit',
 
@@ -175,7 +172,13 @@ const config: NuxtConfig = {
   /*
    ** Build modules
    */
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: [
+    // Transpile TypeScript
+    '@nuxt/typescript-build',
+
+    // Load global SASS variables and mixins
+    '@nuxtjs/style-resources'
+  ],
 
   /*
    ** Build configuration
