@@ -80,4 +80,7 @@ export default class PageHeader extends Vue {
   .appstore-download
     margin-left: auto
     margin-right: 30px
+
+    +for-phone-only
+      display: none
 </style>
