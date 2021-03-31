@@ -80,11 +80,15 @@ import {
   BaseButton,
   FormField
 } from '~/components'
-import { ValidationObserver } from 'vee-validate'
+import { ValidationObserver, extend } from 'vee-validate'
 import { handleSave } from '~/util/edit-profile'
+import phoneOrEmail from '~/util/validation/phoneOrEmail'
 
 import { name as profileName } from '~/store/profile'
 const Profile = namespace(profileName)
+
+// add phoneOrEmail rule, has a quite large dependency
+extend('phoneOrEmail', phoneOrEmail)
 
 @Component({
   components: {
