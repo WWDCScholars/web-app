@@ -8,7 +8,7 @@
 
     .team-section
       .team-picture
-        img(src="~assets/images/team-members.jpg")
+        img(src="/images/team-members.jpg")
         .title WWDC#[span Scholars] Team
 
       .team-cards
@@ -23,7 +23,7 @@
 
     .team-section
       .team-picture
-        img(src="~assets/images/team-scholars.jpg")
+        img(src="/images/team-scholars.jpg")
         .title WWDCScholarships
 
       base-section
