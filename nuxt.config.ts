@@ -5,7 +5,7 @@ dotenv()
 
 const version = require('./package.json').version
 const isDevelopment = (process.env.NODE_ENV === 'development')
-const isLocal = (process.env.LOCAL === '1')
+const isCI = (process.env.CI === 'true')
 
 let envPrefix: string
 if (process.env.NODE_ENV === 'production') {
@@ -145,6 +145,9 @@ const config: NuxtConfig = {
   sentry: {
     disabled: isDevelopment,
     dsn: process.env.SENTRY_DSN,
+    publishRelease: isCI,
+    sourceMapStyle: 'hidden-source-map',
+    attachCommits: true,
     config: {
       environment: process.env[`${envPrefix}_SENTRY_ENVIRONMENT`],
       release: `app@v${version}`,
@@ -193,11 +196,6 @@ const config: NuxtConfig = {
     extend(config: any/*, ctx*/) {
       config.node = {
         fs: 'empty'
-      }
-
-      // enable source maps
-      if (isLocal) {
-        config.devtool = 'source-map'
       }
     }
   },
