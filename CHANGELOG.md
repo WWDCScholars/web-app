@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.14.4](https://github.com/WWDCScholars/web-app/compare/v3.14.3...v3.14.4) (2021-03-31)
+
+
+### Bug Fixes
+
+* Don't display AppStore Link on phones ([dcbf512](https://github.com/WWDCScholars/web-app/commit/dcbf5122f227f8db353ba1e200f905b417450381))
+
 ### [3.14.3](https://github.com/WWDCScholars/web-app/compare/v3.14.3-pre.0...v3.14.3) (2021-03-31)
 
 ### [3.14.3-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.14.2...v3.14.3-pre.0) (2021-03-31)
