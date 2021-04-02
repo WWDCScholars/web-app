@@ -203,12 +203,15 @@ export default class ScholarProfile extends Vue {
       && this.userScholarReference.recordName === this.scholar?.recordName
   }
 
-  head(): MetaInfo {
+  head(ctx): MetaInfo {
     const title = this.fullName.length > 0 ? `${this.fullName} | WWDCScholars` : undefined
 
+    const url = `${process.env.baseUrl}${this.$route.fullPath}`
     const meta: (MetaPropertyProperty | MetaPropertyName)[] = [
       { property: 'og:type', content: 'profile', hid: 'og:type' },
-      { name: 'twitter:card', content: 'summary', hid: 'twitter:card' }
+      { property: 'og:url', content: url, hid: 'og:url' },
+      { name: 'twitter:card', content: 'summary', hid: 'twitter:card' },
+      { name: 'twitter:url', content: url, hid: 'twitter:url' }
     ]
     if (title) {
       meta.push({ property: 'og:title', content: title, hid: 'og:title' })
