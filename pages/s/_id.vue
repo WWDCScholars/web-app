@@ -89,7 +89,7 @@
 
 <script lang="ts">
 import dayjs from 'dayjs'
-import { MetaInfo } from 'vue-meta'
+import { MetaInfo, MetaPropertyName } from 'vue-meta'
 import { Component, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { CloudKit, Scholar, ScholarSocialMedia } from '@wwdcscholars/cloudkit'
@@ -205,9 +205,25 @@ export default class ScholarProfile extends Vue {
 
   head(): MetaInfo {
     const title = this.scholar ? `${this.fullName} | WWDCScholars` : undefined
+    const description = this.scholar ? this.scholar.biography : undefined
+
+    const meta: MetaPropertyName[] = [
+      { name: 'og:type', content: 'profile' },
+      { name: 'twitter:card', content: 'summary' }
+    ]
+    if (this.scholar && this.scholar.biography) {
+      meta.push({ name: 'description', content: this.scholar.biography })
+    }
+    if (this.profilePictureURL.length > 0) {
+      meta.push({ name: 'og:image', content: this.profilePictureURL })
+    }
+    if (this.socialMedia && this.socialMedia.twitter) {
+      meta.push({ name: 'og:creator', content: `@${this.socialMedia.twitter}` })
+    }
 
     return {
-      title
+      title,
+      meta
     }
   }
 
