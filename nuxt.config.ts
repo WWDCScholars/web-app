@@ -219,7 +219,8 @@ const config: NuxtConfig = {
      */
     extend(config: any/*, ctx*/) {
       config.node = {
-        fs: 'empty'
+        fs: 'empty',
+        crypto: 'empty'
       }
     }
   },
