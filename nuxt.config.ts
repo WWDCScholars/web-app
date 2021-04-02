@@ -16,6 +16,12 @@ if (process.env.NODE_ENV === 'production') {
   envPrefix = 'DEV'
 }
 
+const META = {
+  title: 'Welcome to WWDCScholars',
+  description: 'Take a look at Apple WWDC Scholarship winners from all around the world as well as their winning submissions!',
+  image: '/images/og-image.jpg'
+}
+
 const config: NuxtConfig = {
   ssr: false,
 
@@ -23,20 +29,24 @@ const config: NuxtConfig = {
    ** Headers of the page
    */
   head: {
-    title: 'Welcome to WWDCScholars!',
+    title: META.title,
     meta: [
-      { charset: 'utf-8' },
+      { name: 'Content-Type', content: 'text/html', charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content:
-          'Take a look at Apple WWDC Scholarship winners from all around the world as well as their winning submissions!'
-      },
+      { name: 'description', content: META.description, hid: 'description' },
+
+      // App Store Banner
       { name: 'apple-itunes-app', content: 'app-id=1459158255' },
-      { name: 'og:type', content: 'website' },
-      { name: 'og:image', content: '/images/og-image.png' },
-      { name: 'twitter:card', content: 'summary_large_image' },
+
+      // Social Cards
+      { property: 'og:type', content: 'website', hid: 'og:type' },
+      { property: 'og:title', content: META.title, hid: 'og:title' },
+      { property: 'og:description', content: META.description, hid: 'og:description' },
+      { property: 'og:image', content: META.image, hid: 'og:image' },
+      { name: 'twitter:card', content: 'summary_large_image', hid: 'twitter:card' },
+      { name: 'twitter:title', content: META.title, hid: 'twitter:title' },
+      { name: 'twitter:description', content: META.description, hid: 'twitter:description' },
+      { name: 'twitter:image', content: META.image, hid: 'twitter:image' },
       { name: 'twitter:site', content: '@WWDCScholars' }
     ],
     link: [
