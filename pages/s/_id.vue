@@ -206,7 +206,7 @@ export default class ScholarProfile extends Vue {
   head(ctx): MetaInfo {
     const title = `${this.fullName} | WWDCScholars`
     const description = this.scholar?.biography ?? ''
-    // const url = `${process.env.baseUrl}/s/${this.$route.params.id}`
+    const url = `${process.env.baseUrl}/s/${this.$route.params.id}`
 
     return {
       title,
