@@ -4,7 +4,7 @@
     <h1>Imprint</h1>
 
     <h2>Information pursuant to § 5 TMG</h2>
-    <p>cecose GmbH<br />
+    <p>corporatr GmbH<br />
     Lindpaintnerstrasse 88<br />
     70195 Stuttgart</p>
 
@@ -16,7 +16,7 @@
 
     <h2>Contact</h2>
     <p>Phone: +49 711 13203200<br />
-    Email: kontakt@cecose.com</p>
+    Email: hello@corporatr.com</p>
 
     <h2>VAT ID</h2>
     <p>Sales tax identification number according to § 27 a of the Sales Tax Law:<br />
