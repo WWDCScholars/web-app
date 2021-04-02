@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.15.0](https://github.com/WWDCScholars/web-app/compare/v3.14.4...v3.15.0) (2021-04-02)
+
+
+### Features
+
+* Add canonical url and image alt, restructure profile social cards ([19781b6](https://github.com/WWDCScholars/web-app/commit/19781b625445c42712f6d0243b929c1a0ff8a4d8))
+* Add OpenGraph and Twitter Card stuff ([c86f9c6](https://github.com/WWDCScholars/web-app/commit/c86f9c67e8aa0751c7c50b62c279f0af64aee9f5))
+
+
+### Bug Fixes
+
+* Fix image and add url in social cards ([10fc2c9](https://github.com/WWDCScholars/web-app/commit/10fc2c91e3f8746ab5ea14db22cc3de14887c859))
+* Properly set all Social Card fields ([f6cb1e2](https://github.com/WWDCScholars/web-app/commit/f6cb1e2c915a0a7bcdae497f93a6827c0e558c06))
+
 ## [3.15.0-pre.4](https://github.com/WWDCScholars/web-app/compare/v3.15.0-pre.3...v3.15.0-pre.4) (2021-04-02)
 
 
