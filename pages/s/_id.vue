@@ -204,36 +204,30 @@ export default class ScholarProfile extends Vue {
   }
 
   head(ctx): MetaInfo {
-    const title = this.fullName.length > 0 ? `${this.fullName} | WWDCScholars` : undefined
-
-    const url = `${process.env.baseUrl}${this.$route.fullPath}`
-    const meta: (MetaPropertyProperty | MetaPropertyName)[] = [
-      { property: 'og:type', content: 'profile', hid: 'og:type' },
-      { property: 'og:url', content: url, hid: 'og:url' },
-      { name: 'twitter:card', content: 'summary', hid: 'twitter:card' },
-      { name: 'twitter:url', content: url, hid: 'twitter:url' }
-    ]
-    if (title) {
-      meta.push({ property: 'og:title', content: title, hid: 'og:title' })
-      meta.push({ name: 'twitter:title', content: title, hid: 'twitter:title' })
-    }
-    if (this.scholar && this.scholar.biography) {
-      const description = this.scholar.biography.substring(0, 200)
-      meta.push({ name: 'description', content: description, hid: 'description' })
-      meta.push({ property: 'og:description', content: description, hid: 'og:description' })
-      meta.push({ name: 'twitter:description', content: description, hid: 'twitter:description' })
-    }
-    if (this.profilePictureURL.length > 0) {
-      meta.push({ property: 'og:image', content: this.profilePictureURL, hid: 'og:image' })
-      meta.push({ name: 'twitter:image', content: this.profilePictureURL, hid: 'twitter:image' })
-    }
-    if (this.socialMedia && this.socialMedia.twitter) {
-      meta.push({ name: 'twitter:creator', content: `@${this.socialMedia.twitter}` })
-    }
+    const title = `${this.fullName} | WWDCScholars`
+    const description = this.scholar?.biography ?? ''
+    const url = `${process.env.baseUrl}/s/${this.$route.params.id}`
 
     return {
       title,
-      meta
+      meta: [
+        { name: 'description', content: description, hid: 'description' },
+        { property: 'og:type', content: 'profile', hid: 'og:type' },
+        { property: 'og:title', content: title, hid: 'og:title' },
+        { property: 'og:description', content: description, hid: 'og:description' },
+        { property: 'og:image', content: this.profilePictureURL, hid: 'og:image' },
+        { property: 'og:image:alt', content: title, hid: 'og:image:alt' },
+        { property: 'og:url', content: url, hid: 'og:url' },
+        { name: 'twitter:card', content: 'summary', hid: 'twitter:card' },
+        { name: 'twitter:title', content: title, hid: 'twitter:title' },
+        { name: 'twitter:description', content: description, hid: 'twitter:description' },
+        { name: 'twitter:image', content: this.profilePictureURL, hid: 'twitter:image' },
+        { name: 'twitter:image:alt', content: title, hid: 'twitter:image:alt' },
+        { name: 'twitter:url', content: url, hid: 'twitter:url' }
+      ],
+      link: [
+        { rel: 'canonical', href: url, hid: 'canonical' }
+      ]
     }
   }
 

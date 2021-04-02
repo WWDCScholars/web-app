@@ -44,15 +44,18 @@ const config: NuxtConfig = {
       { property: 'og:title', content: META.title, hid: 'og:title' },
       { property: 'og:description', content: META.description, hid: 'og:description' },
       { property: 'og:image', content: META.image, hid: 'og:image' },
+      { property: 'og:image:alt', content: META.title, hid: 'og:image:alt'},
       { property: 'og:url', content: META.url, hid: 'og:url' },
       { name: 'twitter:card', content: 'summary_large_image', hid: 'twitter:card' },
       { name: 'twitter:title', content: META.title, hid: 'twitter:title' },
       { name: 'twitter:description', content: META.description, hid: 'twitter:description' },
       { name: 'twitter:image', content: META.image, hid: 'twitter:image' },
+      { name: 'twitter:image:alt', content: META.title, hid: 'twitter:image:alt' },
       { name: 'twitter:url', content: META.url, hid: 'twitter:url' },
       { name: 'twitter:site', content: '@WWDCScholars' }
     ],
     link: [
+      { rel: 'canonical', href: META.url, hid: 'canonical' },
       { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico' },
       {
         rel: 'apple-touch-icon-precomposed',
