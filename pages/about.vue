@@ -39,7 +39,7 @@
           h4.color-red2 How can I apply?
           p.
             #[i Due to being held online, the WWDC Scholarship is called Swift Student Challenge in 2021. Applications are currently open. Don't miss any announcements by #[a(href="https://twitter.com/WWDCScholars", target="_blank") following us on Twitter (@WWDCScholars)].]
-            The application for a WWDC scholarship consists of a combination of a Swift Playground to showcase your ingenuity and written responses to a few questions. You can #[a(href="https://developer.apple.com/wwdc/scholarships/", target="_blank") find out more on the WWDC Website].
+            The application for a WWDC scholarship consists of a combination of a Swift Playground to showcase your ingenuity and written responses to a few questions. You can #[a(href="https://developer.apple.com/wwdc21/swift-student-challenge/", target="_blank") find out more on the WWDC Website].
 
         .subsection
           h4.color-red2 How do I join WWDCScholars?
