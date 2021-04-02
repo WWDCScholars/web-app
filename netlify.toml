@@ -20,7 +20,7 @@
   command = "npm run build:stage"
 
   # Sentry Deploy Environment
-  [build.branch-deploy.environment]
+  [context.branch-deploy.environment]
     BASE_URL = "https://develop.www.wwdcscholars.com"
     SENTRY_ENVIRONMENT = "staging"
 
