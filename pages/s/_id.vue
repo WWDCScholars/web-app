@@ -206,24 +206,24 @@ export default class ScholarProfile extends Vue {
   head(ctx): MetaInfo {
     const title = `${this.fullName} | WWDCScholars`
     const description = this.scholar?.biography ?? ''
-    const url = `${process.env.baseUrl}/s/${this.$route.params.id}`
+    // const url = `${process.env.baseUrl}/s/${this.$route.params.id}`
 
     return {
       title,
       meta: [
         { name: 'description', content: description, hid: 'description' },
-        { property: 'og:type', content: 'profile', hid: 'og:type' },
-        { property: 'og:title', content: title, hid: 'og:title' },
-        { property: 'og:description', content: description, hid: 'og:description' },
-        { property: 'og:image', content: this.profilePictureURL, hid: 'og:image' },
-        { property: 'og:image:alt', content: title, hid: 'og:image:alt' },
-        { property: 'og:url', content: url, hid: 'og:url' },
-        { name: 'twitter:card', content: 'summary', hid: 'twitter:card' },
-        { name: 'twitter:title', content: title, hid: 'twitter:title' },
-        { name: 'twitter:description', content: description, hid: 'twitter:description' },
-        { name: 'twitter:image', content: this.profilePictureURL, hid: 'twitter:image' },
-        { name: 'twitter:image:alt', content: title, hid: 'twitter:image:alt' },
-        { name: 'twitter:url', content: url, hid: 'twitter:url' }
+        // { property: 'og:type', content: 'profile', hid: 'og:type' },
+        // { property: 'og:title', content: title, hid: 'og:title' },
+        // { property: 'og:description', content: description, hid: 'og:description' },
+        // { property: 'og:image', content: this.profilePictureURL, hid: 'og:image' },
+        // { property: 'og:image:alt', content: title, hid: 'og:image:alt' },
+        // { property: 'og:url', content: url, hid: 'og:url' },
+        // { name: 'twitter:card', content: 'summary', hid: 'twitter:card' },
+        // { name: 'twitter:title', content: title, hid: 'twitter:title' },
+        // { name: 'twitter:description', content: description, hid: 'twitter:description' },
+        // { name: 'twitter:image', content: this.profilePictureURL, hid: 'twitter:image' },
+        // { name: 'twitter:image:alt', content: title, hid: 'twitter:image:alt' },
+        // { name: 'twitter:url', content: url, hid: 'twitter:url' }
       ],
       link: [
         { rel: 'canonical', href: url, hid: 'canonical' }
