@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.15.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v3.15.0-pre.1...v3.15.0-pre.2) (2021-04-02)
+
+
+### Bug Fixes
+
+* Fix image and add url in social cards ([020a85e](https://github.com/WWDCScholars/web-app/commit/020a85e9cc3557e5cda1d5c3cfbfc1ff6630fb49))
+
 ## [3.15.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v3.15.0-pre.0...v3.15.0-pre.1) (2021-04-02)
 
 
