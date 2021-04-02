@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.15.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.14.4...v3.15.0-pre.0) (2021-04-02)
+
+
+### Features
+
+* Add OpenGraph and Twitter Card stuff ([04e7f29](https://github.com/WWDCScholars/web-app/commit/04e7f295152f53b411732705a071b5986d7c8eb1))
+
 ### [3.14.4](https://github.com/WWDCScholars/web-app/compare/v3.14.3...v3.14.4) (2021-03-31)
 
 
