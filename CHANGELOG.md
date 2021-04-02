@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.15.1](https://github.com/WWDCScholars/web-app/compare/v3.15.0...v3.15.1) (2021-04-02)
+
+
+### Bug Fixes
+
+* Add url for meta in profile back in ([a4ac7cf](https://github.com/WWDCScholars/web-app/commit/a4ac7cf54ae1a998784e5077706eae5fa68e5b75))
+
 ## [3.15.0](https://github.com/WWDCScholars/web-app/compare/v3.14.4...v3.15.0) (2021-04-02)
 
 
