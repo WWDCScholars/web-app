@@ -19,7 +19,8 @@ if (process.env.NODE_ENV === 'production') {
 const META = {
   title: 'Welcome to WWDCScholars',
   description: 'Take a look at Apple WWDC Scholarship winners from all around the world as well as their winning submissions!',
-  image: '/images/og-image.jpg'
+  image: `${process.env.BASE_URL}/images/og-image.jpg`,
+  url: `${process.env.BASE_URL}`
 }
 
 const config: NuxtConfig = {
@@ -43,10 +44,12 @@ const config: NuxtConfig = {
       { property: 'og:title', content: META.title, hid: 'og:title' },
       { property: 'og:description', content: META.description, hid: 'og:description' },
       { property: 'og:image', content: META.image, hid: 'og:image' },
+      { property: 'og:url', content: META.url, hid: 'og:url' },
       { name: 'twitter:card', content: 'summary_large_image', hid: 'twitter:card' },
       { name: 'twitter:title', content: META.title, hid: 'twitter:title' },
       { name: 'twitter:description', content: META.description, hid: 'twitter:description' },
       { name: 'twitter:image', content: META.image, hid: 'twitter:image' },
+      { name: 'twitter:url', content: META.url, hid: 'twitter:url' },
       { name: 'twitter:site', content: '@WWDCScholars' }
     ],
     link: [
@@ -67,6 +70,13 @@ const config: NuxtConfig = {
         sizes: '120x120'
       }
     ],
+  },
+
+  /*
+   ** Environent variables
+   */
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
   },
 
   /*
