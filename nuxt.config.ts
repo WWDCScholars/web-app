@@ -33,8 +33,6 @@ const config: NuxtConfig = {
         content:
           'Take a look at Apple WWDC Scholarship winners from all around the world as well as their winning submissions!'
       },
-      { name: 'keywords', content: 'WWDCScholars,WWDC,Scholars,Apple' },
-      { name: 'author', content: 'WWDCScholars' },
       { name: 'og:image', content: '/icons/fb-og-image.png' },
       { name: 'apple-itunes-app', content: 'app-id=1459158255' }
     ],
