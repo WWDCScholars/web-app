@@ -59,6 +59,12 @@
   status = 301
   force = true
 
+# Plausible Proxy
+[[redirects]]
+  from = "/stats/api/event"
+  to = "https://stats.wwdcscholars.com/api/event"
+  status = 202
+
 # SPA History Pushstate
 [[redirects]]
   from = "/*"
