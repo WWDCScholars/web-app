@@ -64,6 +64,7 @@
   from = "/stats/api/event"
   to = "https://plausible.io/api/event"
   status = 202
+  force = true
 
 # SPA History Pushstate
 [[redirects]]
