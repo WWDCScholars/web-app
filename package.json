@@ -3,7 +3,7 @@
   "type": "module",
   "name": "wwdcscholars-web",
   "description": "WWDCScholars.com Website",
-  "version": "3.15.5",
+  "version": "3.15.6",
   "license": "MIT",
   "author": {
     "name": "Moritz Sternemann",
@@ -28,6 +28,7 @@
     "release:pre": "npm run release:create:pre && npm run release:publish"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.5",
     "@nuxtjs/sentry": "^5.0.3",
     "@wwdcscholars/cloudkit": "^3.6.0",
     "autosize": "^4.0.2",
