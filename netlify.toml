@@ -62,7 +62,7 @@
 # Plausible Proxy
 [[redirects]]
   from = "/stats/api/event"
-  to = "https://stats.wwdcscholars.com/api/event"
+  to = "https://plausible.io/api/event"
   status = 202
 
 # SPA History Pushstate
