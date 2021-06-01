@@ -60,11 +60,11 @@
   force = true
 
 # Plausible Proxy
-# [[redirects]]
-#   from = "/stats/api/event"
-#   to = "https://plausible.io/api/event"
-#   status = 202
-#   force = true
+[[redirects]]
+  from = "/stats/api/event"
+  to = "https://plausible.io/api/event"
+  status = 200
+  force = true
 
 # SPA History Pushstate
 [[redirects]]
