@@ -1,7 +1,7 @@
 import { CloudKit } from '@wwdcscholars/cloudkit'
 
 export default function (years: [CloudKit.Reference, CloudKit.Reference][], year?: string): [CloudKit.Reference, CloudKit.Reference] | null {
-  if (!years.length) return null
+  if (!years || !years.length) return null
 
   if (year) {
     // recordName e.g. 'WWDC 2019', year e.g. '2019'
@@ -14,7 +14,7 @@ export default function (years: [CloudKit.Reference, CloudKit.Reference][], year
 }
 
 export const routeMatchYear = (years: CloudKit.Reference[], routeYear?: string): CloudKit.Reference | undefined => {
-  if (!years.length) return undefined
+  if (!years || !years.length) return undefined
 
   if (routeYear) {
     return years.find(wwdcYear => wwdcYear.recordName.substring(5) === routeYear)
@@ -28,7 +28,7 @@ export const routeMatchYear = (years: CloudKit.Reference[], routeYear?: string):
 }
 
 export const yearMatchYearInfo = (yearInfos: CloudKit.Reference[], years: CloudKit.Reference[], wwdcYearRecordName: string): CloudKit.Reference | undefined => {
-  if (!yearInfos.length || !years.length || yearInfos.length != years.length) return undefined
+  if (!yearInfos || !yearInfos.length || !years || !years.length || yearInfos.length != years.length) return undefined
 
   const yearIndex = years.findIndex(year => year.recordName === wwdcYearRecordName)
   if (yearIndex < 0) return undefined
