@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.16.0](https://github.com/WWDCScholars/web-app/compare/v3.15.8...v3.16.0) (2021-06-02)
+
+
+### Features
+
+* Add instagram and app store developer page to socials ([d02d374](https://github.com/WWDCScholars/web-app/commit/d02d374d806e5d6c6c9eca19097ed4b91efc4254))
+
+
+### Bug Fixes
+
+* Guards for possible undefined year/yearInfo arrays ([3b01532](https://github.com/WWDCScholars/web-app/commit/3b0153290bb230f9c92ce35612d8e93f9ca2c6da))
+
 ### [3.15.8](https://github.com/WWDCScholars/web-app/compare/v3.15.7...v3.15.8) (2021-06-01)
 
 ### [3.15.7](https://github.com/WWDCScholars/web-app/compare/v3.15.6...v3.15.7) (2021-06-01)
