@@ -26,6 +26,12 @@
             target="_blank"
           ).social-icon
             img(src="~assets/images/icon-twitter.png")
+          a(v-if="scholar.loadedSocialMedia.instagram",
+            :href="scholar.loadedSocialMedia.instagram",
+            alt="Instagram",
+            target="_blank"
+          ).social-icon
+            img(src="~assets/images/icon-instagram.png")
           a(v-if="scholar.loadedSocialMedia.github",
             :href="scholar.loadedSocialMedia.github",
             alt="GitHub",
@@ -49,6 +55,12 @@
             target="_blank"
           ).social-icon
             img(src="~assets/images/icon-facebook.png")
+          a(v-if="scholar.loadedSocialMedia.itunes",
+            :href="scholar.loadedSocialMedia.itunes",
+            alt="App Store Developer Page",
+            target="_blank"
+          ).social-icon
+            img(src="~assets/images/icon-appstore.png")
           a(v-if="scholar.loadedSocialMedia.website",
             :href="scholar.loadedSocialMedia.website",
             alt="Website",

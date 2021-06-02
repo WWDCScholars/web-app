@@ -15,6 +15,14 @@
               v-model="formData.twitter"
             )
 
+          form-field(name="Instagram", rules="url", vid="instagram")
+            input-text(
+              type="url",
+              name="instagram",
+              placeholder="Instagram Profile URL",
+              v-model="formData.instagram"
+            )
+
           form-field(name="GitHub", rules="url", vid="github")
             input-text(
               type="url",
@@ -53,6 +61,14 @@
               name="facebook",
               placeholder="Facebook Profile URL",
               v-model="formData.facebook"
+            )
+
+          form-field(name="App Store", rules="url", vid="itunes")
+            input-text(
+              type="url",
+              name="itunes",
+              placeholder="App Store Developer Page URL",
+              v-model="formData.itunes"
             )
 
           form-field(name="Website", rules="url", vid="website")
@@ -111,22 +127,26 @@ export default class PageProfileSocial extends Vue {
   }
 
   get formData(): {
-    twitter?: string,
-    github?: string,
     discord?: string,
-    linkedin?: string,
-    imessage?: string,
     facebook?: string,
+    github?: string,
+    imessage?: string,
+    instagram?: string,
+    itunes?: string,
+    linkedin?: string,
+    twitter?: string,
     website?: string
   } {
     return {
-      twitter: this.socialMedia?.twitter,
-      github: this.socialMedia?.github,
       discord: this.socialMedia?.discord,
-      linkedin: this.socialMedia?.linkedin,
-      imessage: this.socialMedia?.imessage,
       facebook: this.socialMedia?.facebook,
-      website: this.socialMedia?.website,
+      github: this.socialMedia?.github,
+      imessage: this.socialMedia?.imessage,
+      instagram: this.socialMedia?.instagram,
+      itunes: this.socialMedia?.itunes,
+      linkedin: this.socialMedia?.linkedin,
+      twitter: this.socialMedia?.twitter,
+      website: this.socialMedia?.website
     }
   }
 
