@@ -60,11 +60,11 @@
               v-model="formData.birthday"
             )
 
-          h3 Gender
-          form-field(name="Gender", vid="gender")
+          h3 Pronouns
+          form-field(name="Pronouns", vid="gender")
             input-radio-group(
               name="gender",
-              :options.once="genderOptions",
+              :options.once="pronounsOptions",
               :required.once="true",
               v-model="formData.gender"
             )
@@ -132,10 +132,10 @@ const Profile = namespace(profileName)
   }
 })
 export default class PageProfileBasic extends Vue {
-  genderOptions: { label: string; value: string }[] = [
-    { label: 'male', value: 'male' },
-    { label: 'female', value: 'female' },
-    { label: 'other', value: 'other' }
+  pronounsOptions: { label: string; value: string }[] = [
+    { label: 'he / him', value: 'male' },
+    { label: 'she / her', value: 'female' },
+    { label: 'they / them', value: 'other' }
   ]
 
   @Profile.Getter
