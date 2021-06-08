@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.17.3](https://github.com/WWDCScholars/web-app/compare/v3.17.2...v3.17.3) (2021-06-08)
+
+
+### Bug Fixes
+
+* Current page indicator for profile button ([74b9fa5](https://github.com/WWDCScholars/web-app/commit/74b9fa588cab956e89c9fc1366ef846c5cecee5e))
+
 ### [3.17.2](https://github.com/WWDCScholars/web-app/compare/v3.17.1...v3.17.2) (2021-06-08)
 
 
