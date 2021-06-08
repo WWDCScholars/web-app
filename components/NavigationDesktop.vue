@@ -30,37 +30,26 @@ export default class NavigationDesktop extends Vue {
   justify-content: flex-end
   align-items: center
 
-.link-appstore-download
-  // display: none
-  display: block
-  margin-right: 30px
-
-  +for-tablet-landscape-up
-    display: block
-
-  img
-    height: 35px
-
 .navigation-large
   display: flex
-  align-items: center
+  align-items: stretch
 
   +for-phone-only
     display: none
 
   > a
-    display: table
-    height: $header-height
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
     font-size: 1.2em
     font-weight: 500
     padding: 0 15px
     text-decoration: none
-    border-bottom: 3px solid transparent
+    border-bottom: $header-indicator-height solid transparent
     transition: 100ms linear border-color
 
     span
-      display: table-cell
-      vertical-align: middle
       font-weight: 500
       font-size: 1.1em
 
@@ -68,8 +57,5 @@ export default class NavigationDesktop extends Vue {
     &.nuxt-link-profile-active,
     &.nuxt-link-active:not(.nuxt-link-root),
     &:hover
-      border-bottom: 3px solid
-
-  .profile-button
-    height: $header-height
+      border-bottom: $header-indicator-height solid
 </style>
