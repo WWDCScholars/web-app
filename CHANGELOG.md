@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.17.2](https://github.com/WWDCScholars/web-app/compare/v3.17.1...v3.17.2) (2021-06-08)
+
+
+### Bug Fixes
+
+* Current page indicator height ([0cdfc19](https://github.com/WWDCScholars/web-app/commit/0cdfc191da4ea306c2654a4d72d5d5602ae896a9))
+* Redirect when returning from idmsa after auth is not pending anymore ([c6097c7](https://github.com/WWDCScholars/web-app/commit/c6097c783619f0ede655596fad50895555f557e4))
+
 ### [3.17.1](https://github.com/WWDCScholars/web-app/compare/v3.17.0...v3.17.1) (2021-06-08)
 
 ## [3.17.0](https://github.com/WWDCScholars/web-app/compare/v3.16.0...v3.17.0) (2021-06-04)
