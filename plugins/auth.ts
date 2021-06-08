@@ -15,9 +15,16 @@ const authPlugin: Plugin = async ({ app, route, store, redirect }) => {
   if (route.name === 'index' && 'ckSession' in route.query) {
     const container = app.$ck.defaultContainer
     container['_auth']._setSession(route.query.ckSession)
-    app.router?.onReady(() => {
-      app.router?.replace('/profile')
-    })
+
+    store.state.auth.pendingPromise
+      .then(() => {
+        const isAuthenticated = store.getters['auth/isAuthenticated']
+        if (isAuthenticated) {
+          redirect('/profile')
+        } else {
+          redirect('/signin')
+        }
+      })
   }
 
   // this checks if there is a valid session, and if
