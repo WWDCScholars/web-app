@@ -76,7 +76,7 @@ export default class ProfileButton extends Vue {
 <style lang="sass" scoped>
 .profile-button
   width: 82px
-  border-bottom: 3px solid transparent
+  border-bottom: $header-indicator-height solid transparent
   transition: border-bottom-color 100ms linear
 
   &:hover, &.nuxt-link-active
@@ -84,13 +84,13 @@ export default class ProfileButton extends Vue {
 
   > button, > a
     display: flex
-    height: $header-height
+    height: #{$header-height - $header-indicator-height}
     padding: 0 25px
     align-items: center
 
   .auth-pending
     display: flex
-    height: $header-height
+    height: #{$header-height - $header-indicator-height}
     padding: 0 25px
     align-items: center
 
