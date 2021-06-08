@@ -11,7 +11,7 @@
             name="Profile Picture",
             vid="profilePicture",
             rules="required_image|dimensions:250,-1,250,-1",
-            comment="This needs to be an image of you with a resolution of at least 250x250.",
+            comment="This needs to be an image of you or a Memoji with a resolution of at least 250x250.",
             v-slot="{ validate }"
           )
             input-image(
