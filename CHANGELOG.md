@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.18.0](https://github.com/WWDCScholars/web-app/compare/v3.17.3...v3.18.0) (2021-06-09)
+
+
+### Features
+
+* Automatically trim text inputs ([6bc0768](https://github.com/WWDCScholars/web-app/commit/6bc07687488d309c7d8545715ba30dd0880b5afc))
+
 ### [3.17.3](https://github.com/WWDCScholars/web-app/compare/v3.17.2...v3.17.3) (2021-06-08)
 
 
