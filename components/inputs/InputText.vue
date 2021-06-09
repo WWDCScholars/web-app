@@ -75,8 +75,9 @@ export default class InputText extends Vue {
   value_validate: string = this.value || '' // tslint:disable-line
 
   update(value) {
-    this.value_validate = value
-    this.$emit('input', value)
+    const trimmedValue = value.trim()
+    this.value_validate = trimmedValue
+    this.$emit('input', trimmedValue)
   }
 
   get length() {
