@@ -18,10 +18,12 @@ export default class ScholarThumbnail extends Vue {
   scholar!: Scholar
 
   get profilePictureURL(): string {
-    if (!this.scholar.profilePicture) {
+    if (!this.scholar || !this.scholar.profilePicture) {
       return ''
     }
+
     return this.scholar.profilePicture.downloadURL
+      .replace('${f}', `${this.scholar.recordName}_profilePicture.jpg`)
   }
 }
 </script>
