@@ -148,6 +148,6 @@ export default class InputImage extends Vue {
   $bg: dyn-temp('bg')
   .input-image
     .image:hover
-      border-color: $bg
-      box-shadow: 0 0 4px transparentize($bg, 0.6)
+      border-color: getColor($bg)
+      box-shadow: 0 0 4px transparentizeColor($bg, 0.6)
 </style>

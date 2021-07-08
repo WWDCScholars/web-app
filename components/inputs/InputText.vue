@@ -143,11 +143,11 @@ export default class InputText extends Vue {
   .input-text
     input, textarea
       &:hover, &:focus
-        border-color: $bg
+        border-color: getColor($bg)
 
       &:focus
-        box-shadow: 0 0 4px transparentize($bg, 0.6)
+        box-shadow: 0 0 4px transparentizeColor($bg, 0.6)
 
       &:focus + .title
-        color: $bg
+        color: getColor($bg)
 </style>

@@ -43,9 +43,9 @@ export default class TabBar extends Vue {}
 
   .tab-bar
     a
-      color: $bg
+      color: getColor($bg)
 
       &:hover, &.nuxt-link-exact-active
-        background-color: $bg
-        color: $fg
+        background-color: getColor($bg)
+        color: getColor($fg)
 </style>

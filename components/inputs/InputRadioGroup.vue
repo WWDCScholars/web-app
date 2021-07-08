@@ -52,7 +52,7 @@ export default class InputRadioGroup extends Vue {
     max-width: 150px
 
     &:hover
-      background-color: darken($background-gray, 6%)
+      background-color: lightenColor('background-gray', -6%)
 
     span
       display: block
@@ -66,7 +66,7 @@ export default class InputRadioGroup extends Vue {
       transition: background-color 100ms linear, border-color 100ms linear, color 100ms linear
 
       &:hover
-        background-color: darken($background-gray, 6%)
+        background-color: lightenColor('background-gray', -6%)
 
     input
       appearance: none
@@ -79,11 +79,11 @@ export default class InputRadioGroup extends Vue {
   $fg: dyn-temp('fg')
   .input-radio
     input:checked + span
-      background-color: $bg
-      border-color: $bg
-      color: $fg
+      background-color: getColor($bg)
+      border-color: getColor($bg)
+      color: getColor($fg)
 
     input:checked + span:hover
-      background-color: darken($bg, 10%)
-      border-color: darken($bg, 10%)
+      background-color: lightenColor($bg, -10%)
+      border-color: lightenColor($bg, -10%)
 </style>

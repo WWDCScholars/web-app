@@ -34,7 +34,7 @@ export default class PageHeader extends Vue {
   position: fixed
   width: 100%
   height: $header-height
-  background-color: transparentize($sch-gray4, 0.1)
+  background-color: transparentizeColor('sch-gray4', 0.1)
   color: $white
   z-index: 1000
   display: flex

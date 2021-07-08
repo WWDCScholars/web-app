@@ -1,0 +1,153 @@
+
+$light-theme: "light";
+$dark-theme: "dark";
+
+$themes: (
+        $light-theme: (
+            background-gray: rgb(245, 245, 245),
+            white: rgb(255, 255, 255),
+            shadow: rgba(0, 0, 0, 0.16),
+            apl-red: #d72c48,
+            apl-blue: #2ab0ce,
+            apl-green: #1fa995,
+            apl-yellow: #e1a931,
+            apl-gray: #3a5d6f,
+            apl-red2: #e64e45,
+            apl-black: #3c3c3c,
+            apl-black2: rgb(69, 69, 69),
+            apl-black3: rgb(80, 80, 80),
+            apl-purple: rgb(141, 96, 167),
+            sch-purple: rgb(65, 53, 153),
+            sch-purple-med: rgb(106, 101, 164),
+            sch-purple-light: rgb(141, 139, 193),
+            sch-red1: #EF5349,
+            sch-red2: #E64D43,
+            sch-blue1: #3EB5D9,
+            sch-blue2: #395D6F,
+            sch-green: #3AB298,
+            sch-orange: #F99532,
+            sch-gray: rgb(108, 108, 108),
+            sch-gray0: rgb(127, 127, 127),
+            sch-gray1: rgb(205, 205, 205),
+            sch-gray2: rgb(228, 228, 228),
+            sch-gray3: rgb(233, 233, 233),
+            sch-gray4: rgb(252, 252, 252),
+            form-border-color: rgb(151, 151, 151)
+        ),
+        $dark-theme: (
+            background-gray: rgb(20, 20, 20),
+            white: rgb(0, 255, 0),
+            shadow: rgba(200, 0, 0, 0.56),
+            apl-red: #d72c48,
+            apl-blue: #2ab0ce,
+            apl-green: #1fa995,
+            apl-yellow: #e1a931,
+            apl-gray: #3a5d6f,
+            apl-red2: #e64e45,
+            apl-black: #3c3c3c,
+            apl-black2: rgb(69, 69, 69),
+            apl-black3: rgb(80, 80, 80),
+            apl-purple: rgb(141, 96, 167),
+            sch-purple: rgb(65, 53, 153),
+            sch-purple-med: rgb(106, 101, 164),
+            sch-purple-light: rgb(141, 139, 193),
+            sch-red1: #EF5349,
+            sch-red2: #E64D43,
+            sch-blue1: #3EB5D9,
+            sch-blue2: #395D6F,
+            sch-green: #3AB298,
+            sch-orange: #F99532,
+            sch-gray: rgb(108, 108, 108),
+            sch-gray0: rgb(127, 127, 127),
+            sch-gray1: rgb(205, 205, 205),
+            sch-gray2: rgb(228, 228, 228),
+            sch-gray3: rgb(233, 233, 233),
+            sch-gray4: rgb(252, 252, 252),
+            form-border-color: rgb(151, 151, 151)
+        )
+);
+
+//converting scss variable into css variable
+:root {
+    transition: background-color .3s;
+    --theme: $light-theme;
+    $light: map-get($themes, $light-theme);
+    @each $name, $color in $light {
+        --color-#{$name} : #{$color};
+        --color-#{$name}-r: #{red($color)};
+        --color-#{$name}-g: #{green($color)};
+        --color-#{$name}-b: #{blue($color)};
+        --color-#{$name}-a: #{alpha($color)};
+        --color-#{$name}-h: #{hue($color)};
+        --color-#{$name}-s: #{saturation($color)};
+        --color-#{$name}-l: #{lightness($color)};
+        
+    }
+}
+
+
+.dark-mode {
+    --theme : $dark-theme;
+    $dark: map-get($themes, $dark-theme);
+    @each $name, $color in $dark {
+        --color-#{$name} : #{$color};
+        --color-#{$name}-r: #{red($color)};
+        --color-#{$name}-g: #{green($color)};
+        --color-#{$name}-b: #{blue($color)};
+        --color-#{$name}-a: #{alpha($color)};
+        --color-#{$name}-h: #{hue($color)};
+        --color-#{$name}-s: #{saturation($color)};
+        --color-#{$name}-l: #{lightness($color)};
+    }
+}
+
+//creating a function to get color instead of using css varible
+@function getColor($color-name) {
+    @return var(--color-#{$color-name});
+}
+
+//change brigthness / lightness of color *by* $amount (+ lighter, - darker)
+@function lightenColor($colorName, $amount) {
+    @return hsl(var(--color-#{$colorName}-h), var(--color-#{$colorName}-s), calc(var(--color-#{$colorName}-l) + #{$amount}));
+}
+
+//change transparancy of color *by* $amount (e.g. 10% *more* transparent)
+@function transparentizeColor($colorName, $amount) {
+    @return rgba(var(--color-#{$colorName}-r), var(--color-#{$colorName}-g),var(--color-#{$colorName}-b), calc(var(--color-#{$colorName}-a) - #{$amount}));
+}
+
+$white: getColor('white');
+$background-gray: getColor('background-gray');
+$shadow: getColor("shadow");
+
+$apl-red: getColor('apl-red');
+$apl-blue: getColor('apl-blue');
+$apl-green: getColor('apl-green');
+$apl-yellow: getColor('apl-yellow');
+$apl-gray: getColor('apl-gray');
+$apl-red2: getColor('apl-red2');
+$apl-black: getColor('apl-black');
+$apl-black2: getColor('apl-black2');
+$apl-black3: getColor('apl-black3');
+$apl-purple: getColor('apl-pruple');
+
+$sch-purple: getColor('sch-purple');
+$sch-purple-med: getColor('sch-purple-med');
+$sch-purple-light: getColor('sch-purple-light');
+
+$sch-red1: getColor('sch-red1');
+$sch-red2: getColor('sch-red1');
+$sch-blue1: getColor('sch-blue1');
+$sch-blue2: getColor('sch-blue2');
+$sch-green: getColor('sch-green');
+$sch-orange: getColor('sch-orange');
+
+$sch-gray: getColor('sch-gray');
+$sch-gray0: getColor('sch-gray0');
+$sch-gray1: getColor('sch-gray1');
+$sch-gray2: getColor('sch-gray2');
+$sch-gray3: getColor('sch-gray3');
+$sch-gray4: getColor('sch-gray4');
+
+$form-placeholder-color: $sch-gray;
+$form-border-color: getColor('form-border-color');

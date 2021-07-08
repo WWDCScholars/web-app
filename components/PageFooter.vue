@@ -1,28 +1,43 @@
 <template lang="pug">
 footer
-  nuxt-link(to="/imprint") Imprint
-  span.separator
-  nuxt-link(to="/privacy") Privacy Policy
-  //- span.separator
-  //- a(href="https://netlify.com", target="_blank") Hosted on Netlify
-  span.separator
-  a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
+  div
+    nuxt-link(to="/imprint") Imprint
+    span.separator
+    nuxt-link(to="/privacy") Privacy Policy
+    //- span.separator
+    //- a(href="https://netlify.com", target="_blank") Hosted on Netlify
+    span.separator
+    a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
+  div
+    ColorModePicker
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
+import ColorModePicker from "./ColorModePicker.vue";
 
-@Component
-export default class PageFooter extends Vue {}
+@Component({
+  components: { ColorModePicker },
+})
+export default class PageFooter extends Vue {
+  colorSchemes: { label: string; value: string }[] = [
+    { label: "system", value: "system" },
+    { label: "dark", value: "dark" },
+    { label: "light", value: "light" },
+  ];
+}
 </script>
 
 <style lang="sass" scoped>
 footer
+  padding-top: 50px
+  font-size: 0.7em
+
+footer div
   display: flex
   justify-content: center
   align-items: center
-  padding-top: 50px
-  font-size: 0.7em
+  margin: 5px
 
   a
     color: $sch-gray0

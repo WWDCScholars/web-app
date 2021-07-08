@@ -61,7 +61,7 @@ export default class BaseButton extends Vue {
       min-width: 100px
 
     &:hover
-      background-color: darken($background-gray, 6%)
+      background-color: lightenColor('background-gray', -6%)
 
   &.btn-round > .button, a
     padding: 10px 15px
@@ -105,7 +105,7 @@ export default class BaseButton extends Vue {
 
         &.btn-cancel
           background-color: $sch-gray0
-          border-color: lighten($sch-gray0, 5%)
+          border-color: lightenColor('sch-gray0', 5%)
 
     .triangle
       position: absolute
@@ -134,23 +134,23 @@ export default class BaseButton extends Vue {
 
   .btn
     button, a
-      background-color: $bg
-      border-color: $bg
-      color: $fg
+      background-color: getColor($bg)
+      border-color: getColor($bg)
+      color: getColor($fg)
 
       &:hover
-        background-color: darken($bg, 10%)
-        border-color: darken($bg, 10%)
+        background-color: lightenColor($bg, -10%)
+        border-color: lightenColor($bg, -10%)
 
       &:disabled
         background-color: $sch-gray2
         border-color: $sch-gray1
 
     &.btn-round > button, a
-      background-color: $fg
-      color: $bg
+      background-color: getColor($fg)
+      color: getColor($bg)
 
       &:hover
-        background-color: $bg
-        color: $fg
+        background-color: getColor($bg)
+        color: getColor($fg)
 </style>
