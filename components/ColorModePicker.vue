@@ -31,7 +31,7 @@ colors = ["system", "light", "dark"]
     border: 2px solid $sch-purple
     font-size: 12px
     padding: 1px
-    color: $sch-blue1
+    color: $sch-purple
 
 .color-btn
     box-sizing: border-box

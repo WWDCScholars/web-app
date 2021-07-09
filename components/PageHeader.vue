@@ -13,7 +13,7 @@ header.header
     href="https://itunes.apple.com/app/scholars-of-wwdc/id1459158255?mt=8",
     target="_blank"
   ).appstore-download
-    img(src="~assets/images/appstore.svg")
+    img(:src="require(`assets/images/appstore-${this.$colorMode.value}.svg`)")
 
   slot(name="right")
 </template>

@@ -17,6 +17,7 @@
       ref="map",
       :options="mapOptions",
       :region="region"
+      :colorScheme="this.$colorMode.value"
     ).map
       MKMarkerAnnotation(
         v-if="center",
@@ -60,7 +61,8 @@ export default class InputLocation extends Vue {
     showsMapTypeControl: false,
     showsZoomControl: true,
     showsUserLocationControl: false,
-    showsPointsOfInterest: false
+    showsPointsOfInterest: false,
+    colorScheme: this.$colorMode.value
   }
   annotationOptions: mapkit.MarkerAnnotationConstructorOptions = {
     enabled: false,
