@@ -47,7 +47,7 @@ colors = ["system", "light", "dark"]
     top: -3px
 
 .color-btn.preferred
-    color: $white
+    color: $label
     background-color: $sch-purple
 
 //only important if user selects agains their system

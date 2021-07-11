@@ -64,7 +64,7 @@ export default class PageSignin extends Vue {
       font-size: 0.9em
 
       a
-        color: $sch-gray
+        color: $sch-accent
 
     +for-phone-only
       padding-left: 15px
@@ -77,9 +77,9 @@ export default class PageSignin extends Vue {
     display: inline-block
     padding: 10px 20px
     font-weight: 500
-    color: $apl-black
-    background-color: $white
-    border: 1px solid $apl-black
+    color: $apl-background
+    background-color: $label
+    border: 1px solid $apl-background
     border-radius: $border-radius
     text-decoration: none
 </style>

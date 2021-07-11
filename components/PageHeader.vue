@@ -34,8 +34,8 @@ export default class PageHeader extends Vue {
   position: fixed
   width: 100%
   height: $header-height
-  background-color: transparentizeColor('sch-gray4', 0.1)
-  color: $white
+  background-color: transparentizeColor('sch-accent4', 0.1)
+  color: $label
   z-index: 1000
   display: flex
   justify-content: space-between
@@ -54,7 +54,7 @@ export default class PageHeader extends Vue {
     right: 0
     bottom: 0
     height: 1.5px
-    background-color: $sch-gray2
+    background-color: $sch-accent2
 
   +for-phone-only
     padding: 0 20px 0 20px

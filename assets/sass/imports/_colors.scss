@@ -4,8 +4,8 @@ $dark-theme: "dark";
 
 $themes: (
         $light-theme: (
-            background-gray: rgb(245, 245, 245),
-            white: rgb(255, 255, 255),
+            background-color: rgb(245, 245, 245),
+            label: rgb(255, 255, 255),
             shadow: rgba(0, 0, 0, 0.16),
             form-border-color: rgb(151, 151, 151),
 
@@ -15,30 +15,30 @@ $themes: (
             apl-yellow: #FFCC00,
             apl-gray: #8E8E93,
             apl-red2: #FF3B30,
-            apl-black: #000000,
-            apl-black2: #3C3C4399,
-            apl-black3: #3C3C434D,
+            apl-background: #000000,
+            apl-background2: #3C3C4399,
+            apl-background3: #3C3C434D,
             apl-purple: #AF52DE,
 
             sch-purple: rgb(65, 53, 153),
-            sch-purple-med: rgb(106, 101, 164),
-            sch-purple-light: rgb(141, 139, 193),
+            sch-purple2: rgb(106, 101, 164),
+            sch-purple3: rgb(141, 139, 193),
             sch-red1: #EF5349,
             sch-red2: #E64D43,
             sch-blue1: #3EB5D9,
             sch-blue2: #395D6F,
             sch-green: #3AB298,
             sch-orange: #F99532,
-            sch-gray: rgb(108, 108, 108),
-            sch-gray0: rgb(127, 127, 127),
-            sch-gray1: rgb(205, 205, 205),
-            sch-gray2: rgb(228, 228, 228),
-            sch-gray3: rgb(233, 233, 233),
-            sch-gray4: rgb(252, 252, 252)
+            sch-accent: rgb(108, 108, 108),
+            sch-accent0: rgb(127, 127, 127),
+            sch-accent1: rgb(205, 205, 205),
+            sch-accent2: rgb(228, 228, 228),
+            sch-accent3: rgb(233, 233, 233),
+            sch-accent4: rgb(252, 252, 252)
         ),
         $dark-theme: (
-            background-gray: rgb(20, 20, 20),
-            white: rgb(0, 0, 0),
+            background-color: rgb(20, 20, 20),
+            label: rgb(0, 0, 0),
             shadow: rgba(255, 255, 255, 0.26),
             form-border-color: rgb(104, 104, 104),
 
@@ -48,26 +48,26 @@ $themes: (
             apl-yellow: #FFD60A,
             apl-gray: #8E8E93,
             apl-red2: #FF453A,
-            apl-black: #FFFFFFFF,
-            apl-black2: #EBEBF599,
-            apl-black3: #EBEBF54D,
+            apl-background: #FFFFFFFF,
+            apl-background2: #EBEBF599,
+            apl-background3: #EBEBF54D,
             apl-purple: #BF5AF2,
 
-            sch-purple-light: rgb(65, 53, 153),
-            sch-purple-med: rgb(106, 101, 164),
             sch-purple: rgb(141, 139, 193),
-            sch-red2: #EF5349,
+            sch-purple2: rgb(106, 101, 164),
+            sch-purple3: rgb(65, 53, 153),
             sch-red1: #E64D43,
-            sch-blue2: #3EB5D9,
+            sch-red2: #EF5349,
             sch-blue1: #5b8296, //lighter
+            sch-blue2: #3EB5D9,
             sch-green: #3AB298,
             sch-orange: #F99532,
-            sch-gray: rgb(147, 147, 147),
-            sch-gray0: rgb(127, 127, 127),
-            sch-gray1: rgb(50, 50, 50),
-            sch-gray2: rgb(37, 37, 37),
-            sch-gray3: rgb(27, 27, 27),
-            sch-gray4: rgb(10, 10, 10)
+            sch-accent: rgb(147, 147, 147),
+            sch-accent0: rgb(127, 127, 127),
+            sch-accent1: rgb(50, 50, 50),
+            sch-accent2: rgb(37, 37, 37),
+            sch-accent3: rgb(27, 27, 27),
+            sch-accent4: rgb(10, 10, 10)
         )
 );
 
@@ -120,8 +120,8 @@ $themes: (
     @return rgba(var(--color-#{$colorName}-r), var(--color-#{$colorName}-g),var(--color-#{$colorName}-b), calc(var(--color-#{$colorName}-a) - #{$amount}));
 }
 
-$white: getColor('white');
-$background-gray: getColor('background-gray');
+$label: getColor('label');
+$background-color: getColor('background-color');
 $shadow: getColor("shadow");
 
 $apl-red: getColor('apl-red');
@@ -130,14 +130,14 @@ $apl-green: getColor('apl-green');
 $apl-yellow: getColor('apl-yellow');
 $apl-gray: getColor('apl-gray');
 $apl-red2: getColor('apl-red2');
-$apl-black: getColor('apl-black');
-$apl-black2: getColor('apl-black2');
-$apl-black3: getColor('apl-black3');
+$apl-background: getColor('apl-background');
+$apl-background2: getColor('apl-background2');
+$apl-background3: getColor('apl-background3');
 $apl-purple: getColor('apl-pruple');
 
 $sch-purple: getColor('sch-purple');
-$sch-purple-med: getColor('sch-purple-med');
-$sch-purple-light: getColor('sch-purple-light');
+$sch-purple2: getColor('sch-purple2');
+$sch-purple3: getColor('sch-purple3');
 
 $sch-red1: getColor('sch-red1');
 $sch-red2: getColor('sch-red1');
@@ -146,12 +146,12 @@ $sch-blue2: getColor('sch-blue2');
 $sch-green: getColor('sch-green');
 $sch-orange: getColor('sch-orange');
 
-$sch-gray: getColor('sch-gray');
-$sch-gray0: getColor('sch-gray0');
-$sch-gray1: getColor('sch-gray1');
-$sch-gray2: getColor('sch-gray2');
-$sch-gray3: getColor('sch-gray3');
-$sch-gray4: getColor('sch-gray4');
+$sch-accent: getColor('sch-accent');
+$sch-accent0: getColor('sch-accent0');
+$sch-accent1: getColor('sch-accent1');
+$sch-accent2: getColor('sch-accent2');
+$sch-accent3: getColor('sch-accent3');
+$sch-accent4: getColor('sch-accent4');
 
-$form-placeholder-color: $sch-gray;
+$form-placeholder-color: $sch-accent;
 $form-border-color: getColor('form-border-color');

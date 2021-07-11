@@ -73,10 +73,10 @@ export default class InputDate extends Vue {
     width: 100%
     font-size: 1em
     padding: 20px 15px 5px 15px
-    background-color: $white
+    background-color: $label
     border: 1px solid $form-border-color
     border-radius: $border-radius
-    color: $apl-black
+    color: $apl-background
     transition: border-color 100ms linear, box-shadow 100ms linear
 
   .title
@@ -84,7 +84,7 @@ export default class InputDate extends Vue {
     top: 50%
     left: 15px
     transform: translateY(-50%)
-    color: $sch-gray
+    color: $sch-accent
     pointer-events: none
     transition: all 100ms linear
 
@@ -94,7 +94,7 @@ export default class InputDate extends Vue {
 
   .optional
     position: absolute
-    color: $sch-gray
+    color: $sch-accent
     top: 50%
     right: 15px
     transform: translateY(-50%)
@@ -125,7 +125,7 @@ export default class InputDate extends Vue {
       height: calc(1em + 25px)
       border: 1px solid $form-border-color
       border-radius: $border-radius
-      color: $sch-gray
+      color: $sch-accent
       appearance: none
       &:focus
         color: getColor($bg)

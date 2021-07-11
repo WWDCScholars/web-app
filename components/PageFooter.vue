@@ -40,7 +40,7 @@ footer div
   margin: 5px
 
   a
-    color: $sch-gray0
+    color: $sch-accent0
     text-decoration: none
     transition: color linear 100ms
 
@@ -51,6 +51,6 @@ footer div
   .separator
     width: 1px
     height: 0.8em
-    background-color: $sch-gray0
+    background-color: $sch-accent0
     margin: 0 10px
 </style>

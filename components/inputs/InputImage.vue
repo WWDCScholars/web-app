@@ -80,7 +80,7 @@ export default class InputImage extends Vue {
   position: relative
   width: 100
   height: 100%
-  background-color: $white
+  background-color: $label
   border: 1px solid $form-border-color
   border-radius: $border-radius
   cursor: pointer
@@ -136,7 +136,7 @@ export default class InputImage extends Vue {
       width: 12px
       height: 2px
       border-radius: 1.5px
-      background-color: $white
+      background-color: $label
 
     &:before
       transform: rotate(-45deg)
