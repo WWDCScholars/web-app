@@ -110,7 +110,8 @@ export default class InputText extends Vue {
     transition: border-color 100ms linear, box-shadow 100ms linear
 
     &:disabled
-      color: $sch-gray0
+      //color will be further modifier cuz of attribute (at least in Safari)
+      color: $sch-gray
 
   textarea
     padding-top: 10px
@@ -120,7 +121,7 @@ export default class InputText extends Vue {
     top: 50%
     left: 15px
     transform: translateY(-50%)
-    color: $sch-gray1
+    color: $sch-gray
     pointer-events: none
     transition: all 100ms linear
 
@@ -130,7 +131,7 @@ export default class InputText extends Vue {
 
   .optional
     position: absolute
-    color: $sch-gray1
+    color: $sch-gray
     top: 2px
     right: 15px
     transform: translateY(50%)

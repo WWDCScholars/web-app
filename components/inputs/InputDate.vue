@@ -1,6 +1,7 @@
 <template lang="pug">
 .input-date(:class="{ 'input-has-value': inputHasValue }")
   label
+    //- NOTE: flat-pickr does not have a darkmode!
     flat-pickr(
       ref="fp",
       :config.once="config",
@@ -83,7 +84,7 @@ export default class InputDate extends Vue {
     top: 50%
     left: 15px
     transform: translateY(-50%)
-    color: $sch-gray1
+    color: $sch-gray
     pointer-events: none
     transition: all 100ms linear
 
@@ -93,7 +94,7 @@ export default class InputDate extends Vue {
 
   .optional
     position: absolute
-    color: $sch-gray1
+    color: $sch-gray
     top: 50%
     right: 15px
     transform: translateY(-50%)

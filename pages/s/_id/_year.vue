@@ -135,7 +135,7 @@ export default class ScholarProfileSubmission extends Vue {
 .challenge-description
   font-size: 0.85em
   font-style: italic
-  color: $apl-black3
+  color: $apl-black2
 
 .description
   font-size: 0.9em

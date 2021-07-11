@@ -145,7 +145,8 @@ h3
     left: 4%
     font-size: 2.3em
     font-weight: 700
-    color: $white
+    //picture bg is static and needs bright contrast
+    color: white
 
     span
       font-weight: 500

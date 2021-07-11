@@ -7,6 +7,7 @@ $themes: (
             background-gray: rgb(245, 245, 245),
             white: rgb(255, 255, 255),
             shadow: rgba(0, 0, 0, 0.16),
+            form-border-color: rgb(151, 151, 151),
 
             apl-red: #FF453A,
             apl-blue: #007AFF,
@@ -33,13 +34,13 @@ $themes: (
             sch-gray1: rgb(205, 205, 205),
             sch-gray2: rgb(228, 228, 228),
             sch-gray3: rgb(233, 233, 233),
-            sch-gray4: rgb(252, 252, 252),
-            form-border-color: rgb(151, 151, 151)
+            sch-gray4: rgb(252, 252, 252)
         ),
         $dark-theme: (
             background-gray: rgb(20, 20, 20),
             white: rgb(0, 0, 0),
             shadow: rgba(255, 255, 255, 0.26),
+            form-border-color: rgb(104, 104, 104),
 
             apl-red: #FF3B30,
             apl-blue: #0A84FF,
@@ -48,8 +49,8 @@ $themes: (
             apl-gray: #8E8E93,
             apl-red2: #FF453A,
             apl-black: #FFFFFFFF,
-            apl-black2: #EBEBF54D,
-            apl-black3: rgb(80, 80, 80),
+            apl-black2: #EBEBF599,
+            apl-black3: #EBEBF54D,
             apl-purple: #BF5AF2,
 
             sch-purple-light: rgb(65, 53, 153),
@@ -58,16 +59,15 @@ $themes: (
             sch-red2: #EF5349,
             sch-red1: #E64D43,
             sch-blue2: #3EB5D9,
-            sch-blue1: #395D6F,
+            sch-blue1: #5b8296, //lighter
             sch-green: #3AB298,
             sch-orange: #F99532,
             sch-gray: rgb(147, 147, 147),
-            sch-gray0: rgb(128, 128, 128),
+            sch-gray0: rgb(127, 127, 127),
             sch-gray1: rgb(50, 50, 50),
             sch-gray2: rgb(37, 37, 37),
             sch-gray3: rgb(27, 27, 27),
-            sch-gray4: rgb(10, 10, 10),
-            form-border-color: rgb(104, 104, 104)
+            sch-gray4: rgb(10, 10, 10)
         )
 );
 
