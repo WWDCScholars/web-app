@@ -110,8 +110,8 @@ export default class InputText extends Vue {
     transition: border-color 100ms linear, box-shadow 100ms linear
 
     &:disabled
-      //color will be further modifier cuz of attribute (at least in Safari)
-      color: $sch-accent
+      color: $sch-accent0
+      -webkit-text-fill-color: $sch-accent0
 
   textarea
     padding-top: 10px
