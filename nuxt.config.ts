@@ -205,9 +205,12 @@ const config: NuxtConfig = {
   buildModules: [
     // Transpile TypeScript
     '@nuxt/typescript-build',
-
+    
     // Load global SASS variables and mixins
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+
+    // Load svg loader
+    '@nuxtjs/svg',
   ],
 
   /*
