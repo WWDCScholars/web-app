@@ -47,7 +47,7 @@ export default class Copyable extends Vue {
   .label
     font-size: 0.8em
     margin-left: 3px
-    
+
   .input
     border: 0
     pointer-events: none
@@ -61,7 +61,7 @@ export default class Copyable extends Vue {
     width: 60px
     height: 26px
     background-color: $sch-accent0
-    color: $label
+    color: $background-color-2
     font-size: 0.9em
     top: 0
     left: 0

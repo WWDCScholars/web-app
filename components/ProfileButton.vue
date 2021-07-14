@@ -2,9 +2,9 @@
 .profile-button(:class="{ 'nuxt-link-active': linkActive }")
   .auth-pending(v-if="isAuthPending"): loading-spinner
   nuxt-link(v-else-if="!isAuthenticated", to="/signin")
-    SignInOut
+    SignInOutIcon
   button(v-else, @click="open = !open")
-    User
+    UserIcon
     .dropdown(:class="{ show: open }")
       .triangle
       .links
@@ -13,23 +13,23 @@
         button(@click="onSignOutClicked")
           | Sign Out
           #sign-out-icon
-            SignInOut
+            SignInOutIcon
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator";
-import { namespace } from "vuex-class";
-import { CloudKit } from "@wwdcscholars/cloudkit";
-import LoadingSpinner from "./LoadingSpinner.vue";
+import { Component, Vue } from 'nuxt-property-decorator'
+import { namespace } from 'vuex-class'
+import { CloudKit } from '@wwdcscholars/cloudkit'
+import LoadingSpinner from './LoadingSpinner.vue'
 
-import User from "~/assets/images/user.svg?inline";
-import SignInOut from "~/assets/images/sign-in-out.svg?inline";
+import UserIcon from '~/assets/images/user.svg?inline'
+import SignInOutIcon from '~/assets/images/sign-in-out.svg?inline'
 
-import * as auth from "~/store/auth";
+import * as auth from '~/store/auth'
 const Auth = namespace(auth.name);
 
 @Component({
-  components: { LoadingSpinner, User, SignInOut },
+  components: { LoadingSpinner, UserIcon, SignInOutIcon },
 })
 export default class ProfileButton extends Vue {
   open: boolean = false
@@ -103,7 +103,7 @@ button
     top: #{$header-height - 13px}
     right: 15px
     z-index: 1000
-    background-color: $label
+    background-color: $background-color-2
     border-radius: $border-radius-large
     +shadow
 
@@ -119,7 +119,7 @@ button
       font-size: 1.2em
       font-weight: 500
       color: $sch-purple
-      background-color: $label
+      background-color: $background-color-2
       text-decoration: none
       break-word: none
       padding: 15px 25px
@@ -144,7 +144,7 @@ button
         border-bottom: 0
 
       &:hover
-        color: $label
+        color: $background-color-2
         background-color: $sch-purple
 
     .triangle
@@ -161,7 +161,7 @@ button
         display: block
         width: 10px
         height: 12px
-        background-color: $label
+        background-color: $background-color-2
         transform: rotate(45deg)
         top: 14px
         left: 5px

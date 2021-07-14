@@ -343,7 +343,7 @@ export default class ScholarProfile extends Vue {
       width: 100%
       height: 100%
       object-fit: cover
-      border: 8px solid $label
+      border: 8px solid $background-color-2
       background-color: $sch-accent2
       border-radius: 50%
       overflow: hidden
@@ -362,7 +362,7 @@ export default class ScholarProfile extends Vue {
 
     .age
       margin-left: 10px
-      color: $sch-purple3
+      color: $sch-purple-3
 
     +for-phone-only
       margin-top: 20px
@@ -371,7 +371,7 @@ export default class ScholarProfile extends Vue {
   .location
     font-size: 1.2em
     font-weight: 500
-    color: $apl-background2
+    color: $sch-label-2
 
     +for-phone-only
       font-size: 1em
@@ -441,12 +441,12 @@ export default class ScholarProfile extends Vue {
 
       &:hover
         background-color: $sch-purple
-        color: $label
+        color: $background-color-2
 
       &.nuxt-link-exact-active
         font-weight: 700
         background-color: $sch-purple
-        color: $label
+        color: $background-color-2
         +shadow
 
         &:after

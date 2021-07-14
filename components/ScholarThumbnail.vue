@@ -78,7 +78,7 @@ export default class ScholarThumbnail extends Vue {
     border-bottom-right-radius: $border-radius-large
     z-index: 500
     background-color: transparentizeColor('sch-purple', 0.25)
-    color: $label
+    color: $background-color-2
     font-size: 1.1em
     font-weight: 500
     text-align: center

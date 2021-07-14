@@ -1,6 +1,6 @@
 <template lang="pug">
 footer
-  div
+  span(class="links")
     nuxt-link(to="/imprint") Imprint
     span.separator
     nuxt-link(to="/privacy") Privacy Policy
@@ -8,30 +8,41 @@ footer
     //- a(href="https://netlify.com", target="_blank") Hosted on Netlify
     span.separator
     a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
-  div
+  span(class="color")
     ColorModePicker
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator';
-import ColorModePicker from "./ColorModePicker.vue";
+import { Component, Vue } from 'nuxt-property-decorator'
+import ColorModePicker from './ColorModePicker.vue'
 
 @Component({
-  components: { ColorModePicker },
+  components: { ColorModePicker }
 })
 export default class PageFooter extends Vue {}
 </script>
 
 <style lang="sass" scoped>
 footer
-  padding-top: 50px
+  padding: 50px 15% 0px 15%
+  margin-bottom: 25px
   font-size: 0.7em
+  display: flex
+  justify-content: center
 
-footer div
+
+  .links
+    // float: left
+
+  .color
+    // position: relative
+    // top: -4px
+
+footer span
   display: flex
   justify-content: center
   align-items: center
-  margin: 5px
+  margin: 25px
 
   a
     color: $sch-accent0

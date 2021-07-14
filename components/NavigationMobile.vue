@@ -5,7 +5,7 @@
     ul
       li: nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
       li: nuxt-link(to="/about").color-green: span About
-      li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue1: span Join
+      li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue: span Join
     ul(v-if="!isAuthPending && isAuthenticated").auth-links
       li: nuxt-link(v-if="profileLink", :to="profileLink").color-purple: span Profile
       li: nuxt-link(to="/profile").color-purple: span Edit Profile
@@ -93,7 +93,7 @@ export default class NavigationMobile extends Vue {
     justify-content: flex-start
     align-items: flex-start
     padding-top: $header-height-mobile
-    background-color: $label
+    background-color: $background-color-2
     opacity: 0
     pointer-events: none
     transition: opacity 200ms ease-in-out, height 200ms ease-in-out

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Vue } from "nuxt-property-decorator";
+import { Vue } from 'nuxt-property-decorator'
 
 export default class ColorModePicker extends Vue {
   colorSchemes: { label: string; value: string }[] = [
@@ -51,7 +51,7 @@ export default class ColorModePicker extends Vue {
     top: -3px
 
 .color-btn.preferred
-    color: $label
+    color: $background-color-2
     background-color: $sch-purple
 
 //only important if user selects agains their system
