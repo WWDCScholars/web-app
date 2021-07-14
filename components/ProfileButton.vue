@@ -12,7 +12,7 @@
         nuxt-link(to="/profile") Edit Profile
         button(@click="onSignOutClicked")
           | Sign Out
-          .sign-out
+          #sign-out-icon
             SignInOut
 </template>
 
@@ -127,7 +127,7 @@ button
       text-align: left
       transition: color 100ms linear, background-color 100ms linear
 
-      .sign-out
+      #sign-out-icon
         display: inline-block
         position: relative
         height: 1em
@@ -146,9 +146,6 @@ button
       &:hover
         color: $label
         background-color: $sch-purple
-
-        svg path
-          fill: $label
 
     .triangle
       position: absolute

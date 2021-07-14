@@ -88,7 +88,7 @@ export default class TeamCard extends Vue {
   margin-right: 8px
 
 .age
-  color: transparentizeColor('sch-purple', 0.275)
+  color: $sch-purple3
 
 .body
   margin-top: 8px

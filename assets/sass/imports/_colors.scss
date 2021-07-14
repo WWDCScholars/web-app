@@ -73,7 +73,6 @@ $themes: (
 
 //converting scss variable into css variable
 :root {
-    transition: background-color .3s;
     --theme: $light-theme;
     $light: map-get($themes, $light-theme);
     @each $name, $color in $light {
@@ -111,13 +110,26 @@ $themes: (
 }
 
 //change brigthness / lightness of color *by* $amount (+ lighter, - darker)
+//$amount should be in percent 0% - 100%
 @function lightenColor($colorName, $amount) {
-    @return hsl(var(--color-#{$colorName}-h), var(--color-#{$colorName}-s), calc(var(--color-#{$colorName}-l) + #{$amount}));
+    // use capitalized `Min` / `Max` to avoid SASS compiler error, CSS is canse-insensetive
+    @return hsl(
+        var(--color-#{$colorName}-h),
+        var(--color-#{$colorName}-s), 
+        Max(0%, Min(100%, calc(var(--color-#{$colorName}-l) + #{$amount})))
+    );
 }
 
-//change transparancy of color *by* $amount (e.g. 10% *more* transparent)
+//change transparancy of color *by* $amount (e.g. 0.1 *more* transparent)
+//$amount should be in decimal 0 - 1
 @function transparentizeColor($colorName, $amount) {
-    @return rgba(var(--color-#{$colorName}-r), var(--color-#{$colorName}-g),var(--color-#{$colorName}-b), calc(var(--color-#{$colorName}-a) - #{$amount}));
+    // use capitalized `Min` / `Max` to avoid SASS compiler error, CSS is canse-insensetive
+    @return rgba(
+        var(--color-#{$colorName}-r),
+        var(--color-#{$colorName}-g),
+        var(--color-#{$colorName}-b),
+        Max(0, Min(1, calc(var(--color-#{$colorName}-a) - #{$amount})))
+    );
 }
 
 $label: getColor('label');

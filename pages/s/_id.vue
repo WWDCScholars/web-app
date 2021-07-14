@@ -362,7 +362,6 @@ export default class ScholarProfile extends Vue {
 
     .age
       margin-left: 10px
-      //meh.
       color: $sch-purple3
 
     +for-phone-only

@@ -1,14 +1,18 @@
 <template lang="pug">
 .color-container
-  label(v-for="color of colors", :key="color")
-    div(:class="getClasses(color)", @click="$colorMode.preference = color") {{ color }}
+  label(v-for="color of colorSchemes", :key="color")
+    div(:class="getClasses(color.value)", @click="$colorMode.preference = color.value") {{ color.label }}
 </template>
 
 <script lang="ts">
 import { Vue } from "nuxt-property-decorator";
 
 export default class ColorModePicker extends Vue {
-colors = ["system", "light", "dark"]
+  colorSchemes: { label: string; value: string }[] = [
+    { label: "Light", value: "light" },
+    { label: "Dark", value: "dark" },
+    { label: "System", value: "system" },
+  ];
 
   getClasses(color) {
     // Does not set classes on ssr preference is system (because we know them on client-side)

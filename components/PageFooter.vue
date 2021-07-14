@@ -19,13 +19,7 @@ import ColorModePicker from "./ColorModePicker.vue";
 @Component({
   components: { ColorModePicker },
 })
-export default class PageFooter extends Vue {
-  colorSchemes: { label: string; value: string }[] = [
-    { label: "system", value: "system" },
-    { label: "dark", value: "dark" },
-    { label: "light", value: "light" },
-  ];
-}
+export default class PageFooter extends Vue {}
 </script>
 
 <style lang="sass" scoped>
