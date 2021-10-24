@@ -106,6 +106,7 @@ export const actions: ActionTree<State, RootState> = {
   async saveBasic({ getters, commit }, { scholar, changes }: { scholar: Scholar; changes: RecordFields }): Promise<void> {
     let updatedPrivate: ScholarPrivate | undefined
     if (changes.hasOwnProperty('email') || changes.hasOwnProperty('birthday')) {
+      // when the email or birthday was changed, we need to update the ScholarPrivate object
       if (getters.scholar?.loadedPrivate) {
         updatedPrivate = ScholarPrivate.clone(getters.scholar.loadedPrivate)
       } else {
@@ -115,14 +116,18 @@ export const actions: ActionTree<State, RootState> = {
           recordName: scholar.recordName!,
           action: CloudKit.ReferenceAction.DELETE_SELF
         }
+        // when we created a new ScholarPrivate, we need to set the reference on Scholar
+        changes['scholarPrivate'] = { value: {
+          recordName: updatedPrivate.recordName!,
+          action: CloudKit.ReferenceAction.DELETE_SELF
+        }}
       }
 
       if (changes['email']) {
         updatedPrivate!.email = changes['email'].value as string
       }
       if (changes['birthday']) {
-        changes['birthday'].value = new Date(changes['birthday'].value as string).getTime()
-        updatedPrivate!.birthday = changes['birthday'].value
+        updatedPrivate!.birthday = changes['birthday'].value as number
       }
 
       delete changes['email']
@@ -144,12 +149,6 @@ export const actions: ActionTree<State, RootState> = {
 
       let updatedScholar = Scholar.clone(scholar) as Scholar
       updatedScholar.setFields(changes)
-      if (updatedPrivate) {
-        updatedScholar.scholarPrivate = {
-          recordName: updatedPrivate.recordName!,
-          action: CloudKit.ReferenceAction.DELETE_SELF
-        }
-      }
       await updatedScholar.save()
 
       // If the profile picture changed, we have to fetch the record again to get the new downloadURL
