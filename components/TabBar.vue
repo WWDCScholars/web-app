@@ -24,12 +24,12 @@ export default class TabBar extends Vue {}
     font-size: 1em
     font-weight: 500
     text-decoration: none
-    color: $sch-label
+    color: $label-primary
     border-radius: 1em
     transition: color 100ms linear, background-color 100ms linear
 
     &:hover, &.nuxt-link-exact-active
-      background-color: $sch-label
+      background-color: $label-primary
       color: $label-inverted
 
     &.nuxt-link-exact-active

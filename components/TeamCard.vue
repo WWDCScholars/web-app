@@ -54,7 +54,7 @@ export default class TeamCard extends Vue {
   display: flex
   justify-content: flex-start
   align-items: center
-  color: $sch-label
+  color: $label-primary
 
   +for-phone-only
     flex-direction: column

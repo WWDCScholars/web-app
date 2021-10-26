@@ -371,7 +371,7 @@ export default class ScholarProfile extends Vue {
   .location
     font-size: 1.2em
     font-weight: 500
-    color: $sch-label-2
+    color: $label-secondary
 
     +for-phone-only
       font-size: 1em

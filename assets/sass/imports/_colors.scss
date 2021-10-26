@@ -25,10 +25,6 @@ $themes: (
 
     form-border-color: rgb(151, 151, 151),
 
-    sch-label: #000000,
-    sch-label-2: #3c3c4399,
-    sch-label-3: #3c3c434d,
-
     sch-purple: rgb(65, 53, 153),
     sch-purple-2: rgb(106, 101, 164),
     sch-purple-3: rgb(141, 139, 193),
@@ -68,10 +64,6 @@ $themes: (
     fill-secondary: rgba(120, 120, 128, 0.32),
 
     form-border-color: rgb(104, 104, 104),
-
-    sch-label: #ffffffff,
-    sch-label-2: #ebebf599,
-    sch-label-3: #ebebf54d,
 
     sch-purple: rgb(165, 153, 255),
     sch-purple-2: rgb(153, 139, 253),
@@ -174,10 +166,6 @@ $fill-primary: getColor("fill-primary");
 $fill-secondary: getColor("fill-secondary");
 
 $shadow: var(--theme-shadow);
-
-$sch-label: getColor("sch-label");
-$sch-label-2: getColor("sch-label-2");
-$sch-label-3: getColor("sch-label-3");
 
 $sch-purple: getColor("sch-purple");
 $sch-purple-2: getColor("sch-purple-2");

@@ -77,9 +77,9 @@ export default class PageSignin extends Vue {
     display: inline-block
     padding: 10px 20px
     font-weight: 500
-    color: $sch-label
+    color: $label-primary
     background-color: $background-primary-base
-    border: 1px solid $sch-label
+    border: 1px solid $label-primary // TODO: use fill/separator
     border-radius: $border-radius
     text-decoration: none
 </style>

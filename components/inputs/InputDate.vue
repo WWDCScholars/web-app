@@ -76,7 +76,7 @@ export default class InputDate extends Vue {
     background-color: $background-grouped-secondary-elevated
     border: 1px solid $form-border-color
     border-radius: $border-radius
-    color: $sch-label
+    color: $label-primary
     transition: border-color 100ms linear, box-shadow 100ms linear
 
   .title
