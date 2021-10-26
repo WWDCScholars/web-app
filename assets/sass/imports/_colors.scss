@@ -13,8 +13,16 @@ $themes: (
     background-grouped-tertiary-elevated: rgb(242, 242, 247),
 
     separator: rgb(198, 198, 200),
+    separator-transparent: rgba(60, 60, 67, 0.36),
 
+    label-primary: rgb(0, 0, 0),
+    label-secondary: rgba(60, 60, 67, 0.6),
+    label-tertiary: rgba(60, 60, 67, 0.3),
     label-inverted: rgb(255, 255, 255),
+
+    fill-primary: rgba(120, 120, 128, 0.2),
+    fill-secondary: rgba(120, 120, 128, 0.16),
+
     form-border-color: rgb(151, 151, 151),
 
     sch-label: #000000,
@@ -49,8 +57,16 @@ $themes: (
     background-grouped-tertiary-elevated: rgb(58, 58, 60),
 
     separator: rgb(56, 56, 58),
+    separator-transparent: rgba(84, 84, 88, 0.65),
 
+    label-primary: rgb(255, 255, 255),
+    label-secondary: rgba(235, 235, 245, 0.6),
+    label-tertiary: rgba(235, 235, 245, 0.3),
     label-inverted: rgb(0, 0, 0),
+
+    fill-primary: rgba(120, 120, 128, 0.36),
+    fill-secondary: rgba(120, 120, 128, 0.32),
+
     form-border-color: rgb(104, 104, 104),
 
     sch-label: #ffffffff,
@@ -147,8 +163,15 @@ $background-grouped-tertiary-base: getColor("background-grouped-tertiary-base");
 $background-grouped-tertiary-elevated: getColor("background-grouped-tertiary-elevated");
 
 $separator: getColor("separator");
+$separator-transparent: getColor("separator-transparent");
 
+$label-primary: getColor("label-primary");
+$label-secondary: getColor("label-secondary");
+$label-tertiary: getColor("label-tertiary");
 $label-inverted: getColor("label-inverted");
+
+$fill-primary: getColor("fill-primary");
+$fill-secondary: getColor("fill-secondary");
 
 $shadow: var(--theme-shadow);
 
