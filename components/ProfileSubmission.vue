@@ -6,7 +6,7 @@ base-section
       v-if="yearInfo",
       :class="yearInfo.status",
       :to="profileSubmissionLink(yearInfo)"
-    ).status {{ yearInfo.status }}
+    ).status {{ yearInfo.status | uppercase }}
 
   ValidationObserver(v-slot="{ invalid }", tag="div", ref="form")
     base-form(v-if="yearInfo")
@@ -263,9 +263,9 @@ export default class ProfileSubmission extends Vue {
 
   .status
     margin-left: 20px
-    padding: 2px 10px 4px
+    padding: 3px 6px
     border-radius: $border-radius
-    font-size: 0.7em
+    font-size: 0.6em
     color: $label-inverted
     text-decoration: none
 
