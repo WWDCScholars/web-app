@@ -47,8 +47,8 @@ export default class NavigationTabBar extends Vue {
 .tab-bar-container
   width: 100%
   text-align: center
-  box-shadow: 0 2px 4px 0 transparentizeColor('sch-accent', 0.6)
   background-color: $background-primary-base
+  border-bottom: 1px solid $separator
   overflow-x: scroll
   position: relative
 </style>

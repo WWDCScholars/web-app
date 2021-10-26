@@ -52,8 +52,8 @@ export default class PageHeader extends Vue {
     left: 0
     right: 0
     bottom: 0
-    height: 1.5px
-    background-color: $sch-accent2
+    height: 1px
+    background-color: $separator
 
   +for-phone-only
     padding: 0 20px 0 20px

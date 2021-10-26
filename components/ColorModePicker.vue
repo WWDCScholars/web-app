@@ -1,60 +1,62 @@
 <template lang="pug">
-.color-container
-  label(v-for="color of colorSchemes", :key="color")
-    div(:class="getClasses(color.value)", @click="$colorMode.preference = color.value") {{ color.label }}
+ColorScheme(placeholder="...", tag="div")
+  .color-mode-picker
+    label(
+      v-for="mode in colorModes",
+      :key="mode.value"
+    )
+      input(
+        type="radio",
+        :name="name",
+        :value="mode.value",
+        :checked="$colorMode.preference === mode.value",
+        @change="$colorMode.preference = $event.target.value"
+      )
+      div {{ mode.label }}
 </template>
 
 <script lang="ts">
-import { Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
+@Component
 export default class ColorModePicker extends Vue {
-  colorSchemes: { label: string; value: string }[] = [
+  @Prop({ required: true, type: String })
+  name!: string
+
+  colorModes: { label: string; value: string }[] = [
     { label: "Light", value: "light" },
     { label: "Dark", value: "dark" },
-    { label: "System", value: "system" },
-  ];
-
-  getClasses(color) {
-    // Does not set classes on ssr preference is system (because we know them on client-side)
-    if (this.$colorMode.unknown) {
-      return {};
-    }
-    return {
-      preferred: color === this.$colorMode.preference,
-      selected: color === this.$colorMode.value,
-      "color-btn": true,
-    };
-  }
+    { label: "Auto", value: "system" },
+  ]
 }
 </script>
 
 <style lang="sass" scoped>
-.color-container
-    display: inline-flex
-    border-radius: 12px
-    border: 2px solid $sch-purple
-    font-size: 12px
-    padding: 1px
-    color: $sch-purple
+.color-mode-picker
+  display: inline-flex
+  border: 1px solid $sch-purple
+  border-radius: 12px
+  font-size: 0.6em
+  padding: 1px
 
-.color-btn
-    box-sizing: border-box
-    display: inline-block
-    padding: 1px 6px
-    min-width: 42px
-    border: 1px solid transparent
-    border-radius: 10px
-    text-align: center
-    cursor: pointer
+  label
+    input
+      appearance: none
+      padding: 0
+      border: 0
 
-.color-btn:hover
-    top: -3px
+    div
+      display: inline-block
+      min-width: 42px
+      padding: 1px 6px
+      line-height: 1.33337
+      letter-spacing: -0.01em
+      color: $sch-purple
+      border: 1px solid transparent
+      border-radius: 10px
+      text-align: center
 
-.color-btn.preferred
-    color: $background-color-2
-    background-color: $sch-purple
-
-//only important if user selects agains their system
-// .color-btn.selected
-//     color: $sch-purple
+    input:checked + div
+      background-color: $sch-purple
+      color: $label-inverted
 </style>

@@ -1,15 +1,14 @@
 <template lang="pug">
-footer
-  span(class="links")
-    nuxt-link(to="/imprint") Imprint
-    span.separator
-    nuxt-link(to="/privacy") Privacy Policy
-    //- span.separator
-    //- a(href="https://netlify.com", target="_blank") Hosted on Netlify
-    span.separator
-    a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
-  span(class="color")
-    ColorModePicker
+footer.container-fluid
+  .footer-content
+    nav(class="links")
+      nuxt-link(to="/imprint") Imprint
+      span.separator
+      nuxt-link(to="/privacy") Privacy Policy
+      span.separator
+      a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
+    div(class="color-mode")
+      ColorModePicker(name="color-mode-desktop")
 </template>
 
 <script lang="ts">
@@ -24,38 +23,37 @@ export default class PageFooter extends Vue {}
 
 <style lang="sass" scoped>
 footer
-  padding: 50px 15% 0px 15%
-  margin-bottom: 25px
-  font-size: 0.7em
-  display: flex
-  justify-content: center
+  .footer-content
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-wrap: wrap
+    padding: 50px 25px 0 25px
 
+    +for-phone-only
+      justify-content: center
 
-  .links
-    // float: left
+      .color-mode
+        display: none
 
-  .color
-    // position: relative
-    // top: -4px
+    .links
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      font-size: 0.7em
 
-footer span
-  display: flex
-  justify-content: center
-  align-items: center
-  margin: 25px
+      a
+        color: $sch-accent0
+        text-decoration: none
+        transition: color linear 100ms
 
-  a
-    color: $sch-accent0
-    text-decoration: none
-    transition: color linear 100ms
+        &:hover
+          text-decoration: underline
+          color: $sch-purple
 
-    &:hover
-      text-decoration: underline
-      color: $sch-purple
-
-  .separator
-    width: 1px
-    height: 0.8em
-    background-color: $sch-accent0
-    margin: 0 10px
+      .separator
+        width: 1px
+        height: 0.8em
+        background-color: $sch-accent0
+        margin: 0 10px
 </style>

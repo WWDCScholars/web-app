@@ -12,6 +12,9 @@
       li: button(@click="onSignOutClicked").color-purple: span Sign Out
     ul(v-else-if="!isAuthPending").auth-links
       li: nuxt-link(to="/signin").color-purple: span Sign In
+    .spacer
+    div(class="color-mode")
+      ColorModePicker(name="color-mode-mobile")
 </template>
 
 <script lang="ts">
@@ -19,12 +22,13 @@ import { Component, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { CloudKit } from '@wwdcscholars/cloudkit'
 import BurgerButton from './BurgerButton.vue'
+import ColorModePicker from './ColorModePicker.vue'
 
 import * as auth from '~/store/auth'
 const Auth = namespace(auth.name)
 
 @Component({
-  components: { BurgerButton }
+  components: { BurgerButton, ColorModePicker }
 })
 export default class NavigationMobile extends Vue {
   menuOpen: boolean = false
@@ -92,14 +96,14 @@ export default class NavigationMobile extends Vue {
     flex-direction: column
     justify-content: flex-start
     align-items: flex-start
-    padding-top: $header-height-mobile
     background-color: $background-primary-base
     opacity: 0
     pointer-events: none
     transition: opacity 200ms ease-in-out, height 200ms ease-in-out
 
     &.navigation-mobile-open
-      height: 100vh
+      height: calc(100vh - #{$header-height-mobile})
+      top: $header-height-mobile
       opacity: 1
       pointer-events: auto
 
@@ -107,6 +111,7 @@ export default class NavigationMobile extends Vue {
       margin: 0
       padding: 5px 40px 5px 20px
       width: 100%
+      list-style-type: none
 
       &.auth-links
         border-top: 1px solid $sch-accent1
@@ -141,4 +146,11 @@ export default class NavigationMobile extends Vue {
           &.nuxt-link-active:not(.nuxt-link-root)
             &:before
               display: block
+
+    .spacer
+      flex-grow: 1
+
+    .color-mode
+      align-self: center
+      margin-bottom: 20px
 </style>

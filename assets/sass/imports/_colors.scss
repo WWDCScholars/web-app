@@ -12,6 +12,8 @@ $themes: (
     background-grouped-tertiary-base: rgb(242, 242, 247),
     background-grouped-tertiary-elevated: rgb(242, 242, 247),
 
+    separator: rgb(198, 198, 200),
+
     label-inverted: rgb(255, 255, 255),
     form-border-color: rgb(151, 151, 151),
 
@@ -46,6 +48,8 @@ $themes: (
     background-grouped-tertiary-base: rgb(44, 44, 46),
     background-grouped-tertiary-elevated: rgb(58, 58, 60),
 
+    separator: rgb(56, 56, 58),
+
     label-inverted: rgb(0, 0, 0),
     form-border-color: rgb(104, 104, 104),
 
@@ -74,7 +78,6 @@ $themes: (
 
 //converting scss variable into css variable
 :root {
-  --theme: $light-theme;
   $light: map-get($themes, $light-theme);
   @each $name, $color in $light {
     --color-#{$name}: #{$color};
@@ -86,10 +89,11 @@ $themes: (
     --color-#{$name}-s: #{saturation($color)};
     --color-#{$name}-l: #{lightness($color)};
   }
+
+  --theme-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.16);
 }
 
 .dark-mode {
-  --theme: $dark-theme;
   $dark: map-get($themes, $dark-theme);
   @each $name, $color in $dark {
     --color-#{$name}: #{$color};
@@ -101,6 +105,8 @@ $themes: (
     --color-#{$name}-s: #{saturation($color)};
     --color-#{$name}-l: #{lightness($color)};
   }
+
+  --theme-shadow: none;
 }
 
 //creating a function to get color instead of using css varible
@@ -140,7 +146,11 @@ $background-grouped-secondary-elevated: getColor("background-grouped-secondary-e
 $background-grouped-tertiary-base: getColor("background-grouped-tertiary-base");
 $background-grouped-tertiary-elevated: getColor("background-grouped-tertiary-elevated");
 
+$separator: getColor("separator");
+
 $label-inverted: getColor("label-inverted");
+
+$shadow: var(--theme-shadow);
 
 $sch-label: getColor("sch-label");
 $sch-label-2: getColor("sch-label-2");
