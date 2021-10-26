@@ -3,9 +3,16 @@ $dark-theme: "dark";
 
 $themes: (
   $light-theme: (
-    background-color: rgb(245, 245, 245),
-    background-color-2: rgb(255, 255, 255),
-    shadow: rgba(0, 0, 0, 0.16),
+    background-primary-base: rgb(255, 255, 255),
+    background-primary-elevated: rgb(255, 255, 255),
+    background-grouped-primary-base: rgb(242, 242, 247),
+    background-grouped-primary-elevated: rgb(242, 242, 247),
+    background-grouped-secondary-base: rgb(255, 255, 255),
+    background-grouped-secondary-elevated: rgb(255, 255, 255),
+    background-grouped-tertiary-base: rgb(242, 242, 247),
+    background-grouped-tertiary-elevated: rgb(242, 242, 247),
+
+    label-inverted: rgb(255, 255, 255),
     form-border-color: rgb(151, 151, 151),
 
     sch-label: #000000,
@@ -30,9 +37,16 @@ $themes: (
     sch-accent4: rgb(252, 252, 252),
   ),
   $dark-theme: (
-    background-color: rgb(20, 20, 20),
-    background-color-2: rgb(0, 0, 0),
-    shadow: rgba(255, 255, 255, 0.26),
+    background-primary-base: rgb(0, 0, 0),
+    background-primary-elevated: rgb(28, 28, 30),
+    background-grouped-primary-base: rgb(0, 0, 0),
+    background-grouped-primary-elevated: rgb(28, 28, 30),
+    background-grouped-secondary-base: rgb(28, 28, 30),
+    background-grouped-secondary-elevated: rgb(44, 44, 46),
+    background-grouped-tertiary-base: rgb(44, 44, 46),
+    background-grouped-tertiary-elevated: rgb(58, 58, 60),
+
+    label-inverted: rgb(0, 0, 0),
     form-border-color: rgb(104, 104, 104),
 
     sch-label: #ffffffff,
@@ -117,9 +131,16 @@ $themes: (
   );
 }
 
-$background-color-2: getColor("background-color-2");
-$background-color: getColor("background-color");
-$shadow: getColor("shadow");
+$background-primary-base: getColor("background-primary-base");
+$background-primary-elevated: getColor("background-primary-elevated");
+$background-grouped-primary-base: getColor("background-grouped-primary-base");
+$background-grouped-primary-elevated: getColor("background-grouped-primary-elevated");
+$background-grouped-secondary-base: getColor("background-grouped-secondary-base");
+$background-grouped-secondary-elevated: getColor("background-grouped-secondary-elevated");
+$background-grouped-tertiary-base: getColor("background-grouped-tertiary-base");
+$background-grouped-tertiary-elevated: getColor("background-grouped-tertiary-elevated");
+
+$label-inverted: getColor("label-inverted");
 
 $sch-label: getColor("sch-label");
 $sch-label-2: getColor("sch-label-2");

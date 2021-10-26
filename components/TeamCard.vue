@@ -70,7 +70,7 @@ export default class TeamCard extends Vue {
     width: 80px
     height: 80px
     object-fit: cover
-    border: 4px solid $background-color-2
+    border: 4px solid $background-grouped-tertiary-elevated
     border-radius: 50%
     +shadow
 

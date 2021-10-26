@@ -1,8 +1,8 @@
 // works with color name instead of color, to make use of css vars
 $_form-colors: (
-  purple: (bg: 'sch-purple', fg: 'background-color-2'),
-  red: (bg: 'sch-red', fg: 'background-color-2'),
-  orange: (bg: 'sch-orange', fg: 'background-color-2'),
-  green: (bg: 'sch-green', fg: 'background-color-2'),
-  blue: (bg: 'sch-blue', fg: 'background-color-2')
+  purple: (bg: 'sch-purple', fg: 'background-grouped-secondary-elevated'),
+  red: (bg: 'sch-red', fg: 'background-grouped-secondary-elevated'),
+  orange: (bg: 'sch-orange', fg: 'background-grouped-secondary-elevated'),
+  green: (bg: 'sch-green', fg: 'background-grouped-secondary-elevated'),
+  blue: (bg: 'sch-blue', fg: 'background-grouped-secondary-elevated')
 )

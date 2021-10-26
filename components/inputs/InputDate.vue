@@ -73,7 +73,7 @@ export default class InputDate extends Vue {
     width: 100%
     font-size: 1em
     padding: 20px 15px 5px 15px
-    background-color: $background-color-2
+    background-color: $background-grouped-secondary-elevated
     border: 1px solid $form-border-color
     border-radius: $border-radius
     color: $sch-label

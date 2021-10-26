@@ -131,7 +131,7 @@ export default class InputLocation extends Vue {
   /deep/ .mk-autocomplete-results
     z-index: 1000
     top: calc(100% - 1px)
-    background-color: $background-color-2
+    background-color: $background-grouped-secondary-elevated
     border: 1px solid $form-border-color
     border-radius: $border-radius
     box-shadow: 0 2px 6px $shadow

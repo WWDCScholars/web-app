@@ -266,7 +266,7 @@ export default class ProfileSubmission extends Vue {
     padding: 2px 10px 4px
     border-radius: $border-radius
     font-size: 0.7em
-    color: $background-color-2
+    color: $label-inverted
     text-decoration: none
 
     &.approved

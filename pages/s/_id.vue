@@ -343,7 +343,7 @@ export default class ScholarProfile extends Vue {
       width: 100%
       height: 100%
       object-fit: cover
-      border: 8px solid $background-color-2
+      border: 8px solid $background-grouped-tertiary-elevated
       background-color: $sch-accent2
       border-radius: 50%
       overflow: hidden
@@ -441,12 +441,12 @@ export default class ScholarProfile extends Vue {
 
       &:hover
         background-color: $sch-purple
-        color: $background-color-2
+        color: $label-inverted
 
       &.nuxt-link-exact-active
         font-weight: 700
         background-color: $sch-purple
-        color: $background-color-2
+        color: $label-inverted
         +shadow
 
         &:after

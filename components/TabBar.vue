@@ -13,7 +13,7 @@ export default class TabBar extends Vue {}
 <style lang="sass" scoped>
 .tab-bar
   display: inline-flex
-  background-color: $background-color-2
+  background-color: $background-primary-base
   padding: 10px 15px
   margin: 0
   align-items: center
@@ -30,7 +30,7 @@ export default class TabBar extends Vue {}
 
     &:hover, &.nuxt-link-exact-active
       background-color: $sch-label
-      color: $background-color-2
+      color: $label-inverted
 
     &.nuxt-link-exact-active
       font-weight: 700

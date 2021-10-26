@@ -93,7 +93,7 @@ export default class NavigationMobile extends Vue {
     justify-content: flex-start
     align-items: flex-start
     padding-top: $header-height-mobile
-    background-color: $background-color-2
+    background-color: $background-primary-base
     opacity: 0
     pointer-events: none
     transition: opacity 200ms ease-in-out, height 200ms ease-in-out

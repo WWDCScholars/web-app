@@ -51,7 +51,7 @@ export default class BaseButton extends Vue {
     border-radius: $border-radius
     font-size: 1em
     color: $sch-accent
-    background-color: $background-color-2
+    background-color: $background-grouped-tertiary-elevated
     text-align: center
     text-transform: none
     text-decoration: none
@@ -69,8 +69,6 @@ export default class BaseButton extends Vue {
     border-radius: 32px
 
     &:hover
-      background-color: $background-color
-      color: $background-color-2
 
   .btn-confirm
     position: absolute
@@ -127,6 +125,8 @@ export default class BaseButton extends Vue {
         left: 5px
         border-bottom-right-radius: 2px
         +shadow
+      background-color: $background-grouped-tertiary-elevated
+      color: $sch-accent
 
 +form-colors
   $bg: dyn-temp('bg')
@@ -143,8 +143,8 @@ export default class BaseButton extends Vue {
         border-color: lightenColor($bg, -10%)
 
       &:disabled
-        background-color: $sch-accent1
         border-color: $sch-accent0
+        background-color: $background-grouped-tertiary-elevated
 
     &.btn-round > button, a
       background-color: getColor($fg)

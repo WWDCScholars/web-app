@@ -58,10 +58,9 @@ export default class InputRadioGroup extends Vue {
       display: block
       padding: 12px 15px
       border: 1px solid $form-border-color
-      // text-transform: uppercase
       border-radius: $border-radius
       color: $sch-accent
-      background-color: $background-color-2
+      background-color: $background-grouped-secondary-elevated
       text-align: center
       transition: background-color 100ms linear, border-color 100ms linear, color 100ms linear
 

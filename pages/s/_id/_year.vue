@@ -189,7 +189,7 @@ $swiper-arrow-height: 52px
     transition: opacity 100ms linear
 
     .swiper-pagination-bullet
-      background-color: $background-color-2
+      background-color: $background-grouped-secondary-elevated
       box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5)
       opacity: 1
 
