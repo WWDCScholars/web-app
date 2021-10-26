@@ -385,10 +385,13 @@ export default class ScholarProfile extends Vue {
     display: flex
     justify-content: flex-start
     align-items: center
+    flex-wrap: wrap
     margin-top: 30px
+    margin-bottom: -5px
 
     .social-icon
       margin-right: 15px
+      margin-bottom: 5px
 
       img
         width: 32px
@@ -402,8 +405,8 @@ export default class ScholarProfile extends Vue {
     .social-discord
       height: 32px
       padding-left: 15px
-      color: $sch-accent
-      border-left: 1px solid $sch-accent1
+      color: $label-secondary
+      border-left: 1px solid $separator-transparent
 
       &:first-of-type
         border-left: 0
