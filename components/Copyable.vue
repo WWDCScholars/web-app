@@ -48,59 +48,61 @@ export default class Copyable extends Vue {
     font-size: 0.8em
     margin-left: 3px
 
-  .input
-    border: 0
-    pointer-events: none
-    width: 0px
-    height: 0px
-
-  .bubble
-    position: absolute
-    display: block
-    opacity: 0
-    width: 60px
-    height: 26px
-    background-color: $sch-accent0
-    color: $background-color-2
-    font-size: 0.9em
-    top: 0
-    left: 0
-    transform: translateX(100%) translateY(-100%)
-    border-radius: 4px
-    transition: opacity 200ms linear
-
-    .before, .after
-      position: absolute
-      top: 50%
-      left: 50%
-      transform: translateX(-50%) translateY(-50%)
-      margin-top: -1px
-      text-align: center
-      transition: opacity 200ms linear
-
-    .before
-      opacity: 1
-
-    .after
-      opacity: 0
-
-    &.clicked
-      .before
-        opacity: 0
-
-      .after
-        opacity: 1
-
-    &:after
-      content: ''
+    .bubble
       position: absolute
       display: block
-      bottom: -5px
-      left: 50%
-      transform: translateX(-50%)
-      border-top: 5px solid $sch-accent0
-      border-left: 4px solid transparent
-      border-right: 4px solid transparent
+      opacity: 0
+      width: 60px
+      height: 26px
+      background-color: $fill-secondary
+      color: $label-secondary
+      font-size: 0.9em
+      top: 0
+      left: 0
+      transform: translateX(100%) translateY(-100%)
+      border-radius: 4px
+      transition: opacity 200ms linear
+
+      .before, .after
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translateX(-50%) translateY(-50%)
+        margin-top: -1px
+        text-align: center
+        transition: opacity 200ms linear
+
+      .before
+        opacity: 1
+
+      .after
+        opacity: 0
+
+      &.clicked
+        .before
+          opacity: 0
+
+        .after
+          opacity: 1
+
+      &:after
+        content: ''
+        position: absolute
+        display: block
+        bottom: -5px
+        left: 50%
+        transform: translateX(-50%)
+        border-top: 5px solid $fill-primary
+        border-left: 4px solid transparent
+        border-right: 4px solid transparent
+
+  .input
+    display: inline-block
+    border: 0
+    background: 0
+    pointer-events: none
+    width: 0px
+    height: 0
 
   &:hover .bubble
     opacity: 1

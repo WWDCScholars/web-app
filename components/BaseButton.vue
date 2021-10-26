@@ -87,8 +87,9 @@ export default class BaseButton extends Vue {
         border-color: lightenColor($bg, -10%)
 
       &:disabled
-        border-color: $sch-accent0
         background-color: $background-grouped-tertiary-elevated
+        border-color: $fill-primary
+        color: $label-tertiary
 
     &.btn-round > button, a
       background-color: getColor($fg)
