@@ -38,7 +38,7 @@ export default class FormField extends Vue {
   color: $sch-red
 
 /deep/ .comment
-  color: $sch-accent
+  color: $label-secondary
   margin-top: 15px
   font-size: 1em
 </style>

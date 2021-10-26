@@ -50,7 +50,7 @@ export default class BaseButton extends Vue {
     border: 1px solid $form-border-color
     border-radius: $border-radius
     font-size: 1em
-    color: $sch-accent
+    color: $label-primary
     background-color: $background-grouped-tertiary-elevated
     text-align: center
     text-transform: none
@@ -70,7 +70,7 @@ export default class BaseButton extends Vue {
 
     &:hover
       background-color: $background-grouped-tertiary-elevated
-      color: $sch-accent
+      color: $label-primary
 
 +form-colors
   $bg: dyn-temp('bg')

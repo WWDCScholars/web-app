@@ -24,6 +24,12 @@ $themes: (
     fill-secondary: rgba(120, 120, 128, 0.16),
     fill-tertiary: rgba(118, 118, 128, 0.12),
 
+    grey1: rgb(142, 142, 147),
+    grey2: rgb(174, 174, 178),
+    grey3: rgb(199, 199, 204),
+    grey4: rgb(209, 209, 214),
+    grey5: rgb(229, 229, 234),
+
     form-border-color: rgb(151, 151, 151),
 
     sch-purple: rgb(65, 53, 153),
@@ -35,11 +41,6 @@ $themes: (
     sch-blue-2: #395d6f,
     sch-green: #3ab298,
     sch-orange: #f99532,
-
-    sch-accent: rgb(108, 108, 108),
-    sch-accent0: rgb(127, 127, 127),
-    sch-accent1: rgb(205, 205, 205),
-    sch-accent2: rgb(228, 228, 228),
   ),
   $dark-theme: (
     background-primary-base: rgb(0, 0, 0),
@@ -63,6 +64,12 @@ $themes: (
     fill-secondary: rgba(120, 120, 128, 0.32),
     fill-tertiary: rgba(118, 118, 128, 0.24),
 
+    grey1: rgb(142, 142, 147),
+    grey2: rgb(99, 99, 102),
+    grey3: rgb(72, 72, 74),
+    grey4: rgb(58, 58, 60),
+    grey5: rgb(44, 44, 46),
+
     form-border-color: rgb(104, 104, 104),
 
     sch-purple: rgb(165, 153, 255),
@@ -74,11 +81,6 @@ $themes: (
     sch-blue-2: #3bc3ec,
     sch-green: #3eccad,
     sch-orange: #ffa952,
-
-    sch-accent: rgb(147, 147, 147),
-    sch-accent0: rgb(127, 127, 127),
-    sch-accent1: rgb(50, 50, 50),
-    sch-accent2: rgb(37, 37, 37),
   ),
 );
 
@@ -164,6 +166,12 @@ $fill-primary: getColor("fill-primary");
 $fill-secondary: getColor("fill-secondary");
 $fill-tertiary: getColor("fill-tertiary");
 
+$grey1: getColor("grey1");
+$grey2: getColor("grey2");
+$grey3: getColor("grey3");
+$grey4: getColor("grey4");
+$grey5: getColor("grey5");
+
 $shadow: var(--theme-shadow);
 
 $sch-purple: getColor("sch-purple");
@@ -177,10 +185,4 @@ $sch-blue-2: getColor("sch-blue-2");
 $sch-green: getColor("sch-green");
 $sch-orange: getColor("sch-orange");
 
-$sch-accent: getColor("sch-accent");
-$sch-accent0: getColor("sch-accent0");
-$sch-accent1: getColor("sch-accent1");
-$sch-accent2: getColor("sch-accent2");
-
-$form-placeholder-color: $sch-accent;
 $form-border-color: getColor("form-border-color");

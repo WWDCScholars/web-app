@@ -49,8 +49,8 @@ export default class ScholarThumbnail extends Vue {
     &[lazy="loading"], &[lazy="error"]
       padding: 10% 20% 30%
 
-    $gradient-start: rgba(246, 247, 248, 0)
-    $gradient-mid: $sch-accent2
+    $gradient-start: transparent
+    $gradient-mid: $grey5
     &[lazy="loading"] + .image-loading
       display: block
       position: absolute

@@ -250,7 +250,7 @@ export default class ProfileSubmission extends Vue {
 .loading
   text-align: center
   font-style: italic
-  color: $sch-accent
+  color: $label-secondary
 
 .header
   display: flex

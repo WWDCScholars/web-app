@@ -43,7 +43,7 @@ footer
       font-size: 0.7em
 
       a
-        color: $sch-accent0
+        color: $label-secondary
         text-decoration: none
         transition: color linear 100ms
 
@@ -54,6 +54,6 @@ footer
       .separator
         width: 1px
         height: 0.8em
-        background-color: $sch-accent0
+        background-color: $separator
         margin: 0 10px
 </style>

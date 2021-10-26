@@ -1,5 +1,5 @@
 <template lang="pug">
-.container-fluid.color-gray
+.container-fluid.color-secondary
   section.section
     h2.color-blue Welcome to WWDCScholars!
     h3.color-blue Sign In with your Apple ID to Manage Your Profile
@@ -64,7 +64,7 @@ export default class PageSignin extends Vue {
       font-size: 0.9em
 
       a
-        color: $sch-accent
+        color: $label-secondary
 
     +for-phone-only
       padding-left: 15px

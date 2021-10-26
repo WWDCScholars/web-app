@@ -157,5 +157,5 @@ export default class PageIndex extends Vue {
 .no-scholars
   margin-top: 30px
   text-align: center
-  color: $sch-accent0
+  color: $label-secondary
 </style>

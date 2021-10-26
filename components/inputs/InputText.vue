@@ -110,8 +110,8 @@ export default class InputText extends Vue {
     transition: border-color 100ms linear, box-shadow 100ms linear
 
     &:disabled
-      color: $sch-accent0
-      -webkit-text-fill-color: $sch-accent0
+      color: $label-secondary
+      -webkit-text-fill-color: $label-secondary
 
   textarea
     padding-top: 10px
@@ -121,7 +121,7 @@ export default class InputText extends Vue {
     top: 50%
     left: 15px
     transform: translateY(-50%)
-    color: $sch-accent
+    color: $label-secondary
     pointer-events: none
     transition: all 100ms linear
 
@@ -131,7 +131,7 @@ export default class InputText extends Vue {
 
   .optional
     position: absolute
-    color: $sch-accent
+    color: $label-tertiary
     top: 2px
     right: 15px
     transform: translateY(50%)

@@ -114,7 +114,7 @@ export default class NavigationMobile extends Vue {
       list-style-type: none
 
       &.auth-links
-        border-top: 1px solid $sch-accent1
+        border-top: 1px solid $separator
 
       li
         a, button

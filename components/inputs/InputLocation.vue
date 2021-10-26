@@ -145,10 +145,10 @@ export default class InputLocation extends Vue {
     width: 100%
     padding-top: 51%
     margin-top: 15px
-    border: 1px solid $sch-accent1
+    border: 1px solid $grey3
     border-radius: $border-radius
     overflow: hidden
-    background-color: $sch-accent0
+    background-color: $background-grouped-secondary-elevated
 
     .map
       position: absolute

@@ -320,7 +320,7 @@ export default class ScholarProfile extends Vue {
   width: 100%
   height: 360px
   position: relative
-  background-color: $sch-accent0
+  background-color: $background-grouped-primary-base
 
 .section
   position: relative
@@ -344,7 +344,7 @@ export default class ScholarProfile extends Vue {
       height: 100%
       object-fit: cover
       border: 8px solid $background-grouped-tertiary-elevated
-      background-color: $sch-accent2
+      background-color: $background-grouped-tertiary-elevated
       border-radius: 50%
       overflow: hidden
       box-sizing: border-box
