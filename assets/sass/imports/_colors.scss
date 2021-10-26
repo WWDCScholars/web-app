@@ -22,6 +22,7 @@ $themes: (
 
     fill-primary: rgba(120, 120, 128, 0.2),
     fill-secondary: rgba(120, 120, 128, 0.16),
+    fill-tertiary: rgba(118, 118, 128, 0.12),
 
     form-border-color: rgb(151, 151, 151),
 
@@ -39,8 +40,6 @@ $themes: (
     sch-accent0: rgb(127, 127, 127),
     sch-accent1: rgb(205, 205, 205),
     sch-accent2: rgb(228, 228, 228),
-    sch-accent3: rgb(233, 233, 233),
-    sch-accent4: rgb(252, 252, 252),
   ),
   $dark-theme: (
     background-primary-base: rgb(0, 0, 0),
@@ -62,6 +61,7 @@ $themes: (
 
     fill-primary: rgba(120, 120, 128, 0.36),
     fill-secondary: rgba(120, 120, 128, 0.32),
+    fill-tertiary: rgba(118, 118, 128, 0.24),
 
     form-border-color: rgb(104, 104, 104),
 
@@ -79,8 +79,6 @@ $themes: (
     sch-accent0: rgb(127, 127, 127),
     sch-accent1: rgb(50, 50, 50),
     sch-accent2: rgb(37, 37, 37),
-    sch-accent3: rgb(27, 27, 27),
-    sch-accent4: rgb(10, 10, 10),
   ),
 );
 
@@ -164,6 +162,7 @@ $label-inverted: getColor("label-inverted");
 
 $fill-primary: getColor("fill-primary");
 $fill-secondary: getColor("fill-secondary");
+$fill-tertiary: getColor("fill-tertiary");
 
 $shadow: var(--theme-shadow);
 
@@ -182,8 +181,6 @@ $sch-accent: getColor("sch-accent");
 $sch-accent0: getColor("sch-accent0");
 $sch-accent1: getColor("sch-accent1");
 $sch-accent2: getColor("sch-accent2");
-$sch-accent3: getColor("sch-accent3");
-$sch-accent4: getColor("sch-accent4");
 
 $form-placeholder-color: $sch-accent;
 $form-border-color: getColor("form-border-color");
