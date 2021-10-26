@@ -69,62 +69,6 @@ export default class BaseButton extends Vue {
     border-radius: 32px
 
     &:hover
-
-  .btn-confirm
-    position: absolute
-    max-width: 360px
-    bottom: calc(100% + 4px)
-    padding: 8px
-    background-color: $background-color-2
-    border: 1px solid $sch-accent3
-    border-radius: $border-radius
-    opacity: 1
-    transition: opacity 100ms linear
-    +shadow
-
-    &.hidden
-      opacity: 0
-
-    .text
-      font-size: 0.8em
-      overflow-wrap: break-word
-      white-space: pre-line
-
-    .btn-confirm-actions
-      display: flex
-      justify-content: flex-end
-      margin-top: 8px
-
-      button
-        margin-left: 8px
-        font-size: 0.8em
-        padding: 3px 8px
-        min-width: auto
-
-        &.btn-cancel
-          background-color: $sch-accent0
-          border-color: lightenColor('sch-accent0', 5%)
-
-    .triangle
-      position: absolute
-      bottom: -20px
-      left: 70px
-      width: 20px
-      height: 20px
-      overflow: hidden
-
-      &:after
-        content: ''
-        position: absolute
-        display: block
-        width: 10px
-        height: 12px
-        background-color: $background-color-2
-        transform: rotate(45deg)
-        top: -6px
-        left: 5px
-        border-bottom-right-radius: 2px
-        +shadow
       background-color: $background-grouped-tertiary-elevated
       color: $sch-accent
 
