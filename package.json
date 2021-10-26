@@ -61,7 +61,7 @@
     "@types/throttle-debounce": "^2.1.0",
     "@types/uuid": "^8.3.0",
     "cross-env": "^7.0.3",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.1",
     "nuxt-property-decorator": "^2.9.1",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
