@@ -103,7 +103,7 @@ export default class InputText extends Vue {
     font-size: 1em
     padding: 20px 15px 5px 15px
     background-color: $background-grouped-secondary-elevated
-    border: 1px solid $form-border-color
+    border: 1px solid $grey2
     border-radius: $border-radius
     color: $label-primary
     appearance: none

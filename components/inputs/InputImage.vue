@@ -81,7 +81,7 @@ export default class InputImage extends Vue {
   width: 100
   height: 100%
   background-color: $background-grouped-secondary-elevated
-  border: 1px solid $form-border-color
+  border: 1px solid $grey2
   border-radius: $border-radius
   cursor: pointer
   transition: border-color 100ms linear, box-shadow 100ms linear

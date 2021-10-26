@@ -30,8 +30,6 @@ $themes: (
     grey4: rgb(209, 209, 214),
     grey5: rgb(229, 229, 234),
 
-    form-border-color: rgb(151, 151, 151),
-
     sch-purple: rgb(65, 53, 153),
     sch-purple-2: rgb(106, 101, 164),
     sch-purple-3: rgb(141, 139, 193),
@@ -69,8 +67,6 @@ $themes: (
     grey3: rgb(72, 72, 74),
     grey4: rgb(58, 58, 60),
     grey5: rgb(44, 44, 46),
-
-    form-border-color: rgb(104, 104, 104),
 
     sch-purple: rgb(165, 153, 255),
     sch-purple-2: rgb(153, 139, 253),
@@ -184,5 +180,3 @@ $sch-blue: getColor("sch-blue");
 $sch-blue-2: getColor("sch-blue-2");
 $sch-green: getColor("sch-green");
 $sch-orange: getColor("sch-orange");
-
-$form-border-color: getColor("form-border-color");

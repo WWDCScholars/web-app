@@ -47,7 +47,7 @@ export default class BaseButton extends Vue {
     display: block
     padding: 12px 15px
     min-width: 160px
-    border: 1px solid $form-border-color
+    border: 1px solid $grey2
     border-radius: $border-radius
     font-size: 1em
     color: $label-primary
@@ -65,7 +65,7 @@ export default class BaseButton extends Vue {
 
   &.btn-round > .button, a
     padding: 10px 15px
-    border: 2px solid $form-border-color
+    border: 2px solid $grey2
     border-radius: 32px
 
     &:hover

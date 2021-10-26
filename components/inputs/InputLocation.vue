@@ -132,7 +132,7 @@ export default class InputLocation extends Vue {
     z-index: 1000
     top: calc(100% - 1px)
     background-color: $background-grouped-secondary-elevated
-    border: 1px solid $form-border-color
+    border: 1px solid $grey2
     border-radius: $border-radius
     box-shadow: 0 2px 6px $shadow
 

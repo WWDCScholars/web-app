@@ -74,7 +74,7 @@ export default class InputDate extends Vue {
     font-size: 1em
     padding: 20px 15px 5px 15px
     background-color: $background-grouped-secondary-elevated
-    border: 1px solid $form-border-color
+    border: 1px solid $grey2
     border-radius: $border-radius
     color: $label-primary
     transition: border-color 100ms linear, box-shadow 100ms linear
@@ -123,7 +123,7 @@ export default class InputDate extends Vue {
       padding: 15px 15px 5px 15px
       font-size: 1em
       height: calc(1em + 25px)
-      border: 1px solid $form-border-color
+      border: 1px solid $grey2
       border-radius: $border-radius
       color: $label-secondary
       appearance: none
