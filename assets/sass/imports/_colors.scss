@@ -52,8 +52,6 @@ $themes: (
     grey5: rgb(229, 229, 234),
 
     sch-purple: $_light-sch-purple,
-    sch-purple-2: rgb(106, 101, 164),
-    sch-purple-3: rgb(141, 139, 193),
     sch-red: $_light-sch-red,
     sch-blue: $_light-sch-blue,
     sch-green: $_light-sch-green,
@@ -61,6 +59,7 @@ $themes: (
 
     sch-purple-secondary: transparentize($_light-sch-purple, 0.25), // sch-purple with 0.75 alpha
     sch-purple-tertiary: transparentize($_light-sch-purple, 0.4), // sch-purple with 0.6 alpha
+    sch-purple-quarternary: transparentize($_light-sch-purple, 0.5), // sch-purple with 0.5 alpha
     sch-red-tertiary: transparentize($_light-sch-red, 0.4), // sch-red with 0.6 alpha
     sch-green-tertiary: transparentize($_light-sch-green, 0.4), // sch-green with 0.6 alpha
     sch-blue-tertiary: transparentize($_light-sch-blue, 0.4), // sch-blue with 0.6 alpha
@@ -104,8 +103,6 @@ $themes: (
     grey5: rgb(44, 44, 46),
 
     sch-purple: $_dark-sch-purple,
-    sch-purple-2: rgb(153, 139, 253),
-    sch-purple-3: rgb(142, 122, 255),
     sch-red: $_dark-sch-red,
     sch-blue: $_dark-sch-blue,
     sch-green: $_dark-sch-green,
@@ -113,6 +110,7 @@ $themes: (
 
     sch-purple-secondary: transparentize($_dark-sch-purple, 0.25), // sch-purple with 0.75 alpha
     sch-purple-tertiary: transparentize($_dark-sch-purple, 0.4), // sch-purple with 0.6 alpha
+    sch-purple-quarternary: transparentize($_dark-sch-purple, 0.5), // sch-purple with 0.5 alpha
     sch-red-tertiary: transparentize($_dark-sch-red, 0.4), // sch-red with 0.6 alpha
     sch-green-tertiary: transparentize($_dark-sch-green, 0.4), // sch-green with 0.6 alpha
     sch-blue-tertiary: transparentize($_dark-sch-blue, 0.4), // sch-blue with 0.6 alpha
@@ -199,8 +197,6 @@ $grey4: color("grey4");
 $grey5: color("grey5");
 
 $sch-purple: color("sch-purple");
-$sch-purple-2: color("sch-purple-2");
-$sch-purple-3: color("sch-purple-3");
 
 $sch-red: color("sch-red");
 $sch-blue: color("sch-blue");
@@ -209,6 +205,7 @@ $sch-orange: color("sch-orange");
 
 $sch-purple-secondary: color("sch-purple-secondary");
 $sch-purple-tertiary: color("sch-purple-tertiary");
+$sch-purple-quarternary: color("sch-purple-quarternary");
 $sch-red-tertiary: color("sch-red-tertiary");
 $sch-green-tertiary: color("sch-green-tertiary");
 $sch-blue-tertiary: color("sch-blue-tertiary");
