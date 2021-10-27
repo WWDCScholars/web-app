@@ -132,6 +132,8 @@ export default class ScholarProfileSubmission extends Vue {
 </script>
 
 <style lang="sass" scoped>
+@use "sass:math"
+
 .challenge-description
   font-size: 0.85em
   font-style: italic
@@ -173,7 +175,7 @@ $swiper-arrow-height: 52px
     background: 0
     width: $swiper-arrow-width
     height: $swiper-arrow-height
-    margin-top: -$swiper-arrow-height / 2
+    margin-top: math.div(-$swiper-arrow-height, 2)
     opacity: 0.5
     transition: opacity 100ms linear
     outline: 0
