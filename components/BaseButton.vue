@@ -61,7 +61,7 @@ export default class BaseButton extends Vue {
       min-width: 100px
 
     &:hover
-      background-color: lightenColor('background-gray', -6%)
+      background-color: $fill-secondary
 
   &.btn-round > .button, a
     padding: 10px 15px
@@ -78,13 +78,13 @@ export default class BaseButton extends Vue {
 
   .btn
     button, a
-      background-color: getColor($bg)
-      border-color: getColor($bg)
-      color: getColor($fg)
+      background-color: color($bg)
+      border-color: color($bg)
+      color: color($fg)
 
       &:hover
-        background-color: lightenColor($bg, -10%)
-        border-color: lightenColor($bg, -10%)
+        background-color: highlightColor($bg)
+        border-color: highlightColor($bg)
 
       &:disabled
         background-color: $background-grouped-tertiary-elevated
@@ -92,10 +92,10 @@ export default class BaseButton extends Vue {
         color: $label-tertiary
 
     &.btn-round > button, a
-      background-color: getColor($fg)
-      color: getColor($bg)
+      background-color: color($fg)
+      color: color($bg)
 
       &:hover
-        background-color: getColor($bg)
-        color: getColor($fg)
+        background-color: color($bg)
+        color: color($fg)
 </style>

@@ -138,7 +138,7 @@ export default class PageIndex extends Vue {
   .scholar-thumbnail-loading
     border-radius: $border-radius-large
     background-color: $background-grouped-primary-base
-    background-image: linear-gradient(to top, $background-grouped-primary-base, transparentizeColor('fill-tertiary', 0.9)), linear-gradient(to right, $fill-tertiary 0%, $background-grouped-primary-base 20%, $fill-tertiary 40%, $fill-tertiary 100%)
+    background-image: linear-gradient(to top, $background-grouped-primary-base, $fill-tertiary), linear-gradient(to right, $fill-tertiary 0%, $background-grouped-primary-base 20%, $fill-tertiary 40%, $fill-tertiary 100%)
     background-repeat: no-repeat
     background-size: 800% 100%
     animation-name: shimmer

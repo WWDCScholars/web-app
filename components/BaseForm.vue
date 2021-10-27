@@ -62,7 +62,7 @@ export default class BaseForm extends Vue {}
   $fg: dyn-temp('fg')
 
   .group h3
-    color: getColor($bg)
+    color: color($bg)
 </style>
 
 

@@ -107,11 +107,11 @@ export default class InputDate extends Vue {
   .input-date
     input
       &:hover, &:focus
-        border-color: getColot($bg)
+        border-color: color($bg)
       &:focus
-        box-shadow: 0px 0px 4px transparentizeColor($bg, 0.6)
+        box-shadow: 0px 0px 4px tertiaryColor($bg)
       &:focus + .title
-        color: getColor($bg)
+        color: color($bg)
 </style>
 
 <style lang="sass">
@@ -128,6 +128,6 @@ export default class InputDate extends Vue {
       color: $label-secondary
       appearance: none
       &:focus
-        color: getColor($bg)
-        border: 1px solid getColor($bg)
+        color: color($bg)
+        border: 1px solid color($bg)
 </style>

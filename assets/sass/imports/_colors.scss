@@ -1,6 +1,24 @@
 $light-theme: "light";
 $dark-theme: "dark";
 
+// ----------------------------------------------
+// Define some colors so we can reuse them for transparent/highlight versions
+
+$_light-sch-purple: rgb(65, 53, 153);
+$_light-sch-red: rgb(239, 83, 73);
+$_light-sch-blue: rgb(62, 181, 217);
+$_light-sch-green: rgb(58, 178, 152);
+$_light-sch-orange: rgb(249, 149, 50);
+
+$_dark-sch-purple: rgb(165, 153, 255);
+$_dark-sch-red: rgb(255, 106, 106);
+$_dark-sch-blue: rgb(125, 182, 211);
+$_dark-sch-green: rgb(62, 204, 173);
+$_dark-sch-orange: rgb(255, 169, 82);
+
+// ----------------------------------------------
+// Define the light/dark mode color map
+
 $themes: (
   $light-theme: (
     background-primary-base: rgb(255, 255, 255),
@@ -30,15 +48,28 @@ $themes: (
     grey4: rgb(209, 209, 214),
     grey5: rgb(229, 229, 234),
 
-    sch-purple: rgb(65, 53, 153),
+    sch-purple: $_light-sch-purple,
     sch-purple-2: rgb(106, 101, 164),
     sch-purple-3: rgb(141, 139, 193),
-    sch-red: #ef5349,
-    sch-red-2: #e64d43,
-    sch-blue: #3eb5d9,
-    sch-blue-2: #395d6f,
-    sch-green: #3ab298,
-    sch-orange: #f99532,
+    sch-red: $_light-sch-red,
+    sch-red-2: rgb(230, 77, 67),
+    sch-blue: $_light-sch-blue,
+    sch-blue-2: rgb(57, 93, 111),
+    sch-green: $_light-sch-green,
+    sch-orange: $_light-sch-orange,
+
+    sch-purple-secondary: transparentize($_light-sch-purple, 0.25), // sch-purple with 0.75 alpha
+    sch-purple-tertiary: transparentize($_light-sch-purple, 0.4), // sch-purple with 0.6 alpha
+    sch-red-tertiary: transparentize($_light-sch-red, 0.4), // sch-red with 0.6 alpha
+    sch-green-tertiary: transparentize($_light-sch-green, 0.4), // sch-green with 0.6 alpha
+    sch-blue-tertiary: transparentize($_light-sch-blue, 0.4), // sch-blue with 0.6 alpha
+    sch-orange-tertiary: transparentize($_light-sch-orange, 0.4), // sch-orange with 0.6 alpha
+
+    sch-purple-highlight: darken($_light-sch-purple, 10%),
+    sch-red-highlight: darken($_light-sch-red, 10%),
+    sch-green-highlight: darken($_light-sch-green, 10%),
+    sch-blue-highlight: darken($_light-sch-blue, 10%),
+    sch-orange-highlight: darken($_light-sch-orange, 10%),
   ),
   $dark-theme: (
     background-primary-base: rgb(0, 0, 0),
@@ -68,30 +99,38 @@ $themes: (
     grey4: rgb(58, 58, 60),
     grey5: rgb(44, 44, 46),
 
-    sch-purple: rgb(165, 153, 255),
+    sch-purple: $_dark-sch-purple,
     sch-purple-2: rgb(153, 139, 253),
     sch-purple-3: rgb(142, 122, 255),
-    sch-red: #ff6a6a,
-    sch-red-2: #ff4f42,
-    sch-blue: #7db6d3,
-    sch-blue-2: #3bc3ec,
-    sch-green: #3eccad,
-    sch-orange: #ffa952,
+    sch-red: $_dark-sch-red,
+    sch-red-2: rgb(255, 79, 66),
+    sch-blue: $_dark-sch-blue,
+    sch-blue-2: rgb(59, 195, 236),
+    sch-green: $_dark-sch-green,
+    sch-orange: $_dark-sch-orange,
+
+    sch-purple-secondary: transparentize($_dark-sch-purple, 0.25), // sch-purple with 0.75 alpha
+    sch-purple-tertiary: transparentize($_dark-sch-purple, 0.4), // sch-purple with 0.6 alpha
+    sch-red-tertiary: transparentize($_dark-sch-red, 0.4), // sch-red with 0.6 alpha
+    sch-green-tertiary: transparentize($_dark-sch-green, 0.4), // sch-green with 0.6 alpha
+    sch-blue-tertiary: transparentize($_dark-sch-blue, 0.4), // sch-blue with 0.6 alpha
+    sch-orange-tertiary: transparentize($_dark-sch-orange, 0.4), // sch-orange with 0.6 alpha
+
+    sch-purple-highlight: darken($_dark-sch-purple, 10%),
+    sch-red-highlight: darken($_dark-sch-red, 10%),
+    sch-green-highlight: darken($_dark-sch-green, 10%),
+    sch-blue-highlight: darken($_dark-sch-blue, 10%),
+    sch-orange-highlight: darken($_dark-sch-orange, 10%),
   ),
 );
 
-//converting scss variable into css variable
+// ----------------------------------------------
+// Convert SASS variables into CSS variables
+
 :root {
   $light: map-get($themes, $light-theme);
   @each $name, $color in $light {
     --color-#{$name}: #{$color};
-    --color-#{$name}-r: #{red($color)};
-    --color-#{$name}-g: #{green($color)};
-    --color-#{$name}-b: #{blue($color)};
-    --color-#{$name}-a: #{alpha($color)};
-    --color-#{$name}-h: #{hue($color)};
-    --color-#{$name}-s: #{saturation($color)};
-    --color-#{$name}-l: #{lightness($color)};
   }
 
   --theme-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.16);
@@ -101,82 +140,81 @@ $themes: (
   $dark: map-get($themes, $dark-theme);
   @each $name, $color in $dark {
     --color-#{$name}: #{$color};
-    --color-#{$name}-r: #{red($color)};
-    --color-#{$name}-g: #{green($color)};
-    --color-#{$name}-b: #{blue($color)};
-    --color-#{$name}-a: #{alpha($color)};
-    --color-#{$name}-h: #{hue($color)};
-    --color-#{$name}-s: #{saturation($color)};
-    --color-#{$name}-l: #{lightness($color)};
   }
 
   --theme-shadow: none;
 }
 
-//creating a function to get color instead of using css varible
-@function getColor($color-name) {
+// ----------------------------------------------
+// Define some color resolution helper functions
+
+// Get CSS variable of a color by name
+@function color($color-name) {
   @return var(--color-#{$color-name});
 }
 
-//change brigthness / lightness of color *by* $amount (+ lighter, - darker)
-//$amount should be in percent 0% - 100%
-@function lightenColor($colorName, $amount) {
-  // use capitalized `Min` / `Max` to avoid SASS compiler error, CSS is canse-insensetive
-  @return hsl(
-    var(--color-#{$colorName}-h),
-    var(--color-#{$colorName}-s),
-    Max(0%, Min(100%, calc(var(--color-#{$colorName}-l) + #{$amount})))
-  );
+// Get CSS variable of the tertiary version of a color
+@function tertiaryColor($colorName) {
+  @return var(--color-#{$colorName}-tertiary);
 }
 
-//change transparancy of color *by* $amount (e.g. 0.1 *more* transparent)
-//$amount should be in decimal 0 - 1
-@function transparentizeColor($colorName, $amount) {
-  // use capitalized `Min` / `Max` to avoid SASS compiler error, CSS is canse-insensetive
-  @return rgba(
-    var(--color-#{$colorName}-r),
-    var(--color-#{$colorName}-g),
-    var(--color-#{$colorName}-b),
-    Max(0, Min(1, calc(var(--color-#{$colorName}-a) - #{$amount})))
-  );
+// Get CSS variable of the highlight version of a color
+@function highlightColor($colorName) {
+  @return var(--color-#{$colorName}-highlight);
 }
 
-$background-primary-base: getColor("background-primary-base");
-$background-primary-elevated: getColor("background-primary-elevated");
-$background-grouped-primary-base: getColor("background-grouped-primary-base");
-$background-grouped-primary-elevated: getColor("background-grouped-primary-elevated");
-$background-grouped-secondary-base: getColor("background-grouped-secondary-base");
-$background-grouped-secondary-elevated: getColor("background-grouped-secondary-elevated");
-$background-grouped-tertiary-base: getColor("background-grouped-tertiary-base");
-$background-grouped-tertiary-elevated: getColor("background-grouped-tertiary-elevated");
+// ----------------------------------------------
+// Define SASS variables
 
-$separator: getColor("separator");
-$separator-transparent: getColor("separator-transparent");
+$background-primary-base: color("background-primary-base");
+$background-primary-elevated: color("background-primary-elevated");
+$background-grouped-primary-base: color("background-grouped-primary-base");
+$background-grouped-primary-elevated: color("background-grouped-primary-elevated");
+$background-grouped-secondary-base: color("background-grouped-secondary-base");
+$background-grouped-secondary-elevated: color("background-grouped-secondary-elevated");
+$background-grouped-tertiary-base: color("background-grouped-tertiary-base");
+$background-grouped-tertiary-elevated: color("background-grouped-tertiary-elevated");
 
-$label-primary: getColor("label-primary");
-$label-secondary: getColor("label-secondary");
-$label-tertiary: getColor("label-tertiary");
-$label-inverted: getColor("label-inverted");
+$separator: color("separator");
+$separator-transparent: color("separator-transparent");
 
-$fill-primary: getColor("fill-primary");
-$fill-secondary: getColor("fill-secondary");
-$fill-tertiary: getColor("fill-tertiary");
+$label-primary: color("label-primary");
+$label-secondary: color("label-secondary");
+$label-tertiary: color("label-tertiary");
+$label-inverted: color("label-inverted");
 
-$grey1: getColor("grey1");
-$grey2: getColor("grey2");
-$grey3: getColor("grey3");
-$grey4: getColor("grey4");
-$grey5: getColor("grey5");
+$fill-primary: color("fill-primary");
+$fill-secondary: color("fill-secondary");
+$fill-tertiary: color("fill-tertiary");
+
+$grey1: color("grey1");
+$grey2: color("grey2");
+$grey3: color("grey3");
+$grey4: color("grey4");
+$grey5: color("grey5");
+
+$sch-purple: color("sch-purple");
+$sch-purple-2: color("sch-purple-2");
+$sch-purple-3: color("sch-purple-3");
+
+$sch-red: color("sch-red");
+$sch-red-2: color("sch-red-2");
+$sch-blue: color("sch-blue");
+$sch-blue-2: color("sch-blue-2");
+$sch-green: color("sch-green");
+$sch-orange: color("sch-orange");
+
+$sch-purple-secondary: color("sch-purple-secondary");
+$sch-purple-tertiary: color("sch-purple-tertiary");
+$sch-red-tertiary: color("sch-red-tertiary");
+$sch-green-tertiary: color("sch-green-tertiary");
+$sch-blue-tertiary: color("sch-blue-tertiary");
+$sch-orange-tertiary: color("sch-orange-tertiary");
+
+$sch-purple-highlight: color("sch-purple-highlight");
+$sch-red-highlight: color("sch-red-highlight");
+$sch-green-highlight: color("sch-green-highlight");
+$sch-blue-highlight: color("sch-blue-highlight");
+$sch-orange-highlight: color("sch-orange-highlight");
 
 $shadow: var(--theme-shadow);
-
-$sch-purple: getColor("sch-purple");
-$sch-purple-2: getColor("sch-purple-2");
-$sch-purple-3: getColor("sch-purple-3");
-
-$sch-red: getColor("sch-red");
-$sch-red-2: getColor("sch-red-2");
-$sch-blue: getColor("sch-blue");
-$sch-blue-2: getColor("sch-blue-2");
-$sch-green: getColor("sch-green");
-$sch-orange: getColor("sch-orange");

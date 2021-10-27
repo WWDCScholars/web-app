@@ -163,13 +163,10 @@ export default class InputLocation extends Vue {
 
   .input-location
     /deep/ .mk-autocomplete-results
-      box-shadow: 0 2px 6px transparentizeColor($bg, 0.6)
+      box-shadow: 0 2px 6px tertiaryColor($bg)
 
       .mk-result
         &:hover, &.mk-result-selected
           color: $fg
           background-color: $bg
-
-          span
-            color: transparentizeColor($fg, 0.2)
 </style>
