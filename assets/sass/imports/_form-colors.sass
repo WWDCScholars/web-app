@@ -1,4 +1,4 @@
 @mixin form-colors
   @each $name, $colors in $_form-colors
-    .form-color-#{$name}
+    .form-color-#{"" + $name}
       @content(map-get($colors, fg), map-get($colors, bg))
