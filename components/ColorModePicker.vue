@@ -40,6 +40,8 @@ export default class ColorModePicker extends Vue {
   padding: 1px
 
   label
+    cursor: pointer
+
     input
       appearance: none
       padding: 0
