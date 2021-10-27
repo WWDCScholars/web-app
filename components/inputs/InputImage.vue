@@ -9,7 +9,7 @@
       @change="onChange"
     )
     slot(name="icon")
-      img(src="~assets/images/upload-icon.png").upload-icon
+      UploadIcon.upload-icon
     .preview-wrapper
       img(
         v-if="preview",
@@ -24,7 +24,11 @@
 <script lang="ts">
 import { Component, Model, Prop, Watch, Vue } from 'nuxt-property-decorator'
 
-@Component
+import UploadIcon from '~/assets/images/upload.svg?inline'
+
+@Component({
+  components: { UploadIcon }
+})
 export default class InputImage extends Vue {
   @Model('input')
   value!: File | string | null
@@ -101,6 +105,7 @@ export default class InputImage extends Vue {
     width: 40px
     height: 40px
     pointer-events: none
+    color: $fill-secondary
 
   .preview-wrapper
     position: absolute

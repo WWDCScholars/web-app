@@ -18,15 +18,17 @@
     :value="undefined",
     @input="addNew"
   )
-    template(v-slot:icon): img(src="~assets/images/add-icon.png").upload-icon
+    template(v-slot:icon): PlusIcon.upload-icon
 </template>
 
 <script lang="ts">
 import { Component, Model, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import InputImage from './InputImage.vue'
 
+import PlusIcon from '~/assets/images/plus.svg?inline'
+
 @Component({
-  components: { InputImage }
+  components: { InputImage, PlusIcon }
 })
 export default class InputImageMultiple extends Vue {
   @Model('input')
