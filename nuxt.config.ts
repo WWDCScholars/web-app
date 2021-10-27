@@ -141,7 +141,8 @@ const config: NuxtConfig = {
    ** Global SASS variables and mixins
    */
   styleResources: {
-    sass: ['~assets/sass/imports/_index.sass']
+    sass: ['~assets/sass/imports/_index.sass'],
+    hoistUseStatements: true
   },
 
   /*
