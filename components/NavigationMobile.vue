@@ -81,7 +81,7 @@ export default class NavigationMobile extends Vue {
   +for-phone-only
     display: block
 
-  /deep/.burger-button
+  ::v-deep .burger-button
     z-index: 999
     top: -2px
 

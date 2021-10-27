@@ -59,11 +59,11 @@ export default class ProfileMap extends Vue {
   width: 100%
   height: 100%
 
-  /deep/ .mk-controls-container
+  ::v-deep .mk-controls-container
     inset: 0px 0px 30px
 
 @media (min-width: #{$container-max-width + 60px})
   .profile-map
-    /deep/ .mk-controls-container
+    ::v-deep .mk-controls-container
       inset: 0px 0px 0px
 </style>

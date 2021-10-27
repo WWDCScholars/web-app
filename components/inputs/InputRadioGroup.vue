@@ -70,10 +70,7 @@ export default class InputRadioGroup extends Vue {
       position: absolute
       opacity: 0
 
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .input-radio
     input:checked + span
       background-color: color($bg)

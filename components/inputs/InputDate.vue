@@ -89,8 +89,8 @@ export default class InputDate extends Vue {
     transition: all 100ms linear
 
   input:focus + .title, &.input-has-value .title
-      top: 12px
-      font-size: 0.7em
+    top: 12px
+    font-size: 0.7em
 
   .optional
     position: absolute
@@ -100,10 +100,7 @@ export default class InputDate extends Vue {
     transform: translateY(-50%)
     font-size: 0.9em
 
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .input-date
     input
       &:hover, &:focus
@@ -115,8 +112,7 @@ export default class InputDate extends Vue {
 </style>
 
 <style lang="sass">
-+form-colors
-  $bg: dyn-temp('bg')
++form-colors using ($fg, $bg)
   .input-date
     .flatpickr-mobile
       width: 100%

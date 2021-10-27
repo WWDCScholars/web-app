@@ -184,7 +184,7 @@ $swiper-arrow-height: 52px
     &.swiper-button-disabled
       opacity: 0
 
-  /deep/.swiper-pagination-bullets
+  ::v-deep .swiper-pagination-bullets
     opacity: 0.7
     transition: opacity 100ms linear
 

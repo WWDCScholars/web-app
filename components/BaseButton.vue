@@ -72,10 +72,7 @@ export default class BaseButton extends Vue {
       background-color: $background-grouped-tertiary-elevated
       color: $label-primary
 
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .btn
     button, a
       background-color: color($bg)

@@ -37,7 +37,7 @@ export default class FormField extends Vue {
   margin-top: 3px
   color: $sch-red
 
-/deep/ .comment
+::v-deep .comment
   color: $label-secondary
   margin-top: 15px
   font-size: 1em

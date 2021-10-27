@@ -186,7 +186,7 @@ export default class PageProfileBasic extends Vue {
 
 <style lang="sass" scoped>
 #input-profile-picture
-  /deep/ .image
+  ::v-deep .image
     width: 230px
     height: 230px
 </style>

@@ -36,11 +36,7 @@ export default class TabBar extends Vue {}
       font-weight: 700
       box-shadow: 0 0 4px 2px $shadow
 
-
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .tab-bar
     a
       color: color($bg)

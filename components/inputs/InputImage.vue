@@ -144,8 +144,7 @@ export default class InputImage extends Vue {
     &:after
       transform: rotate(45deg)
 
-+form-colors
-  $bg: dyn-temp('bg')
++form-colors using ($fg, $bg)
   .input-image
     .image:hover
       border-color: color($bg)

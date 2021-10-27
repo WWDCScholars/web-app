@@ -126,8 +126,8 @@ export default class InputText extends Vue {
     transition: all 100ms linear
 
   input:focus + .title, &.input-has-value .title
-      top: 12px
-      font-size: 0.7em
+    top: 12px
+    font-size: 0.7em
 
   .optional
     position: absolute
@@ -137,10 +137,7 @@ export default class InputText extends Vue {
     transform: translateY(50%)
     font-size: 0.9em
 
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .input-text
     input, textarea
       &:hover, &:focus

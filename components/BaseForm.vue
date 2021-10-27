@@ -51,17 +51,14 @@ export default class BaseForm extends Vue {}
       &.field-width-50
         grid-column: span 1
 
-  /deep/ .btn-cta
+  ::v-deep .btn-cta
     grid-column: span 2
     justify-self: end
     width: auto
 </style>
 
 <style lang="sass">
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .group h3
     color: color($bg)
 </style>

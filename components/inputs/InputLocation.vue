@@ -128,7 +128,7 @@ export default class InputLocation extends Vue {
 .input-location
   position: relative
 
-  /deep/ .mk-autocomplete-results
+  ::v-deep .mk-autocomplete-results
     z-index: 1000
     top: calc(100% - 1px)
     background-color: $background-grouped-secondary-elevated
@@ -157,12 +157,9 @@ export default class InputLocation extends Vue {
       bottom: 0
       left: 0
 
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .input-location
-    /deep/ .mk-autocomplete-results
+    ::v-deep .mk-autocomplete-results
       box-shadow: 0 2px 6px tertiaryColor($bg)
 
       .mk-result
