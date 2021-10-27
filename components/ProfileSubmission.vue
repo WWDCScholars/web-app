@@ -277,4 +277,7 @@ export default class ProfileSubmission extends Vue {
 
     &.rejected
       background-color: $sch-red-2
+
+.btn-cta
+  grid-column: span 1 !important
 </style>
