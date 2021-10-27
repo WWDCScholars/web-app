@@ -42,6 +42,9 @@ $themes: (
     fill-secondary: rgba(120, 120, 128, 0.16),
     fill-tertiary: rgba(118, 118, 128, 0.12),
 
+    systemRed: rgb(255, 59, 48),
+    systemYellow: rgb(255, 204, 0),
+    systemGreen: rgb(52, 199, 89),
     grey1: rgb(142, 142, 147),
     grey2: rgb(174, 174, 178),
     grey3: rgb(199, 199, 204),
@@ -52,9 +55,7 @@ $themes: (
     sch-purple-2: rgb(106, 101, 164),
     sch-purple-3: rgb(141, 139, 193),
     sch-red: $_light-sch-red,
-    sch-red-2: rgb(230, 77, 67),
     sch-blue: $_light-sch-blue,
-    sch-blue-2: rgb(57, 93, 111),
     sch-green: $_light-sch-green,
     sch-orange: $_light-sch-orange,
 
@@ -93,6 +94,9 @@ $themes: (
     fill-secondary: rgba(120, 120, 128, 0.32),
     fill-tertiary: rgba(118, 118, 128, 0.24),
 
+    systemRed: rgb(255, 69, 58),
+    systemYellow: rgb(255, 214, 10),
+    systemGreen: rgb(48, 209, 88),
     grey1: rgb(142, 142, 147),
     grey2: rgb(99, 99, 102),
     grey3: rgb(72, 72, 74),
@@ -103,9 +107,7 @@ $themes: (
     sch-purple-2: rgb(153, 139, 253),
     sch-purple-3: rgb(142, 122, 255),
     sch-red: $_dark-sch-red,
-    sch-red-2: rgb(255, 79, 66),
     sch-blue: $_dark-sch-blue,
-    sch-blue-2: rgb(59, 195, 236),
     sch-green: $_dark-sch-green,
     sch-orange: $_dark-sch-orange,
 
@@ -187,6 +189,9 @@ $fill-primary: color("fill-primary");
 $fill-secondary: color("fill-secondary");
 $fill-tertiary: color("fill-tertiary");
 
+$systemRed: color("systemRed");
+$systemYellow: color("systemYellow");
+$systemGreen: color("systemGreen");
 $grey1: color("grey1");
 $grey2: color("grey2");
 $grey3: color("grey3");
@@ -198,9 +203,7 @@ $sch-purple-2: color("sch-purple-2");
 $sch-purple-3: color("sch-purple-3");
 
 $sch-red: color("sch-red");
-$sch-red-2: color("sch-red-2");
 $sch-blue: color("sch-blue");
-$sch-blue-2: color("sch-blue-2");
 $sch-green: color("sch-green");
 $sch-orange: color("sch-orange");
 

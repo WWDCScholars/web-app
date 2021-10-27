@@ -270,13 +270,13 @@ export default class ProfileSubmission extends Vue {
     text-decoration: none
 
     &.approved
-      background-color: $sch-green
+      background-color: $systemGreen
 
     &.pending
-      background-color: $sch-orange
+      background-color: $systemYellow
 
     &.rejected
-      background-color: $sch-red-2
+      background-color: $systemRed
 
 .btn-cta
   grid-column: span 1 !important
