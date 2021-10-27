@@ -84,7 +84,7 @@ export default class InputDate extends Vue {
     top: 50%
     left: 15px
     transform: translateY(-50%)
-    color: $label-secondary
+    color: $label-tertiary
     pointer-events: none
     transition: all 100ms linear
 
