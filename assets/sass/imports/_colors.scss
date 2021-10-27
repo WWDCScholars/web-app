@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $light-theme: "light";
 $dark-theme: "dark";
 
@@ -57,19 +59,19 @@ $themes: (
     sch-green: $_light-sch-green,
     sch-orange: $_light-sch-orange,
 
-    sch-purple-secondary: transparentize($_light-sch-purple, 0.25), // sch-purple with 0.75 alpha
-    sch-purple-tertiary: transparentize($_light-sch-purple, 0.4), // sch-purple with 0.6 alpha
-    sch-purple-quarternary: transparentize($_light-sch-purple, 0.5), // sch-purple with 0.5 alpha
-    sch-red-tertiary: transparentize($_light-sch-red, 0.4), // sch-red with 0.6 alpha
-    sch-green-tertiary: transparentize($_light-sch-green, 0.4), // sch-green with 0.6 alpha
-    sch-blue-tertiary: transparentize($_light-sch-blue, 0.4), // sch-blue with 0.6 alpha
-    sch-orange-tertiary: transparentize($_light-sch-orange, 0.4), // sch-orange with 0.6 alpha
+    sch-purple-secondary: color.scale($_light-sch-purple, $alpha: -25%), // sch-purple with 0.75 alpha
+    sch-purple-tertiary: color.scale($_light-sch-purple, $alpha: -40%), // sch-purple with 0.6 alpha
+    sch-purple-quarternary: color.scale($_light-sch-purple, $alpha: -50%), // sch-purple with 0.5 alpha
+    sch-red-tertiary: color.scale($_light-sch-red, $alpha: -40%), // sch-red with 0.6 alpha
+    sch-green-tertiary: color.scale($_light-sch-green, $alpha: -40%), // sch-green with 0.6 alpha
+    sch-blue-tertiary: color.scale($_light-sch-blue, $alpha: -40%), // sch-blue with 0.6 alpha
+    sch-orange-tertiary: color.scale($_light-sch-orange, $alpha: -40%), // sch-orange with 0.6 alpha
 
-    sch-purple-highlight: darken($_light-sch-purple, 10%),
-    sch-red-highlight: darken($_light-sch-red, 10%),
-    sch-green-highlight: darken($_light-sch-green, 10%),
-    sch-blue-highlight: darken($_light-sch-blue, 10%),
-    sch-orange-highlight: darken($_light-sch-orange, 10%),
+    sch-purple-highlight: color.scale($_light-sch-purple, $lightness: -15%),
+    sch-red-highlight: color.scale($_light-sch-red, $lightness: -15%),
+    sch-green-highlight: color.scale($_light-sch-green, $lightness: -15%),
+    sch-blue-highlight: color.scale($_light-sch-blue, $lightness: -15%),
+    sch-orange-highlight: color.scale($_light-sch-orange, $lightness: -15%),
   ),
   $dark-theme: (
     background-primary-base: rgb(0, 0, 0),
@@ -108,19 +110,19 @@ $themes: (
     sch-green: $_dark-sch-green,
     sch-orange: $_dark-sch-orange,
 
-    sch-purple-secondary: transparentize($_dark-sch-purple, 0.25), // sch-purple with 0.75 alpha
-    sch-purple-tertiary: transparentize($_dark-sch-purple, 0.4), // sch-purple with 0.6 alpha
-    sch-purple-quarternary: transparentize($_dark-sch-purple, 0.5), // sch-purple with 0.5 alpha
-    sch-red-tertiary: transparentize($_dark-sch-red, 0.4), // sch-red with 0.6 alpha
-    sch-green-tertiary: transparentize($_dark-sch-green, 0.4), // sch-green with 0.6 alpha
-    sch-blue-tertiary: transparentize($_dark-sch-blue, 0.4), // sch-blue with 0.6 alpha
-    sch-orange-tertiary: transparentize($_dark-sch-orange, 0.4), // sch-orange with 0.6 alpha
+    sch-purple-secondary: color.scale($_dark-sch-purple, $alpha: -25%), // sch-purple with 0.75 alpha
+    sch-purple-tertiary: color.scale($_dark-sch-purple, $alpha: -40%), // sch-purple with 0.6 alpha
+    sch-purple-quarternary: color.scale($_dark-sch-purple, $alpha: -50%), // sch-purple with 0.5 alpha
+    sch-red-tertiary: color.scale($_dark-sch-red, $alpha: -40%), // sch-red with 0.6 alpha
+    sch-green-tertiary: color.scale($_dark-sch-green, $alpha: -40%), // sch-green with 0.6 alpha
+    sch-blue-tertiary: color.scale($_dark-sch-blue, $alpha: -40%), // sch-blue with 0.6 alpha
+    sch-orange-tertiary: color.scale($_dark-sch-orange, $alpha: -40%), // sch-orange with 0.6 alpha
 
-    sch-purple-highlight: darken($_dark-sch-purple, 10%),
-    sch-red-highlight: darken($_dark-sch-red, 10%),
-    sch-green-highlight: darken($_dark-sch-green, 10%),
-    sch-blue-highlight: darken($_dark-sch-blue, 10%),
-    sch-orange-highlight: darken($_dark-sch-orange, 10%),
+    sch-purple-highlight: color.scale($_dark-sch-purple, $lightness: -5%),
+    sch-red-highlight: color.scale($_dark-sch-red, $lightness: -5%),
+    sch-green-highlight: color.scale($_dark-sch-green, $lightness: -5%),
+    sch-blue-highlight: color.scale($_dark-sch-blue, $lightness: -5%),
+    sch-orange-highlight: color.scale($_dark-sch-orange, $lightness: -5%),
   ),
 );
 
