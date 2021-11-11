@@ -48,8 +48,8 @@ function command_generate(args) {
   // Generate the JWT
   const payload = {
     iss: options.teamId,            /** Issuer: Apple Developer Team Id */
-    iat: Date.now() / 1000,         /** Issued at: Current time in seconds since epoch */
-    exp: Date.now() / 1000 + TTL,   /** Expires at: Time of expiration in seconds since epoch */
+    iat: new Date().getTime() / 1000,         /** Issued at: Current time in seconds since epoch */
+    exp: new Date().getTime() / 1000 + TTL,   /** Expires at: Time of expiration in seconds since epoch */
     origin: options.origin          /** Origin: Restrict JWT to specific FQDNs */
   }
 
