@@ -44,7 +44,6 @@
     "uuid": "^3.4.0",
     "vee-validate": "^3.4.0",
     "vue-awesome-swiper": "^4.1.1",
-    "vue-flatpickr-component": "^8.1.6",
     "vue-lazyload": "^1.3.3",
     "vue-plausible": "^1.1.4"
   },
