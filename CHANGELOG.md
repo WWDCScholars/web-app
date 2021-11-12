@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.18.4](https://github.com/WWDCScholars/web-app/compare/v3.18.3...v3.18.4) (2021-11-12)
+
+
+### Bug Fixes
+
+* Edit profile when birthday changed ([#14](https://github.com/WWDCScholars/web-app/issues/14)) ([f5ab676](https://github.com/WWDCScholars/web-app/commit/f5ab6762661bcfd751afa5f2231d5c7aedff158d))
+
 ### [3.18.3](https://github.com/WWDCScholars/web-app/compare/v3.18.2...v3.18.3) (2021-11-11)
 
 
