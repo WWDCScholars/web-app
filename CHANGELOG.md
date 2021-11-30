@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.18.4](https://github.com/WWDCScholars/web-app/compare/v3.18.3...v3.18.4) (2021-11-12)
+
+
+### Bug Fixes
+
+* Edit profile when birthday changed ([#14](https://github.com/WWDCScholars/web-app/issues/14)) ([f5ab676](https://github.com/WWDCScholars/web-app/commit/f5ab6762661bcfd751afa5f2231d5c7aedff158d))
+
+### [3.18.3](https://github.com/WWDCScholars/web-app/compare/v3.18.2...v3.18.3) (2021-11-11)
+
+
+### Bug Fixes
+
+* Use UTC timestamps for MapKit JWT ([212b774](https://github.com/WWDCScholars/web-app/commit/212b7741af2a9bc90da1934b7fc3199f674a21ea))
+
+### [3.18.2](https://github.com/WWDCScholars/web-app/compare/v3.18.1...v3.18.2) (2021-11-11)
+
 ### [3.18.1](https://github.com/WWDCScholars/web-app/compare/v3.18.0...v3.18.1) (2021-06-15)
 
 ## [3.18.0](https://github.com/WWDCScholars/web-app/compare/v3.17.3...v3.18.0) (2021-06-09)

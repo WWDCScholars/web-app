@@ -1,12 +1,13 @@
 <template lang="pug">
 .input-date(:class="{ 'input-has-value': inputHasValue }")
   label
-    //- NOTE: flat-pickr does not have a darkmode!
-    flat-pickr(
-      ref="fp",
-      :config.once="config",
-      :value="value",
-      @input="update($event)"
+    input(
+      type="date",
+      pattern="\d{4}-\d{2}-\d{2}",
+      :max="maxDate",
+      :name.once="name",
+      :value="valueString",
+      @input="update($event.target.value)"
     )
     span.title {{ placeholder }}
     span.optional(v-if="!required") Optional
@@ -14,49 +15,45 @@
 
 <script lang="ts">
 import { Component, Model, Prop, Vue } from 'nuxt-property-decorator'
-import FlatpickrComponent from 'vue-flatpickr-component'
-// import * as flatpickr from 'flatpickr'
-import 'flatpickr/dist/flatpickr.css'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 
-@Component({
-  components: {
-    'flat-pickr': FlatpickrComponent
-  }
-})
+dayjs.extend(utc)
+
+@Component
 export default class InputDate extends Vue {
-  @Model('input', { default: () => new Date() })
-  value!: string | Date
+  @Model('input', { default: () => new Date().getTime() })
+  value!: number
 
+  @Prop({ required: true })
+  name!: string
   @Prop({ required: true })
   placeholder!: string
   @Prop({ default: false })
   required!: boolean
   @Prop({ default: false })
   onlyPast!: boolean
-  @Prop({ required: true })
-  displayFormat!: string
 
-  value_validate: string | Date = this.value || '' // tslint:disable-line
+  value_validate: number = this.value || new Date().getTime() // tslint:disable-line
 
-  config?: { dateFormat: string; maxDate: (Date | undefined); } = undefined
+  update(value: string) {
+    const timestamp = dayjs.utc(value, 'YYYY-MM-DD').valueOf() // we want to have the 0:00 AM UTC version of the date
 
-  created() {
-    this.config = {
-      dateFormat: this.displayFormat,
-      maxDate: undefined
-    }
-    if (this.onlyPast) {
-      this.config.maxDate = new Date()
-    }
-  }
-
-  update(value) {
-    this.value_validate = value
-    this.$emit('input', value)
+    this.value_validate = timestamp
+    this.$emit('input', timestamp)
   }
 
   get inputHasValue() {
-    return this.value
+    return !!this.value
+  }
+
+  get valueString(): string {
+    return dayjs.utc(this.value).format('YYYY-MM-DD')
+  }
+
+  get maxDate(): string | undefined {
+    if (!this.onlyPast) return undefined
+    return dayjs.utc().format('YYYY-MM-DD')
   }
 }
 </script>
@@ -78,6 +75,10 @@ export default class InputDate extends Vue {
     border-radius: $border-radius
     color: $label-primary
     transition: border-color 100ms linear, box-shadow 100ms linear
+    appearance: textfield
+
+    &::-webkit-date-and-time-value
+      text-align: left
 
   .title
     position: absolute
@@ -109,21 +110,4 @@ export default class InputDate extends Vue {
         box-shadow: 0px 0px 4px tertiaryColor($bg)
       &:focus + .title
         color: color($bg)
-</style>
-
-<style lang="sass">
-+form-colors using ($fg, $bg)
-  .input-date
-    .flatpickr-mobile
-      width: 100%
-      padding: 15px 15px 5px 15px
-      font-size: 1em
-      height: calc(1em + 25px)
-      border: 1px solid $grey2
-      border-radius: $border-radius
-      color: $label-secondary
-      appearance: none
-      &:focus
-        color: color($bg)
-        border: 1px solid color($bg)
 </style>
