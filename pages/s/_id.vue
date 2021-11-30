@@ -320,7 +320,7 @@ export default class ScholarProfile extends Vue {
   width: 100%
   height: 360px
   position: relative
-  background-color: $sch-gray0
+  background-color: $background-grouped-primary-base
 
 .section
   position: relative
@@ -343,8 +343,8 @@ export default class ScholarProfile extends Vue {
       width: 100%
       height: 100%
       object-fit: cover
-      border: 8px solid $white
-      background-color: $sch-gray2
+      border: 8px solid $background-grouped-tertiary-elevated
+      background-color: $background-grouped-tertiary-elevated
       border-radius: 50%
       overflow: hidden
       box-sizing: border-box
@@ -362,7 +362,7 @@ export default class ScholarProfile extends Vue {
 
     .age
       margin-left: 10px
-      color: lighten($sch-purple, 40%)
+      color: $sch-purple-quarternary
 
     +for-phone-only
       margin-top: 20px
@@ -371,7 +371,7 @@ export default class ScholarProfile extends Vue {
   .location
     font-size: 1.2em
     font-weight: 500
-    color: $apl-black2
+    color: $label-secondary
 
     +for-phone-only
       font-size: 1em
@@ -385,10 +385,13 @@ export default class ScholarProfile extends Vue {
     display: flex
     justify-content: flex-start
     align-items: center
+    flex-wrap: wrap
     margin-top: 30px
+    margin-bottom: -5px
 
     .social-icon
       margin-right: 15px
+      margin-bottom: 5px
 
       img
         width: 32px
@@ -402,8 +405,8 @@ export default class ScholarProfile extends Vue {
     .social-discord
       height: 32px
       padding-left: 15px
-      color: $sch-gray
-      border-left: 1px solid $sch-gray1
+      color: $label-secondary
+      border-left: 1px solid $separator-transparent
 
       &:first-of-type
         border-left: 0
@@ -441,12 +444,12 @@ export default class ScholarProfile extends Vue {
 
       &:hover
         background-color: $sch-purple
-        color: $white
+        color: $label-inverted
 
       &.nuxt-link-exact-active
         font-weight: 700
         background-color: $sch-purple
-        color: $white
+        color: $label-inverted
         +shadow
 
         &:after

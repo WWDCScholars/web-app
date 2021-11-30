@@ -54,7 +54,7 @@ export default class TeamCard extends Vue {
   display: flex
   justify-content: flex-start
   align-items: center
-  color: $apl-black
+  color: $label-primary
 
   +for-phone-only
     flex-direction: column
@@ -70,7 +70,7 @@ export default class TeamCard extends Vue {
     width: 80px
     height: 80px
     object-fit: cover
-    border: 4px solid $white
+    border: 4px solid $background-grouped-tertiary-elevated
     border-radius: 50%
     +shadow
 
@@ -88,7 +88,7 @@ export default class TeamCard extends Vue {
   margin-right: 8px
 
 .age
-  color: transparentize($sch-purple, 0.5)
+  color: $sch-purple-quarternary
 
 .body
   margin-top: 8px

@@ -106,6 +106,7 @@ export const actions: ActionTree<State, RootState> = {
   async saveBasic({ getters, commit }, { scholar, changes }: { scholar: Scholar; changes: RecordFields }): Promise<void> {
     let updatedPrivate: ScholarPrivate | undefined
     if (changes.hasOwnProperty('email') || changes.hasOwnProperty('birthday')) {
+      // when the email or birthday was changed, we need to update the ScholarPrivate object
       if (getters.scholar?.loadedPrivate) {
         updatedPrivate = ScholarPrivate.clone(getters.scholar.loadedPrivate)
       } else {
@@ -115,6 +116,11 @@ export const actions: ActionTree<State, RootState> = {
           recordName: scholar.recordName!,
           action: CloudKit.ReferenceAction.DELETE_SELF
         }
+        // when we created a new ScholarPrivate, we need to set the reference on Scholar
+        changes['scholarPrivate'] = { value: {
+          recordName: updatedPrivate.recordName!,
+          action: CloudKit.ReferenceAction.DELETE_SELF
+        }}
       }
 
       if (changes['email']) {
@@ -143,12 +149,6 @@ export const actions: ActionTree<State, RootState> = {
 
       let updatedScholar = Scholar.clone(scholar) as Scholar
       updatedScholar.setFields(changes)
-      if (updatedPrivate) {
-        updatedScholar.scholarPrivate = {
-          recordName: updatedPrivate.recordName!,
-          action: CloudKit.ReferenceAction.DELETE_SELF
-        }
-      }
       await updatedScholar.save()
 
       // If the profile picture changed, we have to fetch the record again to get the new downloadURL
@@ -157,15 +157,6 @@ export const actions: ActionTree<State, RootState> = {
         updatedScholar = await Scholar.fetch(updatedScholar.recordName!)
       }
       commit('scholars/insertScholar', updatedScholar, { root: true })
-    }
-
-    if (updatedPrivate) {
-      let updatedScholar = Scholar.clone(scholar)
-      updatedScholar.scholarPrivate = {
-        recordName: updatedPrivate.recordName!,
-        action: CloudKit.ReferenceAction.DELETE_SELF
-      }
-      await updatedScholar.save()
     }
 
     // when the private changed or we fetched a new scholar because the picture changed, we have to set the loadedPrivate again

@@ -132,10 +132,12 @@ export default class ScholarProfileSubmission extends Vue {
 </script>
 
 <style lang="sass" scoped>
+@use "sass:math"
+
 .challenge-description
   font-size: 0.85em
   font-style: italic
-  color: $apl-black3
+  color: $label-secondary
 
 .description
   font-size: 0.9em
@@ -173,7 +175,7 @@ $swiper-arrow-height: 52px
     background: 0
     width: $swiper-arrow-width
     height: $swiper-arrow-height
-    margin-top: -$swiper-arrow-height / 2
+    margin-top: math.div(-$swiper-arrow-height, 2)
     opacity: 0.5
     transition: opacity 100ms linear
     outline: 0
@@ -184,12 +186,12 @@ $swiper-arrow-height: 52px
     &.swiper-button-disabled
       opacity: 0
 
-  /deep/.swiper-pagination-bullets
+  ::v-deep .swiper-pagination-bullets
     opacity: 0.7
     transition: opacity 100ms linear
 
     .swiper-pagination-bullet
-      background-color: $white
+      background-color: $background-grouped-secondary-elevated
       box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5)
       opacity: 1
 

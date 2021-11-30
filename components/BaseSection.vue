@@ -13,7 +13,7 @@ export default class BaseSection extends Vue {}
 <style lang="sass" scoped>
 .section
   padding: 40px 50px
-  background-color: $white
+  background-color: $background-grouped-secondary-elevated
   border-radius: $border-radius-large
   +shadow
 

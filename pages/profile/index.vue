@@ -50,12 +50,11 @@
               :required.once="true",
               v-model="formData.email"
             )
-          form-field(name="Date of Birth", rules="required", vid="birthday")
+          form-field(name="Date of Birth", rules="dateBeforeToday|required", vid="birthday")
             input-date(
               name="birthday",
-              placeholder="Date of Birth (yyyy-mm-dd)",
+              placeholder="Date of Birth",
               onlyPast="true",
-              displayFormat="Y-m-d",
               :required.once="true",
               v-model="formData.birthday"
             )
@@ -186,7 +185,7 @@ export default class PageProfileBasic extends Vue {
 
 <style lang="sass" scoped>
 #input-profile-picture
-  /deep/ .image
+  ::v-deep .image
     width: 230px
     height: 230px
 </style>

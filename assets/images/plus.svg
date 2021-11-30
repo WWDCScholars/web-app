@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100%" height="100%" class="feather" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon/plus</title>
+    <g id="Icon/plus" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <path d="M45,35 L78,35 C79.1045695,35 80,35.8954305 80,37 L80,43 C80,44.1045695 79.1045695,45 78,45 L45,45 L45,78 C45,79.1045695 44.1045695,80 43,80 L37,80 C35.8954305,80 35,79.1045695 35,78 L35,45 L2,45 C0.8954305,45 0,44.1045695 0,43 L0,37 C0,35.8954305 0.8954305,35 2,35 L35,35 L35,2 C35,0.8954305 35.8954305,0 37,0 L43,0 C44.1045695,0 45,0.8954305 45,2 L45,35 Z" id="Icon"></path>
+    </g>
+</svg>
