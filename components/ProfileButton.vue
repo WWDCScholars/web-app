@@ -103,7 +103,7 @@ button
     top: #{$header-height - 13px}
     right: 15px
     z-index: 1000
-    background-color: $background-grouped-tertiary-elevated
+    background-color: $background-tertiary-elevated
     border-radius: $border-radius-large
     +shadow
 
@@ -119,7 +119,7 @@ button
       font-size: 1.2em
       font-weight: 500
       color: $sch-purple
-      background-color: $background-grouped-tertiary-elevated
+      background-color: $background-tertiary-elevated
       text-decoration: none
       break-word: none
       padding: 15px 25px
@@ -144,7 +144,7 @@ button
         border-bottom: 0
 
       &:hover
-        color: $background-grouped-tertiary-elevated
+        color: $background-tertiary-elevated
         background-color: $sch-purple
 
     .triangle
@@ -161,7 +161,7 @@ button
         display: block
         width: 10px
         height: 12px
-        background-color: $background-grouped-tertiary-elevated
+        background-color: $background-tertiary-elevated
         transform: rotate(45deg)
         top: 14px
         left: 5px

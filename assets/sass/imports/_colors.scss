@@ -25,6 +25,8 @@ $themes: (
   $light-theme: (
     background-primary-base: rgb(255, 255, 255),
     background-primary-elevated: rgb(255, 255, 255),
+    background-tertiary-base: rgb(255, 255, 255),
+    background-tertiary-elevated: rgb(255, 255, 255),
     background-grouped-primary-base: rgb(242, 242, 247),
     background-grouped-primary-elevated: rgb(242, 242, 247),
     background-grouped-secondary-base: rgb(255, 255, 255),
@@ -76,6 +78,8 @@ $themes: (
   $dark-theme: (
     background-primary-base: rgb(0, 0, 0),
     background-primary-elevated: rgb(28, 28, 30),
+    background-tertiary-base: rgb(44, 44, 46),
+    background-tertiary-elevated: rgb(58, 58, 60),
     background-grouped-primary-base: rgb(0, 0, 0),
     background-grouped-primary-elevated: rgb(28, 28, 30),
     background-grouped-secondary-base: rgb(28, 28, 30),
@@ -170,6 +174,8 @@ $themes: (
 
 $background-primary-base: color("background-primary-base");
 $background-primary-elevated: color("background-primary-elevated");
+$background-tertiary-base: color("background-tertiary-base");
+$background-tertiary-elevated: color("background-tertiary-elevated");
 $background-grouped-primary-base: color("background-grouped-primary-base");
 $background-grouped-primary-elevated: color("background-grouped-primary-elevated");
 $background-grouped-secondary-base: color("background-grouped-secondary-base");
