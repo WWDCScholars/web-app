@@ -42,3 +42,7 @@ Vue.filter('yearDifference', (date?: number): number => {
   const dateObject = dayjs(date)
   return dayjs().diff(dateObject, 'year')
 })
+
+Vue.filter('uppercase', (string: string) => {
+  return string.toUpperCase()
+})

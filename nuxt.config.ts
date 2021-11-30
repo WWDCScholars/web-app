@@ -44,7 +44,7 @@ const config: NuxtConfig = {
       { property: 'og:title', content: META.title, hid: 'og:title' },
       { property: 'og:description', content: META.description, hid: 'og:description' },
       { property: 'og:image', content: META.image, hid: 'og:image' },
-      { property: 'og:image:alt', content: META.title, hid: 'og:image:alt'},
+      { property: 'og:image:alt', content: META.title, hid: 'og:image:alt' },
       { property: 'og:url', content: META.url, hid: 'og:url' },
       { name: 'twitter:card', content: 'summary_large_image', hid: 'twitter:card' },
       { name: 'twitter:title', content: META.title, hid: 'twitter:title' },
@@ -131,14 +131,18 @@ const config: NuxtConfig = {
     'vue-plausible',
 
     // Load sentry
-    '@nuxtjs/sentry'
+    '@nuxtjs/sentry',
+
+    // Load color-scheme / colorMode
+    '@nuxtjs/color-mode'
   ],
 
   /*
    ** Global SASS variables and mixins
    */
   styleResources: {
-    sass: ['~assets/sass/imports/_index.sass']
+    sass: ['~assets/sass/imports/_index.sass'],
+    hoistUseStatements: true
   },
 
   /*
@@ -204,7 +208,10 @@ const config: NuxtConfig = {
     '@nuxt/typescript-build',
 
     // Load global SASS variables and mixins
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+
+    // Load svg loader
+    '@nuxtjs/svg',
   ],
 
   /*

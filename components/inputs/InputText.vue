@@ -102,15 +102,16 @@ export default class InputText extends Vue {
     width: 100%
     font-size: 1em
     padding: 20px 15px 5px 15px
-    background-color: $white
-    border: 1px solid $form-border-color
+    background-color: $background-grouped-secondary-elevated
+    border: 1px solid $grey2
     border-radius: $border-radius
-    color: $apl-black
+    color: $label-primary
     appearance: none
     transition: border-color 100ms linear, box-shadow 100ms linear
 
     &:disabled
-      color: $sch-gray0
+      color: $label-secondary
+      -webkit-text-fill-color: $label-secondary
 
   textarea
     padding-top: 10px
@@ -120,34 +121,31 @@ export default class InputText extends Vue {
     top: 50%
     left: 15px
     transform: translateY(-50%)
-    color: $sch-gray1
+    color: $label-tertiary
     pointer-events: none
     transition: all 100ms linear
 
   input:focus + .title, &.input-has-value .title
-      top: 12px
-      font-size: 0.7em
+    top: 12px
+    font-size: 0.7em
 
   .optional
     position: absolute
-    color: $sch-gray1
+    color: $label-tertiary
     top: 2px
     right: 15px
     transform: translateY(50%)
     font-size: 0.9em
 
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .input-text
     input, textarea
       &:hover, &:focus
-        border-color: $bg
+        border-color: color($bg)
 
       &:focus
-        box-shadow: 0 0 4px transparentize($bg, 0.6)
+        box-shadow: 0 0 4px tertiaryColor($bg)
 
       &:focus + .title
-        color: $bg
+        color: color($bg)
 </style>

@@ -1,41 +1,59 @@
 <template lang="pug">
-footer
-  nuxt-link(to="/imprint") Imprint
-  span.separator
-  nuxt-link(to="/privacy") Privacy Policy
-  //- span.separator
-  //- a(href="https://netlify.com", target="_blank") Hosted on Netlify
-  span.separator
-  a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
+footer.container-fluid
+  .footer-content
+    nav(class="links")
+      nuxt-link(to="/imprint") Imprint
+      span.separator
+      nuxt-link(to="/privacy") Privacy Policy
+      span.separator
+      a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
+    div(class="color-mode")
+      ColorModePicker(name="color-mode-desktop")
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import ColorModePicker from './ColorModePicker.vue'
 
-@Component
+@Component({
+  components: { ColorModePicker }
+})
 export default class PageFooter extends Vue {}
 </script>
 
 <style lang="sass" scoped>
 footer
-  display: flex
-  justify-content: center
-  align-items: center
-  padding-top: 50px
-  font-size: 0.7em
+  .footer-content
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-wrap: wrap
+    padding: 50px 25px 0 25px
 
-  a
-    color: $sch-gray0
-    text-decoration: none
-    transition: color linear 100ms
+    +for-phone-only
+      justify-content: center
 
-    &:hover
-      text-decoration: underline
-      color: $sch-purple
+      .color-mode
+        display: none
 
-  .separator
-    width: 1px
-    height: 0.8em
-    background-color: $sch-gray0
-    margin: 0 10px
+    .links
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      font-size: 0.7em
+
+      a
+        color: $label-secondary
+        text-decoration: none
+        transition: color linear 100ms
+
+        &:hover
+          text-decoration: underline
+          color: $sch-purple
+
+      .separator
+        width: 1px
+        height: 0.8em
+        background-color: $separator
+        margin: 0 10px
 </style>

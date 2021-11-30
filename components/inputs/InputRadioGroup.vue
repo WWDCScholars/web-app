@@ -51,22 +51,18 @@ export default class InputRadioGroup extends Vue {
     flex-basis: 80px
     max-width: 150px
 
-    &:hover
-      background-color: darken($background-gray, 6%)
-
     span
       display: block
       padding: 12px 15px
-      border: 1px solid $form-border-color
-      // text-transform: uppercase
+      border: 1px solid $grey2
       border-radius: $border-radius
-      color: $sch-gray
-      background-color: $white
+      color: $label-secondary
+      background-color: $background-grouped-secondary-elevated
       text-align: center
       transition: background-color 100ms linear, border-color 100ms linear, color 100ms linear
 
       &:hover
-        background-color: darken($background-gray, 6%)
+        background-color: $fill-secondary
 
     input
       appearance: none
@@ -74,16 +70,14 @@ export default class InputRadioGroup extends Vue {
       position: absolute
       opacity: 0
 
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
++form-colors using ($fg, $bg)
   .input-radio
     input:checked + span
-      background-color: $bg
-      border-color: $bg
-      color: $fg
+      background-color: color($bg)
+      border-color: color($bg)
+      color: color($fg)
 
     input:checked + span:hover
-      background-color: darken($bg, 10%)
-      border-color: darken($bg, 10%)
+      background-color: highlightColor($bg)
+      border-color: highlightColor($bg)
 </style>

@@ -9,7 +9,7 @@
       @change="onChange"
     )
     slot(name="icon")
-      img(src="~assets/images/upload-icon.png").upload-icon
+      UploadIcon.upload-icon
     .preview-wrapper
       img(
         v-if="preview",
@@ -24,7 +24,11 @@
 <script lang="ts">
 import { Component, Model, Prop, Watch, Vue } from 'nuxt-property-decorator'
 
-@Component
+import UploadIcon from '~/assets/images/upload.svg?inline'
+
+@Component({
+  components: { UploadIcon }
+})
 export default class InputImage extends Vue {
   @Model('input')
   value!: File | string | null
@@ -80,8 +84,8 @@ export default class InputImage extends Vue {
   position: relative
   width: 100
   height: 100%
-  background-color: $white
-  border: 1px solid $form-border-color
+  background-color: $background-grouped-secondary-elevated
+  border: 1px solid $grey2
   border-radius: $border-radius
   cursor: pointer
   transition: border-color 100ms linear, box-shadow 100ms linear
@@ -101,6 +105,7 @@ export default class InputImage extends Vue {
     width: 40px
     height: 40px
     pointer-events: none
+    color: $fill-primary
 
   .preview-wrapper
     position: absolute
@@ -125,7 +130,7 @@ export default class InputImage extends Vue {
     height: 20px
     border-radius: 10px
     border: 0
-    background-color: $sch-red1
+    background-color: $sch-red
     padding: 0
 
     &:before, &:after
@@ -136,7 +141,7 @@ export default class InputImage extends Vue {
       width: 12px
       height: 2px
       border-radius: 1.5px
-      background-color: $white
+      background-color: $background-grouped-secondary-elevated
 
     &:before
       transform: rotate(-45deg)
@@ -144,10 +149,9 @@ export default class InputImage extends Vue {
     &:after
       transform: rotate(45deg)
 
-+form-colors
-  $bg: dyn-temp('bg')
++form-colors using ($fg, $bg)
   .input-image
     .image:hover
-      border-color: $bg
-      box-shadow: 0 0 4px transparentize($bg, 0.6)
+      border-color: color($bg)
+      box-shadow: 0 0 4px tertiaryColor($bg)
 </style>

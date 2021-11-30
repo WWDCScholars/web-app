@@ -20,6 +20,9 @@
   @media (min-width: 1800px)
     @content
 
+@mixin system-dark-mode
+  @media (prefers-color-scheme: dark)
+    @content
 
 //== Border radius
 $border-radius: 6px !default
@@ -28,7 +31,7 @@ $border-radius-large: $border-radius * 4 !default
 //== Header & Footer
 $header-height: 80px !default
 $header-height-mobile: 58px !default
-$footer-height: 17px !default
+$footer-height: 28px !default
 $header-indicator-height: 4px !default
 
 //== Container

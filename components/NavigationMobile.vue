@@ -5,13 +5,16 @@
     ul
       li: nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
       li: nuxt-link(to="/about").color-green: span About
-      li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue1: span Join
+      li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue: span Join
     ul(v-if="!isAuthPending && isAuthenticated").auth-links
       li: nuxt-link(v-if="profileLink", :to="profileLink").color-purple: span Profile
       li: nuxt-link(to="/profile").color-purple: span Edit Profile
       li: button(@click="onSignOutClicked").color-purple: span Sign Out
     ul(v-else-if="!isAuthPending").auth-links
       li: nuxt-link(to="/signin").color-purple: span Sign In
+    .spacer
+    div(class="color-mode")
+      ColorModePicker(name="color-mode-mobile")
 </template>
 
 <script lang="ts">
@@ -19,12 +22,13 @@ import { Component, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { CloudKit } from '@wwdcscholars/cloudkit'
 import BurgerButton from './BurgerButton.vue'
+import ColorModePicker from './ColorModePicker.vue'
 
 import * as auth from '~/store/auth'
 const Auth = namespace(auth.name)
 
 @Component({
-  components: { BurgerButton }
+  components: { BurgerButton, ColorModePicker }
 })
 export default class NavigationMobile extends Vue {
   menuOpen: boolean = false
@@ -77,7 +81,7 @@ export default class NavigationMobile extends Vue {
   +for-phone-only
     display: block
 
-  /deep/.burger-button
+  ::v-deep .burger-button
     z-index: 999
     top: -2px
 
@@ -92,14 +96,14 @@ export default class NavigationMobile extends Vue {
     flex-direction: column
     justify-content: flex-start
     align-items: flex-start
-    padding-top: $header-height-mobile
-    background-color: $white
+    background-color: $background-primary-base
     opacity: 0
     pointer-events: none
     transition: opacity 200ms ease-in-out, height 200ms ease-in-out
 
     &.navigation-mobile-open
-      height: 100vh
+      height: calc(100vh - #{$header-height-mobile})
+      top: $header-height-mobile
       opacity: 1
       pointer-events: auto
 
@@ -107,9 +111,10 @@ export default class NavigationMobile extends Vue {
       margin: 0
       padding: 5px 40px 5px 20px
       width: 100%
+      list-style-type: none
 
       &.auth-links
-        border-top: 1px solid $sch-gray1
+        border-top: 1px solid $separator
 
       li
         a, button
@@ -141,4 +146,11 @@ export default class NavigationMobile extends Vue {
           &.nuxt-link-active:not(.nuxt-link-root)
             &:before
               display: block
+
+    .spacer
+      flex-grow: 1
+
+    .color-mode
+      align-self: center
+      margin-bottom: 20px
 </style>
