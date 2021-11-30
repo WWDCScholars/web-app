@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v3.18.4...v3.19.0-pre.1) (2021-11-30)
+
+
+### Features
+
+* Dark Mode ([#12](https://github.com/WWDCScholars/web-app/issues/12)) ([0047a78](https://github.com/WWDCScholars/web-app/commit/0047a78a60303938bd0501739262a138f1105d38)), closes [#14](https://github.com/WWDCScholars/web-app/issues/14)
+
 ## [3.19.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.18.3...v3.19.0-pre.0) (2021-11-30)
 
 
