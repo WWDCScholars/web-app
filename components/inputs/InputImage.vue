@@ -105,7 +105,7 @@ export default class InputImage extends Vue {
     width: 40px
     height: 40px
     pointer-events: none
-    color: $fill-secondary
+    color: $fill-primary
 
   .preview-wrapper
     position: absolute
