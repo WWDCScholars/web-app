@@ -114,7 +114,7 @@ $themes: (
     sch-green: $_dark-sch-green,
     sch-orange: $_dark-sch-orange,
 
-    sch-purple-secondary: color.scale($_dark-sch-purple, $alpha: -25%), // sch-purple with 0.75 alpha
+    sch-purple-secondary: color.scale($_dark-sch-purple, $lightness: -10%, $saturation: -15%, $alpha: -20%), // sch-purple with 0.78 alpha + adjusted lightness + saturation
     sch-purple-tertiary: color.scale($_dark-sch-purple, $alpha: -40%), // sch-purple with 0.6 alpha
     sch-purple-quarternary: color.scale($_dark-sch-purple, $alpha: -50%), // sch-purple with 0.5 alpha
     sch-red-tertiary: color.scale($_dark-sch-red, $alpha: -40%), // sch-red with 0.6 alpha
