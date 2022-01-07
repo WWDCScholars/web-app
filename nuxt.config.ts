@@ -36,6 +36,10 @@ const config: NuxtConfig = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: META.description, hid: 'description' },
 
+      // Style
+      { name: 'theme-color', content: 'rgb(242, 242, 247)', media: '(prefers-color-scheme: light)' },
+      { name: 'theme-color', content: 'rgb(0, 0, 0)', media: '(prefers-color-scheme: dark)' },
+
       // App Store Banner
       { name: 'apple-itunes-app', content: 'app-id=1459158255' },
 
