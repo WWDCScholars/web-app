@@ -78,4 +78,10 @@ export default class PageImprint extends Vue {
 
   a
     color: $sch-blue
+
+  +for-phone-only
+    padding: 0 15px
+
+    h1, h2, h3
+      padding: 0
 </style>
