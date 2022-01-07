@@ -46,6 +46,8 @@ export default class ColorModePicker extends Vue {
       appearance: none
       padding: 0
       border: 0
+      width: 0
+      height: 0
 
     div
       display: inline-block

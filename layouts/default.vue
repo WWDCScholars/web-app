@@ -36,13 +36,9 @@ export default class LayoutDefault extends Vue {}
   min-height: 100vh
 
   .content-wrapper
-    position: relative
-    top: $header-height
-    margin-bottom: $header-height
-    min-height: calc(100vh - #{$header-height + $footer-height} - 50px - 15px)
+    padding-top: $header-height
+    min-height: calc(100vh - #{$footer-height} - 15px) // 15px is .page padding-bottom
 
     +for-phone-only
-      top: $header-height-mobile
-      margin-bottom: $header-height-mobile
-      min-height: calc(100vh - #{$header-height-mobile + $footer-height} - 50px - 15px)
+      padding-top: $header-height-mobile
 </style>

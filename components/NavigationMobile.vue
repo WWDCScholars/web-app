@@ -102,7 +102,8 @@ export default class NavigationMobile extends Vue {
     transition: opacity 200ms ease-in-out, height 200ms ease-in-out
 
     &.navigation-mobile-open
-      height: calc(100vh - #{$header-height-mobile})
+      --safe-area-foo: env(safe-area-inset-bottom)
+      height: calc(100vh - #{$header-height-mobile} - var(--safe-area-foo))
       top: $header-height-mobile
       opacity: 1
       pointer-events: auto
