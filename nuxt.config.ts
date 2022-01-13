@@ -99,8 +99,8 @@ const config: NuxtConfig = {
    ** Customize the progress-bar color
    */
   loading: {
-    color: 'rgb(65, 53, 153)',
-    failedColor: '#D83946'
+    color: 'var(--color-sch-purple)',
+    failedColor: 'var(--color-sch-red)'
   },
 
   /*
