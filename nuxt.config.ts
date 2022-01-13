@@ -60,7 +60,7 @@ const config: NuxtConfig = {
     ],
     link: [
       { rel: 'canonical', href: META.url, hid: 'canonical' },
-      { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico' },
+      { rel: 'icon', href: '/icons/favicon-48.png' },
       {
         rel: 'apple-touch-icon-precomposed',
         href: '/icons/favicon-180.png',
