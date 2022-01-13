@@ -25,54 +25,54 @@
             alt="Twitter",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-twitter.png")
+            div(v-html="require('~/assets/images/icon-social-twitter.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.instagram",
             :href="scholar.loadedSocialMedia.instagram",
             alt="Instagram",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-instagram.png")
+            div(v-html="require('~/assets/images/icon-social-instagram.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.github",
             :href="scholar.loadedSocialMedia.github",
             alt="GitHub",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-github.png")
+            div(v-html="require('~/assets/images/icon-social-github.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.linkedin",
             :href="scholar.loadedSocialMedia.linkedin",
             alt="LinedIn",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-linkedin.png")
+            div(v-html="require('~/assets/images/icon-social-linkedin.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.imessage",
             :href="'imessage://' + scholar.loadedSocialMedia.imessage",
             alt="iMessage",
           ).social-icon
-            img(src="~assets/images/icon-messages.png")
+            div(v-html="require('~/assets/images/icon-social-messages.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.facebook",
             :href="scholar.loadedSocialMedia.facebook",
             alt="Facebook",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-facebook.png")
+            div(v-html="require('~/assets/images/icon-social-facebook.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.itunes",
             :href="scholar.loadedSocialMedia.itunes",
             alt="App Store Developer Page",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-appstore.png")
+            div(v-html="require('~/assets/images/icon-social-appstore.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.website",
             :href="scholar.loadedSocialMedia.website",
             alt="Website",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-website.png")
+            div(v-html="require('~/assets/images/icon-social-website.svg?raw')")
 
           copyable(
             v-if="scholar.loadedSocialMedia.discord",
             :value="scholar.loadedSocialMedia.discord"
-          ).social-icon.social-nolink.social-discord
-            img(src="~assets/images/icon-discord.png")
+          ).social-discord
+            div(v-html="require('~/assets/images/icon-social-discord.svg?raw')").social-icon
 
         .scholarships
           h3 Scholarships
@@ -380,7 +380,7 @@ export default class ScholarProfile extends Vue {
       font-size: 1em
 
   .short-bio
-    margin-top: 30px
+    margin-top: 20px
     font-size: 0.9em
     white-space: pre-line
 
@@ -389,27 +389,21 @@ export default class ScholarProfile extends Vue {
     justify-content: flex-start
     align-items: center
     flex-wrap: wrap
-    margin-top: 30px
-    margin-bottom: -5px
+    margin-top: 20px
 
     .social-icon
-      margin-right: 15px
-      margin-bottom: 5px
-
-      img
-        width: 32px
-        height: 32px
-
-      &.social-nolink
-        img
-          width: 24px
-          height: 24px
+      margin-right: 12px
+      color: $sch-purple
+      width: 28px
+      height: 28px
 
     .social-discord
-      height: 32px
-      padding-left: 15px
+      padding-left: 12px
       color: $label-secondary
       border-left: 1px solid $separator-transparent
+
+      .social-icon
+        margin-right: 5px
 
       &:first-of-type
         border-left: 0
