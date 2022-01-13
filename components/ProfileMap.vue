@@ -8,6 +8,8 @@ MKMap(
   MKMarkerAnnotation(
     v-if="coordinate",
     :options="annotationOptions",
+    :color="color",
+    :glyphColor="glyphColor",
     :coordinate="coordinate",
     :title="annotationTitle"
   )
@@ -16,6 +18,7 @@ MKMap(
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { MKMap, MKMarkerAnnotation } from './mapkit'
+import { getCSSColor } from '~/util/css-variable'
 
 @Component({
   components: { MKMap, MKMarkerAnnotation }
@@ -38,8 +41,6 @@ export default class ProfileMap extends Vue {
   }
   annotationOptions: mapkit.MarkerAnnotationConstructorOptions = {
     enabled: false,
-    color: this.$config.colors.purple,
-    glyphColor: 'white',
     glyphImage: { 1: '/icons/logo_plain_minimal.svg' }
   }
 
@@ -50,6 +51,16 @@ export default class ProfileMap extends Vue {
       this.coordinate,
       new mapkit.CoordinateSpan(11, 11)
     )
+  }
+
+  get color(): string {
+    if (this.$colorMode.value === 'unknown') return ''
+    return getCSSColor('sch-purple')
+  }
+
+  get glyphColor(): string {
+    if (this.$colorMode.value === 'unknown') return ''
+    return getCSSColor('label-inverted')
   }
 }
 </script>

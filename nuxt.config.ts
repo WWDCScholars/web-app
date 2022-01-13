@@ -91,10 +91,7 @@ const config: NuxtConfig = {
    */
 
   publicRuntimeConfig: {
-    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`],
-    colors: {
-      purple: 'rgb(65, 53, 153)'
-    }
+    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`]
   },
   privateRuntimeConfig: {},
 
