@@ -77,23 +77,26 @@
         .scholarships
           h3 Scholarships
 
-          p.scholarships-blurb.
-            {{ scholar.givenName }} has been awarded a WWDC scholarship
-            {{ numAttended | readableNumber }}
-            {{ 'time' | quantize(numAttended) }}.
-            Here {{ numAttended | isAre }} the
-            {{ 'submission' | quantize(numAttended) }} that got
-            {{ scholar.gender | pronoun }} there.
+          p.scholarships-blurb
+            template(v-if="numAttended > 1").
+              {{ scholar.givenName }} has been awarded a WWDC scholarship
+              {{ numAttended | readableNumber }}
+              {{ 'time' | quantize(numAttended) }}.
+            template(v-else).
+              {{ scholar.givenName }} has been awarded a WWDC scholarship in {{ Object.keys(submissionLinks)[0] }}.
+            | Here {{ numAttended | isAre }} the
+            | {{ 'submission' | quantize(numAttended) }} that got
+            | {{ scholar.gender | pronoun }} there.
 
-          .submission-selector
-            nuxt-link(
-              v-for="({ link, activeClass }, year) in submissionLinks",
-              :to="link",
-              :key="year",
-              :class="activeClass"
-            ) {{ year }}
+            .submission-selector(v-if="numAttended > 1")
+              nuxt-link(
+                v-for="({ link, activeClass }, year) in submissionLinks",
+                :to="link",
+                :key="year",
+                :class="activeClass"
+              ) {{ year }}
 
-          nuxt-child(:scholar="scholar")
+            nuxt-child(:scholar="scholar")
 
         base-button(v-if="editProfileLinkVisible").btn-round.edit-profile
           nuxt-link(slot="nobtn", to="/profile") Edit Profile
@@ -179,8 +182,8 @@ export default class ScholarProfile extends Vue {
   }
 
   get numAttended(): number {
-    if (!this.scholar || !this.scholar.wwdcYears) return 0
-    return this.scholar.wwdcYears.length
+    if (!this.scholar || !this.scholar.wwdcYearsApproved) return 0
+    return this.scholar.wwdcYearsApproved.length
   }
 
   get submissionLinks(): { [year: string]: object } {
@@ -421,6 +424,11 @@ export default class ScholarProfile extends Vue {
 
       +for-phone-only
         font-size: 1.2em
+
+    .scholarships-blurb
+      font-size: 0.85em
+      font-style: italic
+      color: $label-secondary
 
   .submission-selector
     display: flex
