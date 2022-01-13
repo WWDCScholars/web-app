@@ -59,6 +59,7 @@ export default class ScholarProfileSubmission extends Vue {
   @Scholars.Action('loadYearInfoIfMissing')
   scholarLoadYearInfoIfMissing!: (payload: { scholarRecordName: string, yearInfoRecordName: string }) => Promise<void>
 
+  /** Approved year reference the page should display */
   get wwdcYearReference(): CloudKit.Reference | undefined {
     if (!this.scholar) return undefined
     return routeMatchYear(this.scholar.wwdcYearsApproved, this.$route.params.year)
@@ -112,7 +113,7 @@ export default class ScholarProfileSubmission extends Vue {
     if (!this.scholar || !this.wwdcYearReference) return
 
     // load data for year
-    const yearInfoReference = yearMatchYearInfo(this.scholar.wwdcYearInfos, this.scholar.wwdcYearsApproved, this.wwdcYearReference.recordName)
+    const yearInfoReference = yearMatchYearInfo(this.scholar.wwdcYearInfos, this.scholar.wwdcYears, this.wwdcYearReference.recordName)
     if (!yearInfoReference) return
 
     await Promise.all([
