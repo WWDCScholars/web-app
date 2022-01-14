@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.1...v3.19.0-pre.2) (2022-01-14)
+
+
+### Features
+
+* Improve sholarships blurb for one-time winners ([be9af15](https://github.com/WWDCScholars/web-app/commit/be9af15171ce61704ac0002a2a32da95b4fcb2e2))
+* Use CSS colors for marks in maps ([bbb3636](https://github.com/WWDCScholars/web-app/commit/bbb36363db3d77f21db0298c772a2dd6762a7097))
+* Use css colors for progress indicator ([ed0f53c](https://github.com/WWDCScholars/web-app/commit/ed0f53c2a06538b4193f089f698ea7f11c1cbbb6))
+* Use minimal favicon ([d6d45f8](https://github.com/WWDCScholars/web-app/commit/d6d45f815de5d509c8a3cb65af2445392368d346))
+* Use SF social icons ([407e32e](https://github.com/WWDCScholars/web-app/commit/407e32e1d5f12404edaff3c9be8259f0e1a6e10e))
+
+
+### Bug Fixes
+
+* Add padding on imprint and privacy policy pages ([274f247](https://github.com/WWDCScholars/web-app/commit/274f2473adf60a2883a02ac1d1515771304b697f))
+* Better dark mode brand colors ([742ac99](https://github.com/WWDCScholars/web-app/commit/742ac99737e73d02f4c6255f22f22fa0f5795494))
+* Disable hover for disable text fields ([433e44d](https://github.com/WWDCScholars/web-app/commit/433e44d5c6d9b51960906b0da021a5458c366dac))
+* Footer scrolling and color picker layout on mobile ([c72a349](https://github.com/WWDCScholars/web-app/commit/c72a349cebba07f8262f304d41528b5fb74fa727))
+* Improve sch-purple-secondary for dark mode ([17c29c9](https://github.com/WWDCScholars/web-app/commit/17c29c9ca243ef04110c9ad2188829be516c52ef))
+* Load initial values from props in MKMarkerAnnotation ([90b4409](https://github.com/WWDCScholars/web-app/commit/90b4409e5849b4d15a4016756853bc4ca2cfd1ab))
+* Load only approved years on Scholar profile ([4d67fc7](https://github.com/WWDCScholars/web-app/commit/4d67fc71d43df03ed2daf831ffa45c10a4865255))
+* Use theme-color meta tags ([013d072](https://github.com/WWDCScholars/web-app/commit/013d072f48ffe66b7b60c69681898fd1476c2f69))
+
 ## [3.19.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v3.18.4...v3.19.0-pre.1) (2021-11-30)
 
 
