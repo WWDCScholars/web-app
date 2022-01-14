@@ -27,13 +27,14 @@ export default class PageFooter extends Vue {}
 
 <style lang="sass" scoped>
 footer
+  width: 100%
+
   .footer-content
-    height: $footer-height
     display: flex
     justify-content: space-between
     align-items: flex-start
     flex-wrap: wrap
-    padding: 35px 25px 0
+    padding: 35px 25px 15px
 
     +for-phone-only
       justify-content: center

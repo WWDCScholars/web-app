@@ -1,7 +1,6 @@
 <template lang="pug">
-.navigation-mobile
-  burger-button(v-model="menuOpen").navigation-mobile-toggle
-  nav(:class="{ 'navigation-mobile-open': menuOpen }")
+.navigation-mobile(:class="{ 'navigation-mobile-open': isOpen }")
+  nav
     ul
       li: nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
       li: nuxt-link(to="/about").color-green: span About
@@ -18,20 +17,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { CloudKit } from '@wwdcscholars/cloudkit'
-import BurgerButton from './BurgerButton.vue'
 import ColorModePicker from './ColorModePicker.vue'
+
+import * as mobileMenu from '~/store/mobile-menu'
+const MobileMenu = namespace(mobileMenu.name)
 
 import * as auth from '~/store/auth'
 const Auth = namespace(auth.name)
 
 @Component({
-  components: { BurgerButton, ColorModePicker }
+  components: { ColorModePicker }
 })
 export default class NavigationMobile extends Vue {
-  menuOpen: boolean = false
+  @MobileMenu.State
+  isOpen!: boolean
 
   @Auth.State('isPending')
   isAuthPending!: boolean
@@ -66,47 +68,41 @@ export default class NavigationMobile extends Vue {
     this.signOut()
     this.$router.replace('/')
   }
-
-  @Watch('$route')
-  onRouteChanged() {
-    this.menuOpen = false
-  }
 }
 </script>
 
 <style lang="sass" scoped>
 .navigation-mobile
   display: none
+  z-index: 998
+  position: fixed
+  top: $header-height-mobile
+  right: 0
+  bottom: 0
+  left: 0
+  pointer-events: none
+  opacity: 0
 
   +for-phone-only
     display: block
+
+  &.navigation-mobile-open
+    pointer-events: auto
+    opacity: 1
 
   ::v-deep .burger-button
     z-index: 999
     top: -2px
 
   nav
-    position: absolute
-    top: 0
-    left: 0
     width: 100%
-    height: 0vh
-    z-index: 998
+    height: 0%
     display: flex
     flex-direction: column
     justify-content: flex-start
     align-items: flex-start
     background-color: $background-primary-base
-    opacity: 0
-    pointer-events: none
     transition: opacity 200ms ease-in-out, height 200ms ease-in-out
-
-    &.navigation-mobile-open
-      --safe-area-foo: env(safe-area-inset-bottom)
-      height: calc(100vh - #{$header-height-mobile} - var(--safe-area-foo))
-      top: $header-height-mobile
-      opacity: 1
-      pointer-events: auto
 
     ul
       margin: 0
@@ -154,4 +150,7 @@ export default class NavigationMobile extends Vue {
     .color-mode
       align-self: center
       margin-bottom: 20px
+
+  &.navigation-mobile-open nav
+    height: calc(100% - env(safe-area-inset-bottom))
 </style>
