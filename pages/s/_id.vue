@@ -84,7 +84,7 @@
               {{ 'time' | quantize(numAttended) }}.
             template(v-else).
               {{ scholar.givenName }} has been awarded a WWDC scholarship in {{ Object.keys(submissionLinks)[0] }}.
-            | Here {{ numAttended | isAre }} the
+            | &#32;Here {{ numAttended | isAre }} the
             | {{ 'submission' | quantize(numAttended) }} that got
             | {{ scholar.gender | pronoun }} there.
 
