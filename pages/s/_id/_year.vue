@@ -2,38 +2,43 @@
 .submission(v-if="wwdcYear && yearInfo")
   p.challenge-description
     span(v-if="challengeDescription")
-      | {{ challengeDescription }}&nbsp;
+      | {{ challengeDescription }}&#32;
     span(v-if="yearInfo.description").
       Here’s how {{ scholar.givenName }} describes
       {{ scholar.gender | possessivePronoun }} winning submission.
+    span(v-else-if="!screenshots.length").
+      Unfortunately we don't have any details on {{ scholar.givenName }}’s submission.
 
   p.description {{ yearInfo.description }}
 
-  swiper(
-    v-if="yearInfo.screenshots && yearInfo.screenshots.length",
-    :options="swiperOptions"
-  ).screenshots
-      swiper-slide(
-        v-for="(screenshot, index) in yearInfo.screenshots",
-        :key="index"
-      ).screenshot
-        img(:src="screenshot.downloadURL")
-      .swiper-pagination(slot="pagination")
-      img(slot="button-prev", src="~assets/images/arrow-left.png").swiper-button-prev.swiper-button
-      img(slot="button-next", src="~assets/images/arrow-left.png").swiper-button-next.swiper-button
-  .no-screenshots(v-else)
-    i Unfortunately we don't have any screenshots of this submission.
+  .screenshots(v-if="screenshots.length")
+    .thumbnails
+      button(
+        v-for="(screenshot, index) in screenshots",
+        :key="'thumbnail-' + index",
+        @click="selectedScreenshot = index"
+      ).thumbnail
+        .image
+          img(v-lazy="screenshot.thumb")
+
+    LightBox(
+      :loop.once="true",
+      :slideshow.once="false",
+      :gallery.once="false",
+      :items="screenshots",
+      :index="selectedScreenshot",
+      @close="selectedScreenshot = null"
+    )
 </template>
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import { SwiperOptions } from 'swiper'
+import LightBox from 'vue-cool-lightbox'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
 import { routeMatchYear, yearMatchYearInfo } from '~/util/wwdcYear-index'
 
-import 'swiper/css/swiper.css'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 import { name as scholarsName } from '~/store/scholars'
 const Scholars = namespace(scholarsName)
@@ -42,9 +47,7 @@ import { name as yearsName } from '~/store/years'
 const Years = namespace(yearsName)
 
 @Component({
-  components: {
-    Swiper, SwiperSlide
-  }
+  components: { LightBox }
 })
 export default class ScholarProfileSubmission extends Vue {
   @Prop({ required: true })
@@ -58,6 +61,8 @@ export default class ScholarProfileSubmission extends Vue {
 
   @Scholars.Action('loadYearInfoIfMissing')
   scholarLoadYearInfoIfMissing!: (payload: { scholarRecordName: string, yearInfoRecordName: string }) => Promise<void>
+
+  selectedScreenshot: number | null = null
 
   /** Approved year reference the page should display */
   get wwdcYearReference(): CloudKit.Reference | undefined {
@@ -80,28 +85,14 @@ export default class ScholarProfileSubmission extends Vue {
     return this.wwdcYear.challengeDescription || ''
   }
 
-  get swiperOptions(): SwiperOptions {
-    const shouldLoop = (this.yearInfo?.screenshots?.length ?? 0) > 1
+  get screenshots(): object[] {
+    if (!this.yearInfo || !this.yearInfo.screenshots) return []
 
-    return {
-      autoplay: {
-        delay: 8000,
-        disableOnInteraction: true
-      },
-      loop: shouldLoop,
-      grabCursor: false,
-      setWrapperSize: false,
-      spaceBetween: 15,
-      slidesPerView: 'auto',
-      centeredSlides: true,
-      navigation: {
-        prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next'
-      },
-      pagination: {
-        el: '.swiper-pagination'
-      }
-    }
+    return this.yearInfo.screenshots
+      .map(screenshot => ({
+        src: screenshot.downloadURL,
+        thumb: screenshot.downloadURL // TODO: different URL when we have the image proxy
+      }))
   }
 
   validate({ params }): boolean {
@@ -145,63 +136,41 @@ export default class ScholarProfileSubmission extends Vue {
   white-space: pre-line
 
 .screenshots
-  position: relative
-  left: -60px
-  right: -60px
-  width: calc(100% + 120px)
-  height: 300px
-  margin-top: 40px
+  .thumbnails
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+    grid-gap: 15px
 
-  +for-phone-only
-    left: -20px
-    right: -20px
-    width: calc(100% + 40px)
+    .thumbnail
+      display: block
+      position: relative
+      background: 0
+      border: 0
 
-  .screenshot
-    width: auto
+      &:before
+        content: ''
+        display: block
+        padding-bottom: 62.5% // 16:10
 
-    img
-      max-width: 100vw
-      height: 100%
-      object-fit: contain
+      .image
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
 
-.no-screenshots
-  font-size: 0.8em
-  text-align: center
+        img
+          width: 100%
+          height: 100%
+          object-fit: cover
+          background-color: $background-grouped-tertiary-elevated
+          border: 2px solid $fill-primary
+          border-radius: $border-radius
+          transition: border-color 100ms linear
 
-$swiper-arrow-width: 34px
-$swiper-arrow-height: 52px
-.swiper-container
-  .swiper-button
-    background: 0
-    width: $swiper-arrow-width
-    height: $swiper-arrow-height
-    margin-top: math.div(-$swiper-arrow-height, 2)
-    opacity: 0.5
-    transition: opacity 100ms linear
-    outline: 0
+          &[lazy="loading"], &[lazy="error"]
+            padding: 15% 30%
 
-    &.swiper-button-next
-      transform: rotate(180deg)
-
-    &.swiper-button-disabled
-      opacity: 0
-
-  ::v-deep .swiper-pagination-bullets
-    opacity: 0.7
-    transition: opacity 100ms linear
-
-    .swiper-pagination-bullet
-      background-color: $background-grouped-secondary-elevated
-      box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5)
-      opacity: 1
-
-    .swiper-pagination-bullet-active
-      background-color: $sch-purple
-
-  &:hover .swiper-button, &:hover .swiper-pagination-bullets
-    opacity: 1
-
-    &.swiper-button-disabled
-      opacity: 0
+      &:hover .image img
+        border-color: $sch-purple
 </style>
