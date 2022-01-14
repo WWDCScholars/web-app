@@ -113,6 +113,9 @@ export default class InputText extends Vue {
       color: $label-secondary
       -webkit-text-fill-color: $label-secondary
 
+      &:hover
+        border-color: $grey2 !important
+
   textarea
     padding-top: 10px
 
