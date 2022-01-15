@@ -6,26 +6,29 @@
     span(v-if="yearInfo.description").
       Here’s how {{ scholar.givenName }} describes
       {{ scholar.gender | possessivePronoun }} winning submission.
-    span(v-else-if="!screenshots.length").
+    span(v-else-if="!media.length").
       Unfortunately we don't have any details on {{ scholar.givenName }}’s submission.
+
+    //- TODO: Maybe we also want a blurb for only screenshots...
 
   p.description {{ yearInfo.description }}
 
-  .screenshots(v-if="screenshots.length")
+  .screenshots(v-if="media.length")
     .thumbnails
       button(
-        v-for="(screenshot, index) in screenshots",
+        v-for="(screenshot, index) in media",
         :key="'thumbnail-' + index",
         @click="selectedScreenshot = index"
       ).thumbnail
-        .image
+        .content(:class="`media-${screenshot.mediaType}`")
           img(v-lazy="screenshot.thumb")
 
     LightBox(
       :loop.once="true",
       :slideshow.once="false",
       :gallery.once="false",
-      :items="screenshots",
+      :youtubeCookies.once="false",
+      :items="media",
       :index="selectedScreenshot",
       @close="selectedScreenshot = null"
     )
@@ -37,6 +40,7 @@ import { namespace } from 'vuex-class'
 import LightBox from 'vue-cool-lightbox'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
 import { routeMatchYear, yearMatchYearInfo } from '~/util/wwdcYear-index'
+import { getVideoPreviewUrl } from '~/util/video'
 
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
@@ -63,6 +67,7 @@ export default class ScholarProfileSubmission extends Vue {
   scholarLoadYearInfoIfMissing!: (payload: { scholarRecordName: string, yearInfoRecordName: string }) => Promise<void>
 
   selectedScreenshot: number | null = null
+  videoPreviewUrl: string | null = null
 
   /** Approved year reference the page should display */
   get wwdcYearReference(): CloudKit.Reference | undefined {
@@ -85,14 +90,27 @@ export default class ScholarProfileSubmission extends Vue {
     return this.wwdcYear.challengeDescription || ''
   }
 
-  get screenshots(): object[] {
+  get media(): object[] {
     if (!this.yearInfo || !this.yearInfo.screenshots) return []
 
-    return this.yearInfo.screenshots
-      .map(screenshot => ({
-        src: screenshot.downloadURL,
-        thumb: screenshot.downloadURL // TODO: different URL when we have the image proxy
-      }))
+    let result: object[] = []
+
+    if (this.videoPreviewUrl) {
+      result.push({
+        src: this.yearInfo.videoLink,
+        thumb: this.videoPreviewUrl,
+        mediaType: 'video'
+      })
+    }
+
+    return result.concat(
+      this.yearInfo.screenshots
+        .map(screenshot => ({
+          src: screenshot.downloadURL,
+          thumb: screenshot.downloadURL, // TODO: different URL when we have the image proxy
+          mediaType: 'image'
+        }))
+    )
   }
 
   validate({ params }): boolean {
@@ -114,6 +132,11 @@ export default class ScholarProfileSubmission extends Vue {
         yearInfoRecordName: yearInfoReference.recordName
       })
     ])
+
+    if (this.yearInfo && this.yearInfo.videoLink) {
+      getVideoPreviewUrl(this.yearInfo.videoLink)
+        .then(previewUrl => this.videoPreviewUrl = previewUrl)
+    }
   }
 
   @Watch('$route.params')
@@ -138,7 +161,7 @@ export default class ScholarProfileSubmission extends Vue {
 .screenshots
   .thumbnails
     display: grid
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr))
     grid-gap: 15px
 
     .thumbnail
@@ -152,7 +175,7 @@ export default class ScholarProfileSubmission extends Vue {
         display: block
         padding-bottom: 62.5% // 16:10
 
-      .image
+      .content
         position: absolute
         top: 0
         right: 0
@@ -171,6 +194,28 @@ export default class ScholarProfileSubmission extends Vue {
           &[lazy="loading"], &[lazy="error"]
             padding: 15% 30%
 
-      &:hover .image img
-        border-color: $sch-purple
+        &.media-video:after
+          content: '▶'
+          display: block
+          position: absolute
+          top: 50%
+          left: 50%
+          transform: translate(-50%, -50%)
+          width: 50px
+          height: 50px
+          border-radius: 100%
+          font-size: 1.8em
+          line-height: 50px
+          text-indent: 2px
+          background-color: $sch-purple-secondary
+          color: $label-inverted
+          transition: background-color 100ms linear
+
+      &:hover
+        .content
+          img
+            border-color: $sch-purple
+
+          &.media-video:after
+            background-color: $sch-purple
 </style>
