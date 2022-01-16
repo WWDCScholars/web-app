@@ -205,8 +205,8 @@ export default class ScholarProfileSubmission extends Vue {
           height: 50px
           border-radius: 100%
           font-size: 1.8em
-          line-height: 50px
-          text-indent: 2px
+          line-height: 48px
+          text-indent: 3px
           background-color: $sch-purple-secondary
           color: $label-inverted
           transition: background-color 100ms linear
