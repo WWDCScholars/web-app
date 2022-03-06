@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.3](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.2...v3.19.0-pre.3) (2022-03-06)
+
+
+### Features
+
+* Always include year in profile URLs ([7689416](https://github.com/WWDCScholars/web-app/commit/768941681480dbd080dd1673cb602d13502d131c))
+* Better title texts for social icons ([d2306af](https://github.com/WWDCScholars/web-app/commit/d2306af4a2b6eb6812561959b176ef5929f2a883))
+* Display AppStore and GitHub links ([8da71d2](https://github.com/WWDCScholars/web-app/commit/8da71d2b8b3076182234e123b4a840659147c570))
+* Display submission videos inline with screenshots ([e086549](https://github.com/WWDCScholars/web-app/commit/e086549d2bf4e9bff84e1b71f0b7d9d871099306))
+* Replace swiper with lightbox ([9efd353](https://github.com/WWDCScholars/web-app/commit/9efd35356eaa45da6dba3688af6063cbc851e34d))
+
+
+### Bug Fixes
+
+* Add missing space in scholarships blurb ([6d6458f](https://github.com/WWDCScholars/web-app/commit/6d6458ff10c1cd6fa984d712160174626466fb2b))
+* Adjust play icon spacing a bit ([cbde6f2](https://github.com/WWDCScholars/web-app/commit/cbde6f2a243cd1415444b7c05d35d4faef5f380e))
+* Remove log from Vimeo thumbnail loading ([a9bacbc](https://github.com/WWDCScholars/web-app/commit/a9bacbc120426ad36920970125cbf31728f00451))
+
 ## [3.19.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.1...v3.19.0-pre.2) (2022-01-14)
 
 
