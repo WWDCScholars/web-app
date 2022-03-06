@@ -28,6 +28,7 @@
         :href="yearInfo.appstoreLink",
         target="_blank"
       ).thumbnail.thumbnail-social.thumbnail-appstore
+        IconLink.icon-link
         .content(v-html="require('~/assets/images/icon-social-appstore.svg?raw')")
 
       a(
@@ -35,6 +36,7 @@
         :href="yearInfo.githubLink",
         target="_blank"
       ).thumbnail.thumbnail-social.thumbnail-github
+        IconLink.icon-link
         .content(v-html="require('~/assets/images/icon-social-github.svg?raw')")
 
     LightBox(
@@ -55,6 +57,7 @@ import LightBox from 'vue-cool-lightbox'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
 import { routeMatchYear, yearMatchYearInfo } from '~/util/wwdcYear-index'
 import { getVideoPreviewUrl } from '~/util/video'
+import IconLink from '~/assets/images/icon-link.svg?inline'
 
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
@@ -65,7 +68,10 @@ import { name as yearsName } from '~/store/years'
 const Years = namespace(yearsName)
 
 @Component({
-  components: { LightBox }
+  components: {
+    LightBox,
+    IconLink
+  }
 })
 export default class ScholarProfileSubmission extends Vue {
   @Prop({ required: true })
@@ -230,9 +236,21 @@ export default class ScholarProfileSubmission extends Vue {
         .content.media-video:after
           background-color: $sch-purple
 
-      &.thumbnail-social .content
-        color: white
-        padding: 20%
+      &.thumbnail-social
+        position: relative
+
+        .content
+          color: $systemWhite
+          padding: 20%
+
+        .icon-link
+          position: absolute
+          top: 10px
+          left: 10px
+          width: 20px
+          height: 20px
+          color: $systemWhite
+          z-index: 999
 
       &.thumbnail-appstore .content
         background-image: linear-gradient(to bottom, $social-gradient-appstore)

@@ -49,6 +49,7 @@ $themes: (
     systemRed: rgb(255, 59, 48),
     systemYellow: rgb(255, 204, 0),
     systemGreen: rgb(52, 199, 89),
+    systemWhite: rgb(255, 255, 255),
     grey1: rgb(142, 142, 147),
     grey2: rgb(174, 174, 178),
     grey3: rgb(199, 199, 204),
@@ -105,6 +106,7 @@ $themes: (
     systemRed: rgb(255, 69, 58),
     systemYellow: rgb(255, 214, 10),
     systemGreen: rgb(48, 209, 88),
+    systemWhite: rgb(242, 240, 240),
     grey1: rgb(142, 142, 147),
     grey2: rgb(99, 99, 102),
     grey3: rgb(72, 72, 74),
@@ -204,6 +206,7 @@ $fill-tertiary: color("fill-tertiary");
 $systemRed: color("systemRed");
 $systemYellow: color("systemYellow");
 $systemGreen: color("systemGreen");
+$systemWhite: color("systemWhite");
 $grey1: color("grey1");
 $grey2: color("grey2");
 $grey3: color("grey3");
