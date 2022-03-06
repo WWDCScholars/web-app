@@ -189,26 +189,18 @@ export default class ScholarProfile extends Vue {
   get submissionLinks(): { [year: string]: object } {
     if (!this.scholar || !this.scholar.wwdcYearsApproved) return {}
     const sortedYears = this.scholar.wwdcYearsApproved.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
-    const lastYearReference = sortedYears[sortedYears.length - 1]
     return sortedYears
       .reduce((acc, yearReference) => {
         const year = yearReference.recordName.substring(5)
-        const yearParam = yearReference.recordName === lastYearReference.recordName ? undefined : year
-        const exactActive = !yearParam && this.$route.params.year === lastYearReference.recordName.substring(5)
-          ? 'nuxt-link-exact-active'
-          : undefined
-
         acc[year] = {
           link: {
             name: 's-id-year',
             params: {
               id: this.$route.params.id,
-              year: yearParam
+              year: year
             }
-          },
-          activeClass: exactActive
+          }
         }
-
         return acc
       }, {})
   }
@@ -265,6 +257,22 @@ export default class ScholarProfile extends Vue {
     const scholar: Scholar = this.$store.getters['scholars/byRecordName'](this.$route.params.id)
     if (!scholar) {
       return
+    }
+
+    // redirect to last year
+    if (!this.$route.params.year) {
+      const sortedYears = scholar.wwdcYearsApproved.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
+      if (sortedYears.length > 0) {
+        const lastYear = sortedYears[sortedYears.length - 1]
+        const location = {
+          name: this.$route.name!,
+          params: {
+            id: scholar.recordName!,
+            year: lastYear.recordName.substring(5)
+          }
+        }
+        this.$router.replace(location)
+      }
     }
 
     // TODO: Maybe we don't have to await this.

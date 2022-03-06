@@ -15,6 +15,7 @@
       scholar-thumbnail(
         v-for="scholar in currentScholars",
         :scholar.once="scholar",
+        :year.once="currentYear.year",
         :key="scholar.recordName"
       )
     .no-scholars(v-else) #[i Unfortunately there are no Scholars to show yet]&nbsp;&nbsp;😭

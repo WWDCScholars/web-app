@@ -1,6 +1,6 @@
 <template lang="pug">
 nuxt-link(
-  :to.once="{ name: 's-id-year', params: { id: scholar.recordName } }",
+  :to.once="profileLocation",
   :id="scholar.recordName"
 ).scholar-thumbnail
   span.name {{ scholar.givenName }}
@@ -10,12 +10,26 @@ nuxt-link(
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Location } from 'vue-router'
 import { Scholar } from '@wwdcscholars/cloudkit'
 
 @Component
 export default class ScholarThumbnail extends Vue {
-  @Prop({ required: true })
+  @Prop({ required: true, type: Object })
   scholar!: Scholar
+
+  @Prop({ required: true, type: String })
+  year!: string
+
+  get profileLocation(): Location {
+    return {
+      name: 's-id-year',
+      params: {
+        id: this.scholar.recordName!,
+        year: this.year
+      }
+    }
+  }
 
   get profilePictureURL(): string {
     if (!this.scholar || !this.scholar.profilePicture) {
