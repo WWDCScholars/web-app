@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.5](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.4...v3.19.0-pre.5) (2022-03-06)
+
+
+### Features
+
+* Add link icon to link thumbnails ([92f58e0](https://github.com/WWDCScholars/web-app/commit/92f58e09ed2f8718a593f97986675c1451680184))
+
 ## [3.19.0-pre.4](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.3...v3.19.0-pre.4) (2022-03-06)
 
 ## [3.19.0-pre.3](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.2...v3.19.0-pre.3) (2022-03-06)
