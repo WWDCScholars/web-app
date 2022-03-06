@@ -29,7 +29,7 @@
   for = "/*"
   [headers.values]
     Permissions-Policy = "interest-cohort=()"
-    Content-Security-Policy-Report-Only = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.apple-mapkit.com; connect-src *.wwdcscholars.com *.apple-cloudkit.com *.icloud.com *.apple-mapkit.com gsp10-ssl.ls.apple.com sentry.io; frame-src 'none'; img-src 'self' data: blob: *.icloud-content.com *.apple-mapkit.com; font-src data:; child-src blob:; report-uri https://o74679.ingest.sentry.io/api/1462765/security/?sentry_key=b2d9a03750d74cec92f876941726c269"
+    Content-Security-Policy-Report-Only = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.apple-mapkit.com; connect-src *.wwdcscholars.com *.apple-cloudkit.com *.icloud.com *.apple-mapkit.com gsp10-ssl.ls.apple.com vimeo.com sentry.io; frame-src www.youtube-nocookie.com player.vimeo.com; img-src 'self' data: blob: *.icloud-content.com *.apple-mapkit.com img.youtube.com i.vimeocdn.com; font-src data:; child-src blob:; report-uri https://o74679.ingest.sentry.io/api/1462765/security/?sentry_key=b2d9a03750d74cec92f876941726c269"
 
 # Redirect Netlify subdomain to primary domain
 [[redirects]]
