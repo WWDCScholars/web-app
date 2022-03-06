@@ -214,20 +214,16 @@ export default class ScholarProfileSubmission extends Vue {
             padding: 15% 30%
 
         &.media-video:after
-          content: '▶'
+          content: ''
           display: block
           position: absolute
           top: 50%
           left: 50%
           transform: translate(-50%, -50%)
-          width: 50px
-          height: 50px
-          border-radius: 100%
-          font-size: 1.8em
-          line-height: 48px
-          text-indent: 3px
+          width: 64px
+          height: 64px
           background-color: $sch-purple-secondary
-          color: $label-inverted
+          mask-image: url("~/assets/images/icon-play.svg")
           transition: background-color 100ms linear
 
       &:hover
