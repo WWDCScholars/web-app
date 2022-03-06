@@ -23,6 +23,20 @@
         .content(:class="`media-${screenshot.mediaType}`")
           img(v-lazy="screenshot.thumb")
 
+      a(
+        v-if="yearInfo.appstoreLink",
+        :href="yearInfo.appstoreLink",
+        target="_blank"
+      ).thumbnail.thumbnail-social.thumbnail-appstore
+        .content(v-html="require('~/assets/images/icon-social-appstore.svg?raw')")
+
+      a(
+        v-if="yearInfo.githubLink",
+        :href="yearInfo.githubLink",
+        target="_blank"
+      ).thumbnail.thumbnail-social.thumbnail-github
+        .content(v-html="require('~/assets/images/icon-social-github.svg?raw')")
+
     LightBox(
       :loop.once="true",
       :slideshow.once="false",
@@ -167,8 +181,11 @@ export default class ScholarProfileSubmission extends Vue {
     .thumbnail
       display: block
       position: relative
-      background: 0
-      border: 0
+      background-color: $background-grouped-tertiary-elevated
+      border: 2px solid $fill-primary
+      border-radius: $border-radius
+      transition: border-color 100ms linear
+      overflow: hidden
 
       &:before
         content: ''
@@ -186,10 +203,6 @@ export default class ScholarProfileSubmission extends Vue {
           width: 100%
           height: 100%
           object-fit: cover
-          background-color: $background-grouped-tertiary-elevated
-          border: 2px solid $fill-primary
-          border-radius: $border-radius
-          transition: border-color 100ms linear
 
           &[lazy="loading"], &[lazy="error"]
             padding: 15% 30%
@@ -212,10 +225,19 @@ export default class ScholarProfileSubmission extends Vue {
           transition: background-color 100ms linear
 
       &:hover
-        .content
-          img
-            border-color: $sch-purple
+        border-color: $sch-purple
 
-          &.media-video:after
-            background-color: $sch-purple
+        .content.media-video:after
+          background-color: $sch-purple
+
+      &.thumbnail-social .content
+        color: white
+        padding: 20%
+
+      &.thumbnail-appstore .content
+        background-image: linear-gradient(to bottom, $social-gradient-appstore)
+
+      &.thumbnail-github .content
+        background-image: linear-gradient(to bottom, $social-gradient-github)
+
 </style>
