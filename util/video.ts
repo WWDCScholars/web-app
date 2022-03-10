@@ -40,6 +40,9 @@ function getVimeoVideoId(videoUrl: string): string | null {
 
 async function getVimeoPreviewUrl(videoUrl: string): Promise<string | null> {
   const videoId = getVimeoVideoId(videoUrl)
+  if (!videoId) {
+    return null
+  }
   const response = await fetch(`https://vimeo.com/api/v2/video/${videoId}.json`)
   const responseJson = await response.json()
   if (!responseJson.length || !responseJson[0].thumbnail_large) {
