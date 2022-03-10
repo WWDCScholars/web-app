@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.6](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.5...v3.19.0-pre.6) (2022-03-10)
+
+
+### Bug Fixes
+
+* check vimeo videoId existance ([21b04be](https://github.com/WWDCScholars/web-app/commit/21b04be4c2eedf3cd3e3d122c3b99b68865a0bad))
+
 ## [3.19.0-pre.5](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.4...v3.19.0-pre.5) (2022-03-06)
 
 
