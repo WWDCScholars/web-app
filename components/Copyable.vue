@@ -1,10 +1,9 @@
 <template lang="pug">
 a(@click="onClick").copyable
   slot
-  .label {{ value }}
-    .bubble(:class="{ 'clicked': clicked }")
-      .before copy
-      .after copied
+  .label
+    .value(:class="{ 'show': !isCopied}") {{ value }}
+    .copied(:class="{ 'show': isCopied }") copied
   input(
     type="text",
     readonly,
@@ -21,16 +20,16 @@ export default class Copyable extends Vue {
   @Prop({ required: true })
   value!: string
 
-  clicked: boolean = false
+  isCopied: boolean = false
 
   onClick() {
     const el = this.$refs['input'] as HTMLInputElement
     el.select()
     document.execCommand('copy')
     el.setSelectionRange(0, 0)
-    this.clicked = true
+    this.isCopied = true
     setTimeout(() => {
-      this.clicked = false
+      this.isCopied = false
     }, 2000)
   }
 }
@@ -38,63 +37,31 @@ export default class Copyable extends Vue {
 
 <style lang="sass" scoped>
 .copyable
-  position: relative
   display: flex
   justify-content: flex-start
   align-items: center
   cursor: pointer
 
   .label
+    position: relative
     font-size: 0.8em
     margin-left: 3px
 
-    .bubble
+    .copied
       position: absolute
       display: block
-      opacity: 0
-      width: 60px
-      height: 26px
-      background-color: $fill-secondary
-      color: $label-secondary
-      font-size: 0.9em
       top: 0
+      right: 0
+      bottom: 0
       left: 0
-      transform: translateX(100%) translateY(-100%)
-      border-radius: 4px
+      text-align: center
+
+    .value, .copied
+      opacity: 0
       transition: opacity 200ms linear
 
-      .before, .after
-        position: absolute
-        top: 50%
-        left: 50%
-        transform: translateX(-50%) translateY(-50%)
-        margin-top: -1px
-        text-align: center
-        transition: opacity 200ms linear
-
-      .before
+      &.show
         opacity: 1
-
-      .after
-        opacity: 0
-
-      &.clicked
-        .before
-          opacity: 0
-
-        .after
-          opacity: 1
-
-      &:after
-        content: ''
-        position: absolute
-        display: block
-        bottom: -5px
-        left: 50%
-        transform: translateX(-50%)
-        border-top: 5px solid $fill-primary
-        border-left: 4px solid transparent
-        border-right: 4px solid transparent
 
   .input
     display: inline-block
@@ -103,8 +70,5 @@ export default class Copyable extends Vue {
     pointer-events: none
     width: 0px
     height: 0
-
-  &:hover .bubble
-    opacity: 1
 </style>
 
