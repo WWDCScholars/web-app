@@ -400,18 +400,29 @@ export default class ScholarProfile extends Vue {
     margin-top: 20px
 
     .social-icon
-      margin-right: 12px
+      margin-right: 4px
+      width: 36px
+      height: 36px
+      padding: 4px
+      border-radius: $border-radius
       color: $sch-purple
-      width: 28px
-      height: 28px
+      background-color: $background-grouped-secondary-elevated
+      transition: background-color 100ms linear, box-shadow 100ms linear
+
+      &:hover
+        background-color: $background-grouped-tertiary-elevated
 
     .social-discord
       padding-left: 12px
+      margin-left: 8px
       color: $label-secondary
       border-left: 1px solid $separator-transparent
 
       .social-icon
         margin-right: 5px
+
+        &:hover
+          background-color: $background-grouped-secondary-elevated
 
       &:first-of-type
         border-left: 0

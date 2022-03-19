@@ -20,8 +20,10 @@
   @media (min-width: 1800px)
     @content
 
-@mixin system-dark-mode
+@mixin dark-mode-only
   @media (prefers-color-scheme: dark)
+    @content
+  @at-root #{selector-nest(':root.dark-mode', &)}
     @content
 
 //== Border radius
