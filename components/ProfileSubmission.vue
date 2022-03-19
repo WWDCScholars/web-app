@@ -8,7 +8,7 @@ base-section
       :to="profileSubmissionLink(yearInfo)"
     ).status {{ yearInfo.status | uppercase }}
 
-  ValidationObserver(v-slot="{ invalid }", tag="div", ref="form")
+  ValidationObserver(v-slot="{ invalid, changed }", tag="div", ref="form")
     base-form(v-if="yearInfo")
       .group
         h3 Applied As
@@ -72,7 +72,7 @@ base-section
             @click="deleteYear"
           ) Delete
         base-button(
-          :disabled="invalid || !customChanged",
+          :disabled="invalid || !changed",
           @click="submit"
         ).btn-cta Save
     .loading(v-else) Loading...
@@ -161,17 +161,6 @@ export default class ProfileSubmission extends Vue {
     if (!this.yearInfo) return undefined
     if (this.yearInfo.status) return this.yearInfo.status
     return 'pending'
-  }
-
-  get customChanged(): boolean {
-    // workaround because arrays don't get the changed flag in VeeValidate
-    if (this.$refs.form) {
-      const form = this.$refs.form as any
-      if (form.fields && form.fields.screenshots) {
-        return form.flags.changed || form.fields.screenshots.dirty
-      }
-    }
-    return false
   }
 
   get formData(): {
