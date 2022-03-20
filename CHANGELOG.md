@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.7](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.6...v3.19.0-pre.7) (2022-03-20)
+
+
+### Features
+
+* Hover state for social links ([6cd3788](https://github.com/WWDCScholars/web-app/commit/6cd378868ada4162725946ad4604b7eb34bf4392))
+* Streamline Copyable design ([b7a3779](https://github.com/WWDCScholars/web-app/commit/b7a377913712511821b22088474077c5d4dfcf39))
+
+
+### Bug Fixes
+
+* Align social icon weights ([c9da6b2](https://github.com/WWDCScholars/web-app/commit/c9da6b28d795b1e48dca116404cd3aec484c9f3f))
+
 ## [3.19.0-pre.6](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.5...v3.19.0-pre.6) (2022-03-10)
 
 
