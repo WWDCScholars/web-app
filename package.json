@@ -3,7 +3,7 @@
   "type": "module",
   "name": "wwdcscholars-web",
   "description": "WWDCScholars.com Website",
-  "version": "3.19.0-pre.7",
+  "version": "3.19.0-pre.8",
   "license": "MIT",
   "author": {
     "name": "Moritz Sternemann",

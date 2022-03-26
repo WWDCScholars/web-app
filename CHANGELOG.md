@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.8](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.7...v3.19.0-pre.8) (2022-03-26)
+
+
+### Features
+
+* New screenshot thumbnail approach for submissions ([08e1fb2](https://github.com/WWDCScholars/web-app/commit/08e1fb2e17981ac0b8253da81c79a9f3c34e67eb))
+
 ## [3.19.0-pre.7](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.6...v3.19.0-pre.7) (2022-03-20)
 
 
