@@ -18,10 +18,10 @@
       button(
         v-for="(screenshot, index) in media",
         :key="'thumbnail-' + index",
-        @click="selectedScreenshot = index"
+        @click="selectedScreenshot = index",
+        :class="`thumbnail-${screenshot.mediaType}`"
       ).thumbnail
-        .content(:class="`media-${screenshot.mediaType}`")
-          img(v-lazy="screenshot.thumb")
+        img(v-lazy="screenshot.thumb")
 
       a(
         v-if="yearInfo.appstoreLink",
@@ -185,35 +185,29 @@ export default class ScholarProfileSubmission extends Vue {
     grid-gap: 15px
 
     .thumbnail
-      display: block
       position: relative
+      display: block
+      overflow: hidden
+      padding: 0
       background-color: $background-grouped-tertiary-elevated
-      border: 2px solid $fill-primary
+      border: 2px solid $fill-tertiary
       border-radius: $border-radius
       transition: border-color 100ms linear
-      overflow: hidden
 
-      &:before
-        content: ''
+      img
         display: block
-        padding-bottom: 62.5% // 16:10
+        width: 100%
+        grid-row: 1 / -1
+        grid-column: 1
+        object-fit: cover
 
-      .content
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
+        &[lazy="loading"], &[lazy="error"]
+          padding: 18% 40%
 
-        img
-          width: 100%
-          height: 100%
-          object-fit: cover
+      &.thumbnail-video
+        grid-column-end: span 2
 
-          &[lazy="loading"], &[lazy="error"]
-            padding: 15% 30%
-
-        &.media-video:after
+        &:after
           content: ''
           display: block
           position: absolute
@@ -226,18 +220,12 @@ export default class ScholarProfileSubmission extends Vue {
           mask-image: url("~/assets/images/icon-play.svg")
           transition: background-color 100ms linear
 
-      &:hover
-        border-color: $sch-purple
-
-        .content.media-video:after
-          background-color: $sch-purple
-
       &.thumbnail-social
-        position: relative
+        color: $systemWhite
 
         .content
-          color: $systemWhite
-          padding: 20%
+          padding: 18% 40%
+          height: 100%
 
         .icon-link
           position: absolute
@@ -245,8 +233,6 @@ export default class ScholarProfileSubmission extends Vue {
           left: 10px
           width: 20px
           height: 20px
-          color: $systemWhite
-          z-index: 999
 
       &.thumbnail-appstore .content
         background-image: linear-gradient(to bottom, $social-gradient-appstore)
@@ -254,4 +240,9 @@ export default class ScholarProfileSubmission extends Vue {
       &.thumbnail-github .content
         background-image: linear-gradient(to bottom, $social-gradient-github)
 
+      &:hover
+        border-color: $sch-purple
+
+        &.media-video:after
+          background-color: $sch-purple
 </style>
