@@ -181,7 +181,7 @@ export default class ScholarProfileSubmission extends Vue {
 .screenshots
   .thumbnails
     display: grid
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr))
+    grid-auto-columns: repeat(2, minmax(350px, 1fr))
     grid-gap: 15px
 
     .thumbnail
@@ -205,7 +205,8 @@ export default class ScholarProfileSubmission extends Vue {
           padding: 18% 40%
 
       &.thumbnail-video
-        grid-column-end: span 2
+        +for-tablet-portrait-up
+          grid-column-end: span 2
 
         &:after
           content: ''
