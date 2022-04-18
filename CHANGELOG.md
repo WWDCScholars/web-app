@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.9](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.8...v3.19.0-pre.9) (2022-04-18)
+
+
+### Features
+
+* new submission social links ([cab1446](https://github.com/WWDCScholars/web-app/commit/cab14465b64dcb8bd53929cb54b64c7ed59eee6e))
+
+
+### Bug Fixes
+
+* Proper responsive screenshot columns ([739296e](https://github.com/WWDCScholars/web-app/commit/739296e1a6e66abbc32610015e53f0b9da8e27d8))
+
 ## [3.19.0-pre.8](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.7...v3.19.0-pre.8) (2022-03-26)
 
 
