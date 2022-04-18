@@ -13,6 +13,14 @@
 
   p.description {{ yearInfo.description }}
 
+  .links
+    a(href="#").link.link-appstore
+      .icon(v-html="require('~/assets/images/icon-social-appstore.svg?raw')")
+      .text App Store
+    a(href="#").link.link-github
+      .icon(v-html="require('~/assets/images/icon-social-github.svg?raw')")
+      .text Source Code
+
   .screenshots(v-if="media.length")
     .thumbnails
       button(
@@ -22,22 +30,6 @@
         :class="`thumbnail-${screenshot.mediaType}`"
       ).thumbnail
         img(v-lazy="screenshot.thumb")
-
-      a(
-        v-if="yearInfo.appstoreLink",
-        :href="yearInfo.appstoreLink",
-        target="_blank"
-      ).thumbnail.thumbnail-social.thumbnail-appstore
-        IconLink.icon-link
-        .content(v-html="require('~/assets/images/icon-social-appstore.svg?raw')")
-
-      a(
-        v-if="yearInfo.githubLink",
-        :href="yearInfo.githubLink",
-        target="_blank"
-      ).thumbnail.thumbnail-social.thumbnail-github
-        IconLink.icon-link
-        .content(v-html="require('~/assets/images/icon-social-github.svg?raw')")
 
     LightBox(
       :loop.once="true",
@@ -174,6 +166,41 @@ export default class ScholarProfileSubmission extends Vue {
   font-style: italic
   color: $label-secondary
 
+.links
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  grid-gap: 15px
+  margin-bottom: 15px
+
+  .link
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 6px 10px
+    font-size: 0.7em
+    color: $sch-purple
+    text-decoration: none
+    background-color: $background-grouped-secondary-elevated
+    border: 2px solid $sch-purple
+    border-radius: $border-radius
+    transition: background-color 100ms linear, border-color 100ms linear
+
+    .icon
+      display: inline-block
+      width: 24px
+      height: 24px
+
+    .text
+      margin-left: 8px
+      font-weight: 500
+
+    &:hover
+      color: $label-inverted
+      background-color: $sch-purple
+
+    &:hover
+      border-color: $sch-purple
+
 .description
   font-size: 0.9em
   white-space: pre-line
@@ -220,26 +247,6 @@ export default class ScholarProfileSubmission extends Vue {
           background-color: $sch-purple-secondary
           mask-image: url("~/assets/images/icon-play.svg")
           transition: background-color 100ms linear
-
-      &.thumbnail-social
-        color: $systemWhite
-
-        .content
-          padding: 18% 40%
-          height: 100%
-
-        .icon-link
-          position: absolute
-          top: 10px
-          left: 10px
-          width: 20px
-          height: 20px
-
-      &.thumbnail-appstore .content
-        background-image: linear-gradient(to bottom, $social-gradient-appstore)
-
-      &.thumbnail-github .content
-        background-image: linear-gradient(to bottom, $social-gradient-github)
 
       &:hover
         border-color: $sch-purple

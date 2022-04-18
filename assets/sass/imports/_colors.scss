@@ -74,10 +74,7 @@ $themes: (
     sch-red-highlight: color.scale($_light-sch-red, $lightness: -15%),
     sch-green-highlight: color.scale($_light-sch-green, $lightness: -15%),
     sch-blue-highlight: color.scale($_light-sch-blue, $lightness: -15%),
-    sch-orange-highlight: color.scale($_light-sch-orange, $lightness: -15%),
-
-    social-gradient-appstore: (rgb(26, 200, 251), rgb(29, 112, 242)),
-    social-gradient-github: (rgb(92, 90, 90), rgb(23, 21, 21)),
+    sch-orange-highlight: color.scale($_light-sch-orange, $lightness: -15%)
   ),
   $dark-theme: (
     background-primary-base: rgb(0, 0, 0),
@@ -131,10 +128,7 @@ $themes: (
     sch-red-highlight: color.scale($_dark-sch-red, $lightness: -5%),
     sch-green-highlight: color.scale($_dark-sch-green, $lightness: -5%),
     sch-blue-highlight: color.scale($_dark-sch-blue, $lightness: -5%),
-    sch-orange-highlight: color.scale($_dark-sch-orange, $lightness: -5%),
-
-    social-gradient-appstore: (rgb(26, 200, 251), rgb(29, 112, 242)),
-    social-gradient-github: (rgb(92, 90, 90), rgb(23, 21, 21)),
+    sch-orange-highlight: color.scale($_dark-sch-orange, $lightness: -5%)
   ),
 );
 
@@ -233,8 +227,5 @@ $sch-red-highlight: color("sch-red-highlight");
 $sch-green-highlight: color("sch-green-highlight");
 $sch-blue-highlight: color("sch-blue-highlight");
 $sch-orange-highlight: color("sch-orange-highlight");
-
-$social-gradient-appstore: color("social-gradient-appstore");
-$social-gradient-github: color("social-gradient-github");
 
 $shadow: var(--theme-shadow);
