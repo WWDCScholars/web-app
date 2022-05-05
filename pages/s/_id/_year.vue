@@ -251,6 +251,6 @@ export default class ScholarProfileSubmission extends Vue {
       &:hover
         border-color: $sch-purple
 
-        &.media-video:after
+        &.thumbnail-video:after
           background-color: $sch-purple
 </style>
