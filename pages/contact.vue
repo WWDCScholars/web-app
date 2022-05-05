@@ -4,7 +4,7 @@
     h2 Contact us
 
     form(name="contact").contact-form
-      ValidationObserver(v-slot="{ invalid }")
+      ValidationObserver(v-slot="{ invalid, reset }")
         base-form
           .group
             h3 Please select the reason for your inquiry
@@ -44,7 +44,7 @@
           .group
             base-button(
               :disabled="invalid",
-              @click="submit"
+              @click="submit(reset)"
             ).btn-cta Submit
 
     .contact-error(v-if="contactError")
@@ -110,7 +110,7 @@ export default class PageContact extends Vue {
     this.inquiry = ''
   }
 
-  async submit() {
+  async submit(resetValidation: () => void) {
     this.$nuxt.$loading.start()
     try {
       await this.$axios.post(
@@ -125,6 +125,7 @@ export default class PageContact extends Vue {
       )
       this.$nuxt.$loading.finish!()
       this.resetForm()
+      resetValidation()
     } catch (error) {
       this.$nuxt.$loading.fail!()
       console.error(error)
