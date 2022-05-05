@@ -118,7 +118,8 @@ const config: NuxtConfig = {
     '~/plugins/mapkit',
     '~/plugins/vee-validate',
 
-    '~/plugins/auth'
+    '~/plugins/auth',
+    '~/plugins/axios'
   ],
 
   /*
@@ -130,6 +131,9 @@ const config: NuxtConfig = {
 
     // Load Plausible Analytics
     'vue-plausible',
+
+    // Load Axios for contact form and link API
+    '@nuxtjs/axios',
 
     // Load sentry
     '@nuxtjs/sentry',
