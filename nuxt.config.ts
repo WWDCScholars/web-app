@@ -91,7 +91,10 @@ const config: NuxtConfig = {
    */
 
   publicRuntimeConfig: {
-    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`]
+    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`],
+    axios: {
+      browserBaseURL: process.env.BASE_URL
+    }
   },
   privateRuntimeConfig: {},
 
