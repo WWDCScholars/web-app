@@ -3,7 +3,7 @@
   base-section.section
     h2 Contact us
 
-    form(name="contact", data-netlify="true").contact-form
+    form(name="contact").contact-form
       ValidationObserver(v-slot="{ invalid }")
         base-form
           .group
