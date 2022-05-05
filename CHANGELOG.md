@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.10](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.9...v3.19.0-pre.10) (2022-05-05)
+
+
+### Bug Fixes
+
+* Thumbnail video playbutton on hover ([87cc8f5](https://github.com/WWDCScholars/web-app/commit/87cc8f5fbc8ac280643c34670a7bf7df3ad840c2))
+
 ## [3.19.0-pre.9](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.8...v3.19.0-pre.9) (2022-04-18)
 
 
