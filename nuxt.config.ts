@@ -6,6 +6,7 @@ dotenv()
 const version = require('./package.json').version
 const isDevelopment = (process.env.NODE_ENV === 'development')
 const isCI = (process.env.CI === 'true')
+const baseURL = process.env.BASE_URL || process.env.DEPLOY_PRIME_URL || 'http://localhost:3000'
 
 let envPrefix: string
 if (process.env.NODE_ENV === 'production') {
@@ -91,9 +92,10 @@ const config: NuxtConfig = {
    */
 
   publicRuntimeConfig: {
+    baseURL: baseURL,
     mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`],
     axios: {
-      browserBaseURL: process.env.BASE_URL
+      browserBaseURL: baseURL
     }
   },
   privateRuntimeConfig: {},
