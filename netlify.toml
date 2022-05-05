@@ -21,7 +21,7 @@
 
   # Sentry Deploy Environment
   [context.branch-deploy.environment]
-    BASE_URL = "https://develop.www.wwdcscholars.com"
+    BASE_URL = "$DEPLOY_PRIME_URL"
     SENTRY_ENVIRONMENT = "staging"
 
 # Content-Security-Policy
