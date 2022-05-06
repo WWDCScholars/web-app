@@ -174,7 +174,12 @@ const config: NuxtConfig = {
   sentry: {
     disabled: isDevelopment,
     dsn: process.env.SENTRY_DSN,
-    publishRelease: isCI,
+    publishRelease: isCI ? {
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      setCommits: { ignoreMissing: true }
+    } : {},
     sourceMapStyle: 'hidden-source-map',
     attachCommits: true,
     config: {
