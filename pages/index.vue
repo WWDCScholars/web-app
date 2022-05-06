@@ -42,30 +42,32 @@ export default class PageIndex extends Vue {
   @Years.State('years')
   allYears!: { [recordName: string]: WWDCYear }
 
-  @Years.Getter('sortedKeys')
-  sortedYearKeys!: string[]
+  @Years.Getter('sortedVisibleKeys')
+  sortedVisibleYearKeys!: string[]
+
+  @Years.Getter
+  latestVisibleYear?: WWDCYear
 
   @Scholars.State('scholars')
   allScholars!: { [recordName: string]: Scholar }
 
-  get latestYear(): WWDCYear {
-    const keys = this.sortedYearKeys
-    return this.allYears[keys[keys.length - 1]]
-  }
-
-  get currentYear(): WWDCYear {
+  get currentYear(): WWDCYear | undefined {
     if (this.$route.params.year) {
       return this.allYears[`WWDC ${this.$route.params.year}`]
     }
 
-    return this.latestYear
+    return this.latestVisibleYear
   }
 
   get yearLinks(): { [year: string]: object } {
-    return this.sortedYearKeys.reduce((acc, key) => {
+    if (!this.latestVisibleYear) {
+      return {}
+    }
+
+    return this.sortedVisibleYearKeys.reduce((acc, key) => {
       const record = this.allYears[key]
-      const params = record === this.latestYear ? {} : { year: record.year }
-      const customExactActive = record === this.latestYear && (record.year == this.$route.params.year || !this.$route.params.year)
+      const params = record === this.latestVisibleYear ? {} : { year: record.year }
+      const customExactActive = record === this.latestVisibleYear && (record.year == this.$route.params.year || !this.$route.params.year)
       acc[record.year] = {
         customExactActive,
         link:{
@@ -94,7 +96,7 @@ export default class PageIndex extends Vue {
   }
 
   async fetch() {
-    await this.$store.dispatch('years/queryYears')
+    await this.$store.dispatch('years/queryYears', false)
     const years = this.$store.state.years.years
 
     let year: WWDCYear
@@ -102,7 +104,7 @@ export default class PageIndex extends Vue {
     if (this.$route.params.year) {
       year = years[`WWDC ${this.$route.params.year}`]
     } else {
-      const keys = this.$store.getters['years/sortedKeys']
+      const keys = this.$store.getters['years/sortedVisibleKeys']
       year = years[keys[keys.length - 1]]
     }
     if (!year) {

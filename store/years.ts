@@ -16,8 +16,26 @@ export const getters: GetterTree<State, State> = {
   byRecordName: (state) => (recordName: string): WWDCYear | undefined => {
     return state.years[recordName]
   },
-  sortedKeys: (state): string[] => {
+  sortedKeys(state): string[] {
     return Object.keys(state.years).sort()
+  },
+  visibleYears(state): { [recordName: string]: WWDCYear } {
+    return Object.fromEntries(
+      Object.entries(state.years)
+        .filter(([recordName, year]) => !year.isHidden)
+    )
+  },
+  sortedVisibleKeys(state, getters): string[] {
+    return Object.keys(getters.visibleYears).sort()
+  },
+  latestVisibleYear(state, getters): WWDCYear | undefined {
+    const sortedKeys = getters.sortedVisibleKeys
+    if (!sortedKeys.length) {
+      return undefined
+    }
+
+    const lastYearKey = sortedKeys[sortedKeys.length - 1]
+    return state.years[lastYearKey]
   }
 }
 
@@ -29,9 +47,17 @@ export const actions: ActionTree<State, State> = {
     const year = await WWDCYear.fetch(recordName)
     commit('insertYear', year)
   },
-  async queryYears({ commit }): Promise<void> {
+  async queryYears({ commit }, includeHidden: boolean = false): Promise<void> {
+    const filterBy: CloudKit.RecordFieldFilter[] = []
+    if (!includeHidden) {
+      filterBy.push({
+        fieldName: 'isHidden',
+        comparator: CloudKit.QueryFilterComparator.EQUALS,
+        fieldValue: { value: 0 }
+      })
+    }
     const query: CloudKit.QueryBase = {
-      filterBy: [],
+      filterBy,
       sortBy: [{ fieldName: 'year' }]
     }
 
