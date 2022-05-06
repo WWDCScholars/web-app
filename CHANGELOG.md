@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.13](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.12...v3.19.0-pre.13) (2022-05-06)
+
+
+### Bug Fixes
+
+* Sentry attach commits automatically ([a11a246](https://github.com/WWDCScholars/web-app/commit/a11a2465214762be7811472ea66b9701006aea9f))
+
 ## [3.19.0-pre.12](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.11...v3.19.0-pre.12) (2022-05-06)
 
 ## [3.19.0-pre.11](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.10...v3.19.0-pre.11) (2022-05-06)
