@@ -178,10 +178,12 @@ const config: NuxtConfig = {
       authToken: process.env.SENTRY_AUTH_TOKEN,
       org: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJECT,
-      setCommits: { ignoreMissing: true }
+      setCommits: {
+        auto: true,
+        ignoreMissing: true
+      }
     } : {},
     sourceMapStyle: 'hidden-source-map',
-    attachCommits: true,
     config: {
       environment: process.env[`${envPrefix}_SENTRY_ENVIRONMENT`],
       release: `app@v${version}`,
