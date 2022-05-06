@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.11](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.10...v3.19.0-pre.11) (2022-05-06)
+
+
+### Features
+
+* Only show years that have isHidden == 0 ([d088c56](https://github.com/WWDCScholars/web-app/commit/d088c56beaefd799457f3067dc37faa085684f37))
+
 ## [3.19.0-pre.10](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.9...v3.19.0-pre.10) (2022-05-05)
 
 
