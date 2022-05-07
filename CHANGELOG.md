@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.20.0](https://github.com/WWDCScholars/web-app/compare/v3.19.1...v3.20.0) (2022-05-07)
+
+
+### Features
+
+* Load FAQItems from CloudKit, unify team and about stores ([491dc53](https://github.com/WWDCScholars/web-app/commit/491dc5356d777d909fc5f30b56fbfdd2d891075f))
+* Rudimentary markdown parsing ([e4e3847](https://github.com/WWDCScholars/web-app/commit/e4e384712436bcdd310b2ab3a849219ad94ba6b1))
+
 ### [3.19.1](https://github.com/WWDCScholars/web-app/compare/v3.19.0...v3.19.1) (2022-05-07)
 
 
