@@ -9,19 +9,17 @@
   # Default build command.
   command = "npm run build:prod"
 
-  # Sentry Deploy Environment
-  [build.environment]
-    BASE_URL = "https://www.wwdcscholars.com"
-    SENTRY_ENVIRONMENT= "production"
+# Environment variables ONLY for production deploys
+[context.production.environment]
+  BASE_URL = "https://www.wwdcscholars.com"
+  SENTRY_ENVIRONMENT= "production"
 
 # Branch Deploy context: all deploys that are not from a pull/merge request or
 # from the Production branch will inherit these settings.
 [context.branch-deploy]
   command = "npm run build:stage"
 
-  # Sentry Deploy Environment
   [context.branch-deploy.environment]
-    BASE_URL = "https://develop.www.wwdcscholars.com"
     SENTRY_ENVIRONMENT = "staging"
 
 # Content-Security-Policy

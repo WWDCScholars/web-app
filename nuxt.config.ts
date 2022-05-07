@@ -6,6 +6,7 @@ dotenv()
 const version = require('./package.json').version
 const isDevelopment = (process.env.NODE_ENV === 'development')
 const isCI = (process.env.CI === 'true')
+const baseURL = process.env.BASE_URL || process.env.DEPLOY_PRIME_URL || 'http://localhost:3000'
 
 let envPrefix: string
 if (process.env.NODE_ENV === 'production') {
@@ -80,18 +81,15 @@ const config: NuxtConfig = {
   },
 
   /*
-   ** Environent variables
-   */
-  env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
-  },
-
-  /*
    ** Runtime configuration
    */
 
   publicRuntimeConfig: {
-    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`]
+    baseURL: baseURL,
+    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`],
+    axios: {
+      browserBaseURL: baseURL
+    }
   },
   privateRuntimeConfig: {},
 
@@ -118,7 +116,8 @@ const config: NuxtConfig = {
     '~/plugins/mapkit',
     '~/plugins/vee-validate',
 
-    '~/plugins/auth'
+    '~/plugins/auth',
+    '~/plugins/axios'
   ],
 
   /*
@@ -130,6 +129,9 @@ const config: NuxtConfig = {
 
     // Load Plausible Analytics
     'vue-plausible',
+
+    // Load Axios for contact form and link API
+    '@nuxtjs/axios',
 
     // Load sentry
     '@nuxtjs/sentry',

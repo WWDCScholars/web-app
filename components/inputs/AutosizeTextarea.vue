@@ -25,4 +25,6 @@ export default class AutosizeTextarea extends Vue {
 </script>
 
 <style lang="sass" scoped>
+textarea
+  resize: vertical
 </style>

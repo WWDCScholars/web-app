@@ -7,6 +7,8 @@ footer.container-fluid
         span.separator
         nuxt-link(to="/privacy") Privacy Policy
         span.separator
+        nuxt-link(to="/contact") Contact
+        span.separator
         a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
 
       .attribution Social icons by #[a(href="https://icons8.com/l/sf/", target="_blank") Icons8]

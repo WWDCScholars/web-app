@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html {{ HTML_ATTRS }}>
+  <head {{ HEAD_ATTRS }}>
+    {{ HEAD }}
+  </head>
+  <body {{ BODY_ATTRS }}>
+    <!-- Netlify Forms -->
+    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="bot-field"/>
+      <input type="text" name="reason"/>
+      <input type="text" name="name"/>
+      <input type="email" name="email"/>
+      <textarea name="inquiry"></textarea>
+    </form>
+    <!-- /Netlify Forms -->
+    {{ APP }}
+  </body>
+</html>

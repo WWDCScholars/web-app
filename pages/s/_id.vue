@@ -210,10 +210,10 @@ export default class ScholarProfile extends Vue {
       && this.userScholarReference.recordName === this.scholar?.recordName
   }
 
-  head(ctx): MetaInfo {
+  head({ $config }): MetaInfo {
     const title = `${this.fullName} | WWDCScholars`
     const description = this.scholar?.biography ?? ''
-    const url = `${process.env.baseUrl}/s/${this.$route.params.id}`
+    const url = `${$config.baseURL}/s/${this.$route.params.id}`
 
     return {
       title,

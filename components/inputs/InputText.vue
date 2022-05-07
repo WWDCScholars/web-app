@@ -33,7 +33,8 @@
       :disabled="disabled",
       :value="value",
       :maxLength="maxLength",
-      @input="update($event)"
+      @input="update($event)",
+      :class="{ 'has-placeholder': placeholder.length }"
     )
     input(
       v-else,
@@ -45,7 +46,7 @@
     )
     span.title {{ placeholder }}
     span.optional(v-if="!required") Optional
-  .comment(v-if="type === 'textarea'") {{ Math.max(maxLength - length, 0) }} / {{ maxLength }} characters remaining
+  .comment(v-if="type === 'textarea' && maxLength") {{ Math.max(maxLength - length, 0) }} / {{ maxLength }} characters remaining
 </template>
 
 <script lang="ts">
@@ -69,8 +70,8 @@ export default class InputText extends Vue {
   required!: boolean
   @Prop({ default: false })
   disabled!: boolean
-  @Prop({ default: 0 })
-  maxLength!: number
+  @Prop({ default: undefined })
+  maxLength?: number
 
   value_validate: string = this.value || '' // tslint:disable-line
 
@@ -119,17 +120,19 @@ export default class InputText extends Vue {
   textarea
     padding-top: 10px
 
+    &.has-placeholder
+      padding-top: 20px
+
   .title
     position: absolute
-    top: 50%
+    top: 13px
     left: 15px
-    transform: translateY(-50%)
     color: $label-tertiary
     pointer-events: none
     transition: all 100ms linear
 
-  input:focus + .title, &.input-has-value .title
-    top: 12px
+  input:focus + .title, textarea:focus + .title, &.input-has-value .title
+    top: 5px
     font-size: 0.7em
 
   .optional

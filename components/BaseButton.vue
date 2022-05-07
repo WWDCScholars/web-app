@@ -4,7 +4,7 @@
   button(
     v-else,
     :disabled="disabled",
-    @click="onClick"
+    @click.prevent="onClick"
   )
     slot
 </template>
