@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.10...v3.19.0) (2022-05-07)
+
+
+### Features
+
+* Add axios ([c2e6fb8](https://github.com/WWDCScholars/web-app/commit/c2e6fb8914bc29e392472f52c922e5c2c6aaea6f))
+* Add InputSelect component ([0853915](https://github.com/WWDCScholars/web-app/commit/0853915c7dc4f4e37b429cb327532034ef211566))
+* Contact form ([faa5f99](https://github.com/WWDCScholars/web-app/commit/faa5f9973599d257ff9ae86d832e678d0a35ba5a))
+* Contact Form ([c621f91](https://github.com/WWDCScholars/web-app/commit/c621f91938cdb9f20156c37510e7d0e63fb32b0d))
+* Dark Mode ([71b455e](https://github.com/WWDCScholars/web-app/commit/71b455edb8ded9073cbcf8bfe2871351e10a3d42)), closes [#12](https://github.com/WWDCScholars/web-app/issues/12) [#14](https://github.com/WWDCScholars/web-app/issues/14)
+* Placeholder & no maxLength support for textarea ([2eb9afa](https://github.com/WWDCScholars/web-app/commit/2eb9afa0dcc29dd0c1ba33b923104d154ec923c4))
+
+
+### Bug Fixes
+
+* Prevent default in button click handler ([73a596f](https://github.com/WWDCScholars/web-app/commit/73a596fe3fc9d767b39df59f691736454680348b))
+* Reset validation state when resetting fields ([3163374](https://github.com/WWDCScholars/web-app/commit/3163374879896bb8bf4a5504eda7aa6a89a404d4))
+* Set BASE_URL only on production deploys ([674a280](https://github.com/WWDCScholars/web-app/commit/674a280ea6ce541556becd7ea232b774981a9040))
+* Use runtimeConfig baseURL ([dbde03e](https://github.com/WWDCScholars/web-app/commit/dbde03e48d8a455311fae29faaf3e60757998680))
+
 ## [3.19.0-pre.13](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.12...v3.19.0-pre.13) (2022-05-06)
 
 
