@@ -1,6 +1,6 @@
 <template lang="pug">
 nuxt-link(
-  :to.once="{ name: 's-id-year', params: { id: scholar.recordName } }",
+  :to.once="profileLocation",
   :id="scholar.recordName"
 ).scholar-thumbnail
   span.name {{ scholar.givenName }}
@@ -10,12 +10,26 @@ nuxt-link(
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Location } from 'vue-router'
 import { Scholar } from '@wwdcscholars/cloudkit'
 
 @Component
 export default class ScholarThumbnail extends Vue {
-  @Prop({ required: true })
+  @Prop({ required: true, type: Object })
   scholar!: Scholar
+
+  @Prop({ required: true, type: String })
+  year!: string
+
+  get profileLocation(): Location {
+    return {
+      name: 's-id-year',
+      params: {
+        id: this.scholar.recordName!,
+        year: this.year
+      }
+    }
+  }
 
   get profilePictureURL(): string {
     if (!this.scholar || !this.scholar.profilePicture) {
@@ -49,8 +63,8 @@ export default class ScholarThumbnail extends Vue {
     &[lazy="loading"], &[lazy="error"]
       padding: 10% 20% 30%
 
-    $gradient-start: rgba(246, 247, 248, 0)
-    $gradient-mid: $sch-gray2
+    $gradient-start: transparent
+    $gradient-mid: $grey5
     &[lazy="loading"] + .image-loading
       display: block
       position: absolute
@@ -77,8 +91,8 @@ export default class ScholarThumbnail extends Vue {
     border-bottom-left-radius: $border-radius-large
     border-bottom-right-radius: $border-radius-large
     z-index: 500
-    background-color: transparentize($sch-purple, 0.25)
-    color: $white
+    background-color: $sch-purple-secondary
+    color: $label-inverted
     font-size: 1.1em
     font-weight: 500
     text-align: center

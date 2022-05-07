@@ -1,8 +1,8 @@
 <template lang="pug">
-.container-fluid.color-gray
+.container-fluid.color-secondary
   section.section
-    h2.color-blue1 Welcome to WWDCScholars!
-    h3.color-blue1 Sign In with your Apple ID to Manage Your Profile
+    h2.color-blue Welcome to WWDCScholars!
+    h3.color-blue Sign In with your Apple ID to Manage Your Profile
 
     p.
       Are you a WWDC Scholarship or Swift Student Challenge Winner? You can showcase your submission by signing up at #[a(href="https://join.wwdcscholars.com") join.wwdcscholars.com]!
@@ -58,13 +58,13 @@ export default class PageSignin extends Vue {
     text-align: left
 
     a
-      color: $sch-blue1
+      color: $sch-blue
 
     i
       font-size: 0.9em
 
       a
-        color: $sch-gray
+        color: $label-secondary
 
     +for-phone-only
       padding-left: 15px
@@ -77,9 +77,9 @@ export default class PageSignin extends Vue {
     display: inline-block
     padding: 10px 20px
     font-weight: 500
-    color: black
-    background-color: $white
-    border: 1px solid black
+    color: $label-primary
+    background-color: $background-primary-base
+    border: 1px solid $label-primary // TODO: use fill/separator
     border-radius: $border-radius
     text-decoration: none
 </style>

@@ -2,38 +2,56 @@
 .submission(v-if="wwdcYear && yearInfo")
   p.challenge-description
     span(v-if="challengeDescription")
-      | {{ challengeDescription }}&nbsp;
+      | {{ challengeDescription }}&#32;
     span(v-if="yearInfo.description").
       Here’s how {{ scholar.givenName }} describes
       {{ scholar.gender | possessivePronoun }} winning submission.
+    span(v-else-if="!media.length").
+      Unfortunately we don't have any details on {{ scholar.givenName }}’s submission.
+
+    //- TODO: Maybe we also want a blurb for only screenshots...
 
   p.description {{ yearInfo.description }}
 
-  swiper(
-    v-if="yearInfo.screenshots && yearInfo.screenshots.length",
-    :options="swiperOptions"
-  ).screenshots
-      swiper-slide(
-        v-for="(screenshot, index) in yearInfo.screenshots",
-        :key="index"
-      ).screenshot
-        img(:src="screenshot.downloadURL")
-      .swiper-pagination(slot="pagination")
-      img(slot="button-prev", src="~assets/images/arrow-left.png").swiper-button-prev.swiper-button
-      img(slot="button-next", src="~assets/images/arrow-left.png").swiper-button-next.swiper-button
-  .no-screenshots(v-else)
-    i Unfortunately we don't have any screenshots of this submission.
+  .links
+    a(href="#").link.link-appstore
+      .icon(v-html="require('~/assets/images/icon-social-appstore.svg?raw')")
+      .text App Store
+    a(href="#").link.link-github
+      .icon(v-html="require('~/assets/images/icon-social-github.svg?raw')")
+      .text Source Code
+
+  .screenshots(v-if="media.length")
+    .thumbnails
+      button(
+        v-for="(screenshot, index) in media",
+        :key="'thumbnail-' + index",
+        @click="selectedScreenshot = index",
+        :class="`thumbnail-${screenshot.mediaType}`"
+      ).thumbnail
+        img(v-lazy="screenshot.thumb")
+
+    LightBox(
+      :loop.once="true",
+      :slideshow.once="false",
+      :gallery.once="false",
+      :youtubeCookies.once="false",
+      :items="media",
+      :index="selectedScreenshot",
+      @close="selectedScreenshot = null"
+    )
 </template>
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import { SwiperOptions } from 'swiper'
+import LightBox from 'vue-cool-lightbox'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
 import { routeMatchYear, yearMatchYearInfo } from '~/util/wwdcYear-index'
+import { getVideoPreviewUrl } from '~/util/video'
+import IconLink from '~/assets/images/icon-link.svg?inline'
 
-import 'swiper/css/swiper.css'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 import { name as scholarsName } from '~/store/scholars'
 const Scholars = namespace(scholarsName)
@@ -43,7 +61,8 @@ const Years = namespace(yearsName)
 
 @Component({
   components: {
-    Swiper, SwiperSlide
+    LightBox,
+    IconLink
   }
 })
 export default class ScholarProfileSubmission extends Vue {
@@ -59,6 +78,10 @@ export default class ScholarProfileSubmission extends Vue {
   @Scholars.Action('loadYearInfoIfMissing')
   scholarLoadYearInfoIfMissing!: (payload: { scholarRecordName: string, yearInfoRecordName: string }) => Promise<void>
 
+  selectedScreenshot: number | null = null
+  videoPreviewUrl: string | null = null
+
+  /** Approved year reference the page should display */
   get wwdcYearReference(): CloudKit.Reference | undefined {
     if (!this.scholar) return undefined
     return routeMatchYear(this.scholar.wwdcYearsApproved, this.$route.params.year)
@@ -79,28 +102,27 @@ export default class ScholarProfileSubmission extends Vue {
     return this.wwdcYear.challengeDescription || ''
   }
 
-  get swiperOptions(): SwiperOptions {
-    const shouldLoop = (this.yearInfo?.screenshots?.length ?? 0) > 1
+  get media(): object[] {
+    if (!this.yearInfo || !this.yearInfo.screenshots) return []
 
-    return {
-      autoplay: {
-        delay: 8000,
-        disableOnInteraction: true
-      },
-      loop: shouldLoop,
-      grabCursor: false,
-      setWrapperSize: false,
-      spaceBetween: 15,
-      slidesPerView: 'auto',
-      centeredSlides: true,
-      navigation: {
-        prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next'
-      },
-      pagination: {
-        el: '.swiper-pagination'
-      }
+    let result: object[] = []
+
+    if (this.videoPreviewUrl) {
+      result.push({
+        src: this.yearInfo.videoLink,
+        thumb: this.videoPreviewUrl,
+        mediaType: 'video'
+      })
     }
+
+    return result.concat(
+      this.yearInfo.screenshots
+        .map(screenshot => ({
+          src: screenshot.downloadURL,
+          thumb: screenshot.downloadURL, // TODO: different URL when we have the image proxy
+          mediaType: 'image'
+        }))
+    )
   }
 
   validate({ params }): boolean {
@@ -112,7 +134,7 @@ export default class ScholarProfileSubmission extends Vue {
     if (!this.scholar || !this.wwdcYearReference) return
 
     // load data for year
-    const yearInfoReference = yearMatchYearInfo(this.scholar.wwdcYearInfos, this.scholar.wwdcYearsApproved, this.wwdcYearReference.recordName)
+    const yearInfoReference = yearMatchYearInfo(this.scholar.wwdcYearInfos, this.scholar.wwdcYears, this.wwdcYearReference.recordName)
     if (!yearInfoReference) return
 
     await Promise.all([
@@ -122,6 +144,11 @@ export default class ScholarProfileSubmission extends Vue {
         yearInfoRecordName: yearInfoReference.recordName
       })
     ])
+
+    if (this.yearInfo && this.yearInfo.videoLink) {
+      getVideoPreviewUrl(this.yearInfo.videoLink)
+        .then(previewUrl => this.videoPreviewUrl = previewUrl)
+    }
   }
 
   @Watch('$route.params')
@@ -132,73 +159,98 @@ export default class ScholarProfileSubmission extends Vue {
 </script>
 
 <style lang="sass" scoped>
+@use "sass:math"
+
 .challenge-description
   font-size: 0.85em
   font-style: italic
-  color: $apl-black3
+  color: $label-secondary
+
+.links
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  grid-gap: 15px
+  margin-bottom: 15px
+
+  .link
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 6px 10px
+    font-size: 0.7em
+    color: $sch-purple
+    text-decoration: none
+    background-color: $background-grouped-secondary-elevated
+    border: 2px solid $sch-purple
+    border-radius: $border-radius
+    transition: background-color 100ms linear, border-color 100ms linear
+
+    .icon
+      display: inline-block
+      width: 24px
+      height: 24px
+
+    .text
+      margin-left: 8px
+      font-weight: 500
+
+    &:hover
+      color: $label-inverted
+      background-color: $sch-purple
+
+    &:hover
+      border-color: $sch-purple
 
 .description
   font-size: 0.9em
   white-space: pre-line
 
 .screenshots
-  position: relative
-  left: -60px
-  right: -60px
-  width: calc(100% + 120px)
-  height: 300px
-  margin-top: 40px
+  .thumbnails
+    display: grid
+    grid-auto-columns: repeat(2, minmax(350px, 1fr))
+    grid-gap: 15px
 
-  +for-phone-only
-    left: -20px
-    right: -20px
-    width: calc(100% + 40px)
+    .thumbnail
+      position: relative
+      display: block
+      overflow: hidden
+      padding: 0
+      background-color: $background-grouped-tertiary-elevated
+      border: 2px solid $fill-tertiary
+      border-radius: $border-radius
+      transition: border-color 100ms linear
 
-  .screenshot
-    width: auto
+      img
+        display: block
+        width: 100%
+        grid-row: 1 / -1
+        grid-column: 1
+        object-fit: cover
 
-    img
-      max-width: 100vw
-      height: 100%
-      object-fit: contain
+        &[lazy="loading"], &[lazy="error"]
+          padding: 18% 40%
 
-.no-screenshots
-  font-size: 0.8em
-  text-align: center
+      &.thumbnail-video
+        +for-tablet-portrait-up
+          grid-column-end: span 2
 
-$swiper-arrow-width: 34px
-$swiper-arrow-height: 52px
-.swiper-container
-  .swiper-button
-    background: 0
-    width: $swiper-arrow-width
-    height: $swiper-arrow-height
-    margin-top: -$swiper-arrow-height / 2
-    opacity: 0.5
-    transition: opacity 100ms linear
-    outline: 0
+        &:after
+          content: ''
+          display: block
+          position: absolute
+          top: 50%
+          left: 50%
+          transform: translate(-50%, -50%)
+          width: 64px
+          height: 64px
+          background-color: $sch-purple-secondary
+          mask-image: url("~/assets/images/icon-play.svg")
+          transition: background-color 100ms linear
 
-    &.swiper-button-next
-      transform: rotate(180deg)
+      &:hover
+        border-color: $sch-purple
 
-    &.swiper-button-disabled
-      opacity: 0
-
-  /deep/.swiper-pagination-bullets
-    opacity: 0.7
-    transition: opacity 100ms linear
-
-    .swiper-pagination-bullet
-      background-color: $white
-      box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5)
-      opacity: 1
-
-    .swiper-pagination-bullet-active
-      background-color: $sch-purple
-
-  &:hover .swiper-button, &:hover .swiper-pagination-bullets
-    opacity: 1
-
-    &.swiper-button-disabled
-      opacity: 0
+        &.thumbnail-video:after
+          background-color: $sch-purple
 </style>

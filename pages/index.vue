@@ -15,6 +15,7 @@
       scholar-thumbnail(
         v-for="scholar in currentScholars",
         :scholar.once="scholar",
+        :year.once="currentYear.year",
         :key="scholar.recordName"
       )
     .no-scholars(v-else) #[i Unfortunately there are no Scholars to show yet]&nbsp;&nbsp;😭
@@ -41,30 +42,32 @@ export default class PageIndex extends Vue {
   @Years.State('years')
   allYears!: { [recordName: string]: WWDCYear }
 
-  @Years.Getter('sortedKeys')
-  sortedYearKeys!: string[]
+  @Years.Getter('sortedVisibleKeys')
+  sortedVisibleYearKeys!: string[]
+
+  @Years.Getter
+  latestVisibleYear?: WWDCYear
 
   @Scholars.State('scholars')
   allScholars!: { [recordName: string]: Scholar }
 
-  get latestYear(): WWDCYear {
-    const keys = this.sortedYearKeys
-    return this.allYears[keys[keys.length - 1]]
-  }
-
-  get currentYear(): WWDCYear {
+  get currentYear(): WWDCYear | undefined {
     if (this.$route.params.year) {
       return this.allYears[`WWDC ${this.$route.params.year}`]
     }
 
-    return this.latestYear
+    return this.latestVisibleYear
   }
 
   get yearLinks(): { [year: string]: object } {
-    return this.sortedYearKeys.reduce((acc, key) => {
+    if (!this.latestVisibleYear) {
+      return {}
+    }
+
+    return this.sortedVisibleYearKeys.reduce((acc, key) => {
       const record = this.allYears[key]
-      const params = record === this.latestYear ? {} : { year: record.year }
-      const customExactActive = record === this.latestYear && (record.year == this.$route.params.year || !this.$route.params.year)
+      const params = record === this.latestVisibleYear ? {} : { year: record.year }
+      const customExactActive = record === this.latestVisibleYear && (record.year == this.$route.params.year || !this.$route.params.year)
       acc[record.year] = {
         customExactActive,
         link:{
@@ -93,7 +96,7 @@ export default class PageIndex extends Vue {
   }
 
   async fetch() {
-    await this.$store.dispatch('years/queryYears')
+    await this.$store.dispatch('years/queryYears', false)
     const years = this.$store.state.years.years
 
     let year: WWDCYear
@@ -101,7 +104,7 @@ export default class PageIndex extends Vue {
     if (this.$route.params.year) {
       year = years[`WWDC ${this.$route.params.year}`]
     } else {
-      const keys = this.$store.getters['years/sortedKeys']
+      const keys = this.$store.getters['years/sortedVisibleKeys']
       year = years[keys[keys.length - 1]]
     }
     if (!year) {
@@ -137,8 +140,8 @@ export default class PageIndex extends Vue {
 
   .scholar-thumbnail-loading
     border-radius: $border-radius-large
-    background-color: $background-gray
-    background-image: linear-gradient(to top, $background-gray, transparentize($sch-gray3, 0.9)), linear-gradient(to right, $sch-gray3 0%, $background-gray 20%, $sch-gray3 40%, $sch-gray3 100%)
+    background-color: $background-grouped-primary-base
+    background-image: linear-gradient(to top, $background-grouped-primary-base, $fill-tertiary), linear-gradient(to right, $fill-tertiary 0%, $background-grouped-primary-base 20%, $fill-tertiary 40%, $fill-tertiary 100%)
     background-repeat: no-repeat
     background-size: 800% 100%
     animation-name: shimmer
@@ -157,5 +160,5 @@ export default class PageIndex extends Vue {
 .no-scholars
   margin-top: 30px
   text-align: center
-  color: $sch-gray0
+  color: $label-secondary
 </style>

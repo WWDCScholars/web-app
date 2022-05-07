@@ -2,6 +2,132 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0-pre.13](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.12...v3.19.0-pre.13) (2022-05-06)
+
+
+### Bug Fixes
+
+* Sentry attach commits automatically ([a11a246](https://github.com/WWDCScholars/web-app/commit/a11a2465214762be7811472ea66b9701006aea9f))
+
+## [3.19.0-pre.12](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.11...v3.19.0-pre.12) (2022-05-06)
+
+## [3.19.0-pre.11](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.10...v3.19.0-pre.11) (2022-05-06)
+
+
+### Features
+
+* Only show years that have isHidden == 0 ([d088c56](https://github.com/WWDCScholars/web-app/commit/d088c56beaefd799457f3067dc37faa085684f37))
+
+## [3.19.0-pre.10](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.9...v3.19.0-pre.10) (2022-05-05)
+
+
+### Bug Fixes
+
+* Thumbnail video playbutton on hover ([87cc8f5](https://github.com/WWDCScholars/web-app/commit/87cc8f5fbc8ac280643c34670a7bf7df3ad840c2))
+
+## [3.19.0-pre.9](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.8...v3.19.0-pre.9) (2022-04-18)
+
+
+### Features
+
+* new submission social links ([cab1446](https://github.com/WWDCScholars/web-app/commit/cab14465b64dcb8bd53929cb54b64c7ed59eee6e))
+
+
+### Bug Fixes
+
+* Proper responsive screenshot columns ([739296e](https://github.com/WWDCScholars/web-app/commit/739296e1a6e66abbc32610015e53f0b9da8e27d8))
+
+## [3.19.0-pre.8](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.7...v3.19.0-pre.8) (2022-03-26)
+
+
+### Features
+
+* New screenshot thumbnail approach for submissions ([08e1fb2](https://github.com/WWDCScholars/web-app/commit/08e1fb2e17981ac0b8253da81c79a9f3c34e67eb))
+
+## [3.19.0-pre.7](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.6...v3.19.0-pre.7) (2022-03-20)
+
+
+### Features
+
+* Hover state for social links ([6cd3788](https://github.com/WWDCScholars/web-app/commit/6cd378868ada4162725946ad4604b7eb34bf4392))
+* Streamline Copyable design ([b7a3779](https://github.com/WWDCScholars/web-app/commit/b7a377913712511821b22088474077c5d4dfcf39))
+
+
+### Bug Fixes
+
+* Align social icon weights ([c9da6b2](https://github.com/WWDCScholars/web-app/commit/c9da6b28d795b1e48dca116404cd3aec484c9f3f))
+
+## [3.19.0-pre.6](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.5...v3.19.0-pre.6) (2022-03-10)
+
+
+### Bug Fixes
+
+* check vimeo videoId existance ([21b04be](https://github.com/WWDCScholars/web-app/commit/21b04be4c2eedf3cd3e3d122c3b99b68865a0bad))
+
+## [3.19.0-pre.5](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.4...v3.19.0-pre.5) (2022-03-06)
+
+
+### Features
+
+* Add link icon to link thumbnails ([92f58e0](https://github.com/WWDCScholars/web-app/commit/92f58e09ed2f8718a593f97986675c1451680184))
+
+## [3.19.0-pre.4](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.3...v3.19.0-pre.4) (2022-03-06)
+
+## [3.19.0-pre.3](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.2...v3.19.0-pre.3) (2022-03-06)
+
+
+### Features
+
+* Always include year in profile URLs ([7689416](https://github.com/WWDCScholars/web-app/commit/768941681480dbd080dd1673cb602d13502d131c))
+* Better title texts for social icons ([d2306af](https://github.com/WWDCScholars/web-app/commit/d2306af4a2b6eb6812561959b176ef5929f2a883))
+* Display AppStore and GitHub links ([8da71d2](https://github.com/WWDCScholars/web-app/commit/8da71d2b8b3076182234e123b4a840659147c570))
+* Display submission videos inline with screenshots ([e086549](https://github.com/WWDCScholars/web-app/commit/e086549d2bf4e9bff84e1b71f0b7d9d871099306))
+* Replace swiper with lightbox ([9efd353](https://github.com/WWDCScholars/web-app/commit/9efd35356eaa45da6dba3688af6063cbc851e34d))
+
+
+### Bug Fixes
+
+* Add missing space in scholarships blurb ([6d6458f](https://github.com/WWDCScholars/web-app/commit/6d6458ff10c1cd6fa984d712160174626466fb2b))
+* Adjust play icon spacing a bit ([cbde6f2](https://github.com/WWDCScholars/web-app/commit/cbde6f2a243cd1415444b7c05d35d4faef5f380e))
+* Remove log from Vimeo thumbnail loading ([a9bacbc](https://github.com/WWDCScholars/web-app/commit/a9bacbc120426ad36920970125cbf31728f00451))
+
+## [3.19.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.1...v3.19.0-pre.2) (2022-01-14)
+
+
+### Features
+
+* Improve sholarships blurb for one-time winners ([be9af15](https://github.com/WWDCScholars/web-app/commit/be9af15171ce61704ac0002a2a32da95b4fcb2e2))
+* Use CSS colors for marks in maps ([bbb3636](https://github.com/WWDCScholars/web-app/commit/bbb36363db3d77f21db0298c772a2dd6762a7097))
+* Use css colors for progress indicator ([ed0f53c](https://github.com/WWDCScholars/web-app/commit/ed0f53c2a06538b4193f089f698ea7f11c1cbbb6))
+* Use minimal favicon ([d6d45f8](https://github.com/WWDCScholars/web-app/commit/d6d45f815de5d509c8a3cb65af2445392368d346))
+* Use SF social icons ([407e32e](https://github.com/WWDCScholars/web-app/commit/407e32e1d5f12404edaff3c9be8259f0e1a6e10e))
+
+
+### Bug Fixes
+
+* Add padding on imprint and privacy policy pages ([274f247](https://github.com/WWDCScholars/web-app/commit/274f2473adf60a2883a02ac1d1515771304b697f))
+* Better dark mode brand colors ([742ac99](https://github.com/WWDCScholars/web-app/commit/742ac99737e73d02f4c6255f22f22fa0f5795494))
+* Disable hover for disable text fields ([433e44d](https://github.com/WWDCScholars/web-app/commit/433e44d5c6d9b51960906b0da021a5458c366dac))
+* Footer scrolling and color picker layout on mobile ([c72a349](https://github.com/WWDCScholars/web-app/commit/c72a349cebba07f8262f304d41528b5fb74fa727))
+* Improve sch-purple-secondary for dark mode ([17c29c9](https://github.com/WWDCScholars/web-app/commit/17c29c9ca243ef04110c9ad2188829be516c52ef))
+* Load initial values from props in MKMarkerAnnotation ([90b4409](https://github.com/WWDCScholars/web-app/commit/90b4409e5849b4d15a4016756853bc4ca2cfd1ab))
+* Load only approved years on Scholar profile ([4d67fc7](https://github.com/WWDCScholars/web-app/commit/4d67fc71d43df03ed2daf831ffa45c10a4865255))
+* Use theme-color meta tags ([013d072](https://github.com/WWDCScholars/web-app/commit/013d072f48ffe66b7b60c69681898fd1476c2f69))
+
+## [3.19.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v3.18.4...v3.19.0-pre.1) (2021-11-30)
+
+
+### Features
+
+* Dark Mode ([#12](https://github.com/WWDCScholars/web-app/issues/12)) ([0047a78](https://github.com/WWDCScholars/web-app/commit/0047a78a60303938bd0501739262a138f1105d38)), closes [#14](https://github.com/WWDCScholars/web-app/issues/14)
+
+## [3.19.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.18.3...v3.19.0-pre.0) (2021-11-30)
+
+
+### Features
+
+* Dark Mode ([#12](https://github.com/WWDCScholars/web-app/issues/12)) ([83c9568](https://github.com/WWDCScholars/web-app/commit/83c9568e9aaa6b238f8520cc2dedc4fc9b582f20)), closes [#14](https://github.com/WWDCScholars/web-app/issues/14)
+
 ### [3.18.4](https://github.com/WWDCScholars/web-app/compare/v3.18.3...v3.18.4) (2021-11-12)
 
 

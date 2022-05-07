@@ -3,10 +3,13 @@ MKMap(
   ref="map",
   :options="mapOptions",
   :region="region"
+  :colorScheme="this.$colorMode.value"
 ).profile-map
   MKMarkerAnnotation(
     v-if="coordinate",
     :options="annotationOptions",
+    :color="color",
+    :glyphColor="glyphColor",
     :coordinate="coordinate",
     :title="annotationTitle"
   )
@@ -15,6 +18,7 @@ MKMap(
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { MKMap, MKMarkerAnnotation } from './mapkit'
+import { getCSSColor } from '~/util/css-variable'
 
 @Component({
   components: { MKMap, MKMarkerAnnotation }
@@ -32,12 +36,11 @@ export default class ProfileMap extends Vue {
     showsScale: 'hidden',
     showsMapTypeControl: false,
     showsUserLocationControl: false,
-    showsPointsOfInterest: false
+    showsPointsOfInterest: false,
+    colorScheme: this.$colorMode.value
   }
   annotationOptions: mapkit.MarkerAnnotationConstructorOptions = {
     enabled: false,
-    color: this.$config.colors.purple,
-    glyphColor: 'white',
     glyphImage: { 1: '/icons/logo_plain_minimal.svg' }
   }
 
@@ -49,6 +52,16 @@ export default class ProfileMap extends Vue {
       new mapkit.CoordinateSpan(11, 11)
     )
   }
+
+  get color(): string {
+    if (this.$colorMode.value === 'unknown') return ''
+    return getCSSColor('sch-purple')
+  }
+
+  get glyphColor(): string {
+    if (this.$colorMode.value === 'unknown') return ''
+    return getCSSColor('label-inverted')
+  }
 }
 </script>
 
@@ -57,11 +70,11 @@ export default class ProfileMap extends Vue {
   width: 100%
   height: 100%
 
-  /deep/ .mk-controls-container
+  ::v-deep .mk-controls-container
     inset: 0px 0px 30px
 
 @media (min-width: #{$container-max-width + 60px})
   .profile-map
-    /deep/ .mk-controls-container
+    ::v-deep .mk-controls-container
       inset: 0px 0px 0px
 </style>

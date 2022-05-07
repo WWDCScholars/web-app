@@ -47,11 +47,11 @@ export default class BaseButton extends Vue {
     display: block
     padding: 12px 15px
     min-width: 160px
-    border: 1px solid $form-border-color
+    border: 1px solid $grey2
     border-radius: $border-radius
     font-size: 1em
-    color: $sch-gray
-    background-color: $white
+    color: $label-primary
+    background-color: $background-grouped-tertiary-elevated
     text-align: center
     text-transform: none
     text-decoration: none
@@ -61,96 +61,38 @@ export default class BaseButton extends Vue {
       min-width: 100px
 
     &:hover
-      background-color: darken($background-gray, 6%)
+      background-color: $fill-secondary
 
   &.btn-round > .button, a
     padding: 10px 15px
-    border: 2px solid $form-border-color
+    border: 2px solid $grey2
     border-radius: 32px
 
     &:hover
-      background-color: $background-gray
-      color: $white
+      background-color: $background-grouped-tertiary-elevated
+      color: $label-primary
 
-  .btn-confirm
-    position: absolute
-    max-width: 360px
-    bottom: calc(100% + 4px)
-    padding: 8px
-    background-color: $white
-    border: 1px solid $sch-gray3
-    border-radius: $border-radius
-    opacity: 1
-    transition: opacity 100ms linear
-    +shadow
-
-    &.hidden
-      opacity: 0
-
-    .text
-      font-size: 0.8em
-      overflow-wrap: break-word
-      white-space: pre-line
-
-    .btn-confirm-actions
-      display: flex
-      justify-content: flex-end
-      margin-top: 8px
-
-      button
-        margin-left: 8px
-        font-size: 0.8em
-        padding: 3px 8px
-        min-width: auto
-
-        &.btn-cancel
-          background-color: $sch-gray0
-          border-color: lighten($sch-gray0, 5%)
-
-    .triangle
-      position: absolute
-      bottom: -20px
-      left: 70px
-      width: 20px
-      height: 20px
-      overflow: hidden
-
-      &:after
-        content: ''
-        position: absolute
-        display: block
-        width: 10px
-        height: 12px
-        background-color: $white
-        transform: rotate(45deg)
-        top: -6px
-        left: 5px
-        border-bottom-right-radius: 2px
-        +shadow
-
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .btn
     button, a
-      background-color: $bg
-      border-color: $bg
-      color: $fg
+      background-color: color($bg)
+      border-color: color($bg)
+      color: color($fg)
 
       &:hover
-        background-color: darken($bg, 10%)
-        border-color: darken($bg, 10%)
+        background-color: highlightColor($bg)
+        border-color: highlightColor($bg)
 
       &:disabled
-        background-color: $sch-gray2
-        border-color: $sch-gray1
+        background-color: $background-grouped-tertiary-elevated
+        border-color: $fill-primary
+        color: $label-tertiary
 
     &.btn-round > button, a
-      background-color: $fg
-      color: $bg
+      background-color: color($fg)
+      color: color($bg)
 
       &:hover
-        background-color: $bg
-        color: $fg
+        background-color: color($bg)
+        color: color($fg)
 </style>

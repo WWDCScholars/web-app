@@ -122,7 +122,7 @@
     <p>You have the option to reset your data protection settings on Twitter under the account settings at <a href="https://twitter.com/account/settings" target="_blank" rel="noopener">https://twitter.com/account/settings</a>.</p>-->
     <h2>5. Analysis tools and advertising</h2>
     <h3>Plausible Analytics</h3>
-    <p>We use the open source Plausible Analytics routed through our stats subdomain to count website visits. You can see the same data we can see on <a href="https://plausible.io/wwdcscholars.com" target="_blank" rel="noopener">the public dashboard</a>. No cookies are used and no personal data, not even an IP address or browser user agent, is stored. For more information, see <a href="https://plausible.io/data-policy" target="_blank" rel="noopener">the Plausible Data Policy</a>.</p>
+    <p>We use the open source Plausible Analytics to count website visits. You can see the same data we do on <a href="https://plausible.io/wwdcscholars.com" target="_blank" rel="noopener">the public dashboard</a>. No cookies are used and no personal data, not even an IP address or browser user agent, are stored. For more information, see <a href="https://plausible.io/data-policy" target="_blank" rel="noopener">the Plausible Data Policy</a>.</p>
     <h2>6. Plug-ins and Tools</h2>
     <!--<h3>YouTube</h3>
     <p>Our website/app uses plug-ins of the YouTube platform, which is operated by Google. The website operator is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.</p>
@@ -219,7 +219,7 @@ export default class PagePrivacy extends Vue {
   margin: 0 auto
 
   h1, h2, h3
-    color: $sch-blue1
+    color: $sch-blue
 
   h2
     text-align: left
@@ -231,5 +231,11 @@ export default class PagePrivacy extends Vue {
     font-weight: 500
 
   a
-    color: $sch-blue1
+    color: $sch-blue
+
+  +for-phone-only
+    padding: 0 15px
+
+    h1, h2, h3
+      padding: 0
 </style>

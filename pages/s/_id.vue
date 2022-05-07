@@ -25,75 +25,78 @@
             alt="Twitter",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-twitter.png")
+            div(v-html="require('~/assets/images/icon-social-twitter.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.instagram",
             :href="scholar.loadedSocialMedia.instagram",
             alt="Instagram",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-instagram.png")
+            div(v-html="require('~/assets/images/icon-social-instagram.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.github",
             :href="scholar.loadedSocialMedia.github",
             alt="GitHub",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-github.png")
+            div(v-html="require('~/assets/images/icon-social-github.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.linkedin",
             :href="scholar.loadedSocialMedia.linkedin",
             alt="LinedIn",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-linkedin.png")
+            div(v-html="require('~/assets/images/icon-social-linkedin.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.imessage",
             :href="'imessage://' + scholar.loadedSocialMedia.imessage",
             alt="iMessage",
           ).social-icon
-            img(src="~assets/images/icon-messages.png")
+            div(v-html="require('~/assets/images/icon-social-messages.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.facebook",
             :href="scholar.loadedSocialMedia.facebook",
             alt="Facebook",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-facebook.png")
+            div(v-html="require('~/assets/images/icon-social-facebook.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.itunes",
             :href="scholar.loadedSocialMedia.itunes",
             alt="App Store Developer Page",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-appstore.png")
+            div(v-html="require('~/assets/images/icon-social-appstore.svg?raw')")
           a(v-if="scholar.loadedSocialMedia.website",
             :href="scholar.loadedSocialMedia.website",
             alt="Website",
             target="_blank"
           ).social-icon
-            img(src="~assets/images/icon-website.png")
+            div(v-html="require('~/assets/images/icon-social-website.svg?raw')")
 
           copyable(
             v-if="scholar.loadedSocialMedia.discord",
             :value="scholar.loadedSocialMedia.discord"
-          ).social-icon.social-nolink.social-discord
-            img(src="~assets/images/icon-discord.png")
+          ).social-discord
+            div(v-html="require('~/assets/images/icon-social-discord.svg?raw')").social-icon
 
         .scholarships
           h3 Scholarships
 
-          p.scholarships-blurb.
-            {{ scholar.givenName }} has been awarded a WWDC scholarship
-            {{ numAttended | readableNumber }}
-            {{ 'time' | quantize(numAttended) }}.
-            Here {{ numAttended | isAre }} the
-            {{ 'submission' | quantize(numAttended) }} that got
-            {{ scholar.gender | pronoun }} there.
+          p.scholarships-blurb
+            template(v-if="numAttended > 1").
+              {{ scholar.givenName }} has been awarded a WWDC scholarship
+              {{ numAttended | readableNumber }}
+              {{ 'time' | quantize(numAttended) }}.
+            template(v-else).
+              {{ scholar.givenName }} has been awarded a WWDC scholarship in {{ Object.keys(submissionLinks)[0] }}.
+            | &#32;Here {{ numAttended | isAre }} the
+            | {{ 'submission' | quantize(numAttended) }} that got
+            | {{ scholar.gender | pronoun }} there.
 
-          .submission-selector
-            nuxt-link(
-              v-for="({ link, activeClass }, year) in submissionLinks",
-              :to="link",
-              :key="year",
-              :class="activeClass"
-            ) {{ year }}
+            .submission-selector(v-if="numAttended > 1")
+              nuxt-link(
+                v-for="({ link, activeClass }, year) in submissionLinks",
+                :to="link",
+                :key="year",
+                :class="activeClass"
+              ) {{ year }}
 
-          nuxt-child(:scholar="scholar")
+            nuxt-child(:scholar="scholar")
 
         base-button(v-if="editProfileLinkVisible").btn-round.edit-profile
           nuxt-link(slot="nobtn", to="/profile") Edit Profile
@@ -179,33 +182,25 @@ export default class ScholarProfile extends Vue {
   }
 
   get numAttended(): number {
-    if (!this.scholar || !this.scholar.wwdcYears) return 0
-    return this.scholar.wwdcYears.length
+    if (!this.scholar || !this.scholar.wwdcYearsApproved) return 0
+    return this.scholar.wwdcYearsApproved.length
   }
 
   get submissionLinks(): { [year: string]: object } {
     if (!this.scholar || !this.scholar.wwdcYearsApproved) return {}
     const sortedYears = this.scholar.wwdcYearsApproved.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
-    const lastYearReference = sortedYears[sortedYears.length - 1]
     return sortedYears
       .reduce((acc, yearReference) => {
         const year = yearReference.recordName.substring(5)
-        const yearParam = yearReference.recordName === lastYearReference.recordName ? undefined : year
-        const exactActive = !yearParam && this.$route.params.year === lastYearReference.recordName.substring(5)
-          ? 'nuxt-link-exact-active'
-          : undefined
-
         acc[year] = {
           link: {
             name: 's-id-year',
             params: {
               id: this.$route.params.id,
-              year: yearParam
+              year: year
             }
-          },
-          activeClass: exactActive
+          }
         }
-
         return acc
       }, {})
   }
@@ -264,6 +259,22 @@ export default class ScholarProfile extends Vue {
       return
     }
 
+    // redirect to last year
+    if (!this.$route.params.year) {
+      const sortedYears = scholar.wwdcYearsApproved.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
+      if (sortedYears.length > 0) {
+        const lastYear = sortedYears[sortedYears.length - 1]
+        const location = {
+          name: this.$route.name!,
+          params: {
+            id: scholar.recordName!,
+            year: lastYear.recordName.substring(5)
+          }
+        }
+        this.$router.replace(location)
+      }
+    }
+
     // TODO: Maybe we don't have to await this.
     await this.$store.dispatch('scholars/loadSocialMediaIfMissing', {
       scholarRecordName: scholar.recordName,
@@ -320,7 +331,7 @@ export default class ScholarProfile extends Vue {
   width: 100%
   height: 360px
   position: relative
-  background-color: $sch-gray0
+  background-color: $background-grouped-primary-base
 
 .section
   position: relative
@@ -343,8 +354,8 @@ export default class ScholarProfile extends Vue {
       width: 100%
       height: 100%
       object-fit: cover
-      border: 8px solid $white
-      background-color: $sch-gray2
+      border: 8px solid $background-grouped-tertiary-elevated
+      background-color: $background-grouped-tertiary-elevated
       border-radius: 50%
       overflow: hidden
       box-sizing: border-box
@@ -362,7 +373,7 @@ export default class ScholarProfile extends Vue {
 
     .age
       margin-left: 10px
-      color: lighten($sch-purple, 40%)
+      color: $sch-purple-quarternary
 
     +for-phone-only
       margin-top: 20px
@@ -371,13 +382,13 @@ export default class ScholarProfile extends Vue {
   .location
     font-size: 1.2em
     font-weight: 500
-    color: $apl-black2
+    color: $label-secondary
 
     +for-phone-only
       font-size: 1em
 
   .short-bio
-    margin-top: 30px
+    margin-top: 20px
     font-size: 0.9em
     white-space: pre-line
 
@@ -385,28 +396,37 @@ export default class ScholarProfile extends Vue {
     display: flex
     justify-content: flex-start
     align-items: center
-    margin-top: 30px
+    flex-wrap: wrap
+    margin-top: 20px
 
     .social-icon
-      margin-right: 15px
+      margin-right: 4px
+      width: 36px
+      height: 36px
+      padding: 4px
+      border-radius: $border-radius
+      color: $sch-purple
+      background-color: transparent
+      transition: background-color 100ms linear
 
-      img
-        width: 32px
-        height: 32px
-
-      &.social-nolink
-        img
-          width: 24px
-          height: 24px
+      &:hover
+        background-color: $fill-tertiary
 
     .social-discord
-      height: 32px
-      padding-left: 15px
-      color: $sch-gray
-      border-left: 1px solid $sch-gray1
+      color: $label-secondary
+      border-radius: $border-radius
+      padding-right: 4px
+      background-color: transparent
+      transition: background-color 100ms linear
 
-      &:first-of-type
-        border-left: 0
+      &:hover
+        background-color: $fill-tertiary
+
+      .social-icon
+        margin-right: 0px
+
+        &:hover
+          background-color: transparent
 
   .scholarships
     margin-top: 40px
@@ -418,6 +438,11 @@ export default class ScholarProfile extends Vue {
 
       +for-phone-only
         font-size: 1.2em
+
+    .scholarships-blurb
+      font-size: 0.85em
+      font-style: italic
+      color: $label-secondary
 
   .submission-selector
     display: flex
@@ -441,12 +466,12 @@ export default class ScholarProfile extends Vue {
 
       &:hover
         background-color: $sch-purple
-        color: $white
+        color: $label-inverted
 
       &.nuxt-link-exact-active
         font-weight: 700
         background-color: $sch-purple
-        color: $white
+        color: $label-inverted
         +shadow
 
         &:after

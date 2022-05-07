@@ -2,9 +2,10 @@
 .page
   page-header(:link="{ path: '/' }")
     template(v-slot:left)
-      navigation-mobile
+      navigation-mobile-button
     template(v-slot:right)
       navigation-desktop
+  navigation-mobile
   .content-wrapper
     nuxt
   page-footer
@@ -16,7 +17,8 @@ import {
   PageHeader,
   PageFooter,
   NavigationDesktop,
-  NavigationMobile
+  NavigationMobile,
+  NavigationMobileButton
 } from '~/components'
 
 @Component({
@@ -24,7 +26,8 @@ import {
     PageHeader,
     PageFooter,
     NavigationDesktop,
-    NavigationMobile
+    NavigationMobile,
+    NavigationMobileButton
   }
 })
 export default class LayoutDefault extends Vue {}
@@ -32,17 +35,16 @@ export default class LayoutDefault extends Vue {}
 
 <style lang="sass" scoped>
 .page
-  padding-bottom: 15px
   min-height: 100vh
+  min-height: -webkit-fill-available
+  display: flex
+  flex-direction: column
+  align-items: space-between
 
   .content-wrapper
-    position: relative
-    top: $header-height
-    margin-bottom: $header-height
-    min-height: calc(100vh - #{$header-height + $footer-height} - 50px - 15px)
+    margin-top: $header-height
+    flex-grow: 1
 
     +for-phone-only
-      top: $header-height-mobile
-      margin-bottom: $header-height-mobile
-      min-height: calc(100vh - #{$header-height-mobile + $footer-height} - 50px - 15px)
+      margin-top: $header-height-mobile
 </style>

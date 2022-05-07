@@ -6,9 +6,9 @@ base-section
       v-if="yearInfo",
       :class="yearInfo.status",
       :to="profileSubmissionLink(yearInfo)"
-    ).status {{ yearInfo.status }}
+    ).status {{ yearInfo.status | uppercase }}
 
-  ValidationObserver(v-slot="{ invalid }", tag="div", ref="form")
+  ValidationObserver(v-slot="{ invalid, changed }", tag="div", ref="form")
     base-form(v-if="yearInfo")
       .group
         h3 Applied As
@@ -72,7 +72,7 @@ base-section
             @click="deleteYear"
           ) Delete
         base-button(
-          :disabled="invalid || !customChanged",
+          :disabled="invalid || !changed",
           @click="submit"
         ).btn-cta Save
     .loading(v-else) Loading...
@@ -163,17 +163,6 @@ export default class ProfileSubmission extends Vue {
     return 'pending'
   }
 
-  get customChanged(): boolean {
-    // workaround because arrays don't get the changed flag in VeeValidate
-    if (this.$refs.form) {
-      const form = this.$refs.form as any
-      if (form.fields && form.fields.screenshots) {
-        return form.flags.changed || form.fields.screenshots.dirty
-      }
-    }
-    return false
-  }
-
   get formData(): {
     appliedAs?: ('student' | 'stem' | 'both'),
     description?: string,
@@ -250,7 +239,7 @@ export default class ProfileSubmission extends Vue {
 .loading
   text-align: center
   font-style: italic
-  color: $sch-gray
+  color: $label-secondary
 
 .header
   display: flex
@@ -263,18 +252,21 @@ export default class ProfileSubmission extends Vue {
 
   .status
     margin-left: 20px
-    padding: 2px 10px 4px
+    padding: 3px 6px
     border-radius: $border-radius
-    font-size: 0.7em
-    color: $white
+    font-size: 0.6em
+    color: $label-inverted
     text-decoration: none
 
     &.approved
-      background-color: $sch-green
+      background-color: $systemGreen
 
     &.pending
-      background-color: $sch-orange
+      background-color: $systemYellow
 
     &.rejected
-      background-color: $sch-red2
+      background-color: $systemRed
+
+.btn-cta
+  grid-column: span 1 !important
 </style>

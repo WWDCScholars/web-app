@@ -36,6 +36,10 @@ const config: NuxtConfig = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: META.description, hid: 'description' },
 
+      // Style
+      { name: 'theme-color', content: 'rgb(242, 242, 247)', media: '(prefers-color-scheme: light)' },
+      { name: 'theme-color', content: 'rgb(0, 0, 0)', media: '(prefers-color-scheme: dark)' },
+
       // App Store Banner
       { name: 'apple-itunes-app', content: 'app-id=1459158255' },
 
@@ -44,7 +48,7 @@ const config: NuxtConfig = {
       { property: 'og:title', content: META.title, hid: 'og:title' },
       { property: 'og:description', content: META.description, hid: 'og:description' },
       { property: 'og:image', content: META.image, hid: 'og:image' },
-      { property: 'og:image:alt', content: META.title, hid: 'og:image:alt'},
+      { property: 'og:image:alt', content: META.title, hid: 'og:image:alt' },
       { property: 'og:url', content: META.url, hid: 'og:url' },
       { name: 'twitter:card', content: 'summary_large_image', hid: 'twitter:card' },
       { name: 'twitter:title', content: META.title, hid: 'twitter:title' },
@@ -56,7 +60,7 @@ const config: NuxtConfig = {
     ],
     link: [
       { rel: 'canonical', href: META.url, hid: 'canonical' },
-      { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico' },
+      { rel: 'icon', href: '/icons/favicon-48.png' },
       {
         rel: 'apple-touch-icon-precomposed',
         href: '/icons/favicon-180.png',
@@ -87,10 +91,7 @@ const config: NuxtConfig = {
    */
 
   publicRuntimeConfig: {
-    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`],
-    colors: {
-      purple: 'rgb(65, 53, 153)'
-    }
+    mapKitJwt: process.env[`${envPrefix}_MAPKIT_JWT`]
   },
   privateRuntimeConfig: {},
 
@@ -98,8 +99,8 @@ const config: NuxtConfig = {
    ** Customize the progress-bar color
    */
   loading: {
-    color: 'rgb(65, 53, 153)',
-    failedColor: '#D83946'
+    color: 'var(--color-sch-purple)',
+    failedColor: 'var(--color-sch-red)'
   },
 
   /*
@@ -131,14 +132,18 @@ const config: NuxtConfig = {
     'vue-plausible',
 
     // Load sentry
-    '@nuxtjs/sentry'
+    '@nuxtjs/sentry',
+
+    // Load color-scheme / colorMode
+    '@nuxtjs/color-mode'
   ],
 
   /*
    ** Global SASS variables and mixins
    */
   styleResources: {
-    sass: ['~assets/sass/imports/_index.sass']
+    sass: ['~assets/sass/imports/_index.sass'],
+    hoistUseStatements: true
   },
 
   /*
@@ -169,9 +174,16 @@ const config: NuxtConfig = {
   sentry: {
     disabled: isDevelopment,
     dsn: process.env.SENTRY_DSN,
-    publishRelease: isCI,
+    publishRelease: isCI ? {
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      setCommits: {
+        auto: true,
+        ignoreMissing: true
+      }
+    } : {},
     sourceMapStyle: 'hidden-source-map',
-    attachCommits: true,
     config: {
       environment: process.env[`${envPrefix}_SENTRY_ENVIRONMENT`],
       release: `app@v${version}`,
@@ -204,7 +216,10 @@ const config: NuxtConfig = {
     '@nuxt/typescript-build',
 
     // Load global SASS variables and mixins
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+
+    // Load svg loader
+    '@nuxtjs/svg',
   ],
 
   /*

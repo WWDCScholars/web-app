@@ -70,6 +70,17 @@ export default class MKMarkerAnnotation extends Vue {
       new mapkit.Coordinate(this.coordinate.latitude, this.coordinate.longitude),
       this.options
     )
+
+    // Set properties from props
+    this.setTitle(this.title)
+    this.setSubtitle(this.subtitle)
+    this.setTitleVisibility(this.titleVisibility)
+    this.setSubtitleVisibility(this.subtitleVisibility)
+    this.setColor(this.color)
+    this.setGlyphColor(this.glyphColor)
+    this.setGlyphText(this.glyphText)
+    this.setGlyphImage(this.glyphImage)
+
     this.$map?.addAnnotation(this.$annotation)
   }
 

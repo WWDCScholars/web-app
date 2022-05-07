@@ -13,7 +13,7 @@ header.header
     href="https://itunes.apple.com/app/scholars-of-wwdc/id1459158255?mt=8",
     target="_blank"
   ).appstore-download
-    img(src="~assets/images/appstore.svg")
+    img(:src="require(`assets/images/appstore.svg`)")
 
   slot(name="right")
 </template>
@@ -34,8 +34,7 @@ export default class PageHeader extends Vue {
   position: fixed
   width: 100%
   height: $header-height
-  background-color: transparentize($sch-gray4, 0.1)
-  color: $white
+  background-color: $background-tertiary-base
   z-index: 1000
   display: flex
   justify-content: space-between
@@ -53,8 +52,8 @@ export default class PageHeader extends Vue {
     left: 0
     right: 0
     bottom: 0
-    height: 1.5px
-    background-color: $sch-gray2
+    height: 1px
+    background-color: $separator
 
   +for-phone-only
     padding: 0 20px 0 20px

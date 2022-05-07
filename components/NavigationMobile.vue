@@ -1,33 +1,39 @@
 <template lang="pug">
-.navigation-mobile
-  burger-button(v-model="menuOpen").navigation-mobile-toggle
-  nav(:class="{ 'navigation-mobile-open': menuOpen }")
+.navigation-mobile(:class="{ 'navigation-mobile-open': isOpen }")
+  nav
     ul
       li: nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
       li: nuxt-link(to="/about").color-green: span About
-      li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue1: span Join
+      li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue: span Join
     ul(v-if="!isAuthPending && isAuthenticated").auth-links
       li: nuxt-link(v-if="profileLink", :to="profileLink").color-purple: span Profile
       li: nuxt-link(to="/profile").color-purple: span Edit Profile
       li: button(@click="onSignOutClicked").color-purple: span Sign Out
     ul(v-else-if="!isAuthPending").auth-links
       li: nuxt-link(to="/signin").color-purple: span Sign In
+    .spacer
+    div(class="color-mode")
+      ColorModePicker(name="color-mode-mobile")
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import { CloudKit } from '@wwdcscholars/cloudkit'
-import BurgerButton from './BurgerButton.vue'
+import ColorModePicker from './ColorModePicker.vue'
+
+import * as mobileMenu from '~/store/mobile-menu'
+const MobileMenu = namespace(mobileMenu.name)
 
 import * as auth from '~/store/auth'
 const Auth = namespace(auth.name)
 
 @Component({
-  components: { BurgerButton }
+  components: { ColorModePicker }
 })
 export default class NavigationMobile extends Vue {
-  menuOpen: boolean = false
+  @MobileMenu.State
+  isOpen!: boolean
 
   @Auth.State('isPending')
   isAuthPending!: boolean
@@ -62,54 +68,50 @@ export default class NavigationMobile extends Vue {
     this.signOut()
     this.$router.replace('/')
   }
-
-  @Watch('$route')
-  onRouteChanged() {
-    this.menuOpen = false
-  }
 }
 </script>
 
 <style lang="sass" scoped>
 .navigation-mobile
   display: none
+  z-index: 998
+  position: fixed
+  top: $header-height-mobile
+  right: 0
+  bottom: 0
+  left: 0
+  pointer-events: none
+  opacity: 0
 
   +for-phone-only
     display: block
 
-  /deep/.burger-button
+  &.navigation-mobile-open
+    pointer-events: auto
+    opacity: 1
+
+  ::v-deep .burger-button
     z-index: 999
     top: -2px
 
   nav
-    position: absolute
-    top: 0
-    left: 0
     width: 100%
-    height: 0vh
-    z-index: 998
+    height: 0%
     display: flex
     flex-direction: column
     justify-content: flex-start
     align-items: flex-start
-    padding-top: $header-height-mobile
-    background-color: $white
-    opacity: 0
-    pointer-events: none
+    background-color: $background-primary-base
     transition: opacity 200ms ease-in-out, height 200ms ease-in-out
-
-    &.navigation-mobile-open
-      height: 100vh
-      opacity: 1
-      pointer-events: auto
 
     ul
       margin: 0
       padding: 5px 40px 5px 20px
       width: 100%
+      list-style-type: none
 
       &.auth-links
-        border-top: 1px solid $sch-gray1
+        border-top: 1px solid $separator
 
       li
         a, button
@@ -141,4 +143,14 @@ export default class NavigationMobile extends Vue {
           &.nuxt-link-active:not(.nuxt-link-root)
             &:before
               display: block
+
+    .spacer
+      flex-grow: 1
+
+    .color-mode
+      align-self: center
+      margin-bottom: 20px
+
+  &.navigation-mobile-open nav
+    height: calc(100% - env(safe-area-inset-bottom))
 </style>

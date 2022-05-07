@@ -17,10 +17,13 @@
       ref="map",
       :options="mapOptions",
       :region="region"
+      :colorScheme="this.$colorMode.value"
     ).map
       MKMarkerAnnotation(
         v-if="center",
         :options="annotationOptions",
+        :color="color",
+        :glyphColor="glyphColor",
         :coordinate="center",
       )
 </template>
@@ -30,6 +33,7 @@ import { Component, Model, Prop, Vue } from 'nuxt-property-decorator'
 import { CloudKit } from '@wwdcscholars/cloudkit'
 import InputText from './InputText.vue'
 import { MKSearch, MKMap, MKMarkerAnnotation } from '../mapkit'
+import { getCSSColor } from '~/util/css-variable'
 
 @Component({
   components: {
@@ -60,12 +64,12 @@ export default class InputLocation extends Vue {
     showsMapTypeControl: false,
     showsZoomControl: true,
     showsUserLocationControl: false,
-    showsPointsOfInterest: false
+    showsPointsOfInterest: false,
+    colorScheme: this.$colorMode.value
   }
+
   annotationOptions: mapkit.MarkerAnnotationConstructorOptions = {
     enabled: false,
-    color: this.$config.colors.purple,
-    glyphColor: 'white',
     glyphImage: { 1: '/icons/logo_plain_minimal.svg' }
   }
 
@@ -76,6 +80,16 @@ export default class InputLocation extends Vue {
       this.center,
       new mapkit.CoordinateSpan(11, 11)
     )
+  }
+
+  get color(): string {
+    if (this.$colorMode.value === 'unknown') return ''
+    return getCSSColor('sch-purple')
+  }
+
+  get glyphColor(): string {
+    if (this.$colorMode.value === 'unknown') return ''
+    return getCSSColor('label-inverted')
   }
 
   value_validate: { latitude: number; longitude: number } = this.value || { latitude: 0, longitude: 0 }
@@ -126,11 +140,11 @@ export default class InputLocation extends Vue {
 .input-location
   position: relative
 
-  /deep/ .mk-autocomplete-results
+  ::v-deep .mk-autocomplete-results
     z-index: 1000
     top: calc(100% - 1px)
-    background-color: $white
-    border: 1px solid $form-border-color
+    background-color: $background-grouped-secondary-elevated
+    border: 1px solid $grey2
     border-radius: $border-radius
     box-shadow: 0 2px 6px $shadow
 
@@ -143,10 +157,10 @@ export default class InputLocation extends Vue {
     width: 100%
     padding-top: 51%
     margin-top: 15px
-    border: 1px solid $sch-gray1
+    border: 1px solid $grey3
     border-radius: $border-radius
     overflow: hidden
-    background-color: $sch-gray0
+    background-color: $background-grouped-secondary-elevated
 
     .map
       position: absolute
@@ -155,19 +169,13 @@ export default class InputLocation extends Vue {
       bottom: 0
       left: 0
 
-+form-colors
-  $bg: dyn-temp('bg')
-  $fg: dyn-temp('fg')
-
++form-colors using ($fg, $bg)
   .input-location
-    /deep/ .mk-autocomplete-results
-      box-shadow: 0 2px 6px transparentize($bg, 0.6)
+    ::v-deep .mk-autocomplete-results
+      box-shadow: 0 2px 6px tertiaryColor($bg)
 
       .mk-result
         &:hover, &.mk-result-selected
           color: $fg
           background-color: $bg
-
-          span
-            color: transparentize($fg, 0.2)
 </style>
