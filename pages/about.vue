@@ -13,7 +13,7 @@
 
       .team-cards
         team-card(
-          v-for="member in members",
+          v-for="member in teamMembers",
           :key="member.recordName"
           :name="member.name",
           :age="member.birthday | yearDifference",
@@ -27,47 +27,28 @@
         .title WWDCScholarships
 
       base-section
-        .subsection
-          h4.color-red What is a WWDC Scholarship?
-          p.
-            The #[a(href="https://developer.apple.com/wwdc/", target="_blank") Apple Worldwide Developers Conference (WWDC)]
-            is a conference held annually in California by Apple Inc. The event gathers approximately 5000 developers in one place to learn about and discuss the latest software and technologies for Apple platform developers. Attendees can participate in hands-on labs with Apple engineers, and in-depth sessions covering a wide variety of topics.
-          p.
-            Every year, Apple rewards up to 350 talented students and STEM organization members with an opportunity to attend the conference as a scholarship winner. Individuals selected for a scholarship will receive a WWDC ticket, lodging for the conference, and one year of membership in the Apple Developer Program free of charge.
-
-        .subsection
-          h4.color-red How can I apply?
-          p.
-            #[i Due to being held online, the WWDC Scholarship is called Swift Student Challenge in 2021. Applications are currently open. Don't miss any announcements by #[a(href="https://twitter.com/WWDCScholars", target="_blank") following us on Twitter (@WWDCScholars)].]
-            The application for a WWDC scholarship consists of a combination of a Swift Playground to showcase your ingenuity and written responses to a few questions. You can #[a(href="https://developer.apple.com/wwdc21/swift-student-challenge/", target="_blank") find out more on the WWDC Website].
-
-        .subsection
-          h4.color-red How do I join WWDCScholars?
-          p.
-            If you are a WWDC scholarship winner, you can #[a(href="https://join.wwdcscholars.com", target="_blank") sign up to create a profile on our website]. This is a great way to connect with fellow Scholars and help you to get the most out of the conference.
-
-          p.
-            Typically it takes us some time to update the signup form each year so it might not be available immediately after results are out. Be sure to #[a(href="https://twitter.com/WWDCScholars", target="_blank") follow us on Twitter (@WWDCScholars) to stay up to date].
-
-
-        .subsection
-          h4.color-red Is there anything I can help with?
-          p.
-            We are always on the lookout for creative individuals and like-minded developers from all around the world to help us build our platform for WWDC scholarship winners. Our current projects include a native iOS app written in Swift as well as two Vue.js web applications for signup and this website. Everything we develop is openly #[a(href="https://github.com/WWDCScholars", target="_blank") available on GitHub]. If you are interested in contributing to any of our projects, check out the open issues of the respective repository, or create a new one to suggest an improvement or request a feature.
+        .subsection(
+          v-for="item in faqItems",
+          :key="item.recordName"
+        )
+          h4.color-red {{ item.question }}
+          p(v-if="item.comment", v-html="replaceMarkdown(item.comment)").comment
+          p(v-html="replaceMarkdown(item.answer)")
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
 import { namespace } from 'vuex-class'
-import { TeamMember } from '@wwdcscholars/cloudkit'
+import { TeamMember, FAQItem } from '@wwdcscholars/cloudkit'
 import {
   BaseSection,
   TeamCard
 } from '~/components'
+import { replaceLinebreaksAndLinks } from '~/util/markdown'
 
-import { name as teamName } from '~/store/team'
-const Team = namespace(teamName)
+import { name as aboutName } from '~/store/about'
+const About = namespace(aboutName)
 
 @Component({
   components: {
@@ -76,15 +57,25 @@ const Team = namespace(teamName)
   }
 })
 export default class PageAbout extends Vue {
-  @Team.Getter('allMembers')
-  members!: TeamMember[]
+  @About.State
+  teamMembers!: TeamMember[]
+
+  @About.State
+  faqItems!: FAQItem[]
 
   head(): MetaInfo {
     return { title: 'About | WWDCScholars' }
   }
 
   async fetch() {
-    await this.$store.dispatch('team/queryMembers')
+    await Promise.all([
+      this.$store.dispatch('about/queryTeamMembers'),
+      this.$store.dispatch('about/queryFAQItems')
+    ])
+  }
+
+  replaceMarkdown(markdown: string): string {
+    return replaceLinebreaksAndLinks(markdown)
   }
 }
 </script>
@@ -120,13 +111,13 @@ h3
     margin-bottom: 60px
 
 .subsection
-  a
+  ::v-deep a
     color: inherit
 
-  p i
-    display: block
+  .comment
     font-size: 0.8em
-    margin-bottom: 6px
+    font-style: italic
+    margin-bottom: 0px
 
 .team-picture
   position: relative
