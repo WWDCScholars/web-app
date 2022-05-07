@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.19.1](https://github.com/WWDCScholars/web-app/compare/v3.19.0...v3.19.1) (2022-05-07)
+
+
+### Bug Fixes
+
+* Conditionally show App Store and GitHub links ([a35fcca](https://github.com/WWDCScholars/web-app/commit/a35fcca8436fec91d5d2debca4c3a6f4419d6f00))
+
 ## [3.19.0](https://github.com/WWDCScholars/web-app/compare/v3.19.0-pre.10...v3.19.0) (2022-05-07)
 
 
