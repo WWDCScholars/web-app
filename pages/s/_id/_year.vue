@@ -14,10 +14,18 @@
   p.description {{ yearInfo.description }}
 
   .links
-    a(href="#").link.link-appstore
+    a(
+      v-if="yearInfo.appstoreLink",
+      :href="yearInfo.appstoreLink",
+      target="_blank"
+    ).link.link-appstore
       .icon(v-html="require('~/assets/images/icon-social-appstore.svg?raw')")
       .text App Store
-    a(href="#").link.link-github
+    a(
+      v-if="yearInfo.githubLink",
+      :href="yearInfo.githubLink",
+      target="_blank"
+    ).link.link-github
       .icon(v-html="require('~/assets/images/icon-social-github.svg?raw')")
       .text Source Code
 
