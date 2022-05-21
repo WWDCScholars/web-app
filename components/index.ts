@@ -29,3 +29,4 @@ export { default as ModalLoadingSpinner } from './ModalLoadingSpinner.vue'
 
 export * from './inputs'
 export * from './mapkit'
+export * from './profile'

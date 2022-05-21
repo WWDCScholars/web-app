@@ -3,7 +3,7 @@ import { RuleParamSchema, ValidationMessageTemplate } from 'vee-validate/dist/ty
 const validate = (files: File | string | (File | string)[]) => {
   const regex = /\.(jpg|jpeg|png)$/i
 
-  if (typeof files === 'string') {
+  if (!files || typeof files === 'string') {
     return true
   }
 
