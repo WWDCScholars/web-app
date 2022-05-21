@@ -27,10 +27,7 @@ export default class InputRadioGroup extends Vue {
   @Prop({ type: Boolean, default: false })
   required!: boolean
 
-  value_validate: string = this.value || ''  // tslint:disable-line
-
   update(value) {
-    this.value_validate = value
     this.$emit('change', value)
   }
 }
@@ -47,9 +44,7 @@ export default class InputRadioGroup extends Vue {
     position: relative
     margin: 0 15px 0 0
     cursor: pointer
-    flex-grow: 1
-    flex-basis: 80px
-    max-width: 150px
+    min-width: 120px
 
     span
       display: block
