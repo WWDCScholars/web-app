@@ -74,7 +74,7 @@
           ).social-discord
             div(v-html="require('~/assets/images/icon-social-discord.svg?raw')").social-icon
 
-        .scholarships
+        .scholarships(v-if="numAttended > 0")
           h3 Scholarships
 
           p.scholarships-blurb
@@ -98,8 +98,7 @@
 
             nuxt-child(:scholar="scholar")
 
-        base-button(v-if="editProfileLinkVisible").btn-round.edit-profile
-          nuxt-link(slot="nobtn", to="/profile") Edit Profile
+        base-button(v-if="editProfileLinkVisible", to="/profile").btn-round.edit-profile Edit Profile
 </template>
 
 <script lang="ts">
@@ -260,7 +259,7 @@ export default class ScholarProfile extends Vue {
     }
 
     // redirect to last year
-    if (!this.$route.params.year) {
+    if (!this.$route.params.year && scholar.wwdcYearsApproved) {
       const sortedYears = scholar.wwdcYearsApproved.slice().sort((lhs, rhs) => lhs.recordName.localeCompare(rhs.recordName))
       if (sortedYears.length > 0) {
         const lastYear = sortedYears[sortedYears.length - 1]
