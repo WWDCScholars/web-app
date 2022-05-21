@@ -11,12 +11,14 @@ $_light-sch-red: rgb(239, 83, 73);
 $_light-sch-blue: rgb(62, 181, 217);
 $_light-sch-green: rgb(58, 178, 152);
 $_light-sch-orange: rgb(249, 149, 50);
+$_light-system-white: rgb(255, 255, 255);
 
 $_dark-sch-purple: rgb(128, 124, 218);
 $_dark-sch-red: rgb(255, 106, 106);
 $_dark-sch-blue: rgb(104, 182, 213);
 $_dark-sch-green: rgb(45, 177, 148);
 $_dark-sch-orange: rgb(255, 169, 82);
+$_dark-system-white: rgb(242, 240, 240);
 
 // ----------------------------------------------
 // Define the light/dark mode color map
@@ -48,10 +50,11 @@ $themes: (
     fill-secondary: rgba(120, 120, 128, 0.16),
     fill-tertiary: rgba(118, 118, 128, 0.12),
 
-    systemRed: rgb(255, 59, 48),
-    systemYellow: rgb(255, 204, 0),
-    systemGreen: rgb(52, 199, 89),
-    systemWhite: rgb(255, 255, 255),
+    system-red: rgb(255, 59, 48),
+    system-yellow: rgb(255, 204, 0),
+    system-green: rgb(52, 199, 89),
+    system-white: $_light-system-white,
+    system-black: rgb(0, 0, 0),
     grey1: rgb(142, 142, 147),
     grey2: rgb(174, 174, 178),
     grey3: rgb(199, 199, 204),
@@ -72,6 +75,7 @@ $themes: (
     sch-blue-tertiary: color.scale($_light-sch-blue, $alpha: -40%), // sch-blue with 0.6 alpha
     sch-orange-tertiary: color.scale($_light-sch-orange, $alpha: -40%), // sch-orange with 0.6 alpha
 
+    system-white-highlight: color.scale($_light-system-white, $lightness: -15%),
     sch-purple-highlight: color.scale($_light-sch-purple, $lightness: -15%),
     sch-red-highlight: color.scale($_light-sch-red, $lightness: -15%),
     sch-green-highlight: color.scale($_light-sch-green, $lightness: -15%),
@@ -104,10 +108,11 @@ $themes: (
     fill-secondary: rgba(120, 120, 128, 0.32),
     fill-tertiary: rgba(118, 118, 128, 0.24),
 
-    systemRed: rgb(255, 69, 58),
-    systemYellow: rgb(255, 214, 10),
-    systemGreen: rgb(48, 209, 88),
-    systemWhite: rgb(242, 240, 240),
+    system-red: rgb(255, 69, 58),
+    system-yellow: rgb(255, 214, 10),
+    system-green: rgb(48, 209, 88),
+    system-white: $_dark-system-white,
+    system-black: rgb(0, 0, 0),
     grey1: rgb(142, 142, 147),
     grey2: rgb(99, 99, 102),
     grey3: rgb(72, 72, 74),
@@ -128,6 +133,7 @@ $themes: (
     sch-blue-tertiary: color.scale($_dark-sch-blue, $alpha: -40%), // sch-blue with 0.6 alpha
     sch-orange-tertiary: color.scale($_dark-sch-orange, $alpha: -40%), // sch-orange with 0.6 alpha
 
+    system-white-highlight: color.scale($_dark-system-white, $lightness: -5%),
     sch-purple-highlight: color.scale($_dark-sch-purple, $lightness: -5%),
     sch-red-highlight: color.scale($_dark-sch-red, $lightness: -5%),
     sch-green-highlight: color.scale($_dark-sch-green, $lightness: -5%),
@@ -203,10 +209,11 @@ $fill-primary: color("fill-primary");
 $fill-secondary: color("fill-secondary");
 $fill-tertiary: color("fill-tertiary");
 
-$systemRed: color("systemRed");
-$systemYellow: color("systemYellow");
-$systemGreen: color("systemGreen");
-$systemWhite: color("systemWhite");
+$system-red: color("system-red");
+$system-yellow: color("system-yellow");
+$system-green: color("system-green");
+$system-white: color("system-white");
+$system-black: color("system-black");
 $grey1: color("grey1");
 $grey2: color("grey2");
 $grey3: color("grey3");
@@ -228,6 +235,7 @@ $sch-green-tertiary: color("sch-green-tertiary");
 $sch-blue-tertiary: color("sch-blue-tertiary");
 $sch-orange-tertiary: color("sch-orange-tertiary");
 
+$system-white-highlight: color("system-white-highlight");
 $sch-purple-highlight: color("sch-purple-highlight");
 $sch-red-highlight: color("sch-red-highlight");
 $sch-green-highlight: color("sch-green-highlight");
