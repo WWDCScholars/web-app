@@ -8,7 +8,7 @@ ValidationProvider(
 ).field
   slot(v-bind="validation")
   .input-error(v-if="validation.errors[0]") {{ validation.errors[0] }}
-  .comment(v-if="comment") {{ comment }}
+  .comment(v-if="comment", v-html="comment")
 </template>
 
 <script lang="ts">
@@ -41,5 +41,8 @@ export default class FormField extends Vue {
   color: $label-secondary
   margin-top: 15px
   font-size: 1em
+
+  a
+    color: $label-secondary
 </style>
 
