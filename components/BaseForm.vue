@@ -31,6 +31,20 @@ export default class BaseForm extends Vue {}
       +for-phone-only
         grid-column: span 2
 
+    &.group-flex-spread
+      display: flex
+      justify-content: space-between
+      align-items: center
+
+      ::v-deep .btn-cta
+        width: auto
+
+        &:only-child
+          margin-left: auto
+
+    &:last-of-type
+      margin-bottom: 0
+
     h3, .field, p
       grid-column: span 2
 
