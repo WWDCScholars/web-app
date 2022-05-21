@@ -7,6 +7,9 @@
   "submission": {
     "screenshot": {
       "maxSize": 1920
+    },
+    "acceptanceEmail": {
+      "maxSize": 1920
     }
   }
 }

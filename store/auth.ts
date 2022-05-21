@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { ActionTree, MutationTree, GetterTree } from 'vuex'
-import { Users, Scholar, CloudKit, connection } from '@wwdcscholars/cloudkit'
+import { Users, CloudKit, connection } from '@wwdcscholars/cloudkit'
 
 export const name = 'auth'
 
@@ -8,7 +8,6 @@ export const types = {
   setUserIdentity: 'setUserIdentity',
   setUser: 'setUser',
   setUserScholarReference: 'setUserScholarReference',
-  setSignInURL: 'setSignInURL',
   donePending: 'donePending'
 }
 
@@ -20,8 +19,6 @@ export interface State {
   userIdentity?: CloudKit.UserIdentity
   user?: Users
   userScholarReference?: CloudKit.Reference
-
-  signInURL?: string
 }
 
 export const state = (): State => ({
@@ -29,14 +26,15 @@ export const state = (): State => ({
   isPending: true,
   userIdentity: undefined,
   userScholarReference: undefined,
-  user: undefined,
-
-  signInURL: undefined
+  user: undefined
 })
 
 export const getters: GetterTree<State, State> = {
-  isAuthenticated(state: State): boolean {
+  isAuthenticated(state): boolean {
     return !!state.userIdentity
+  },
+  hasScholarReference(state): boolean {
+    return !!state.userScholarReference
   }
 }
 
@@ -47,20 +45,24 @@ export const actions: ActionTree<State, State> = {
     commit(types.setUserScholarReference, user.scholar)
     commit(types.setUserIdentity, userIdentity)
     commit(types.donePending)
-
-    // TODO: redirect to signup if no scholar exists
-    // maybe the redirect needs to happen in the middleware
   },
   async onUnauthenticated({ commit }, container: CloudKit.Container): Promise<void> {
-    const auth = container['_auth']
     commit(types.setUserIdentity, undefined)
     commit(types.setUser, undefined)
     commit(types.setUserScholarReference, undefined)
-    commit(types.setSignInURL, auth._signInURL)
     commit(types.donePending)
   },
   async signOut(): Promise<void> {
-    connection.signOut()
+    await connection.signOut()
+  },
+  getSignInURL(): string | undefined {
+    return this.$ck.defaultAuth._signInURL
+  },
+  async fetchUser({ state, commit }): Promise<void> {
+    if (!state.userIdentity) return
+    const user = await Users.fetch(state.userIdentity.userRecordName)
+    commit(types.setUser, user)
+    commit(types.setUserScholarReference, user.scholar)
   }
 }
 
@@ -73,9 +75,6 @@ export const mutations: MutationTree<State> = {
   },
   [types.setUserScholarReference](state: State, userScholarReference?: CloudKit.Reference) {
     Vue.set(state, 'userScholarReference', userScholarReference)
-  },
-  [types.setSignInURL](state, url: string) {
-    Vue.set(state, 'signInURL', url)
   },
   [types.donePending](state) {
     Vue.set(state, 'isPending', false)

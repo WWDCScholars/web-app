@@ -32,7 +32,7 @@ import { name as profileName } from '~/store/profile'
 const Profile = namespace(profileName)
 
 @Component({
-  middleware: 'authenticated',
+  middleware: ['authenticated', 'profile'],
   components: { LoadingSpinner, NavigationTabBar }
 })
 export default class PageProfile extends Vue {

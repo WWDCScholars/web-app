@@ -19,10 +19,13 @@ const authPlugin: Plugin = async ({ app, route, store, redirect }) => {
     store.state.auth.pendingPromise
       .then(() => {
         const isAuthenticated = store.getters['auth/isAuthenticated']
-        if (isAuthenticated) {
+        const hasScholarReference = store.getters['auth/hasScholarReference']
+        if (isAuthenticated && hasScholarReference) {
           redirect('/profile')
+        } else if (isAuthenticated && !hasScholarReference) {
+          redirect('/join/signup')
         } else {
-          redirect('/signin')
+          redirect('/join')
         }
       })
   }

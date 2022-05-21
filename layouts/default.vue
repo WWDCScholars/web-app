@@ -44,6 +44,7 @@ export default class LayoutDefault extends Vue {}
   .content-wrapper
     margin-top: $header-height
     flex-grow: 1
+    display: flex
 
     +for-phone-only
       margin-top: $header-height-mobile
