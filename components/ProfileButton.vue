@@ -9,7 +9,8 @@
       .triangle
       .links
         nuxt-link(v-if="profileLink", :to="profileLink") Profile
-        nuxt-link(to="/profile") Edit Profile
+        nuxt-link(v-if="profileLink", to="/profile") Edit Profile
+        nuxt-link(v-else, to="/join/signup") Create Profile
         button(@click="onSignOutClicked")
           | Sign Out
           #sign-out-icon
