@@ -93,6 +93,10 @@ export default class ProfileButton extends Vue {
     padding: 0 25px
     align-items: center
 
+    > div
+      font-size: 32px
+      color: $sch-purple
+
 button
   border: 0
   background: 0

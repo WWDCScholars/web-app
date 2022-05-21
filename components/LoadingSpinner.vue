@@ -17,20 +17,19 @@ export default class LoadingSpinner extends Vue {}
 .loading-spinner
   display: inline-block
   position: relative
-  width: 32px
-  height: 32px
+  width: 1em
+  height: 1em
 
   div
     display: block
     box-sizing: border-box
     position: absolute
-    width: 26px
-    height: 26px
-    margin: 3px
-    border: 3px solid $sch-purple
+    width: 1em
+    height: 1em
+    border: 0.09em solid
+    border-color: currentColor transparent transparent transparent
     border-radius: 50%
     animation: loading-spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite
-    border-color: $sch-purple transparent transparent transparent
 
     &:nth-child(1)
       animation-delay: -0.45s
