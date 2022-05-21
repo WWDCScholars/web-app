@@ -56,6 +56,7 @@ export default class InputImageMultiple extends Vue {
   addNew(value) {
     this.$set(this.tempValue, this.imageCount, value)
     this.$emit('input', this.tempValue)
+    this.$emit('blur')
   }
 
   removeOrReplace(value, index) {
@@ -65,6 +66,7 @@ export default class InputImageMultiple extends Vue {
       this.$set(this.tempValue, index, value)
     }
     this.$emit('input', this.tempValue)
+    this.$emit('blur')
   }
 
   @Watch('value')
