@@ -36,6 +36,9 @@ export default class BaseSection extends Vue {}
     +for-phone-only
       font-size: 1.6em
 
+  h3
+    margin-bottom: 15px
+
   h4
     font-size: 1.4em
     font-weight: 700
