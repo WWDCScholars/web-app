@@ -64,4 +64,6 @@ export default class PageProfile extends Vue {
 .loading-section
   padding: 40px 10px
   text-align: center
+  font-size: 32px
+  color: $sch-purple
 </style>
