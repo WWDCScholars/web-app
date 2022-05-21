@@ -16,7 +16,7 @@
 import { Component, Model, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component
-export default class InputRadioGroup extends Vue {
+class InputRadioGroup extends Vue {
   @Model('change')
   value!: string
 
@@ -31,6 +31,12 @@ export default class InputRadioGroup extends Vue {
     this.$emit('change', value)
   }
 }
+
+namespace InputRadioGroup {
+  export type Options = { label: string; value: string }[]
+}
+
+export default InputRadioGroup
 </script>
 
 <style lang="sass" scoped>
