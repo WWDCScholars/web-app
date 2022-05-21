@@ -25,6 +25,7 @@ export { default as TeamCard } from './TeamCard.vue'
 export { default as Copyable } from './Copyable.vue'
 
 export { default as LoadingSpinner } from './LoadingSpinner.vue'
+export { default as ModalLoadingSpinner } from './ModalLoadingSpinner.vue'
 
 export * from './inputs'
 export * from './mapkit'
