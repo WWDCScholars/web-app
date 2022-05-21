@@ -5,7 +5,8 @@
       v-if="$slots.default"
     )
     input(
-      v-else-if="type === 'email'"
+      v-else-if="type === 'email'",
+      ref="input",
       type="email",
       :name.once="name",
       :disabled="disabled",
@@ -14,6 +15,7 @@
     )
     input(
       v-else-if="type === 'url'",
+      ref="input",
       type="url",
       :name.once="name",
       :disabled="disabled",
@@ -22,6 +24,7 @@
     )
     input(
       v-else-if="type === 'search'",
+      ref="input",
       :name.once="name",
       :disabled="disabled",
       :value="value",
@@ -29,6 +32,7 @@
     )
     autosize-textarea(
       v-else-if="type === 'textarea'",
+      ref="input",
       :name.once="name",
       :disabled="disabled",
       :value="value",
@@ -38,6 +42,7 @@
     )
     input(
       v-else,
+      ref="input",
       type="text",
       :name.once="name",
       :disabled="disabled",
@@ -87,6 +92,11 @@ export default class InputText extends Vue {
 
   get inputHasValue() {
     return this.value && this.value.length > 0
+  }
+
+  focus() {
+    const input = this.$refs.input as any
+    input.focus()
   }
 }
 </script>
