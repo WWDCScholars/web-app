@@ -1,7 +1,7 @@
 <template lang="pug">
 .profile-button(:class="{ 'nuxt-link-active': linkActive }")
   .auth-pending(v-if="isAuthPending"): loading-spinner
-  nuxt-link(v-else-if="!isAuthenticated", to="/signin")
+  nuxt-link(v-else-if="!isAuthenticated", to="/join")
     SignInOutIcon
   button(v-else, @click="open = !open")
     UserIcon

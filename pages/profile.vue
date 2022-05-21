@@ -15,7 +15,6 @@
   .container-fluid
     .error-section
       h2.color-purple Looks like you don't have a profile yet
-      p You can sign up at #[a(href="https://join.wwdcscholars.com") join.wwdcscholars.com].
 </template>
 
 <script lang="ts">

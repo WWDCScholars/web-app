@@ -4,13 +4,12 @@
     ul
       li: nuxt-link(to="/", :class="scholarsLinkActive").nuxt-link-root.color-purple: span Scholars
       li: nuxt-link(to="/about").color-green: span About
-      li(v-if="!isAuthenticated"): a(href="https://join.wwdcscholars.com", target="_blank").color-blue: span Join
     ul(v-if="!isAuthPending && isAuthenticated").auth-links
       li: nuxt-link(v-if="profileLink", :to="profileLink").color-purple: span Profile
       li: nuxt-link(to="/profile").color-purple: span Edit Profile
       li: button(@click="onSignOutClicked").color-purple: span Sign Out
     ul(v-else-if="!isAuthPending").auth-links
-      li: nuxt-link(to="/signin").color-purple: span Sign In
+      li: nuxt-link(to="/join").color-purple: span Join
     .spacer
     div(class="color-mode")
       ColorModePicker(name="color-mode-mobile")
