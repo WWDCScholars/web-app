@@ -91,7 +91,9 @@ export default class PageContact extends Vue {
   contactSuccess: boolean = false
 
   readonly reasonOptions: InputSelect.Options = [
-    { label: 'General', value: 'general' }
+    { label: 'General', value: 'general' },
+    { label: 'Issue during signup', value: 'join-error' },
+    { label: 'Link existing account', value: 'join-link' }
   ]
 
   created() {
