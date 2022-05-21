@@ -6,6 +6,17 @@
     nuxt-link(to="/profile/submissions") Submissions
     nuxt-link(to="/profile/account") Account
 
+  .container-fluid
+    base-section(v-if="!scholar.gdprConsentAt").gdpr-consent-missing
+      base-form.form-color-white
+        .group
+          h3 Accept our privacy policy
+          p.
+            Due to changes in government regulations, we must obtain renewed consent for the public display of your information. Therefore, you need to accept #[nuxt-link(to="/privacy") our privacy policy] using the button below to make your profile publicly visible again. Should you wish to delete your WWDCScholars profile, you can do so in #[nuxt-link(to="/profile/account") the account section].
+
+        .group.group-flex-spread
+          base-button(@click="acceptPrivacyPolicy").btn-cta I accept the privacy policy
+
   nuxt-child
 .container-outer(v-else-if="$fetchState.pending")
   .container-fluid
@@ -22,7 +33,13 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
 import { namespace } from 'vuex-class'
 import { Scholar } from '@wwdcscholars/cloudkit'
-import { LoadingSpinner, NavigationTabBar } from '~/components'
+import {
+  BaseSection,
+  BaseForm,
+  BaseButton,
+  LoadingSpinner,
+  NavigationTabBar
+} from '~/components'
 
 import { name as authName } from '~/store/auth'
 const Auth = namespace(authName)
@@ -32,7 +49,13 @@ const Profile = namespace(profileName)
 
 @Component({
   middleware: ['authenticated', 'profile'],
-  components: { LoadingSpinner, NavigationTabBar }
+  components: {
+    BaseSection,
+    BaseForm,
+    BaseButton,
+    LoadingSpinner,
+    NavigationTabBar
+  }
 })
 export default class PageProfile extends Vue {
   @Auth.State('pendingPromise')
@@ -41,6 +64,9 @@ export default class PageProfile extends Vue {
   @Profile.Getter
   scholar?: Scholar
 
+  @Profile.Action
+  saveGDPRConsent!: () => Promise<void>
+
   head(): MetaInfo {
     return { title: 'Profile | WWDCScholars' }
   }
@@ -48,6 +74,12 @@ export default class PageProfile extends Vue {
   async fetch() {
     await this.authPendingPromise
     await this.$store.dispatch('profile/loadScholar')
+  }
+
+  async acceptPrivacyPolicy() {
+    this.$nuxt.$loading.start()
+    await this.saveGDPRConsent()
+    this.$nuxt.$loading.finish()
   }
 }
 </script>
@@ -65,4 +97,15 @@ export default class PageProfile extends Vue {
   text-align: center
   font-size: 32px
   color: $sch-purple
+
+.gdpr-consent-missing
+  background-color: $sch-purple
+  color: $system-white
+
+  a
+    color: $system-white
+
+  .group h3
+    font-size: 1.4em
+    font-weight: 600
 </style>

@@ -103,6 +103,14 @@ export const actions: ActionTree<State, RootState> = {
     }
   },
 
+  async saveGDPRConsent({ getters, commit }): Promise<void> {
+    if (!getters.scholar) return
+
+    const scholar = Scholar.clone(getters.scholar)
+    scholar.gdprConsentAt = new Date().getTime()
+    await scholar.save()
+    commit('scholars/insertScholar', scholar, { root: true })
+  },
   async saveBasic({ getters, commit }, { scholar, changes }: { scholar: Scholar; changes: RecordFields }): Promise<void> {
     let updatedPrivate: ScholarPrivate | undefined
     if (changes.hasOwnProperty('email') || changes.hasOwnProperty('birthday')) {

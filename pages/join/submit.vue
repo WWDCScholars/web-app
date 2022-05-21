@@ -25,12 +25,12 @@
               )
 
           .group
-            h3 In order to sign up you have to agree to our privacy policy.
+            h3 In order to sign up you have to accept our privacy policy.
 
             form-field(name="Privacy Policy", :rules="{ required: { allowFalse: false } }", vid="gdprConsent")
               input-checkbox(
                 name="gdprConsent",
-                label="I agree to the <a href=\"/privacy\" target=\"_blank\">privacy policy</a>",
+                label="I accept the <a href=\"/privacy\" target=\"_blank\">privacy policy</a>",
                 v-model="gdprConsent"
               )
 
