@@ -1,6 +1,11 @@
 <template lang="pug">
 .btn
-  slot(v-if="hasNobtnSlot", name="nobtn")
+  nuxt-link(
+    v-if="to",
+    :disabled="disabled",
+    :to="to"
+  )
+    slot
   button(
     v-else,
     :disabled="disabled",
@@ -11,6 +16,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Location } from 'vue-router'
 
 @Component
 export default class BaseButton extends Vue {
@@ -20,9 +26,8 @@ export default class BaseButton extends Vue {
   @Prop({ type: String, default: undefined })
   confirm?: string
 
-  get hasNobtnSlot(): boolean {
-    return !!this.$slots.nobtn
-  }
+  @Prop({ type: [String, Object], default: undefined })
+  to?: string | Location
 
   onClick() {
     if (!this.confirm) {
@@ -47,6 +52,7 @@ export default class BaseButton extends Vue {
     display: block
     padding: 12px 15px
     min-width: 160px
+    width: 100%
     border: 1px solid $grey2
     border-radius: $border-radius
     font-size: 1em
@@ -63,7 +69,7 @@ export default class BaseButton extends Vue {
     &:hover
       background-color: $fill-secondary
 
-  &.btn-round > .button, a
+  &.btn-round > button, &.btn-round > a
     padding: 10px 15px
     border: 2px solid $grey2
     border-radius: 32px
@@ -88,11 +94,27 @@ export default class BaseButton extends Vue {
         border-color: $fill-primary
         color: $label-tertiary
 
-    &.btn-round > button, a
-      background-color: color($fg)
-      color: color($bg)
+    &.btn-secondary
+      button, a
+        background-color: color($fg)
+        border-color: color($bg)
+        color: color($bg)
 
-      &:hover
-        background-color: color($bg)
-        color: color($fg)
+        &:hover
+          background-color: color($bg)
+          color: color($fg)
+
+        &:disabled
+          background-color: color($fg)
+          border-color: $label-tertiary
+          color: $label-secondary
+
+    &.btn-round
+      > button, > a
+        background-color: color($fg)
+        color: color($bg)
+
+        &:hover
+          background-color: color($bg)
+          color: color($fg)
 </style>
