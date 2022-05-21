@@ -31,7 +31,7 @@ import PlusIcon from '~/assets/images/plus.svg?inline'
   components: { InputImage, PlusIcon }
 })
 export default class InputImageMultiple extends Vue {
-  @Model('input')
+  @Model('input', { default: () => [] })
   value!: (File | string | null)[]
 
   @Prop({ required: true })
