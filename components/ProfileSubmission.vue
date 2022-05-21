@@ -65,12 +65,12 @@ base-section
             v-model="formData.appstoreLink"
           )
 
-      .group
+      .group.group-flex-spread
         .form-color-red
           base-button(
             confirm="Do you really wan't to delete this submission? This action cannot be undone.",
             @click="deleteYear"
-          ) Delete
+          ).btn-cta Delete
         base-button(
           :disabled="invalid || !changed",
           @click="submit"
