@@ -19,6 +19,15 @@ export const getters: GetterTree<State, State> = {
   sortedKeys(state): string[] {
     return Object.keys(state.years).sort()
   },
+  latestYear(state): WWDCYear | undefined {
+    const sortedKeys = Object.keys(state.years).sort()
+    if (!sortedKeys.length) {
+      return undefined
+    }
+
+    const lastYearKey = sortedKeys[sortedKeys.length - 1]
+    return state.years[lastYearKey]
+  },
   visibleYears(state): { [recordName: string]: WWDCYear } {
     return Object.fromEntries(
       Object.entries(state.years)
