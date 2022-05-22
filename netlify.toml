@@ -39,7 +39,7 @@
 # Redirect staging Netlify subdomain to staging primary domain
 [[redirects]]
   from = "https://develop--wwdcscholars.netlify.app"
-  to = "https://develop.wwdcscholars.com"
+  to = "https://develop.www.wwdcscholars.com"
   status = 301
   force = true
 
