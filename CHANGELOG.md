@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v4.0.0-pre.0...v4.0.0-pre.1) (2022-05-22)
+
+
+### Bug Fixes
+
+* Correct develop redirect ([590af15](https://github.com/WWDCScholars/web-app/commit/590af1523f2416696e9897a4e3e229c070f1a6ed))
+
 ## [4.0.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.20.1-pre.0...v4.0.0-pre.0) (2022-05-22)
 
 
