@@ -241,7 +241,7 @@ export const actions: ActionTree<State, RootState> = {
       throw new Error('Error while saving records')
     }
 
-    await dispatch('auth/fetchUser', undefined, { root: true })
+    await dispatch('auth/fetchUser', undefined, { root: true }) // TODO: Maybe can be replaced with the returned user in result
   }
 }
 

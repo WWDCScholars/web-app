@@ -1,49 +1,25 @@
 <template lang="pug">
 .container-outer.form-color-purple
-  .container-fluid
-    .loading-section(v-if="$fetchState.pending")
-      loading-spinner
-
-    base-section(v-else)
-      h3.color-purple When did you win?
-
-      base-form.year-form
-        .group.group-width-50
-          p Please select the year you won a WWDC Scholarship or the Swift Student Challenge.
-        .group.group-width-50
-          form-field(name="Year", vid="year")
-            input-select(
-              name="year",
-              :options="yearOptions",
-              v-model="selectedYear"
-            )
-
-    profile-form-submission(
-      v-if="selectedYear",
-      :year="selectedYear",
-      v-model="formData",
-      v-slot="{ valid }"
-    )
-      base-button(
-        @click="previousClicked"
-      ).btn-cta.btn-secondary Previous
-      base-button(
-        :disabled="!valid",
-        @click="continueClicked(valid)"
-      ).btn-cta Continue
+  profile-form-submission-with-year(
+    v-model="formData",
+    @change:selectedYear="selectedYear = $event",
+    v-slot="{ valid }"
+  )
+    base-button(
+      @click="previousClicked"
+    ).btn-cta.btn-secondary Previous
+    base-button(
+      :disabled="!valid",
+      @click="continueClicked(valid)"
+    ).btn-cta Continue
 </template>
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import { WWDCYear } from '@wwdcscholars/cloudkit'
 import {
-  ProfileFormSubmission,
-  BaseSection,
-  BaseForm,
-  FormField,
-  InputSelect,
-  BaseButton,
-  LoadingSpinner
+  ProfileFormSubmissionWithYear,
+  BaseButton
 } from '~/components'
 
 import { name as joinName } from '~/store/join'
@@ -54,43 +30,20 @@ const Years = namespace(yearsName)
 
 @Component({
   components: {
-    ProfileFormSubmission,
-    BaseSection,
-    BaseForm,
-    FormField,
-    InputSelect,
-    BaseButton,
-    LoadingSpinner
+    ProfileFormSubmissionWithYear,
+    BaseButton
   },
   middleware: ['authenticated', 'noprofile']
 })
 export default class PageJoinProfileSubmission extends Vue {
   @Join.State
-  submission?: ProfileFormSubmission.Model
+  submission?: ProfileFormSubmissionWithYear.Model
 
   @Join.Mutation
   updateFields
 
-  @Years.Getter('sortedKeys')
-  sortedYearKeys!: string[]
-
+  formData: ProfileFormSubmissionWithYear.Model = {}
   selectedYear: string | null = null
-  formData: ProfileFormSubmission.Model = {}
-
-  get yearOptions(): { label: string; value: string }[] {
-    return this.sortedYearKeys
-      .reverse()
-      .map(year => ({
-        label: year,
-        value: year
-      }))
-  }
-
-  async fetch() {
-    await this.$store.dispatch('years/queryYears', true)
-    const latestYear = this.$store.getters['years/latestYear']
-    this.selectedYear = latestYear.recordName
-  }
 
   created() {
     this.formData = {
@@ -109,6 +62,8 @@ export default class PageJoinProfileSubmission extends Vue {
   }
 
   continueClicked(isValid: boolean) {
+    if (!this.selectedYear) return
+
     this.updateFields({
       section: 'submission',
       value: {
