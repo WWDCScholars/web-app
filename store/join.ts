@@ -240,7 +240,14 @@ export const actions: ActionTree<State, RootState> = {
       throw new Error('Error while saving records')
     }
 
-    await dispatch('auth/fetchUser', undefined, { root: true }) // TODO: Maybe can be replaced with the returned user in result
+    const userRecord = result.records.find(r => r.recordType === Users.recordType)
+    if (userRecord) {
+      const resultUser = Users.fromRecordReceived(userRecord)
+      commit('auth/setUser', resultUser, { root: true })
+      commit('auth/setUserScholarReference', resultUser.scholar, { root: true })
+    } else {
+      await dispatch('auth/fetchUser', undefined, { root: true })
+    }
   }
 }
 
