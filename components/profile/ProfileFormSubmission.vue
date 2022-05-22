@@ -120,8 +120,6 @@ class ProfileFormSubmission extends Vue {
     { label: 'STEM', value: 'stem' },
     { label: 'Developer Academy Member', value: 'academy' }
   ]
-
-  // TODO: Maybe need to load WWDCYear record to get fields
 }
 
 namespace ProfileFormSubmission {

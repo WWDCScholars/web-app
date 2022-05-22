@@ -226,7 +226,6 @@ export const actions: ActionTree<State, RootState> = {
       )
     )
     yearInfo.acceptanceEmail = await resizeImage(formData.acceptanceEmail, this.$g('submission.acceptanceEmail.maxSize')) as any
-    yearInfo.appType = 'offline' // TODO: Get from WWDCYear
     yearInfo.status = 'pending'
     yearInfo.scholar = {
       recordName: getters.scholar.recordName,

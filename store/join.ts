@@ -185,7 +185,6 @@ export const actions: ActionTree<State, RootState> = {
         action: CloudKit.ReferenceAction.NONE
       }},
       status: { value: 'pending' },
-      appType: { value: 'offline' }, // TODO: Get from year/form
       screenshots: {
         value: (await Promise.all(
           state.submission.screenshots
