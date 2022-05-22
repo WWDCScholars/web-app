@@ -26,6 +26,7 @@ const META = {
 
 const config: NuxtConfig = {
   ssr: false,
+  target: 'static',
 
   /*
    ** Headers of the page
