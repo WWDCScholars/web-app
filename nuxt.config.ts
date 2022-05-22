@@ -20,8 +20,8 @@ if (process.env.NODE_ENV === 'production') {
 const META = {
   title: 'Welcome to WWDCScholars',
   description: 'Take a look at Apple WWDC Scholarship winners from all around the world as well as their winning submissions!',
-  image: `${process.env.BASE_URL}/images/og-image.jpg`,
-  url: `${process.env.BASE_URL}`
+  image: `${baseURL}/images/og-image.jpg`,
+  url: `${baseURL}`
 }
 
 const config: NuxtConfig = {
