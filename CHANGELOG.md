@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.20.1-pre.0...v4.0.0-pre.0) (2022-05-22)
+
+
+### Features
+
+* Accept privacy policy from profile ([cbf961a](https://github.com/WWDCScholars/web-app/commit/cbf961aa8846d012c26b5f4451022d48dc15bb90))
+* Add add-submission-form to profile ([3ed4b61](https://github.com/WWDCScholars/web-app/commit/3ed4b61b9b61ddcc96f9862b000ccc6e726bd3cd))
+* Add axios for link api ([b6a1171](https://github.com/WWDCScholars/web-app/commit/b6a11710e07013733fc40be76f3bc9193faa7e5a))
+* Add components for the profile form ([694ebb6](https://github.com/WWDCScholars/web-app/commit/694ebb635d98f36281e487dfaa64c58247351604))
+* Add InputCheckbox ([a8db191](https://github.com/WWDCScholars/web-app/commit/a8db1917b3cacdcd20d56bb336ab43a624eb7d48))
+* Add join form ([87bbccb](https://github.com/WWDCScholars/web-app/commit/87bbccb14c2abec6ef1c063fc738ec4d438ab140))
+* Add ModalLoadingSpinner ([1d42295](https://github.com/WWDCScholars/web-app/commit/1d422956c61d754405826a0e0c3fa44dc6b56857))
+* Add signup issues to contact reasons ([7a6b5c4](https://github.com/WWDCScholars/web-app/commit/7a6b5c476a9eff0fc9dd0e1f774ee83b24a6c0f2))
+* Add submission form component with year selector ([c857547](https://github.com/WWDCScholars/web-app/commit/c857547ad1ac779079da8ac4a0b534b9539e355e))
+* Add white form ([f121b96](https://github.com/WWDCScholars/web-app/commit/f121b96cf39432e6c453f576f5e077528be58e44))
+* Blur InputImageMultiple on change for validation ([8698c7a](https://github.com/WWDCScholars/web-app/commit/8698c7aec260a1db0b117cb06fbda715f2603d97))
+* Button layout in BaseForm ([b01eb83](https://github.com/WWDCScholars/web-app/commit/b01eb8397d95395b8ebb41708c3d5b9867d4f543))
+* Configurable title in profile submission form ([fa7b69d](https://github.com/WWDCScholars/web-app/commit/fa7b69d227dc3667f8d83e3a5dc00bb847684f76))
+* Define InputRadioGroup.Options type ([4babd39](https://github.com/WWDCScholars/web-app/commit/4babd39913a849011362fc801c4b720844672e94))
+* Focus method for InputText ([7a361e8](https://github.com/WWDCScholars/web-app/commit/7a361e8b0d213872bd7d92db1f3b731f49c7412b))
+* h3 bottom margin in BaseSection ([cf6efa4](https://github.com/WWDCScholars/web-app/commit/cf6efa425ada6b6c1db10a19a7ab6373d4a81e46))
+* Nuxt link and secondary style for BaseButton ([38810b7](https://github.com/WWDCScholars/web-app/commit/38810b70439058dc2109500c42918b7ed0176b7e))
+* Raw HTML for FormField comment ([b3c74ae](https://github.com/WWDCScholars/web-app/commit/b3c74aee7bc3294f68204b500fd1954c465a722a))
+
+
+### Bug Fixes
+
+* Delete button sizing in submissions ([e50a354](https://github.com/WWDCScholars/web-app/commit/e50a354e3fa79aaf843c24097bbd8638316e4d9e))
+
 ### [3.20.1-pre.0](https://github.com/WWDCScholars/web-app/compare/v3.20.0...v3.20.1-pre.0) (2022-05-21)
 
 ## [3.20.0](https://github.com/WWDCScholars/web-app/compare/v3.19.1...v3.20.0) (2022-05-07)
