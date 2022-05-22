@@ -176,7 +176,7 @@ const config: NuxtConfig = {
    ** Sentry configuration
    */
   sentry: {
-    disabled: isDevelopment,
+    disabled: isDevelopment || !isCI,
     dsn: process.env.SENTRY_DSN,
     publishRelease: isCI ? {
       authToken: process.env.SENTRY_AUTH_TOKEN,
