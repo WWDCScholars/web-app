@@ -17,8 +17,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nuxt",
     "analyze": "cross-env NODE_ENV=production nuxt build --analyze",
-    "build:prod": "cross-env NODE_ENV=production nuxt build",
-    "build:stage": "cross-env NODE_ENV=staging nuxt build",
+    "build:prod": "cross-env NODE_ENV=production nuxt generate",
+    "build:stage": "cross-env NODE_ENV=staging nuxt generate",
     "start:prod": "cross-env NODE_ENV=production nuxt start",
     "start:stage": "cross-env NODE_ENV=staging nuxt start",
     "release:create": "standard-version",
