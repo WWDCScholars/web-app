@@ -24,6 +24,7 @@ export const types = {
   insertScholar: 'insertScholar',
   setScholarPrivate: 'setScholarPrivate',
   setScholarYearInfo: 'setScholarYearInfo',
+  setCreatedScholarYearInfo: 'setCreatedScholarYearInfo',
   setScholarSocialMedia: 'setScholarSocialMedia',
   removeScholarYearInfo: 'removeScholarYearInfo'
 }
@@ -131,13 +132,37 @@ export const mutations: MutationTree<State> = {
       p.scholarPrivate
     )
   },
-  [types.setScholarYearInfo](state: State, p: { scholarRecordName: string; yearInfo: WWDCYearInfo}) {
-    if (!state.scholars[p.scholarRecordName]) return
+  [types.setScholarYearInfo](state: State,  { scholarRecordName, yearInfo}: { scholarRecordName: string; yearInfo: WWDCYearInfo }) {
+    if (!state.scholars[scholarRecordName]) return
 
     Vue.set(
-      state.scholars[p.scholarRecordName].loadedYearInfos,
-      p.yearInfo.year.recordName,
-      p.yearInfo
+      state.scholars[scholarRecordName].loadedYearInfos,
+      yearInfo.year.recordName,
+      yearInfo
+    )
+  },
+  [types.setCreatedScholarYearInfo]({ scholars }, { scholar, yearInfo }: { scholar: Scholar, yearInfo: WWDCYearInfo }) {
+    if (!scholars[scholar.recordName!]) return
+
+    Vue.set(
+      scholars[scholar.recordName!],
+      'wwdcYearInfos',
+      scholar.wwdcYearInfos
+    )
+    Vue.set(
+      scholars[scholar.recordName!],
+      'wwdcYears',
+      scholar.wwdcYears
+    )
+    Vue.set(
+      scholars[scholar.recordName!],
+      'wwdcYearsApproved',
+      scholar.wwdcYearsApproved
+    )
+    Vue.set(
+      scholars[scholar.recordName!].loadedYearInfos,
+      yearInfo.year.recordName,
+      yearInfo
     )
   },
   [types.removeScholarYearInfo](state: State, p: { scholarRecordName: string; yearInfoRecordName: string, yearToRemoveIndex: number; approvedYearToRemoveIndex: number }) {

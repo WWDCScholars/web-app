@@ -205,6 +205,73 @@ export const actions: ActionTree<State, RootState> = {
       yearInfo: updatedYearInfo
     }, { root: true })
   },
+  async createYearInfo({ getters, commit }, formData) {
+    const yearInfo = new WWDCYearInfo()
+    yearInfo.recordName = uuid().toUpperCase()
+
+    yearInfo.appliedAs = formData.appliedAs
+    yearInfo.description = formData.description
+    if (formData.videoLink) {
+      yearInfo.videoLink = formData.videoLink
+    }
+    if (formData.githubLink) {
+      yearInfo.githubLink = formData.githubLink
+    }
+    if (formData.appstoreLink) {
+      yearInfo.appstoreLink = formData.appstoreLink
+    }
+    yearInfo.screenshots = await Promise.all(
+      formData.screenshots
+        .map(s => resizeImage(s, this.$g('submission.screenshot.maxSize'))
+      )
+    )
+    yearInfo.acceptanceEmail = await resizeImage(formData.acceptanceEmail, this.$g('submission.acceptanceEmail.maxSize')) as any
+    yearInfo.appType = 'offline' // TODO: Get from WWDCYear
+    yearInfo.status = 'pending'
+    yearInfo.scholar = {
+      recordName: getters.scholar.recordName,
+      action: CloudKit.ReferenceAction.DELETE_SELF
+    }
+    yearInfo.year = {
+      recordName: formData.year,
+      action: CloudKit.ReferenceAction.NONE
+    }
+
+    const scholar = Scholar.clone(getters.scholar)
+    scholar.wwdcYearInfos = [
+      ...scholar.wwdcYearInfos,
+      {
+        recordName: yearInfo.recordName,
+        action: CloudKit.ReferenceAction.NONE
+      }
+    ]
+    scholar.wwdcYears = [
+      ...scholar.wwdcYears,
+      {
+      recordName: formData.year,
+      action: CloudKit.ReferenceAction.NONE
+      }
+    ]
+
+    const batch = this.$ck.newRecordsBatchInPublicDatabase()
+      .create([yearInfo.recordToSave])
+      .update([scholar.recordToSave])
+
+    const result = await batch.commit()
+    if (result.hasErrors) {
+      this.$sentry.captureException(result.errors)
+      throw new Error('Error while saving records')
+    }
+
+    const scholarRecord = result.records.find(r => r.recordType === Scholar.recordType)
+    const yearInfoRecord = result.records.find(r => r.recordType === WWDCYearInfo.recordType)
+    if (scholarRecord && yearInfoRecord) {
+      commit('scholars/setCreatedScholarYearInfo', {
+        scholar: Scholar.fromRecordReceived(scholarRecord),
+        yearInfo: WWDCYearInfo.fromRecordReceived(yearInfoRecord)
+      }, { root: true })
+    }
+  },
   async saveSocial({ commit }, { socialMedia, changes }: { socialMedia: ScholarSocialMedia; changes: RecordFields }) {
     const updatedSocial = ScholarSocialMedia.clone(socialMedia)
     updatedSocial.setFields(changes)
