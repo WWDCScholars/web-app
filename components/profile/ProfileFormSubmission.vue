@@ -1,6 +1,6 @@
 <template lang="pug">
 base-section
-  h2 Submission
+  h2 {{ title }}
   h3 Now for the fun part. Show us your {{ year }} submission!
 
   ValidationObserver(v-slot="{ valid, validate }", tag="div", ref="form-profile-submission")
@@ -112,6 +112,8 @@ class ProfileFormSubmission extends Vue {
 
   @Prop({ type: String, required: true })
   year!: string
+  @Prop({ type: String, default: 'Submission' })
+  title!: string
 
   appliedAsOptions: { label: string; value: string }[] = [
     { label: 'Student', value: 'student' },
