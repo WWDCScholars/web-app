@@ -36,6 +36,13 @@
   status = 301
   force = true
 
+# Redirect Netlify branch subdomain to primary domain
+[[redirects]]
+  from = "https://main--wwdcscholars.netlify.app"
+  to = "https://www.wwdcscholars.com"
+  status = 301
+  force = true
+
 # Redirect staging Netlify subdomain to staging primary domain
 [[redirects]]
   from = "https://develop--wwdcscholars.netlify.app"
