@@ -121,6 +121,7 @@ button
 
     a, button
       display: block
+      width: 100%
       font-size: 1.2em
       font-weight: 500
       color: $sch-purple
