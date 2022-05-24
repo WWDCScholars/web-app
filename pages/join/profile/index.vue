@@ -5,7 +5,9 @@
       v-model="formData",
       v-slot="{ valid }"
     )
-      base-button(to="/join/link") Previous
+      base-button(
+        to="/join/link"
+      ).btn-cta.btn-secondary Previous
       base-button(
         :disabled="!valid",
         @click="continueClicked(valid)"
