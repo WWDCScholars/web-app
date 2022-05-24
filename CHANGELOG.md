@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0-pre.4](https://github.com/WWDCScholars/web-app/compare/v4.0.0-pre.3...v4.0.0-pre.4) (2022-05-24)
+
+
+### Bug Fixes
+
+* Make back button in initial join for page secondary ([55436be](https://github.com/WWDCScholars/web-app/commit/55436be1804229e6ca0a3add9a58dc86c37170f1))
+
 ## [4.0.0-pre.3](https://github.com/WWDCScholars/web-app/compare/v4.0.0-pre.2...v4.0.0-pre.3) (2022-05-24)
 
 ## [4.0.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v4.0.0-pre.1...v4.0.0-pre.2) (2022-05-22)
