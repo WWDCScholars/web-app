@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { ActionTree, MutationTree, GetterTree } from 'vuex'
 import dayjs from 'dayjs'
+import { Severity } from '@sentry/types'
 import { RootState } from '~/store'
 import {
   CloudKit,
@@ -236,7 +237,15 @@ export const actions: ActionTree<State, RootState> = {
 
     const result = await batch.commit()
     if (result.hasErrors) {
-      this.$sentry.captureException(result.errors)
+      this.$sentry.captureException(new Error('Error while saving records'), scope => {
+        result.errors.forEach(e => scope.addBreadcrumb({
+          type: 'CKError',
+          level: Severity.Error,
+          message: e.toString(),
+          data: e.toJSON()
+        }))
+        return scope
+      })
       throw new Error('Error while saving records')
     }
 
