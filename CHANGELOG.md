@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/WWDCScholars/web-app/compare/v4.0.0...v4.0.1) (2022-05-24)
+
+
+### Bug Fixes
+
+* ProfileButton dropdown links span full width ([3217940](https://github.com/WWDCScholars/web-app/commit/321794013cfbc97b6ed1132fc060aafb57117b3b))
+
 ## [4.0.0](https://github.com/WWDCScholars/web-app/compare/v4.0.0-pre.4...v4.0.0) (2022-05-24)
 
 ## [4.0.0-pre.4](https://github.com/WWDCScholars/web-app/compare/v4.0.0-pre.3...v4.0.0-pre.4) (2022-05-24)
