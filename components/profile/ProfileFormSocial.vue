@@ -74,7 +74,11 @@ import {
   FormField,
   InputText
 } from '~/components'
-import { ValidationObserver } from 'vee-validate'
+import { ValidationObserver, extend } from 'vee-validate'
+import phoneOrEmail from '~/util/validation/phoneOrEmail'
+
+// add phoneOrEmail rule, has a quite large dependency
+extend('phoneOrEmail', phoneOrEmail)
 
 @Component({
   components: {
