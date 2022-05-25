@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.3](https://github.com/WWDCScholars/web-app/compare/v4.0.2...v4.0.3) (2022-05-25)
+
+
+### Bug Fixes
+
+* Load phoneOrEmail validation rule in social form ([155bc9c](https://github.com/WWDCScholars/web-app/commit/155bc9c1e6c9d9b95a049616d6768336a0eeab56))
+
 ### [4.0.2](https://github.com/WWDCScholars/web-app/compare/v4.0.1...v4.0.2) (2022-05-24)
 
 ### [4.0.1](https://github.com/WWDCScholars/web-app/compare/v4.0.0...v4.0.1) (2022-05-24)
