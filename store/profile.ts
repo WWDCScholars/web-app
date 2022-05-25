@@ -261,7 +261,7 @@ export const actions: ActionTree<State, RootState> = {
     if (result.hasErrors) {
       this.$sentry.captureException(new Error('Error while saving records'), scope => {
         result.errors.forEach(e => scope.addBreadcrumb({
-          type: 'CKError',
+          type: 'error',
           level: Severity.Error,
           message: e.toString(),
           data: e.toJSON()
