@@ -193,7 +193,8 @@ const config: NuxtConfig = {
       environment: process.env[`${envPrefix}_SENTRY_ENVIRONMENT`],
       release: `app@v${version}`,
       beforeBreadcrumb(breadcrumb, hint) {
-        if (breadcrumb.type === 'ui') return null
+        if (breadcrumb.category === 'ui.input') return null
+        if (breadcrumb.category === 'xhr' && breadcrumb.data?.url?.findIndex('apple-mapkit.com') >= 0) return null
         return breadcrumb
       }
     }
