@@ -35,8 +35,11 @@ export default class LayoutDefault extends Vue {}
 
 <style lang="sass" scoped>
 .page
-  min-height: 100vh
-  min-height: -webkit-fill-available
+  // min-height: 100vh
+  // min-height: -webkit-fill-available
+  height: 100%
+  min-height: stretch
+
   display: flex
   flex-direction: column
   align-items: space-between
