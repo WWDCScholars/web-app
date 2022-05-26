@@ -1553,7 +1553,7 @@
   dependencies:
     anymatch "*"
 
-"@types/apple-mapkit-js-browser@^5.50.0":
+"@types/apple-mapkit-js-browser@~5.65.0":
   version "5.65.3"
   resolved "https://registry.yarnpkg.com/@types/apple-mapkit-js-browser/-/apple-mapkit-js-browser-5.65.3.tgz#9a8bc3c3429d2d050b304f18e2a866351aaffc5c"
   integrity sha512-u2qGC66wu1SFU6O2Qoa42vIXTVdNYk67P5O/IsCmxaghcv/EmvbdIYmzg0+KwMteFpRAm1xpkVb3W7qlIHzntQ==

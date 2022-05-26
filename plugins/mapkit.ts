@@ -1,7 +1,7 @@
 import { Plugin } from '@nuxt/types'
 import Vue from 'vue'
 
-const MAPKIT_VERSION = '5.50.x'
+const MAPKIT_VERSION = '5.65.x'
 const MAPKIT_SRC = `https://cdn.apple-mapkit.com/mk/${MAPKIT_VERSION}/mapkit.js`
 
 declare module 'vue/types/vue' {

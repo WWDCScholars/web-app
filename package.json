@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development nuxt",
-    "analyze": "cross-env NODE_ENV=production nuxt build --analyze",
+    "analyze": "cross-env NODE_ENV=production nuxt generate --analyze",
     "build:prod": "cross-env NODE_ENV=production nuxt generate",
     "build:stage": "cross-env NODE_ENV=staging nuxt generate",
     "start:prod": "cross-env NODE_ENV=production nuxt start",
@@ -53,7 +53,7 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "@nuxtjs/svg": "^0.4.0",
     "@sentry/webpack-plugin": "^1.18.9",
-    "@types/apple-mapkit-js-browser": "^5.50.0",
+    "@types/apple-mapkit-js-browser": "~5.65.0",
     "@types/node": "^13.13.5",
     "@types/phone": "^2.4.0",
     "@types/pica": "^5.1.1",
