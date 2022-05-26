@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.6](https://github.com/WWDCScholars/web-app/compare/v4.0.5...v4.0.6) (2022-05-26)
+
+
+### Bug Fixes
+
+* Another try for nice image thumbnails ([4b0ac43](https://github.com/WWDCScholars/web-app/commit/4b0ac4331b78463889c64033002ab42ca7e0ab96))
+* Fill height so that it works in Firefox, Safari, Chrome and on iOS ([2e20360](https://github.com/WWDCScholars/web-app/commit/2e20360fe2a8b7ac066fcdf9cd771a32e3a6c523))
+
 ### [4.0.5](https://github.com/WWDCScholars/web-app/compare/v4.0.4...v4.0.5) (2022-05-26)
 
 ### [4.0.4](https://github.com/WWDCScholars/web-app/compare/v4.0.2...v4.0.4) (2022-05-26)
