@@ -25,7 +25,7 @@ function getYouTubePreviewUrl(videoUrl: string): string | null {
   if (!videoId) {
     return null
   }
-  return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
 }
 
 // -- Vimeo
