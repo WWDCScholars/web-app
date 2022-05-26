@@ -56,13 +56,13 @@ export default class MKMarkerAnnotation extends Vue {
   }
 
   beforeDestroy() {
-    if (this.$map && this.$map.element && this.$annotation) {
+    if (this.$map && this.$map.element && this.$annotation && this.$map.annotations.length) {
       this.$map.removeAnnotations([this.$annotation])
     }
   }
 
   init() {
-    if (this.$map && this.$map.element && this.$annotation) {
+    if (this.$map && this.$map.element && this.$annotation && this.$map.annotations.length) {
       this.$map.removeAnnotations([this.$annotation])
     }
 
