@@ -1,7 +1,4 @@
 import { NuxtConfig } from '@nuxt/types'
-import { config as dotenv } from 'dotenv'
-
-dotenv()
 
 const version = require('./package.json').version
 const isDevelopment = (process.env.NODE_ENV === 'development')
