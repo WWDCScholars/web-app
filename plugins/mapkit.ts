@@ -1,4 +1,5 @@
 import { Plugin } from '@nuxt/types'
+import type * as Sentry from '@sentry/minimal'
 import Vue from 'vue'
 
 const MAPKIT_VERSION = '5.65.x'
@@ -19,7 +20,7 @@ const mapOptions: mapkit.MapKitInitOptions = {
 let globalInjectResolve: (instance: typeof mapkit) => void
 let globalInjectPromise: Promise<typeof mapkit> | undefined
 
-function injectMapKit(): Promise<typeof mapkit> {
+function injectMapKit(sentry: typeof Sentry): Promise<typeof mapkit> {
   if (globalInjectPromise) return globalInjectPromise
 
   globalInjectPromise = new Promise<typeof mapkit>(resolve => {
@@ -28,7 +29,9 @@ function injectMapKit(): Promise<typeof mapkit> {
 
   const script = document.createElement('script')
   script.onload = () => globalInjectResolve(window.mapkit)
-  script.onerror = error => { throw new Error(error as string) }
+  script.onerror = error => {
+    sentry.captureException(error)
+  }
   document.body.appendChild(script)
   script.src = MAPKIT_SRC
 
@@ -36,8 +39,8 @@ function injectMapKit(): Promise<typeof mapkit> {
 }
 
 let initialized: boolean = false
-async function initializeMapKit(options: mapkit.MapKitInitOptions): Promise<typeof mapkit> {
-  const mapkit = await injectMapKit()
+async function initializeMapKit(options: mapkit.MapKitInitOptions, sentry: typeof Sentry): Promise<typeof mapkit> {
+  const mapkit = await injectMapKit(sentry)
 
   if (!initialized) {
     mapkit.init({
@@ -50,14 +53,14 @@ async function initializeMapKit(options: mapkit.MapKitInitOptions): Promise<type
   return mapkit
 }
 
-const mapKitPlugin: Plugin = ({ $config }) => {
+const mapKitPlugin: Plugin = ({ $config, $sentry }) => {
   Vue.prototype.$loadMapKit = async () => {
     await initializeMapKit({
       authorizationCallback(done) {
         done($config.mapKitJwt)
       },
       language: 'en-US'
-    })
+    }, $sentry)
   }
 }
 
