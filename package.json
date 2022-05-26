@@ -24,8 +24,8 @@
     "release:create": "standard-version",
     "release:create:pre": "standard-version --prerelease pre",
     "release:publish": "git push --follow-tags",
-    "release": "npm run release:create && npm run release:publish",
-    "release:pre": "npm run release:create:pre && npm run release:publish",
+    "release": "yarn run release:create && yarn run release:publish",
+    "release:pre": "yarn run release:create:pre && yarn run release:publish",
     "admin:mapkit-jwt:generate": "node scripts/mapkit-jwt generate",
     "admin:mapkit-jwt:peek": "node scripts/mapkit-jwt peek"
   },

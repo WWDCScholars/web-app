@@ -19,7 +19,7 @@ function main() {
     }
   }
 
-  console.error('Invalid use of command. Usage: npm run admin:mapkit-jwt:generate or npm run admin:mapkit-jwt:peek')
+  console.error('Invalid use of command. Usage: yarn run admin:mapkit-jwt:generate or yarn run admin:mapkit-jwt:peek')
   process.exit(1)
 }
 
@@ -38,7 +38,7 @@ function command_generate(args) {
     options.origin = args[2]
     options.keyPath = args[3]
   } else {
-    console.error('Invalid use of command. Usage: npm run admin:mapkit-jwt:generate <TEAM_ID> <KEY_ID> [ORIGIN] <KEY_PATH>')
+    console.error('Invalid use of command. Usage: yarn run admin:mapkit-jwt:generate <TEAM_ID> <KEY_ID> [ORIGIN] <KEY_PATH>')
     process.exit(1)
   }
 
@@ -65,7 +65,7 @@ function command_generate(args) {
 
 function command_peek(args) {
   if (args.length !== 1) {
-    console.error('Invalid use of command. Usage: npm run admin:mapkit-jwt:peek <MAPKIT_JWT>')
+    console.error('Invalid use of command. Usage: yarn run admin:mapkit-jwt:peek <MAPKIT_JWT>')
     process.exit(1)
   }
 

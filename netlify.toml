@@ -7,7 +7,7 @@
   publish = "dist/"
 
   # Default build command.
-  command = "npm run build:prod"
+  command = "yarn run build:prod"
 
 # Environment variables ONLY for production deploys
 [context.production.environment]
@@ -17,7 +17,7 @@
 # Branch Deploy context: all deploys that are not from a pull/merge request or
 # from the Production branch will inherit these settings.
 [context.branch-deploy]
-  command = "npm run build:stage"
+  command = "yarn run build:stage"
 
   [context.branch-deploy.environment]
     SENTRY_ENVIRONMENT = "staging"
