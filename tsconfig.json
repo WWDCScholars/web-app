@@ -4,8 +4,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "lib": [
-      "esnext",
-      "esnext.asynciterable",
+      "es2020",
       "dom"
     ],
     "esModuleInterop": true,
