@@ -1,5 +1,6 @@
 import { Plugin } from '@nuxt/types'
-import type * as Sentry from '@sentry/minimal'
+import * as Sentry from '@sentry/minimal'
+import { Severity } from '@sentry/types'
 import Vue from 'vue'
 
 const MAPKIT_VERSION = '5.65.x'
@@ -30,6 +31,15 @@ function injectMapKit(sentry: typeof Sentry): Promise<typeof mapkit> {
   const script = document.createElement('script')
   script.onload = () => globalInjectResolve(window.mapkit)
   script.onerror = error => {
+    sentry.captureException(new Error('Error loading MapKit JS'), scope => {
+      scope.addBreadcrumb({
+        type: 'error',
+        level: Severity.Error,
+        message: typeof error === 'string' ? error : undefined,
+        data: typeof error !== 'string' ? error : undefined
+      })
+      return scope
+    })
     sentry.captureException(error)
   }
   document.body.appendChild(script)
