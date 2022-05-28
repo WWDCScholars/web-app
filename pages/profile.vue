@@ -3,7 +3,7 @@
   navigation-tab-bar
     nuxt-link(to="/profile") Basic
     nuxt-link(to="/profile/social") Social
-    nuxt-link(to="/profile/submissions") Submissions
+    nuxt-link(to="/profile/submissions", :class="submissionsLinkActive") Submissions
     nuxt-link(to="/profile/account") Account
 
   .container-fluid
@@ -66,6 +66,11 @@ export default class PageProfile extends Vue {
 
   @Profile.Action
   saveGDPRConsent!: () => Promise<void>
+
+  get submissionsLinkActive(): object {
+    const routes = ['profile-submissions', 'profile-submissions-new']
+    return { 'nuxt-link-exact-active': routes.includes(this.$route.name ?? '') }
+  }
 
   head(): MetaInfo {
     return { title: 'Profile | WWDCScholars' }
