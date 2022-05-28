@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/WWDCScholars/web-app/compare/v4.0.6...v4.1.0) (2022-05-28)
+
+
+### Features
+
+* Add page titles for /join & /contact ([19143c8](https://github.com/WWDCScholars/web-app/commit/19143c81eb3048a217fb74b8edb7c2b60f8b2122))
+* Filter existing years from new submission form ([f07af0c](https://github.com/WWDCScholars/web-app/commit/f07af0ca2db49552fd16d03bd47d3f530b5edb0b))
+
+
+### Bug Fixes
+
+* Sort submissions for profile editing ([0f6230b](https://github.com/WWDCScholars/web-app/commit/0f6230b5c9ec996a91a6cd170dd2d6beb4a09d63))
+
 ### [4.0.6](https://github.com/WWDCScholars/web-app/compare/v4.0.5...v4.0.6) (2022-05-26)
 
 
