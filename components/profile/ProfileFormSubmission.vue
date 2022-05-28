@@ -68,14 +68,15 @@ base-section
           rules="required"
         )
           template(#comment).
-            You can find #[a(href="https://developer.apple.com/account/#/events", target="_blank") your Apple Developer Profile here (developer.apple.com/account/#/events)]. Make sure the #[i {{ year }}] entry and your name in the top-right corner are clearly visible in the screenshot.
-          input-image(
-            name="validationScreenshot",
-            accept="image/*",
-            :required.once="true",
-            v-model="formData.acceptanceEmail",
-            @input="validate"
-          )#input-validation-screenshot
+            You can find #[a(href="https://developer.apple.com/account/#/events", target="_blank") your Apple Developer Profile here (developer.apple.com/account/#/events)]. Make sure the #[i {{ year }}] entry and your name in the top-right corner are clearly visible in the screenshot. If the linked page doesn't show the #[i {{ year }}] entry, sign in at #[a(href="https://developer.apple.com/account", target="_blank") developer.apple.com/account] and select the #[i Events] tab in the sidebar.
+          template
+            input-image(
+              name="validationScreenshot",
+              accept="image/*",
+              :required.once="true",
+              v-model="formData.acceptanceEmail",
+              @input="validate"
+            )#input-validation-screenshot
 
       .group.group-flex-spread
         slot(v-bind:valid="valid")
