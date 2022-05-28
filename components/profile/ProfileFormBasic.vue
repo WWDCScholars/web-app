@@ -9,17 +9,17 @@ base-section
         form-field(
           name="Profile Picture",
           vid="profilePicture",
-          rules="required_image|dimensions:250,-1,250,-1",
-          comment="This needs to be an image of you or a Memoji with a resolution of at least 250x250.",
-          v-slot="{ validate }"
+          rules="required_image|dimensions:250,-1,250,-1"
         )
-          input-image(
-            name="profilePicture",
-            accept="image/*",
-            :required.once="true",
-            v-model="formData.profilePicture",
-            @input="validate"
-          )#input-profile-picture
+          template(#comment) This needs to be an image of you or a Memoji with a resolution of at least 250x250.
+          template(v-slot="{ validate }")
+            input-image(
+              name="profilePicture",
+              accept="image/*",
+              :required.once="true",
+              v-model="formData.profilePicture",
+              @input="validate"
+            )#input-profile-picture
 
       .group.group-width-50
         h3 Enter some basic details about yourself

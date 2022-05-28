@@ -8,7 +8,8 @@ ValidationProvider(
 ).field
   slot(v-bind="validation")
   .input-error(v-if="validation.errors[0]") {{ validation.errors[0] }}
-  .comment(v-if="comment", v-html="comment")
+  .comment(v-if="$slots.comment")
+    slot(name="comment")
 </template>
 
 <script lang="ts">
@@ -19,8 +20,6 @@ import { ValidationProvider } from 'vee-validate'
   components: { ValidationProvider }
 })
 export default class FormField extends Vue {
-  @Prop({ default: '' })
-  comment!: string
   @Prop({ default: '' })
   rules!: string | object
   @Prop({ required: true })
