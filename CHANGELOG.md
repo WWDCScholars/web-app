@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/WWDCScholars/web-app/compare/v4.1.0...v4.2.0) (2022-05-28)
+
+
+### Features
+
+* Use slot for comment in FormField component ([71d8be5](https://github.com/WWDCScholars/web-app/commit/71d8be500aafcb490cc198a26d75a598d6f12c44))
+
 ## [4.1.0](https://github.com/WWDCScholars/web-app/compare/v4.0.6...v4.1.0) (2022-05-28)
 
 
