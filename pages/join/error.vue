@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import { RawLocation } from 'vue-router'
 import { BaseButton } from '~/components'
 
@@ -19,6 +20,10 @@ export default class PageJoinError extends Vue {
   readonly contactRoute: RawLocation = {
     name: 'contact',
     query: { reason: 'join-error' }
+  }
+
+  head(): MetaInfo {
+    return { title: 'There was an error | WWDCScholars' }
   }
 }
 </script>

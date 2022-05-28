@@ -60,6 +60,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import {
   BaseSection,
   BaseForm,
@@ -95,6 +96,10 @@ export default class PageContact extends Vue {
     { label: 'Issue during signup', value: 'join-error' },
     { label: 'Link existing account', value: 'join-link' }
   ]
+
+  head(): MetaInfo {
+    return { title: 'Contact | WWDCScholars' }
+  }
 
   created() {
     let reasonIndex: number | undefined

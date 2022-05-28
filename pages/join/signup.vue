@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import {
   BaseSection,
   BaseForm,
@@ -30,7 +31,11 @@ import {
   },
   middleware: ['authenticated', 'noprofile']
 })
-export default class PageJoinSignup extends Vue {}
+export default class PageJoinSignup extends Vue {
+  head(): MetaInfo {
+    return { title: 'Join | WWDCScholars' }
+  }
+}
 </script>
 
 <style lang="sass" scoped>

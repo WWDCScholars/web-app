@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import {
   ProfileFormSocial,
   BaseButton
@@ -39,6 +40,10 @@ export default class PageJoinProfileSocial extends Vue {
   updateFields
 
   formData: ProfileFormSocial.Model = {}
+
+  head(): MetaInfo {
+    return { title: 'Join | WWDCScholars' }
+  }
 
   created() {
     this.formData = {

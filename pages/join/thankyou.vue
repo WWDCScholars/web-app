@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 import TwitterIcon from '~/assets/images/icon-social-twitter.svg?inline'
 import DiscordIcon from '~/assets/images/icon-social-discord.svg?inline'
@@ -28,7 +29,11 @@ import DiscordIcon from '~/assets/images/icon-social-discord.svg?inline'
   components: { TwitterIcon, DiscordIcon },
   middleware: ['authenticated', 'profile', 'unapproved']
 })
-export default class PageJoinThankyou extends Vue {}
+export default class PageJoinThankyou extends Vue {
+  head(): MetaInfo {
+    return { title: 'Thanks for joining us! | WWDCScholars' }
+  }
+}
 </script>
 
 <style lang="sass" scoped>

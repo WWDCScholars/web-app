@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import {
   BaseSection,
   BaseForm,
@@ -84,6 +85,10 @@ export default class PageJoinSubmit extends Vue {
   parentalConsent: boolean = false
   gdprConsent: boolean = false
   isSubmitInProgress: boolean = false
+
+  head(): MetaInfo {
+    return { title: 'Submit your profile | WWDCScholars' }
+  }
 
   previousClicked() {
     this.$router.back()

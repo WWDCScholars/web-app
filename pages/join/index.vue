@@ -45,6 +45,7 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import { BaseSection } from '~/components'
 
 import * as auth from '~/store/auth'
@@ -57,6 +58,10 @@ const Auth = namespace(auth.name)
 export default class PageJoinIndex extends Vue {
   @Auth.Action
   getSignInURL!: () => Promise<string | undefined>
+
+  head(): MetaInfo {
+    return { title: 'Join the WWDCScholars community!' }
+  }
 
   async signIn() {
     const url = await this.getSignInURL()

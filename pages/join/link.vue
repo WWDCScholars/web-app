@@ -44,6 +44,7 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import { RawLocation } from 'vue-router'
 import { CloudKit } from '@wwdcscholars/cloudkit'
 import {
@@ -85,6 +86,10 @@ export default class PageJoinLink extends Vue {
 
   @Join.Action
   linkRequest!: (email: string) => Promise<void>
+
+  head(): MetaInfo {
+    return { title: 'Link your legacy profile | WWDCScholars' }
+  }
 
   resetForm() {
     this.email = ''

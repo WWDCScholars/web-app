@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 import { WWDCYear } from '@wwdcscholars/cloudkit'
 import {
   ProfileFormSubmissionWithYear,
@@ -44,6 +45,10 @@ export default class PageJoinProfileSubmission extends Vue {
 
   formData: ProfileFormSubmissionWithYear.Model = {}
   selectedYear: string | null = null
+
+  head(): MetaInfo {
+    return { title: 'Join | WWDCScholars' }
+  }
 
   created() {
     this.formData = {
