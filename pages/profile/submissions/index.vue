@@ -44,7 +44,8 @@ export default class PageProfileSubmissionsIndex extends Vue {
   get submissions(): { year: CloudKit.Reference, yearInfo: CloudKit.Reference }[] {
     if (!this.scholar || !this.scholar.wwdcYears || !this.scholar.wwdcYearInfos) return []
 
-    return this.scholar.wwdcYears
+    return [...this.scholar.wwdcYears]
+      .sort((lhs, rhs) => rhs.recordName.localeCompare(lhs.recordName)) // inverse-chronological order
       .map((year, index) => {
         return {
           year,
