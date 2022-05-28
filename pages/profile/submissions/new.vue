@@ -1,6 +1,7 @@
 <template lang="pug">
 profile-form-submission-with-year(
   title="Add Submission",
+  :filterYears="filterYears",
   v-model="formData",
   @change:selectedYear="selectedYear = $event",
   v-slot="{ valid }"
@@ -20,6 +21,7 @@ import {
   ProfileFormSubmissionWithYear,
   BaseButton
 } from '~/components'
+import { Scholar } from '@wwdcscholars/cloudkit'
 
 import { name as profileName } from '~/store/profile'
 const Profile = namespace(profileName)
@@ -34,8 +36,20 @@ export default class PageProfileSubmissionsNew extends Vue {
   formData: ProfileFormSubmissionWithYear.Model = {}
   selectedYear: string | null = null
 
+  @Profile.Getter
+  scholar?: Scholar
+
   @Profile.Action
   createYearInfo!: (formData) => Promise<void>
+
+  get filterYears(): string[] | undefined {
+    if (!this.scholar || !this.scholar.wwdcYears) {
+      return undefined
+    }
+
+    return this.scholar.wwdcYears
+      .map(y => y.recordName)
+  }
 
   async submitClicked() {
     if (!this.selectedYear) return

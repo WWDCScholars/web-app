@@ -57,6 +57,9 @@ class ProfileFormSubmissionWithYear extends Vue {
   @Prop({ type: String, required: false })
   title?: string
 
+  @Prop({ type: Array, default: [] })
+  filterYears!: string[]
+
   @Years.Getter('sortedKeys')
   sortedYearKeys!: string[]
 
@@ -64,6 +67,7 @@ class ProfileFormSubmissionWithYear extends Vue {
 
   get yearOptions(): { label: string; value: string }[] {
     return this.sortedYearKeys
+      .filter(year => !this.filterYears.includes(year))
       .reverse()
       .map(year => ({
         label: year,
