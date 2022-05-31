@@ -39,7 +39,7 @@
               @click="previousClicked"
             ).btn-cta.btn-secondary Previous
             base-button(
-              :disabled="!valid || !isFormComplete",
+              :disabled="!valid || !isFormComplete || isSubmitInProgress",
               @click="submitClicked"
             ).btn-cta Submit
 </template>
@@ -95,6 +95,8 @@ export default class PageJoinSubmit extends Vue {
   }
 
   async submitClicked() {
+    if (this.isSubmitInProgress) return
+
     this.isSubmitInProgress = true
     try {
       await this.submitForm()
