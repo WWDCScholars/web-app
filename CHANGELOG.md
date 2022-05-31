@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.1](https://github.com/WWDCScholars/web-app/compare/v4.2.0...v4.2.1) (2022-05-31)
+
+
+### Bug Fixes
+
+* Disable submit button while in progress ([fb894b8](https://github.com/WWDCScholars/web-app/commit/fb894b8fdf012169851119b2b5e15772158bae59))
+
 ## [4.2.0](https://github.com/WWDCScholars/web-app/compare/v4.1.0...v4.2.0) (2022-05-28)
 
 
