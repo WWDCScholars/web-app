@@ -42,6 +42,7 @@
               :disabled="true",
               :value.once="scholar.familyName"
             )
+          .group-comment Please #[nuxt-link(to="/contact?reason=change-name") contact us] to change your name.
           form-field(name="Email", rules="email|required", vid="email")
             input-text(
               type="email",

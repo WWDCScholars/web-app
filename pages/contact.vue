@@ -94,7 +94,8 @@ export default class PageContact extends Vue {
   readonly reasonOptions: InputSelect.Options = [
     { label: 'General', value: 'general' },
     { label: 'Issue during signup', value: 'join-error' },
-    { label: 'Link existing account', value: 'join-link' }
+    { label: 'Link existing account', value: 'join-link' },
+    { label: 'Change my name', value: 'change-name' }
   ]
 
   head(): MetaInfo {

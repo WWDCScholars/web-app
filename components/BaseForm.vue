@@ -65,6 +65,15 @@ export default class BaseForm extends Vue {}
       &.field-width-50
         grid-column: span 1
 
+    .group-comment
+      grid-column: span 2
+      margin-top: -10px
+      color: $label-secondary
+      font-size: 0.8em
+
+      a
+        color: inherit
+
   ::v-deep .btn-cta
     grid-column: span 2
     justify-self: end
