@@ -52,7 +52,6 @@ base-section
             name="birthday",
             placeholder="Date of Birth (yyyy-mm-dd)",
             onlyPast="true",
-            displayFormat="Y-m-d",
             :required.once="true",
             v-model="formData.birthday"
           )
