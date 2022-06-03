@@ -25,6 +25,7 @@ $_dark-system-white: rgb(242, 240, 240);
 
 $themes: (
   $light-theme: (
+    background-header: rgb(255, 255, 255, 0.72),
     background-primary-base: rgb(255, 255, 255),
     background-primary-elevated: rgb(255, 255, 255),
     background-tertiary-base: rgb(255, 255, 255),
@@ -83,6 +84,7 @@ $themes: (
     sch-orange-highlight: color.scale($_light-sch-orange, $lightness: -15%)
   ),
   $dark-theme: (
+    background-header: rgb(29, 29, 31, 0.72),
     background-primary-base: rgb(0, 0, 0),
     background-primary-elevated: rgb(28, 28, 30),
     background-tertiary-base: rgb(44, 44, 46),
@@ -184,6 +186,7 @@ $themes: (
 // ----------------------------------------------
 // Define SASS variables
 
+$background-header: color("background-header");
 $background-primary-base: color("background-primary-base");
 $background-primary-elevated: color("background-primary-elevated");
 $background-tertiary-base: color("background-tertiary-base");
