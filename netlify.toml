@@ -22,6 +22,10 @@
   [context.branch-deploy.environment]
     SENTRY_ENVIRONMENT = "staging"
 
+# Environment variables ONLY for deploys of the 'develop' branch
+[context.develop.environment]
+  BASE_URL = "https://develop.www.wwdcscholars.com"
+
 # Content-Security-Policy
 [[headers]]
   for = "/*"

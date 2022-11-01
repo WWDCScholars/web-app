@@ -63,11 +63,18 @@ async function initializeMapKit(options: mapkit.MapKitInitOptions, sentry: typeo
   return mapkit
 }
 
-const mapKitPlugin: Plugin = ({ $config, $sentry }) => {
+const mapKitPlugin: Plugin = ({ $config, $sentry, $axios }) => {
   Vue.prototype.$loadMapKit = async () => {
     await initializeMapKit({
       authorizationCallback(done) {
-        done($config.mapKitJwt)
+        if ($config.mapKitJwt) {
+          done($config.mapKitJwt)
+        } else {
+          $axios.$get('/.netlify/functions/mapkit-jwt')
+            .then(data => {
+              done(data.token)
+            })
+        }
       },
       language: 'en-US'
     }, $sentry)
