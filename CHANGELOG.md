@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/WWDCScholars/web-app/compare/v4.2.3...v4.3.0) (2022-11-02)
+
+
+### Features
+
+* Netlify function for MapKit JWT ([87fbdf1](https://github.com/WWDCScholars/web-app/commit/87fbdf1ada3f254a16ae521a80c151723d7f9436))
+
 ### [4.2.3](https://github.com/WWDCScholars/web-app/compare/v4.2.2...v4.2.3) (2022-06-03)
 
 ### [4.2.2](https://github.com/WWDCScholars/web-app/compare/v4.2.1...v4.2.2) (2022-06-02)
