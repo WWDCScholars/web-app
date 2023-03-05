@@ -29,6 +29,9 @@ const config: NuxtConfig = {
    ** Headers of the page
    */
   head: {
+    htmlAttrs: {
+      lang: 'en'
+    },
     title: META.title,
     meta: [
       { name: 'Content-Type', content: 'text/html', charset: 'utf-8' },
