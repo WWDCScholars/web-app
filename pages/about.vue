@@ -8,7 +8,7 @@
 
     .team-section
       .team-picture
-        img(src="/images/team-members.jpg")
+        img(src="/images/team-members.jpg", width="2480", height="826")
         .title WWDC#[span Scholars] Team
 
       .team-cards
@@ -23,7 +23,7 @@
 
     .team-section
       .team-picture
-        img(src="/images/team-scholars.jpg")
+        img(src="/images/team-scholars.jpg", width="2480", height="826")
         .title WWDCScholarships
 
       base-section
@@ -124,7 +124,9 @@ h3
 
   img
     width: 100%
+    height: auto
     border-radius: $border-radius-large
+    background-color: $fill-tertiary
     +shadow
 
     +for-phone-only
@@ -136,8 +138,7 @@ h3
     left: 4%
     font-size: 2.3em
     font-weight: 700
-    //picture bg is static and needs bright contrast
-    color: white
+    color: $system-white
 
     span
       font-weight: 500
