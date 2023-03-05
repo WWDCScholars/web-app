@@ -15,7 +15,7 @@ export function featureEnum(type: string, defaultType: string = 'adaptive') {
 
 export function findRootNode(node: Vue): Vue | null {
   while (node && !node['deferredReadyPromise']) {
-    node = node.$parent
+    node = node.$parent as Vue
   }
   return node
 }
