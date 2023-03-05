@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.1-pre.1](https://github.com/WWDCScholars/web-app/compare/v4.3.1-pre.0...v4.3.1-pre.1) (2023-03-05)
+
+
+### Bug Fixes
+
+* Fixed about team image size to avoid CLS ([1e41583](https://github.com/WWDCScholars/web-app/commit/1e415837f4de1cf3e4c476377a7ec02e603016d1))
+
 ### [4.3.1-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.3.0...v4.3.1-pre.0) (2023-03-05)
 
 ## [4.3.0](https://github.com/WWDCScholars/web-app/compare/v4.2.3...v4.3.0) (2022-11-02)
