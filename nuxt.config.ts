@@ -127,9 +127,6 @@ const config: NuxtConfig = {
     // Load CloudKit
     '@wwdcscholars/cloudkit',
 
-    // Load Plausible Analytics
-    'vue-plausible',
-
     // Load Axios for contact form and link API
     '@nuxtjs/axios',
 
@@ -160,14 +157,6 @@ const config: NuxtConfig = {
     authTokenStore: {
       secure: !isDevelopment // don't set `Secure` flag in development mode
     }
-  },
-
-  /*
-   ** Plausible Analytics configuration
-   */
-  plausible: {
-    domain: process.env[`${envPrefix}_PLAUSIBLE_DOMAIN`],
-    apiHost: process.env[`${envPrefix}_PLAUSIBLE_API_HOST`]
   },
 
   /*

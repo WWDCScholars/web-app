@@ -120,10 +120,7 @@
       of the data transferred and the use of this information by Twitter. For more details, please consult Twitter’s Data Privacy Declaration at: <a href="https://twitter.com/en/privacy" target="_blank" rel="noopener">https://twitter.com/en/privacy</a>.</p>
     <p>The use of Twitter plug-ins is based on Art. 6 Sect. 1 lit. f GDPR. The operator of the website/app has a legitimate interest in being as visible as possible on social media.</p>
     <p>You have the option to reset your data protection settings on Twitter under the account settings at <a href="https://twitter.com/account/settings" target="_blank" rel="noopener">https://twitter.com/account/settings</a>.</p>-->
-    <h2>5. Analysis tools and advertising</h2>
-    <h3>Plausible Analytics</h3>
-    <p>We use the open source Plausible Analytics to count website visits. You can see the same data we do on <a href="https://plausible.io/wwdcscholars.com" target="_blank" rel="noopener">the public dashboard</a>. No cookies are used and no personal data, not even an IP address or browser user agent, are stored. For more information, see <a href="https://plausible.io/data-policy" target="_blank" rel="noopener">the Plausible Data Policy</a>.</p>
-    <h2>6. Plug-ins and Tools</h2>
+    <h2>4. Plug-ins and Tools</h2>
     <!--<h3>YouTube</h3>
     <p>Our website/app uses plug-ins of the YouTube platform, which is operated by Google. The website operator is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.</p>
     <p>If you visit a page on our website/in our app into which a YouTube plug-in has been integrated, a connection with YouTube’s servers will be established. As a result, the YouTube server will be notified, which of our pages you have visited.</p>
@@ -160,7 +157,7 @@
       <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">https://sentry.io/privacy/</a></p>
     <p>We use Sentry with the objective of detecting bugs and issues in our services. This establishes legitimate grounds as defined in Art. 6 Sect. 1 lit. f GDPR. Sentry has certified its compliance with the EU-U.S. Privacy Shield. To access the Privacy Shield
       List and to find details of Sentry's certification, please visit: <a href="www.privacyshield.gov" target="_blank" rel="noopener">www.privacyshield.gov</a></p>
-    <h2>7. Newsletter & Emails</h2>
+    <h2>5. Newsletter & Emails</h2>
     <h3>SendGrid</h3>
     <p>This website uses SendGrid for the sending of newsletters and further emails. The provider is the SendGrid, Inc., which maintains its registered business domicile in 1801 California Street, Suite 500, Boulder, CO 80202, United States, website: <a href="https://www.sendgrid.com"
         target="_blank" rel="noopener">https://wwwd.sendgrid.com</a> (hereinafter referred to as SendGrid).</p>
@@ -181,7 +178,7 @@
     <p>For more details, please consult the Data Protection Regulations of SendGrid at: <a href="https://sendgrid.com/policies/privacy/" target="_blank" rel="noopener">https://sendgrid.com/policies/privacy/</a>. SendGrid is taking part in the EU-US Privacy Shield.</p>
     <p><strong>Execution of a contract data processing agreement</strong></p>
     <p>We have executed a contract with SendGrid, in which we require SendGrid to protect our customers’ data and to refrain from sharing such data with third parties.</p>
-    <h2>8. Custom Services</h2>
+    <h2>6. Custom Services</h2>
     <h3>Submissions</h3>
     <p>We offer website visitors/app users the opportunity to submit their profiles to us (e.g. by submitting the online submission form). Below, we will brief you on the scope, purpose and use of the personal data collected from you in conjunction with the
       submission process. We assure you that the collection, processing and use of your data will occur in compliance with the applicable data privacy rights and all other statutory provisions and that your data will always be treated as strictly confidential,

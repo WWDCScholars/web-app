@@ -9,7 +9,7 @@ footer.container-fluid
         span.separator
         nuxt-link(to="/contact") Contact
         span.separator
-        a(href="https://plausible.io/wwdcscholars.com", target="_blank") Stats
+        a(href="https://twitter.com/WWDCScholars", target="_blank") @WWDCScholars
 
       .attribution Social icons by #[a(href="https://icons8.com/l/sf/", target="_blank") Icons8]
 
