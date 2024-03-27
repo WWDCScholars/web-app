@@ -305,7 +305,7 @@ export const actions: ActionTree<State, RootState> = {
       wwdcYearInfos: { value: arrayWithoutIndex(scholar.wwdcYearInfos, yearToRemoveIndex) },
     }
 
-    const approvedYearToRemoveIndex = scholar.wwdcYearsApproved
+    const approvedYearToRemoveIndex = (scholar.wwdcYearsApproved ?? [])
       .findIndex(y => y.recordName === yearToRemove)
     if (approvedYearToRemoveIndex > -1) {
       fieldsToUpdate['wwdcYearsApproved'] = { value: arrayWithoutIndex(scholar.wwdcYearsApproved, approvedYearToRemoveIndex) }
