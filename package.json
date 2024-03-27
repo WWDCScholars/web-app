@@ -21,8 +21,8 @@
     "build:stage": "cross-env NODE_ENV=staging nuxt generate",
     "start:prod": "cross-env NODE_ENV=production nuxt start",
     "start:stage": "cross-env NODE_ENV=staging nuxt start",
-    "release:create": "standard-version",
-    "release:create:pre": "standard-version --prerelease pre",
+    "release:create": "commit-and-tag-version",
+    "release:create:pre": "commit-and-tag-version --prerelease pre",
     "release:publish": "git push --follow-tags",
     "release": "yarn run release:create && yarn run release:publish",
     "release:pre": "yarn run release:create:pre && yarn run release:publish",
@@ -60,6 +60,7 @@
     "@types/pica": "^5.1.1",
     "@types/throttle-debounce": "^2.1.0",
     "@types/uuid": "^8.3.0",
+    "commit-and-tag-version": "^12.2.0",
     "cross-env": "^7.0.3",
     "jsonwebtoken": "^8.5.1",
     "nuxt-property-decorator": "^2.9.1",
@@ -67,7 +68,6 @@
     "pug-plain-loader": "^1.1.0",
     "sass": "^1.43.4",
     "sass-loader": "^10.1.1",
-    "standard-version": "^9.1.1",
     "typescript": "~4.2.4",
     "vuex-module-decorators": "^1.0.1"
   }
