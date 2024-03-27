@@ -61,14 +61,14 @@ base-section
           )
 
       .group
-        h3 In order to validate your submission, please upload a screenshot of the Events section of your Apple Developer Profile
+        h3 In order to validate your submission, please upload a screenshot of the Submission Page and your Developer Account
         form-field(
           name="Validation Screenshot",
           vid="validationScreenshot",
           rules="required"
         )
           template(#comment).
-            You can find #[a(href="https://developer.apple.com/account/#/events", target="_blank") your Apple Developer Profile here (developer.apple.com/account/#/events)]. Make sure the #[i {{ year }}] entry and your name in the top-right corner are clearly visible in the screenshot. If the linked page doesn't show the #[i {{ year }}] entry, sign in at #[a(href="https://developer.apple.com/account", target="_blank") developer.apple.com/account] and select the #[i Events] tab in the sidebar.
+            We recommend taking a single screenshot of two side-by-side browser windows. One window shows #[a(href="https://developer.apple.com/swift-student-challenge/apply/", target="_blank") your Submission (developer.apple.com/swift-student-challenge/apply)] and the other one #[a(href="https://developer.apple.com/account/", target="_blank") your Developer Account (developer.apple.com/account)]. Make sure that your name in the top-right corner of the Developer Account page is clearly visible the screenshot.
           template
             input-image(
               name="validationScreenshot",
