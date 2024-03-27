@@ -11,6 +11,11 @@
 
     //- TODO: Maybe we also want a blurb for only screenshots...
 
+  p.distinguished-winner(v-if="isDistinguishedWinner")
+    a(href="https://developer.apple.com/swift-student-challenge/distinguished-winners/", target="_blank")
+      IconTrophy.icon
+      span Distinguished Winner
+
   p.description {{ yearInfo.description }}
 
   .links
@@ -55,9 +60,11 @@ import { Component, Prop, Watch, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 import LightBox from 'vue-cool-lightbox'
 import { Scholar, WWDCYear, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
+import '~/util/wwdcYear-hasFeature'
 import { routeMatchYear, yearMatchYearInfo } from '~/util/wwdcYear-index'
 import { getVideoPreviewUrl } from '~/util/video'
 import IconLink from '~/assets/images/icon-link.svg?inline'
+import IconTrophy from '~/assets/images/icon-trophy.svg?inline'
 
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
@@ -70,7 +77,8 @@ const Years = namespace(yearsName)
 @Component({
   components: {
     LightBox,
-    IconLink
+    IconLink,
+    IconTrophy
   }
 })
 export default class ScholarProfileSubmission extends Vue {
@@ -108,6 +116,13 @@ export default class ScholarProfileSubmission extends Vue {
   get challengeDescription(): string {
     if (!this.wwdcYear) return ''
     return this.wwdcYear.challengeDescription || ''
+  }
+
+  get isDistinguishedWinner(): boolean {
+    if (!this.wwdcYear) return false
+
+    const submissionIsDistinguishedWinner = this.yearInfo?.isDistinguishedWinner ?? false
+    return this.wwdcYear.hasFeature('distinguished-winner') && submissionIsDistinguishedWinner
   }
 
   get media(): object[] {
@@ -208,6 +223,20 @@ export default class ScholarProfileSubmission extends Vue {
 
     &:hover
       border-color: $sch-purple
+
+.distinguished-winner a
+  display: flex
+  align-items: center
+  text-decoration: none
+  color: $label-primary
+
+  .icon
+    width: 1.5em
+    margin-right: 0.5em
+    color: $system-yellow
+
+  span
+    font-weight: 500
 
 .description
   font-size: 0.9em

@@ -20,6 +20,7 @@
   profile-form-submission(
     v-if="selectedYear",
     :year="selectedYear",
+    :features="yearFeatures",
     v-model="formDataValue",
     v-slot="{ valid }"
   )
@@ -28,6 +29,7 @@
 
 <script lang="ts">
 import { Component, ModelSync, Prop, Watch, Vue, namespace } from 'nuxt-property-decorator'
+import { WWDCYear } from '@wwdcscholars/cloudkit'
 import {
   BaseSection,
   BaseForm,
@@ -57,13 +59,17 @@ class ProfileFormSubmissionWithYear extends Vue {
   @Prop({ type: String, required: false })
   title?: string
 
-  @Prop({ type: Array, default: [] })
+  @Prop({ type: Array, default: () => [] })
   filterYears!: string[]
 
   @Years.Getter('sortedKeys')
   sortedYearKeys!: string[]
 
+  @Years.Getter('byRecordName')
+  yearByRecordName!: (recordName: string) => WWDCYear | undefined
+
   selectedYear: string | null = null
+  yearFeatures: string[] = []
 
   get yearOptions(): { label: string; value: string }[] {
     return this.sortedYearKeys
@@ -83,8 +89,14 @@ class ProfileFormSubmissionWithYear extends Vue {
   }
 
   @Watch('selectedYear')
-  onSelectedYearChanged(value) {
-    this.$emit('change:selectedYear', value)
+  onSelectedYearChanged(selectedYear: string) {
+    const yearInfo = this.yearByRecordName(selectedYear)
+    if (!yearInfo) {
+      return
+    }
+
+    this.yearFeatures = yearInfo.features ?? []
+    this.$emit('change:selectedYear', yearInfo.recordName)
   }
 }
 

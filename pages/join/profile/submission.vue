@@ -53,6 +53,7 @@ export default class PageJoinProfileSubmission extends Vue {
   created() {
     this.formData = {
       appliedAs: this.submission?.appliedAs,
+      isDistinguishedWinner: this.submission?.isDistinguishedWinner,
       description: this.submission?.description,
       screenshots: this.submission?.screenshots,
       videoLink: this.submission?.videoLink,

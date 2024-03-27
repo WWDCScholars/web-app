@@ -211,6 +211,7 @@ export const actions: ActionTree<State, RootState> = {
     yearInfo.recordName = uuid().toUpperCase()
 
     yearInfo.appliedAs = formData.appliedAs
+    yearInfo.isDistinguishedWinner = formData.isDistinguishedWinner ?? false
     yearInfo.description = formData.description
     if (formData.videoLink) {
       yearInfo.videoLink = formData.videoLink

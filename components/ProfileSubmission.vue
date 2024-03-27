@@ -20,12 +20,22 @@ base-section
             v-model="formData.appliedAs"
           )
 
+      .group(v-if="yearHasDistinguishedWinnerFeature")
+        h3 Were you recognized as a Distinguished Winner?
+        form-field(name="Distinguished Winner", vid="isDistinguishedWinner")
+          input-checkbox(
+            :name="yearRecordName + '_distinguishedWinner'"
+            label="I was recognized as a Distinguished Winner",
+            :disabled="true",
+            :value="formData.isDistinguishedWinner"
+          )
+
       .group
         h3 Describe your winning project in less than 500 characters
         form-field(name="Description", rules="required|max:500", vid="description")
           input-text(
             type="textarea",
-            name="description",
+            :name="yearRecordName + '_description'",
             maxLength="500",
             required="true",
             v-model="formData.description"
@@ -81,7 +91,8 @@ base-section
 <script lang="ts">
 import { Component, Prop, Vue, namespace } from 'nuxt-property-decorator'
 import { Location } from 'vue-router'
-import { Scholar, WWDCYearInfo, CloudKit } from '@wwdcscholars/cloudkit'
+import { Scholar, WWDCYearInfo, WWDCYear, CloudKit } from '@wwdcscholars/cloudkit'
+import '~/util/wwdcYear-hasFeature'
 import BaseSection from './BaseSection.vue'
 import BaseForm from './BaseForm.vue'
 import BaseButton from './BaseButton.vue'
@@ -89,6 +100,7 @@ import FormField from './FormField.vue'
 import {
   InputImageMultiple,
   InputRadioGroup,
+  InputCheckbox,
   InputText
 } from './inputs'
 import { ValidationObserver } from 'vee-validate'
@@ -96,6 +108,9 @@ import { handleSave } from '~/util/edit-profile'
 
 import { name as profileName } from '~/store/profile'
 const Profile = namespace(profileName)
+
+import { name as yearsName } from '~/store/years'
+const Years = namespace(yearsName)
 
 @Component({
   components: {
@@ -105,6 +120,7 @@ const Profile = namespace(profileName)
     FormField,
     InputImageMultiple,
     InputRadioGroup,
+    InputCheckbox,
     InputText,
     ValidationObserver
   }
@@ -118,6 +134,9 @@ export default class ProfileSubmission extends Vue {
 
   @Profile.Getter
   scholar?: Scholar
+
+  @Years.Getter('byRecordName')
+  yearByRecordName!: (recordName: string) => WWDCYear | undefined
 
   appliedAsOptions: { label: string; value: string }[] = [
     { label: 'Student', value: 'student' },
@@ -163,8 +182,17 @@ export default class ProfileSubmission extends Vue {
     return 'pending'
   }
 
+  get wwdcYear(): WWDCYear | undefined {
+    return this.yearByRecordName(this.yearRecordName)
+  }
+
+  get yearHasDistinguishedWinnerFeature(): boolean {
+    return this.wwdcYear?.hasFeature('distinguished-winner') ?? false
+  }
+
   get formData(): {
     appliedAs?: ('student' | 'stem' | 'both'),
+    isDistinguishedWinner?: boolean,
     description?: string,
     screenshots?: (CloudKit.Asset | File)[],
     videoLink?: string,
@@ -173,6 +201,7 @@ export default class ProfileSubmission extends Vue {
   } {
     return {
       appliedAs: this.yearInfo?.appliedAs,
+      isDistinguishedWinner: this.yearInfo?.isDistinguishedWinner,
       description: this.yearInfo?.description,
       screenshots: this.screenshotsValue,
       videoLink: this.yearInfo?.videoLink,
@@ -182,6 +211,7 @@ export default class ProfileSubmission extends Vue {
   }
 
   async fetch() {
+    await this.$store.dispatch('years/fetchYear', this.yearRecordName)
     await this.$store.dispatch('profile/loadYearInfo', this.yearInfoRecordName)
 
     this.screenshotsValue = this.yearInfo?.screenshots ?? []

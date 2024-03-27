@@ -15,6 +15,15 @@ base-section
             v-model="formData.appliedAs"
           )
 
+      .group(v-if="yearHasDistinguishedWinnerFeature")
+        h3 Were you recognized as a Distinguished Winner?
+        form-field(name="Distinguished Winner", vid="isDistinguishedWinner")
+          input-checkbox(
+            :name="year + '_distinguishedWinner'"
+            label="I was recognized as a Distinguished Winner",
+            v-model="formData.isDistinguishedWinner"
+          )
+
       .group
         h3 Describe your winning project in 500 characters or less
         form-field(name="Description", rules="required|max:500", vid="description")
@@ -84,7 +93,6 @@ base-section
 
 <script lang="ts">
 import { Component, Model, Prop, Vue } from 'nuxt-property-decorator'
-import { CloudKit } from '@wwdcscholars/cloudkit'
 import {
   BaseSection,
   BaseForm,
@@ -92,9 +100,11 @@ import {
   InputText,
   InputImage,
   InputImageMultiple,
-  InputRadioGroup
+  InputRadioGroup,
+  InputCheckbox
 } from '~/components'
 import { ValidationObserver } from 'vee-validate'
+import { WWDCYear } from '@wwdcscholars/cloudkit'
 
 @Component({
   components: {
@@ -105,6 +115,7 @@ import { ValidationObserver } from 'vee-validate'
     InputImage,
     InputImageMultiple,
     InputRadioGroup,
+    InputCheckbox,
     ValidationObserver
   }
 })
@@ -116,17 +127,24 @@ class ProfileFormSubmission extends Vue {
   year!: string
   @Prop({ type: String, default: 'Submission' })
   title!: string
+  @Prop({ type: Array, default: () => [] })
+  features!: string[]
 
   appliedAsOptions: { label: string; value: string }[] = [
     { label: 'Student', value: 'student' },
     { label: 'STEM', value: 'stem' },
     { label: 'Developer Academy Member', value: 'academy' }
   ]
+
+  get yearHasDistinguishedWinnerFeature(): boolean {
+    return this.features.includes('distinguished-winner')
+  }
 }
 
 namespace ProfileFormSubmission {
   export interface Model {
     appliedAs?: ('student' | 'stem' | 'academy')
+    isDistinguishedWinner?: boolean
     description?: string
     screenshots?: File[]
     videoLink?: string
