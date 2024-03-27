@@ -59,6 +59,7 @@
               :required.once="true",
               v-model="formData.birthday"
             )
+          .group-comment Your date of birth is not displayed publicly, only your age.
 
           h3 Pronouns
           form-field(name="Pronouns", vid="gender")
