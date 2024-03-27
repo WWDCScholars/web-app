@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.2-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.3.1...v4.3.2-pre.0) (2024-03-27)
+
+
+### Bug Fixes
+
+* Back link from basic profile page in join flow ([61a9093](https://github.com/WWDCScholars/web-app/commit/61a90936eb4089fa02f7473d6c8a72e6db90f333))
+
 ### [4.3.1](https://github.com/WWDCScholars/web-app/compare/v4.3.1-pre.3...v4.3.1) (2023-03-26)
 
 ### [4.3.1-pre.3](https://github.com/WWDCScholars/web-app/compare/v4.3.1-pre.2...v4.3.1-pre.3) (2023-03-26)
