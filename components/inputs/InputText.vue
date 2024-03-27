@@ -10,6 +10,7 @@
       type="email",
       :name.once="name",
       :disabled="disabled",
+      :autocomplete="autocomplete",
       :value="value",
       @input="update($event.target.value)"
     )
@@ -19,6 +20,7 @@
       type="url",
       :name.once="name",
       :disabled="disabled",
+      :autocomplete="autocomplete",
       :value="value",
       @input="update($event.target.value)"
     )
@@ -27,6 +29,7 @@
       ref="input",
       :name.once="name",
       :disabled="disabled",
+      :autocomplete="autocomplete",
       :value="value",
       @input="update($event.target.value)"
     )
@@ -35,6 +38,7 @@
       ref="input",
       :name.once="name",
       :disabled="disabled",
+      :autocomplete="autocomplete",
       :value="value",
       :maxLength="maxLength",
       @input="update($event)",
@@ -46,6 +50,7 @@
       type="text",
       :name.once="name",
       :disabled="disabled",
+      :autocomplete="autocomplete",
       :value="value",
       @input="update($event.target.value)",
     )
@@ -75,6 +80,8 @@ export default class InputText extends Vue {
   required!: boolean
   @Prop({ default: false })
   disabled!: boolean
+  @Prop({ default: undefined })
+  autocomplete?: string
   @Prop({ default: undefined })
   maxLength?: number
 
