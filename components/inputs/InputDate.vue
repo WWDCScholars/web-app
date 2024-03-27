@@ -75,7 +75,7 @@ export default class InputDate extends Vue {
     border-radius: $border-radius
     color: $label-primary
     transition: border-color 100ms linear, box-shadow 100ms linear
-    appearance: textfield
+    appearance: none
 
     &::-webkit-date-and-time-value
       text-align: left
