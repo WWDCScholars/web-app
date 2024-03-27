@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.4.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v4.4.0-pre.0...v4.4.0-pre.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* Date input layout on mobile ([23fb463](https://github.com/WWDCScholars/web-app/commit/23fb463c88f1425810aec7d64efe7c6e36cc16d9))
+* Layout in Radio Group when wrapping lines ([b424a59](https://github.com/WWDCScholars/web-app/commit/b424a598ca0ea9c44ed251c42d604ce7ea6a9693))
+
 ## [4.4.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.3.2-pre.0...v4.4.0-pre.0) (2024-03-27)
 
 ### [4.3.2-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.3.1...v4.3.2-pre.0) (2024-03-27)
