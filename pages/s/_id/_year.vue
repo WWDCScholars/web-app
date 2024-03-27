@@ -122,7 +122,7 @@ export default class ScholarProfileSubmission extends Vue {
     if (!this.wwdcYear) return false
 
     const submissionIsDistinguishedWinner = this.yearInfo?.isDistinguishedWinner ?? false
-    return this.wwdcYear.hasFeature('distinguished-winner') && submissionIsDistinguishedWinner
+    return this.wwdcYear.hasFeature('distinguished-winners') && submissionIsDistinguishedWinner
   }
 
   get media(): object[] {

@@ -187,7 +187,7 @@ export default class ProfileSubmission extends Vue {
   }
 
   get yearHasDistinguishedWinnerFeature(): boolean {
-    return this.wwdcYear?.hasFeature('distinguished-winner') ?? false
+    return this.wwdcYear?.hasFeature('distinguished-winners') ?? false
   }
 
   get formData(): {

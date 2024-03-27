@@ -137,7 +137,7 @@ class ProfileFormSubmission extends Vue {
   ]
 
   get yearHasDistinguishedWinnerFeature(): boolean {
-    return this.features.includes('distinguished-winner')
+    return this.features.includes('distinguished-winners')
   }
 }
 
