@@ -45,10 +45,11 @@ export default InputRadioGroup
   flex-wrap: wrap
   justify-content: flex-start
   align-items: center
+  margin-bottom: -15px
 
   .input-radio
     position: relative
-    margin: 0 15px 0 0
+    margin: 0 15px 15px 0
     cursor: pointer
     min-width: 120px
 
