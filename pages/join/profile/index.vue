@@ -6,7 +6,7 @@
       v-slot="{ valid }"
     )
       base-button(
-        to="/join/link"
+        to="/join/signup"
       ).btn-cta.btn-secondary Previous
       base-button(
         :disabled="!valid",
