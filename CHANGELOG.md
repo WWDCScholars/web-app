@@ -1,6 +1,8 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [4.4.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.3.2-pre.0...v4.4.0-pre.0) (2024-03-27)
 
 ### [4.3.2-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.3.1...v4.3.2-pre.0) (2024-03-27)
 
