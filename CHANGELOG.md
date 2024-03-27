@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.4.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v4.4.0-pre.1...v4.4.0-pre.2) (2024-03-27)
+
+
+### Features
+
+* Showcase Distinguished Winner submissions ([c7fef85](https://github.com/WWDCScholars/web-app/commit/c7fef85f02b84c9531e402c09741b072135ed627))
+
+
+### Bug Fixes
+
+* Fall back to empty array when approved years is empty ([b51197b](https://github.com/WWDCScholars/web-app/commit/b51197b7b780112d63c8fa8f4332ddaa4d2f596f))
+
 ## [4.4.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v4.4.0-pre.0...v4.4.0-pre.1) (2024-03-27)
 
 
