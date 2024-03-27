@@ -9,7 +9,8 @@
       :name.once="name",
       :placeholder.once="placeholder",
       :required.once="required",
-      :value="textValue"
+      :value="textValue",
+      autocomplete="address-level2"
     )
 
   .input-map
