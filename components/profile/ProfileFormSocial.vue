@@ -6,6 +6,30 @@ base-section
       base-form
         .group
           h3 Where else can people find you?
+          form-field(name="Bluesky", rules="url", vid="bluesky")
+            input-text(
+              type="url",
+              name="bluesky",
+              placeholder="Bluesky Profile URL",
+              v-model="formData.bluesky"
+            )
+
+          form-field(name="Threads", rules="url", vid="threads")
+            input-text(
+              type="url",
+              name="threads",
+              placeholder="Threads Profile URL",
+              v-model="formData.threads"
+            )
+        
+          form-field(name="Mastodon", rules="url", vid="mastodon")
+            input-text(
+            type="url",
+              name="mastodon",
+              placeholder="Mastodon Profile URL",
+              v-model="formData.mastodon"
+            )
+
           form-field(name="Twitter", rules="url", vid="twitter")
             input-text(
               type="url",
@@ -96,6 +120,9 @@ class ProfileFormSocial extends Vue {
 
 namespace ProfileFormSocial {
   export interface Model {
+    bluesky?: string
+    threads?: string
+    mastodon?: string
     twitter?: string
     github?: string
     discord?: string

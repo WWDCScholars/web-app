@@ -38,6 +38,9 @@ export interface State {
     biography: string
   }
   social?: {
+    bluesky?: string
+    threads?: string
+    mastodon?: string
     twitter?: string
     github?: string
     discord?: string
