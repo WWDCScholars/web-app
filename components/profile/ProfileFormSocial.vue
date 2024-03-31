@@ -38,6 +38,14 @@ base-section
               v-model="formData.twitter"
             )
 
+          form-field(name="Instagram", rules="url", vid="instagram")
+            input-text(
+              type="url",
+              name="instagram",
+              placeholder="Instagram Profile URL",
+              v-model="formData.instagram"
+            )
+
           form-field(name="GitHub", rules="url", vid="github")
             input-text(
               type="url",
