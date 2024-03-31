@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.5.0](https://github.com/WWDCScholars/web-app/compare/v4.5.0-pre.0...v4.5.0) (2024-03-31)
+
 ## [4.5.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.4.0...v4.5.0-pre.0) (2024-03-31)
 
 
