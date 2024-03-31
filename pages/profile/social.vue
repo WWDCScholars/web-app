@@ -22,7 +22,7 @@
               placeholder="Threads Profile URL",
               v-model="formData.threads"
             )
-          
+
           form-field(name="Mastodon", rules="url", vid="mastodon")
             input-text(
               type="url",

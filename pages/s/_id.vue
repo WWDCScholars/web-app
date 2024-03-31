@@ -20,19 +20,19 @@
         p.short-bio {{ scholar.biography }}
 
         .social-links(v-if="socialMedia")
-           a(v-if="scholar.loadedSocialMedia.bluesky",
+          a(v-if="scholar.loadedSocialMedia.bluesky",
             :href="scholar.loadedSocialMedia.bluesky",
             alt="Bluesky",
             target="_blank"
           ).social-icon
             div(v-html="require('~/assets/images/icon-social-bluesky.svg?raw')")
-           a(v-if="scholar.loadedSocialMedia.threads",
+          a(v-if="scholar.loadedSocialMedia.threads",
             :href="scholar.loadedSocialMedia.threads",
             alt="Threads",
             target="_blank"
           ).social-icon
             div(v-html="require('~/assets/images/icon-social-threads.svg?raw')")
-           a(v-if="scholar.loadedSocialMedia.mastodon",
+          a(v-if="scholar.loadedSocialMedia.mastodon",
             :href="scholar.loadedSocialMedia.mastodon",
             alt="Mastodon",
             target="_blank"
