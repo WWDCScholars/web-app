@@ -2507,10 +2507,10 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@wwdcscholars/cloudkit@^3.11.0":
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/@wwdcscholars/cloudkit/-/cloudkit-3.11.0.tgz#ed7185c63914057318efcb07dc6998f5ba6d628f"
-  integrity sha512-jeKrdGPrD5tq+wxj1sQ9/nu1oFvUAKl7JBoW/N06s+dcSk5caIUxA557yFTXwGw2ZmGPziRJAzNJENVwadv9+Q==
+"@wwdcscholars/cloudkit@^3.12.0":
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/@wwdcscholars/cloudkit/-/cloudkit-3.12.0.tgz#f0421d23f485c8cc1321a10f2d986b8c3c2e6ac3"
+  integrity sha512-mkhKhH+sE2bfYWlohsD1W2F2TwTELozYQ1T0A0nL/Omf4nvsTC7II+INT/SwRCpLLkwncckoqjlLlc0Bd6APtA==
   dependencies:
     defu "^2.0.4"
     events "^3.2.0"

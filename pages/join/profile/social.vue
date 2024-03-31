@@ -47,6 +47,9 @@ export default class PageJoinProfileSocial extends Vue {
 
   created() {
     this.formData = {
+      bluesky: this.social?.bluesky,
+      threads: this.social?.threads,
+      mastodon: this.social?.mastodon,
       twitter: this.social?.twitter,
       github: this.social?.github,
       discord: this.social?.discord,
