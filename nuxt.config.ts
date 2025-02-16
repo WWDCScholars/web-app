@@ -89,6 +89,7 @@ const config: NuxtConfig = {
   publicRuntimeConfig: {
     baseURL: baseURL,
     mapKitJwt: isDevelopment ? process.env[`${envPrefix}_MAPKIT_JWT`] : undefined,
+    netlifyFunctionsBaseURL: process.env[`${envPrefix}_NETLIFY_FUNCTIONS_BASE_URL`],
     linkApiToken: process.env[`${envPrefix}_LINK_API_TOKEN`],
     linkApiBaseURL: process.env[`${envPrefix}_LINK_API_BASE_URL`],
     axios: {

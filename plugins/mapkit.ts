@@ -70,7 +70,8 @@ const mapKitPlugin: Plugin = ({ $config, $sentry, $axios }) => {
         if ($config.mapKitJwt) {
           done($config.mapKitJwt)
         } else {
-          $axios.$get('/.netlify/functions/mapkit-jwt')
+          const baseURL = $config.netlifyFunctionsBaseURL
+          $axios.$get(`${baseURL}/.netlify/functions/mapkit-jwt`)
             .then(data => {
               done(data.token)
             })
