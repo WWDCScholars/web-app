@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.6.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.5.0...v4.6.0-pre.0) (2025-02-16)
+
+
+### Features
+
+* Load age from api instead of calculating client-side ([7ef9b5b](https://github.com/WWDCScholars/web-app/commit/7ef9b5bccc4d1d5914df335563f07b2f7397e1f4))
+
+
+### Bug Fixes
+
+* Space typo in mapkit-jwt function log ([0dfe2a4](https://github.com/WWDCScholars/web-app/commit/0dfe2a4280494d802e35ec29a49e4c77acb1cb1e))
+
 ## [4.5.0](https://github.com/WWDCScholars/web-app/compare/v4.5.0-pre.0...v4.5.0) (2024-03-31)
 
 ## [4.5.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.4.0...v4.5.0-pre.0) (2024-03-31)
