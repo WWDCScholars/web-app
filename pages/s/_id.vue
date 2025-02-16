@@ -170,8 +170,14 @@ export default class ScholarProfile extends Vue {
 
   get age(): string {
     if (!this.scholar || !this.scholar.birthday) return ''
-    const birthday = dayjs(this.scholar.birthday)
-    return `${dayjs().diff(birthday, 'year')}`
+
+    if (this.scholar.birthday > 99) {
+      // Fall back to calculating age if the birthday field contains a timestamp
+      const birthday = dayjs(this.scholar.birthday)
+      return `${dayjs().diff(birthday, 'year')}`
+    } else {
+      return `${this.scholar.birthday}`
+    }
   }
 
   get socialMedia(): ScholarSocialMedia | undefined {
@@ -291,6 +297,8 @@ export default class ScholarProfile extends Vue {
         this.$router.replace(location)
       }
     }
+
+    this.$store.dispatch('scholars/loadAgeIfMissing', scholar.recordName)
 
     // TODO: Maybe we don't have to await this.
     await this.$store.dispatch('scholars/loadSocialMediaIfMissing', {

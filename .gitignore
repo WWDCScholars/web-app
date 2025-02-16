@@ -26,3 +26,10 @@ node_modules/
 
 # Nuxt generate
 dist
+
+# Netlify CLI
+.netlify
+netlify/.netlify
+
+# Security
+*.pem

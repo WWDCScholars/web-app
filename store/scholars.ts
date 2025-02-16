@@ -26,6 +26,7 @@ export const types = {
   setScholarYearInfo: 'setScholarYearInfo',
   setCreatedScholarYearInfo: 'setCreatedScholarYearInfo',
   setScholarSocialMedia: 'setScholarSocialMedia',
+  setScholarAge: 'setScholarAge',
   removeScholarYearInfo: 'removeScholarYearInfo'
 }
 
@@ -102,6 +103,20 @@ export const actions: ActionTree<State, State> = {
 
     await dispatch('upgradeScholarWithSocialMedia', socialMediaRecordName)
   },
+  async loadAgeIfMissing({ state, dispatch }, scholarRecordName) {
+    if (!state.scholars[scholarRecordName]) throw new Error('CloudKit: Scholar for age does not exist.')
+    const scholar = state.scholars[scholarRecordName]
+
+    // Use the scholar's birthday property is their age
+
+    if (!scholar.scholarPrivate) return
+    if (!!scholar.birthday) return
+
+    await dispatch('upgradeScholarWithAge', {
+      scholarRecordName,
+      scholarPrivateRecordName: scholar.scholarPrivate.recordName
+    })
+  },
   async upgradeScholarWithPrivate({ commit }, recordName: string) {
     const scholarPrivate = await ScholarPrivate.fetch(recordName)
     const scholarRecordName = scholarPrivate.scholar.recordName
@@ -116,11 +131,20 @@ export const actions: ActionTree<State, State> = {
     const socialMedia = await ScholarSocialMedia.fetch(recordName)
     const scholarRecordName = socialMedia.scholar.recordName
     commit(types.setScholarSocialMedia, { scholarRecordName, socialMedia })
+  },
+  async upgradeScholarWithAge({ commit }, { scholarRecordName, scholarPrivateRecordName }) {
+    const baseURL = this.app.$config.netlifyFunctionsBaseURL
+    const { age } = await this.$axios.$get(`${baseURL}/api/scholar-age`, {
+      params: { r: scholarPrivateRecordName }
+    })
+    commit(types.setScholarAge, { scholarRecordName, age })
   }
 }
 
 export const mutations: MutationTree<State> = {
   [types.insertScholar](state: State, scholar: Scholar) {
+     // make sure the birthday property exists so reactivity works when its loaded later
+    scholar.birthday = undefined
     Vue.set(state.scholars, scholar.recordName!, scholar)
   },
   [types.setScholarPrivate](state: State, p: { scholarRecordName: string; scholarPrivate: ScholarPrivate }) {
@@ -200,6 +224,15 @@ export const mutations: MutationTree<State> = {
       state.scholars[p.scholarRecordName],
       'loadedSocialMedia',
       p.socialMedia
+    )
+  },
+  [types.setScholarAge](state: State, p: { scholarRecordName: string, age: number }) {
+    if (!state.scholars[p.scholarRecordName]) return
+
+    Vue.set(
+      state.scholars[p.scholarRecordName],
+      'birthday',
+      p.age
     )
   }
 }
