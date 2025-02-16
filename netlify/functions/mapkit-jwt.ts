@@ -51,7 +51,7 @@ function missingEnvironmentError(variableName: string): HandlerResponse {
   console.error(`Missing environment variable ${variableName}`)
   return {
     statusCode: 500,
-    body: JSON.stringify({ message: 'Invalid configuration, check logs '})
+    body: JSON.stringify({ message: 'Invalid configuration, check logs' })
   }
 }
 
