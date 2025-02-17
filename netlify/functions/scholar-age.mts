@@ -75,7 +75,8 @@ async function setupCloudKitConnection(): Promise<CloudKit.CloudKit> {
   checkEnvironment('CLOUDKIT_STS_KEY_ID')
 
   // Write the key to a file so CloudKit JS can read it
-  const stsKey = Netlify.env.get('CLOUDKIT_STS_KEY')!
+  const encodedSTSKey = Netlify.env.get('CLOUDKIT_STS_KEY')!
+  const stsKey = Buffer.from(encodedSTSKey, 'base64')
   await fs.writeFile(cloudKitSTSKeyFile, stsKey)
 
   const container: CloudKit.ServerContainerConfig = {
