@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.6.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v4.6.0-pre.1...v4.6.0-pre.2) (2025-02-17)
+
+
+### Bug Fixes
+
+* Write temporary key file to /tmp ([9803a44](https://github.com/WWDCScholars/web-app/commit/9803a44b2b88b0c4eddb09915d9f506e2cda38d3))
+
 ## [4.6.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v4.6.0-pre.0...v4.6.0-pre.1) (2025-02-17)
 
 
