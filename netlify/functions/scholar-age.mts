@@ -10,16 +10,6 @@ dayjs.extend(timezone)
 
 const isDevelopment = (Netlify.env.get('NETLIFY_DEV') === 'true')
 
-const deployContext = Netlify.context?.deploy.context
-let envPrefix: string
-if (deployContext === 'production') {
-  envPrefix = 'PROD'
-} else if (deployContext === 'branch-deploy') {
-  envPrefix = 'STAGE'
-} else {
-  envPrefix = 'DEV'
-}
-
 export const config: Config = {
   path: '/api/scholar-age'
 }
@@ -85,14 +75,14 @@ async function setupCloudKitConnection(): Promise<CloudKit.CloudKit> {
   checkEnvironment('CLOUDKIT_STS_KEY_ID')
 
   // Write the key to a file so CloudKit JS can read it
-  const stsKey = environment('CLOUDKIT_STS_KEY')
+  const stsKey = Netlify.env.get('CLOUDKIT_STS_KEY')!
   await fs.writeFile(cloudKitSTSKeyFile, stsKey)
 
   const container: CloudKit.ServerContainerConfig = {
-    containerIdentifier: environment('CLOUDKIT_CONTAINER_IDENTIFIER'),
-    environment: environment('CLOUDKIT_ENVIRONMENT') as any,
+    containerIdentifier: Netlify.env.get('CLOUDKIT_CONTAINER_IDENTIFIER'),
+    environment: Netlify.env.get('CLOUDKIT_ENVIRONMENT') as any,
     serverToServerKeyAuth: {
-      keyID: environment('CLOUDKIT_STS_KEY_ID'),
+      keyID: Netlify.env.get('CLOUDKIT_STS_KEY_ID'),
       privateKeyFile: cloudKitSTSKeyFile,
       privateKeyPassPhrase: ''
     }
@@ -106,12 +96,8 @@ async function setupCloudKitConnection(): Promise<CloudKit.CloudKit> {
   })
 }
 
-function environment(key: string): string {
-  return Netlify.env.get(`${envPrefix}_${key}`)!
-}
-
 function checkEnvironment(key: string) {
-  if (!Netlify.env.has(`${envPrefix}_${key}`)) {
-    throw `${envPrefix}_${key}`
+  if (!Netlify.env.has(key)) {
+    throw key
   }
 }
