@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.6.0-pre.3](https://github.com/WWDCScholars/web-app/compare/v4.6.0-pre.2...v4.6.0-pre.3) (2025-02-17)
+
+
+### Bug Fixes
+
+* Pass private key as base64 encoded from environment ([dc8ee03](https://github.com/WWDCScholars/web-app/commit/dc8ee0366924b1756cfa9d8c08462dc553114df5))
+
 ## [4.6.0-pre.2](https://github.com/WWDCScholars/web-app/compare/v4.6.0-pre.1...v4.6.0-pre.2) (2025-02-17)
 
 
