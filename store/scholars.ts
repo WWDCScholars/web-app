@@ -133,7 +133,7 @@ export const actions: ActionTree<State, State> = {
     commit(types.setScholarSocialMedia, { scholarRecordName, socialMedia })
   },
   async upgradeScholarWithAge({ commit }, { scholarRecordName, scholarPrivateRecordName }) {
-    const baseURL = this.app.$config.netlifyFunctionsBaseURL
+    const baseURL = this.app.$config.netlifyFunctionsBaseURL ?? ''
     const { age } = await this.$axios.$get(`${baseURL}/api/scholar-age`, {
       params: { r: scholarPrivateRecordName }
     })
