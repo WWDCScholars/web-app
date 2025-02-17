@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.6.0-pre.1](https://github.com/WWDCScholars/web-app/compare/v4.6.0-pre.0...v4.6.0-pre.1) (2025-02-17)
+
+
+### Bug Fixes
+
+* Fall back to empty netlifyFunctionsBaseURL ([d3be113](https://github.com/WWDCScholars/web-app/commit/d3be1134d857d18f731e9b2775438595464cf3be))
+
 ## [4.6.0-pre.0](https://github.com/WWDCScholars/web-app/compare/v4.5.0...v4.6.0-pre.0) (2025-02-16)
 
 
