@@ -67,7 +67,7 @@ function missingEnvironmentError(key: string): Response {
   )
 }
 
-const cloudKitSTSKeyFile = './sts-key.pem'
+const cloudKitSTSKeyFile = '/tmp/sts-key.pem'
 async function setupCloudKitConnection(): Promise<CloudKit.CloudKit> {
   checkEnvironment('CLOUDKIT_CONTAINER_IDENTIFIER')
   checkEnvironment('CLOUDKIT_ENVIRONMENT')
