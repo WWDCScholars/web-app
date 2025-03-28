@@ -4,36 +4,12 @@
     <h1>Imprint</h1>
 
     <h2>Information pursuant to § 5 TMG</h2>
-    <p>corporatr GmbH<br />
+    <p>Sam Eckert<br />
     Lindpaintnerstrasse 88<br />
     70195 Stuttgart</p>
 
-    <p>Handelsregister: HRB 732522<br />
-    Registration court: Stuttgart</p>
-
-    <p><strong>Represented by the managing director:</strong><br />
-    Oliver Eckert</p>
-
     <h2>Contact</h2>
-    <p>Phone: +49 711 13203200<br />
-    Email: hello@corporatr.com</p>
-
-    <h2>VAT ID</h2>
-    <p>Sales tax identification number according to § 27 a of the Sales Tax Law:<br />
-    DE269066882</p>
-
-    <h2>Business identification number</h2>
-    <p>D-U-N-S™ Number 341550170</p>
-
-    <h2>Information regarding professional liability insurance</h2>
-    <p><strong>Name and registered office of the insurer:</strong><br />
-    R+V Allgemeine Versicherung AG<br />
-    Mittlerer Pfad 24<br />
-    70499 Stuttgart</p>
-    <p><strong>Scope of insurance:</strong><br />Deutschland</p>
-
-    <h2>Responsible for the content according to § 55(2) RStV</h2>
-    <p>Oliver Eckert</p>
+    <p>Email: team@WWDCScholars.com</p>
 
     <h2>EU dispute resolution</h2>
     <p>The European Commission provides a platform for online dispute resolution (ODR): <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a>.<br /> Our e-mail address can be found above in the site notice.</p>

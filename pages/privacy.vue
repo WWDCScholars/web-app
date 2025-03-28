@@ -30,9 +30,9 @@
     <p>We herewith advise you that the transmission of data via the Internet (i.e. through e-mail communications) may be prone to security gaps. It is not possible to completely protect data against third party access.</p>
     <h3>Information about the responsible party (referred to as the „controller“ in the GDPR)</h3>
     <p>The data processing controller on this website/of this app is:</p>
-    <p>corporatr GmbH<br /> represented by the managing director Oliver Eckert<br /> Lindpaintnerstraße 88<br /> 70195 Stuttgart</p>
+    <p>Sam Eckert<br /> Lindpaintnerstraße 88<br /> 70195 Stuttgart</p>
 
-    <p>Phone: +49 711 13203200<br /> E-mail: hello@corporatr.com</p>
+    <p>Email: team@WWDCScholars.com</p>
     <p>The controller is the natural person or legal entity that single-handedly or jointly with others makes decisions as to the purposes of and resources for the processing of personal data (e.g. names, e-mail addresses, etc.).</p>
     <h3>Revocation of your consent to the processing of data</h3>
     <p>A wide range of data processing transactions are possible only subject to your express consent. You can also revoke at any time any consent you have already given us. To do so, all you are required to do is sent us an informal notification via e-mail.
